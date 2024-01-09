@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:cool-team-official/vgo.git",
-  "author": "LiDong <cnlidong@live.cn>",
+  "author": "Vera <https://github.com/vera-byte>",
   "license": "MIT",
   "devDependencies": {
     "vuepress": "^1.9.7"
