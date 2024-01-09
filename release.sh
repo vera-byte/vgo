@@ -7,9 +7,9 @@ set -e
 #     exit 1
 # fi
 
-# 检查当前是否为master分支
-if [ "$(git rev-parse --abbrev-ref HEAD)" != "master" ]; then
-    echo "You must be on the master branch to release"
+# 检查当前是否为main分支
+if [ "$(git rev-parse --abbrev-ref HEAD)" != "main" ]; then
+    echo "You must be on the main branch to release"
     exit 1
 fi
 
@@ -42,8 +42,8 @@ if ! echo "$TAG" | grep -q '^v[0-9]\+\.[0-9]\+\.[0-9]\+$'; then
     exit 1
 fi
 
-# 推送到master
-git push origin master
+# 推送到main
+git push origin main
 # 创建tag
 git tag $TAG
 # 提交tag
