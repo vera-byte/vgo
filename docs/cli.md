@@ -1,0 +1,87 @@
+# 开发工具
+
+[返回目录](README.md)
+
+::: warning 注意
+以下部分命令需您已经安装了 Go 语言环境，如果没有安装，请自行安装，如果已经安装，请自行配置环境变量
+:::
+
+## vgo-tools
+
+vgo-tools 是一个用于快速生成`Vgo`项目的脚手架工具，可用于快速生成项目、模块、页面、接口等。
+
+### `vgo-tools`安装
+
+Linux, Mac 可使用以下命令安装：
+
+从 github 下载
+
+```bash
+wget -O vgo-tools \
+https://github.com/vera-byte/vgo/releases/latest/download/vgo-tools_$(go env GOOS)_$(go env GOARCH) \
+&& chmod +x vgo-tools \
+&& ./vgo-tools install \
+&& rm ./vgo-tools
+```
+
+从镜像下载
+
+```bash
+wget -O vgo-tools \
+https://gh.hjmcloud.cn/github.com/vera-byte/vgo/releases/latest/download/vgo-tools_$(go env GOOS)_$(go env GOARCH) \
+&& chmod +x vgo-tools \
+&& ./vgo-tools install \
+&& rm ./vgo-tools
+```
+
+验证
+
+```bash
+vgo-tools version
+```
+
+Windows 可以直接下载编译后的可执行文件，下载地址：[releases](https://github.com/vera-byte/vgo/releases),选择对应的版本下载。下载后复制到`PATH`环境变量中的目录下即可。
+
+::: tip 提示
+在正确地将 GOPATH/bin 目录添加到 PATH 环境变量中后，可以直接使用`go install`命令安装,因为该安装方式为本地编译安装,可享受`goproxy`的加速服务,安装速度更快,适用于所有平台。
+:::
+
+```bash
+go install github.com/vera-byte/vgo/vgo-tools@latest
+```
+
+## gf
+
+`GoFrame`框架提供了功能强大的`gf`命令行开发辅助工具，是框架发展的一个重要组成部分。
+
+### `gf`安装
+
+Linux, Mac 可使用以下命令安装：
+
+从 github 下载
+
+```bash
+wget -O gf  \
+https://github.com/gogf/gf/releases/latest/download/gf_$(go env GOOS)_$(go env GOARCH) \
+&& chmod +x gf \
+&& ./gf install \
+&& rm ./gf
+```
+
+使用镜像下载
+
+```
+wget -O gf \
+https://gh.hjmcloud.cn/github.com/gogf/gf/releases/latest/download/gf_$(go env GOOS)_$(go env GOARCH) \
+&& chmod +x gf \
+&& ./gf install \
+&& rm ./gf
+```
+
+验证
+
+```bash
+gf version
+```
+
+更多`gf`工具的安装使用说明,可以访问 [https://goframe.org/pages/viewpage.action?pageId=1114260](https://goframe.org/pages/viewpage.action?pageId=1114260)
