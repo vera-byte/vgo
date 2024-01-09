@@ -9,7 +9,9 @@ on:
 env:
   TZ: Asia/Shanghai
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+permissions:
+  contents: read
+  pages: write
 jobs:
   build:
     name: Auto Creating Tags
