@@ -222,8 +222,8 @@ import { computed, onMounted, reactive } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import Draggable from "vuedraggable/src/vuedraggable";
 import { checkPerm } from "/$/base";
-import { useCool } from "/@/cool";
-import { ContextMenu, useForm } from "@cool-vue/crud";
+import { usev } from "/@/v";
+import { ContextMenu, useForm } from "@v-vue/crud";
 import {
 	Refresh,
 	CirclePlus,
@@ -235,7 +235,7 @@ import {
 	Close
 } from "@element-plus/icons-vue";
 
-const { refs, setRefs, service } = useCool();
+const { refs, setRefs, service } = usev();
 
 // 任务列表
 const list = reactive<any[]>([

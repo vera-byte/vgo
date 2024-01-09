@@ -19,11 +19,11 @@
 </template>
 
 <script lang="ts" name="menu-select" setup>
-import { useForm } from "@cool-vue/crud";
+import { useForm } from "@v-vue/crud";
 import { cloneDeep } from "lodash-es";
 import { computed, onMounted, ref, watch } from "vue";
-import { useCool } from "/@/cool";
-import { deepTree } from "/@/cool/utils";
+import { usev } from "/@/v";
+import { deepTree } from "/@/v/utils";
 
 const props = defineProps({
 	modelValue: [Number, String],
@@ -36,7 +36,7 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue"]);
 
 // 请求服务
-const { service } = useCool();
+const { service } = usev();
 
 const Form = useForm();
 

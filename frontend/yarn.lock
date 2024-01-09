@@ -966,9 +966,9 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
-"@cool-vue/crud@^6.0.3":
+"@v-vue/crud@^6.0.3":
   version "6.0.3"
-  resolved "https://registry.npmjs.org/@cool-vue/crud/-/crud-6.0.3.tgz#f160d5fc50f76e140b852146be6196560aa1e383"
+  resolved "https://registry.npmjs.org/@v-vue/crud/-/crud-6.0.3.tgz#f160d5fc50f76e140b852146be6196560aa1e383"
   integrity sha512-hCYUeT4k4eIJ3fmwpmWq4iX6IzRK6LytTCl0o5NkzJKkZ8FhE0IV7jyVdLQtSrvba6uouiwKBnAG1AZBhP09wA==
   dependencies:
     array.prototype.flat "^1.2.4"

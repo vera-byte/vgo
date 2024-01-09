@@ -1,6 +1,6 @@
-import { Merge, ModuleConfig } from "/@/cool";
-import Crud from "@cool-vue/crud";
-import "@cool-vue/crud/dist/index.css";
+import { Merge, ModuleConfig } from "/@/v";
+import Crud from "@v-vue/crud";
+import "@v-vue/crud/dist/index.css";
 
 export default (): Merge<ModuleConfig, CrudOptions> => {
 	return {

@@ -10,4 +10,4 @@
 
 技术交流群
 
-![企业微信](https://cool-js.com/wechat.png)
+![企业微信](https://v-js.com/wechat.png)

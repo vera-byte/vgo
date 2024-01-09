@@ -55,7 +55,7 @@
 <script lang="ts" setup>
 import { reactive } from "vue";
 import * as echarts from "echarts";
-import { useCrud, useTable } from "@cool-vue/crud";
+import { useCrud, useTable } from "@v-vue/crud";
 
 const chartOption = reactive({
 	grid: {

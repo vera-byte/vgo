@@ -19,25 +19,25 @@ if [ ! -d "$ROOT_DIR/data" ]; then
 fi
 cd $ROOT_DIR/data
 # 如果已经存在前端代码,则删除
-if [ -d "$ROOT_DIR/data/cool-admin-vue" ]; then
-  echo "cool-admin-vue directory found, deleting cool-admin-vue directory"
-  rm -rf $ROOT_DIR/data/cool-admin-vue
+if [ -d "$ROOT_DIR/data/v-admin-vue" ]; then
+  echo "v-admin-vue directory found, deleting v-admin-vue directory"
+  rm -rf $ROOT_DIR/data/v-admin-vue
 fi
 # 如果当前为codespace开发环境，则使用git clone,否则使用pgit clone
 if [ "$CODESPACES" = "true" ]; then
-  echo "Cloning cool-admin-vue from github using git"
-  git clone --depth=1 https://github.com/cool-team-official/cool-admin-vue.git
+  echo "Cloning v-admin-vue from github using git"
+  git clone --depth=1 https://github.com/v-team-official/v-admin-vue.git
 else
-  echo "Cloning cool-admin-vue from github use pgit"
-    pgit clone --depth=1 https://github.com/cool-team-official/cool-admin-vue.git
+  echo "Cloning v-admin-vue from github use pgit"
+    pgit clone --depth=1 https://github.com/v-team-official/v-admin-vue.git
 fi
 
 # 进入前端代码目录
-cd $ROOT_DIR/data/cool-admin-vue
-# 替换 src/cool/config/index.ts 中的 mode: "history" 为 mode: "hash"
-sed -i 's#mode: "history"#mode: "hash"#g' src/cool/config/index.ts
-# 替换 src/cool/config/prod.ts 中的 baseUrl: "/api" 为 baseUrl: "/"
-sed -i 's#baseUrl: "/api"#baseUrl: ""#g' src/cool/config/prod.ts
+cd $ROOT_DIR/data/v-admin-vue
+# 替换 src/v/config/index.ts 中的 mode: "history" 为 mode: "hash"
+sed -i 's#mode: "history"#mode: "hash"#g' src/v/config/index.ts
+# 替换 src/v/config/prod.ts 中的 baseUrl: "/api" 为 baseUrl: "/"
+sed -i 's#baseUrl: "/api"#baseUrl: ""#g' src/v/config/prod.ts
 
 # 替换yarn.lock中的npm镜像地址
 sed -i 's#https://registry.npmjs.org/#https://registry.npmmirror.com/#g' yarn.lock
@@ -57,7 +57,7 @@ yarn build
 # fi
 # ## 移动dist目录到data目录并重命名为public
 # echo "Moving dist directory to data directory and renaming it to public"
-# mv $ROOT_DIR/data/cool-admin-vue/dist $ROOT_DIR/data/public
+# mv $ROOT_DIR/data/v-admin-vue/dist $ROOT_DIR/data/public
 # ## gf 打包
 # cd $ROOT_DIR/data
 # echo "Packaging public directory"

@@ -1,12 +1,12 @@
 package model
 
-import "github.com/vera-byte/vgo/cool"
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseSysParam = "base_sys_param"
 
 // BaseSysParam mapped from table <base_sys_param>
 type BaseSysParam struct {
-	*cool.Model
+	*v.Model
 	KeyName  string  `gorm:"column:keyName;type:varchar(255);not null;index:IDX_cf19b5e52d8c71caa9c4534454,priority:1" json:"keyName"` // 键位
 	Name     string  `gorm:"column:name;type:varchar(255);not null" json:"name"`                                                       // 名称
 	Data     string  `gorm:"column:data;type:text;not null" json:"data"`                                                               // 数据
@@ -22,11 +22,11 @@ func (*BaseSysParam) TableName() string {
 // NewBaseSysParam 创建一个新的BaseSysParam
 func NewBaseSysParam() *BaseSysParam {
 	return &BaseSysParam{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysParam{})
+	v.CreateTable(&BaseSysParam{})
 }

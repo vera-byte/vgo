@@ -1,5 +1,5 @@
 import { last } from "lodash-es";
-import { filename, extname } from "/@/cool/utils";
+import { filename, extname } from "/@/v/utils";
 
 // 文件规则
 const fileRules = [

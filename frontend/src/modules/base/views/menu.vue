@@ -83,16 +83,16 @@
 
 <script lang="ts" name="sys-menu" setup>
 import { Check, Close } from "@element-plus/icons-vue";
-import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
-import { useCool, isDev } from "/@/cool";
-import { deepTree } from "/@/cool/utils";
+import { useCrud, useTable, useUpsert } from "@v-vue/crud";
+import { usev, isDev } from "/@/v";
+import { deepTree } from "/@/v/utils";
 import MenuCreate from "./components/menu/create.vue";
 import MenuSelect from "./components/menu/select.vue";
 import MenuFile from "./components/menu/file.vue";
 import MenuPerms from "./components/menu/perms.vue";
 import IconSelect from "./components/menu/icon.vue";
 
-const { service } = useCool();
+const { service } = usev();
 
 // cl-crud 配置
 const Crud = useCrud(

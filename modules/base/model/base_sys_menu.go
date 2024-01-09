@@ -1,12 +1,12 @@
 package model
 
-import "github.com/vera-byte/vgo/cool"
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseSysMenu = "base_sys_menu"
 
 // BaseSysMenu mapped from table <base_sys_menu>
 type BaseSysMenu struct {
-	*cool.Model
+	*v.Model
 	ParentID  uint    `gorm:"column:parentId;type:bigint" json:"parentId"`                 // 父菜单ID
 	Name      string  `gorm:"column:name;type:varchar(255);not null" json:"name"`          // 菜单名称
 	Router    *string `gorm:"column:router;type:varchar(255)" json:"router"`               // 菜单地址
@@ -27,11 +27,11 @@ func (*BaseSysMenu) TableName() string {
 // NewBaseSysMenu create a new BaseSysMenu
 func NewBaseSysMenu() *BaseSysMenu {
 	return &BaseSysMenu{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysMenu{})
+	v.CreateTable(&BaseSysMenu{})
 }

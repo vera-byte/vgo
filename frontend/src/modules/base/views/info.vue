@@ -26,10 +26,10 @@
 import { ElMessage } from "element-plus";
 import { reactive, ref } from "vue";
 import { useBase } from "/$/base";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { cloneDeep } from "lodash-es";
 
-const { service } = useCool();
+const { service } = usev();
 const { user } = useBase();
 
 // 表单数据

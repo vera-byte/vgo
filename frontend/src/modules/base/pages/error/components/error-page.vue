@@ -20,7 +20,7 @@
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { useBase } from "/$/base";
 
 defineProps({
@@ -28,7 +28,7 @@ defineProps({
 	desc: String
 });
 
-const { router } = useCool();
+const { router } = usev();
 const { user } = useBase();
 
 const isLogout = ref(false);

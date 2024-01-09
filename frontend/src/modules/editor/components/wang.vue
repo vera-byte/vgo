@@ -38,8 +38,8 @@ import "@wangeditor/editor/dist/css/style.css";
 import { onBeforeUnmount, ref, shallowRef, watch, PropType, computed, defineComponent } from "vue";
 import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
 import { IEditorConfig } from "@wangeditor/editor";
-import { useCool } from "/@/cool";
-import { parsePx } from "/@/cool/utils";
+import { usev } from "/@/v";
+import { parsePx } from "/@/v/utils";
 
 export default defineComponent({
 	name: "cl-editor-wang",
@@ -65,7 +65,7 @@ export default defineComponent({
 	emits: ["update:modelValue", "change", "focus", "blur"],
 
 	setup(props, { emit }) {
-		const { refs, setRefs } = useCool();
+		const { refs, setRefs } = usev();
 
 		// 编辑器
 		const Editor = shallowRef();

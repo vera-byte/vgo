@@ -16,8 +16,8 @@
 
 <script lang="ts" name="menu-perms" setup>
 import { onMounted, ref, watch } from "vue";
-import { useCool } from "/@/cool";
-import { deepPaths } from "/@/cool/utils";
+import { usev } from "/@/v";
+import { deepPaths } from "/@/v/utils";
 
 const props = defineProps({
 	modelValue: {
@@ -28,7 +28,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const { service } = useCool();
+const { service } = usev();
 
 // 绑定值
 const value = ref<string[][]>([]);

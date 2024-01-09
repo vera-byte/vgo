@@ -67,13 +67,13 @@
 </template>
 
 <script lang="ts" name="sys-user" setup>
-import { useTable, useUpsert, useCrud } from "@cool-vue/crud";
-import { useCool } from "/@/cool";
+import { useTable, useUpsert, useCrud } from "@v-vue/crud";
+import { usev } from "/@/v";
 import { useViewGroup } from "../hooks";
 import DeptMove from "./components/dept/move.vue";
 import DeptTree from "./components/dept/tree.vue";
 
-const { service, refs, setRefs } = useCool();
+const { service, refs, setRefs } = usev();
 const { ViewGroup } = useViewGroup();
 
 // cl-crud 配置

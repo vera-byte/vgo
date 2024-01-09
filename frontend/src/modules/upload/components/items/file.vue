@@ -68,8 +68,8 @@
 
 <script lang="ts" setup name="item-file">
 import { computed, PropType, ref } from "vue";
-import { ContextMenu } from "@cool-vue/crud";
-import { extname } from "/@/cool/utils";
+import { ContextMenu } from "@v-vue/crud";
+import { extname } from "/@/v/utils";
 import { fileName, fileRule } from "../../utils";
 import { useClipboard } from "@vueuse/core";
 import { ElMessage } from "element-plus";

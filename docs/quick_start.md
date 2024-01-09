@@ -7,11 +7,11 @@
 一个合理的工程目录可以让开发更加高效，`Vgo`项目推荐的工程目录如下：
 
 ```bash
-# 假定项目名称为 cool-study
+# 假定项目名称为 v-study
 
-cool-study/
+v-study/
 ├── backend # 后端代码
-├── cool-study # 主库，存放生产部署相关脚本等
+├── v-study # 主库，存放生产部署相关脚本等
 ├── frontend # 前端代码
 └── mobile # 移动端代码
 ```
@@ -20,9 +20,9 @@ cool-study/
 
 ```bash
 # 创建工程目录
-mkdir cool-study
+mkdir v-study
 # 进入工程目录
-cd cool-study
+cd v-study
 # 创建后端代码目录
 vgo-tools init backend
 # 进入后端代码目录
@@ -37,11 +37,11 @@ gf run main.go
 
 ```bash
 # 进入工程目录
-cd cool-study
+cd v-study
 # 拉取前端代码
-git clone https://github.com/cool-team-official/cool-admin-vue frontend
+git clone https://github.com/v-team-official/v-admin-vue frontend
 # 如果网络不好，可以使用国内镜像
-git clone https://gitee.com/cool-team-official/cool-admin-vue frontend
+git clone https://gitee.com/v-team-official/v-admin-vue frontend
 # 进入前端代码目录
 cd frontend
 # 安装依赖

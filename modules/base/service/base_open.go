@@ -5,23 +5,23 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseOpenService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewBaseOpenService() *BaseOpenService {
 	return &BaseOpenService{
-		&cool.Service{},
+		&v.Service{},
 	}
 }
 
 // AdminEPS 获取eps
 func (s *BaseOpenService) AdminEPS(ctx g.Ctx) (result *g.Var, err error) {
-	c := cool.CacheEPS
+	c := v.CacheEPS
 	result, err = c.GetOrSetFunc(ctx, "adminEPS", func(ctx g.Ctx) (interface{}, error) {
 		return s.creatAdminEPS(ctx)
 	}, 0)
@@ -47,14 +47,14 @@ func (s *BaseOpenService) creatAdminEPS(ctx g.Ctx) (adminEPS interface{}, err er
 	// type Column struct {
 	// }
 	type Module struct {
-		Api     []*Api             `json:"api"`
-		Columns []*cool.ColumnInfo `json:"columns"`
-		Module  string             `json:"module"`
-		Prefix  string             `json:"prefix"`
+		Api     []*Api          `json:"api"`
+		Columns []*v.ColumnInfo `json:"columns"`
+		Module  string          `json:"module"`
+		Prefix  string          `json:"prefix"`
 	}
 	admineps := make(map[string][]*Module)
 	// 获取所有路由并更新到数据库表 base_eps_admin
-	cool.DBM(baseEpsAdmin).Where("1=1").Delete()
+	v.DBM(baseEpsAdmin).Where("1=1").Delete()
 	routers := g.Server().GetRoutes()
 	for _, router := range routers {
 		if router.Type == ghttp.HandlerTypeMiddleware || router.Type == ghttp.HandlerTypeHook {
@@ -78,7 +78,7 @@ func (s *BaseOpenService) creatAdminEPS(ctx g.Ctx) (adminEPS interface{}, err er
 		prefix := gstr.Join(routeSplite[0:len(routeSplite)-1], "/")
 		// 获取最后一个元素为summary
 		summary := routeSplite[len(routeSplite)-1]
-		cool.DBM(baseEpsAdmin).Insert(&Api{
+		v.DBM(baseEpsAdmin).Insert(&Api{
 			Module:  module,
 			Method:  method,
 			Path:    path,
@@ -90,11 +90,11 @@ func (s *BaseOpenService) creatAdminEPS(ctx g.Ctx) (adminEPS interface{}, err er
 	}
 	// 读取数据库表生成eps
 	// var modules []*Module
-	items, _ := cool.DBM(baseEpsAdmin).Fields("DISTINCT module,prefix").All()
+	items, _ := v.DBM(baseEpsAdmin).Fields("DISTINCT module,prefix").All()
 	for _, item := range items {
 		module := item["module"].String()
 		prefix := item["prefix"].String()
-		apis, _ := cool.DBM(baseEpsAdmin).Where("module=? AND prefix=?", module, prefix).All()
+		apis, _ := v.DBM(baseEpsAdmin).Where("module=? AND prefix=?", module, prefix).All()
 		var apiList []*Api
 		for _, api := range apis {
 			apiList = append(apiList, &Api{
@@ -109,7 +109,7 @@ func (s *BaseOpenService) creatAdminEPS(ctx g.Ctx) (adminEPS interface{}, err er
 		}
 		admineps[module] = append(admineps[module], &Module{
 			Api:     apiList,
-			Columns: cool.ModelInfo[prefix],
+			Columns: v.ModelInfo[prefix],
 			Module:  module,
 			Prefix:  prefix,
 		})
@@ -123,7 +123,7 @@ func (s *BaseOpenService) creatAdminEPS(ctx g.Ctx) (adminEPS interface{}, err er
 
 // AdminEPS 获取eps
 func (s *BaseOpenService) AppEPS(ctx g.Ctx) (result *g.Var, err error) {
-	c := cool.CacheEPS
+	c := v.CacheEPS
 	result, err = c.GetOrSetFunc(ctx, "appEPS", func(ctx g.Ctx) (interface{}, error) {
 		return s.creatAppEPS(ctx)
 	}, 0)
@@ -149,14 +149,14 @@ func (s *BaseOpenService) creatAppEPS(ctx g.Ctx) (appEPS interface{}, err error)
 	// type Column struct {
 	// }
 	type Module struct {
-		Api     []*Api             `json:"api"`
-		Columns []*cool.ColumnInfo `json:"columns"`
-		Module  string             `json:"module"`
-		Prefix  string             `json:"prefix"`
+		Api     []*Api          `json:"api"`
+		Columns []*v.ColumnInfo `json:"columns"`
+		Module  string          `json:"module"`
+		Prefix  string          `json:"prefix"`
 	}
 	appeps := make(map[string][]*Module)
 	// 获取所有路由并更新到数据库表 base_eps_admin
-	cool.DBM(baseEpsApp).Where("1=1").Delete()
+	v.DBM(baseEpsApp).Where("1=1").Delete()
 	routers := g.Server().GetRoutes()
 	for _, router := range routers {
 		if router.Type == ghttp.HandlerTypeMiddleware || router.Type == ghttp.HandlerTypeHook {
@@ -180,7 +180,7 @@ func (s *BaseOpenService) creatAppEPS(ctx g.Ctx) (appEPS interface{}, err error)
 		prefix := gstr.Join(routeSplite[0:len(routeSplite)-1], "/")
 		// 获取最后一个元素为summary
 		summary := routeSplite[len(routeSplite)-1]
-		cool.DBM(baseEpsApp).Insert(&Api{
+		v.DBM(baseEpsApp).Insert(&Api{
 			Module:  module,
 			Method:  method,
 			Path:    path,
@@ -192,11 +192,11 @@ func (s *BaseOpenService) creatAppEPS(ctx g.Ctx) (appEPS interface{}, err error)
 	}
 	// 读取数据库表生成eps
 	// var modules []*Module
-	items, _ := cool.DBM(baseEpsApp).Fields("DISTINCT module,prefix").All()
+	items, _ := v.DBM(baseEpsApp).Fields("DISTINCT module,prefix").All()
 	for _, item := range items {
 		module := item["module"].String()
 		prefix := item["prefix"].String()
-		apis, _ := cool.DBM(baseEpsApp).Where("module=? AND prefix=?", module, prefix).All()
+		apis, _ := v.DBM(baseEpsApp).Where("module=? AND prefix=?", module, prefix).All()
 		var apiList []*Api
 		for _, api := range apis {
 			apiList = append(apiList, &Api{
@@ -211,7 +211,7 @@ func (s *BaseOpenService) creatAppEPS(ctx g.Ctx) (appEPS interface{}, err error)
 		}
 		appeps[module] = append(appeps[module], &Module{
 			Api:     apiList,
-			Columns: cool.ModelInfo[prefix],
+			Columns: v.ModelInfo[prefix],
 			Module:  module,
 			Prefix:  prefix,
 		})

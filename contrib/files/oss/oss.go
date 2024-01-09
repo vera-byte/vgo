@@ -9,8 +9,8 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/grand"
-	"github.com/vera-byte/vgo/cool"
-	"github.com/vera-byte/vgo/cool/vfile"
+	"github.com/vera-byte/vgo/v"
+	"github.com/vera-byte/vgo/v/vfile"
 )
 
 var (
@@ -64,20 +64,20 @@ func (m *Oss) Upload(ctx g.Ctx) (string, error) {
 		return "上传失败", err
 	}
 
-	url := fmt.Sprintf("https://%s.%s/%s", m.Bucket.BucketName, cool.Config.File.Oss.Endpoint, fullPath)
+	url := fmt.Sprintf("https://%s.%s/%s", m.Bucket.BucketName, v.Config.File.Oss.Endpoint, fullPath)
 
 	return url, nil
 }
 
 func New() vfile.Driver {
 	ctx := context.Background()
-	if cool.Config.File.Mode != "oss" {
+	if v.Config.File.Mode != "oss" {
 		return nil
 	}
-	endpoint := cool.Config.File.Oss.Endpoint
-	accessKeyID := cool.Config.File.Oss.AccessKeyID
-	secretAccessKey := cool.Config.File.Oss.SecretAccessKey
-	bucketName := cool.Config.File.Oss.BucketName
+	endpoint := v.Config.File.Oss.Endpoint
+	accessKeyID := v.Config.File.Oss.AccessKeyID
+	secretAccessKey := v.Config.File.Oss.SecretAccessKey
+	bucketName := v.Config.File.Oss.BucketName
 	// Initialize oss client object.
 	client, err := oss.New(endpoint, accessKeyID, secretAccessKey)
 	if err != nil {

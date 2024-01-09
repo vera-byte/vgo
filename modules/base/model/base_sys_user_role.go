@@ -1,12 +1,12 @@
 package model
 
-import "github.com/vera-byte/vgo/cool"
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseSysUserRole = "base_sys_user_role"
 
 // BaseSysUserRole mapped from table <base_sys_user_role>
 type BaseSysUserRole struct {
-	*cool.Model
+	*v.Model
 	UserID uint `gorm:"column:userId;type:bigint;not null" json:"userId"` // 用户ID
 	RoleID uint `gorm:"column:roleId;type:bigint;not null" json:"roleId"` // 角色ID
 }
@@ -19,11 +19,11 @@ func (*BaseSysUserRole) TableName() string {
 // NewBaseSysUserRole create a new BaseSysUserRole
 func NewBaseSysUserRole() *BaseSysUserRole {
 	return &BaseSysUserRole{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysUserRole{})
+	v.CreateTable(&BaseSysUserRole{})
 }

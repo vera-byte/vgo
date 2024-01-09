@@ -1,4 +1,4 @@
-import { useCrud } from "@cool-vue/crud";
+import { useCrud } from "@v-vue/crud";
 import { ElMessage } from "element-plus";
 import { defineComponent, ref, watch } from "vue";
 import { isBoolean, isFunction } from "lodash-es";

@@ -75,10 +75,10 @@
 <script lang="ts" name="dept-tree" setup>
 import { onMounted, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
-import { useBrowser, useCool } from "/@/cool";
-import { deepTree, revDeepTree } from "/@/cool/utils";
+import { useBrowser, usev } from "/@/v";
+import { deepTree, revDeepTree } from "/@/v/utils";
 import { isArray } from "lodash-es";
-import { ContextMenu, useForm } from "@cool-vue/crud";
+import { ContextMenu, useForm } from "@v-vue/crud";
 import { Refresh as RefreshIcon, Operation, MoreFilled } from "@element-plus/icons-vue";
 import { checkPerm, useViewGroup } from "/$/base";
 
@@ -95,7 +95,7 @@ const props = defineProps({
 
 const emit = defineEmits(["list-change", "refresh", "user-add"]);
 
-const { service, browser } = useCool();
+const { service, browser } = usev();
 const { ViewGroup } = useViewGroup();
 const Form = useForm();
 

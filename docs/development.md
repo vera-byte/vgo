@@ -27,7 +27,7 @@ nvm 是 node 版本管理工具，可以通过`nvm install <version>` 安装指�
 Linux 下可使用以下脚本进行安装：
 
 ```bash
-wget -O nodejs-install.sh https://cool-team-official.github.io/vgo/scripts/nodejs-install.sh \
+wget -O nodejs-install.sh https://v-team-official.github.io/vgo/scripts/nodejs-install.sh \
 && chmod +x nodejs-install.sh \
 && ./nodejs-install.sh 18.12.0
 ```
@@ -61,7 +61,7 @@ brew install go
 Linux 下可使用以下脚本进行安装：
 
 ```bash
-wget -O golang-install.sh https://cool-team-official.github.io/vgo/scripts/golang-install.sh \
+wget -O golang-install.sh https://v-team-official.github.io/vgo/scripts/golang-install.sh \
 && chmod +x golang-install.sh \
 && ./golang-install.sh 1.19.3
 ```

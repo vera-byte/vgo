@@ -39,10 +39,10 @@
 <script lang="ts" name="sys-log" setup>
 import { onMounted, ref } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
-import { useCool } from "/@/cool";
-import { useCrud, useTable } from "@cool-vue/crud";
+import { usev } from "/@/v";
+import { useCrud, useTable } from "@v-vue/crud";
 
-const { service } = useCool();
+const { service } = usev();
 
 // 天数
 const day = ref(1);

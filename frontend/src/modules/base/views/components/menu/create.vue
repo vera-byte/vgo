@@ -16,14 +16,14 @@
 <script lang="ts" name="menu-create" setup>
 import { isEmpty } from "lodash-es";
 import { ElMessage } from "element-plus";
-import { useCool } from "/@/cool";
-import { useForm } from "@cool-vue/crud";
+import { usev } from "/@/v";
+import { useForm } from "@v-vue/crud";
 import MenuSelect from "./select.vue";
 import IconSelect from "./icon.vue";
-import { deepPaths } from "/@/cool/utils";
+import { deepPaths } from "/@/v/utils";
 import { ref } from "vue";
 
-const { service } = useCool();
+const { service } = usev();
 const Form = useForm();
 
 // 实体列表
@@ -36,7 +36,7 @@ const tree = ref();
 async function create() {
 	// 模块列表
 	const modules: string[] = await service.request({
-		url: "/__cool_modules",
+		url: "/__v_modules",
 		proxy: false
 	});
 
@@ -220,7 +220,7 @@ async function create() {
 							close();
 
 							service.request({
-								url: "/__cool_createMenu",
+								url: "/__v_createMenu",
 								proxy: false,
 								method: "POST",
 								data: {

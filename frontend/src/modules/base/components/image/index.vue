@@ -30,7 +30,7 @@
 import { computed, defineComponent } from "vue";
 import { isArray, isNumber, isString } from "lodash-es";
 import { PictureFilled } from "@element-plus/icons-vue";
-import { parsePx } from "/@/cool/utils";
+import { parsePx } from "/@/v/utils";
 
 export default defineComponent({
 	name: "cl-image",

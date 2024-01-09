@@ -28,7 +28,7 @@ func init() {
 		ctx         = gctx.GetInitCtx()
 		redisConfig = &gredis.Config{}
 	)
-	g.Log().Debug(ctx, "module cool init start ...")
+	g.Log().Debug(ctx, "module v init start ...")
 	buildData := gbuild.Data()
 	if _, ok := buildData["mode"]; ok {
 		RunMode = buildData["mode"].(string)
@@ -36,7 +36,7 @@ func init() {
 	if RunMode == "vgo-tools" {
 		return
 	}
-	redisVar, err := g.Cfg().Get(ctx, "redis.cool")
+	redisVar, err := g.Cfg().Get(ctx, "redis.v")
 	if err != nil {
 		g.Log().Error(ctx, "初始化缓存失败,请检查配置文件")
 		panic(err)
@@ -53,11 +53,11 @@ func init() {
 	g.Log().Debug(ctx, "当前运行模式", RunMode)
 	g.Log().Debug(ctx, "当前实例ID:", ProcessFlag)
 	g.Log().Debug(ctx, "是否缓存模式:", IsRedisMode)
-	g.Log().Debug(ctx, "module cool init finished ...")
+	g.Log().Debug(ctx, "module v init finished ...")
 
 }
 
-// cool.OK 正常返回
+// v.OK 正常返回
 type BaseRes struct {
 	Code    int         `json:"code"`
 	Message string      `json:"message"`

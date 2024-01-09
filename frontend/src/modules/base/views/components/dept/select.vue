@@ -22,8 +22,8 @@
 <script lang="ts" name="dept-select" setup>
 import { ElMessage } from "element-plus";
 import { onMounted, ref, watch } from "vue";
-import { useCool } from "/@/cool";
-import { deepTree } from "/@/cool/utils";
+import { usev } from "/@/v";
+import { deepTree } from "/@/v/utils";
 
 const props = defineProps({
 	modelValue: [Array, Number, String],
@@ -36,7 +36,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue", "change"]);
 
-const { service } = useCool();
+const { service } = usev();
 
 const value = ref();
 

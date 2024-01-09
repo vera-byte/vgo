@@ -1,4 +1,4 @@
-module github.com/vera-byte/vgo/cool
+module github.com/vera-byte/vgo/v
 
 go 1.18
 

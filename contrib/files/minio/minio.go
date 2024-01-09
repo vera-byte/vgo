@@ -10,8 +10,8 @@ import (
 	"github.com/gogf/gf/v2/util/grand"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
-	"github.com/vera-byte/vgo/cool"
-	"github.com/vera-byte/vgo/cool/vfile"
+	"github.com/vera-byte/vgo/v"
+	"github.com/vera-byte/vgo/v/vfile"
 )
 
 var (
@@ -74,15 +74,15 @@ func (m *Minio) Upload(ctx g.Ctx) (string, error) {
 
 func New() vfile.Driver {
 	ctx := context.Background()
-	if cool.Config.File.Mode != "minio" {
+	if v.Config.File.Mode != "minio" {
 		return nil
 	}
-	endpoint := cool.Config.File.Oss.Endpoint
-	accessKeyID := cool.Config.File.Oss.AccessKeyID
-	secretAccessKey := cool.Config.File.Oss.SecretAccessKey
-	useSSL := cool.Config.File.Oss.UseSSL
-	bucketName := cool.Config.File.Oss.BucketName
-	location := cool.Config.File.Oss.Location
+	endpoint := v.Config.File.Oss.Endpoint
+	accessKeyID := v.Config.File.Oss.AccessKeyID
+	secretAccessKey := v.Config.File.Oss.SecretAccessKey
+	useSSL := v.Config.File.Oss.UseSSL
+	bucketName := v.Config.File.Oss.BucketName
+	location := v.Config.File.Oss.Location
 	// Initialize minio client object.
 	client, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKeyID, secretAccessKey, ""),

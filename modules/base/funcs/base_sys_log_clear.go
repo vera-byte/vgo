@@ -2,8 +2,8 @@ package funcs
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseFuncClearLog struct {
@@ -33,5 +33,5 @@ func (f *BaseFuncClearLog) IsAllWorker() bool {
 
 // init
 func init() {
-	cool.RegisterFunc("BaseFuncClearLog", &BaseFuncClearLog{})
+	v.RegisterFunc("BaseFuncClearLog", &BaseFuncClearLog{})
 }

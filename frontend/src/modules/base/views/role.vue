@@ -44,12 +44,12 @@
 </template>
 
 <script lang="ts" name="sys-role" setup>
-import { useTable, useUpsert, useCrud } from "@cool-vue/crud";
-import { useCool } from "/@/cool";
+import { useTable, useUpsert, useCrud } from "@v-vue/crud";
+import { usev } from "/@/v";
 import MenuCheck from "./components/menu/check.vue";
 import DeptCheck from "./components/dept/check.vue";
 
-const { service } = useCool();
+const { service } = usev();
 
 // cl-crud 配置
 const Crud = useCrud({ service: service.base.sys.role }, (app) => {

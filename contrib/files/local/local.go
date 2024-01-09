@@ -6,8 +6,8 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/vera-byte/vgo/cool"
-	"github.com/vera-byte/vgo/cool/vfile"
+	"github.com/vera-byte/vgo/v"
+	"github.com/vera-byte/vgo/v/vfile"
 )
 
 type Local struct {
@@ -30,12 +30,12 @@ func (l *Local) Upload(ctx g.Ctx) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return cool.Config.File.Domain + "/public/uploads/" + dir + "/" + fileName, err
+	return v.Config.File.Domain + "/public/uploads/" + dir + "/" + fileName, err
 }
 
 func (l *Local) GetMode() (data interface{}, err error) {
 	data = g.MapStrStr{
-		"mode": cool.Config.File.Mode,
+		"mode": v.Config.File.Mode,
 		"type": "local",
 	}
 	return

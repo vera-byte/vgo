@@ -44,13 +44,13 @@
 </template>
 
 <script lang="ts" name="sys-param" setup>
-import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
+import { useCrud, useTable, useUpsert } from "@v-vue/crud";
 import { ElMessageBox } from "element-plus";
 import { computed, reactive } from "vue";
-import { useCool } from "/@/cool";
-import { isComponent } from "/@/cool/utils";
+import { usev } from "/@/v";
+import { isComponent } from "/@/v/utils";
 
-const { service } = useCool();
+const { service } = usev();
 
 const tab = reactive({
 	value: "el-input",

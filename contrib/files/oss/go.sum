@@ -6,8 +6,8 @@ github.com/aliyun/aliyun-oss-go-sdk v2.2.7+incompatible/go.mod h1:T/Aws4fEfogEE9
 github.com/clbanning/mxj/v2 v2.5.5/go.mod h1:hNiWqW14h+kc+MdF9C6/YoRfjEJoR3ou6tn/Qo+ve2s=
 github.com/clbanning/mxj/v2 v2.5.7 h1:7q5lvUpaPF/WOkqgIDiwjBJaznaLCCBd78pi8ZyAnE0=
 github.com/clbanning/mxj/v2 v2.5.7/go.mod h1:hNiWqW14h+kc+MdF9C6/YoRfjEJoR3ou6tn/Qo+ve2s=
-github.com/vera-byte/vgo/cool v1.0.19 h1:o652Rtjogc9+nhoPEm4SnHc0fQWfuByWV+a6fH9SnQU=
-github.com/vera-byte/vgo/cool v1.0.19/go.mod h1:ajZYFCmuXckGiQLYgfMR31Z7hRAM15Ba3AGP8vN6k6A=
+github.com/vera-byte/vgo/v v1.0.19 h1:o652Rtjogc9+nhoPEm4SnHc0fQWfuByWV+a6fH9SnQU=
+github.com/vera-byte/vgo/v v1.0.19/go.mod h1:ajZYFCmuXckGiQLYgfMR31Z7hRAM15Ba3AGP8vN6k6A=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=

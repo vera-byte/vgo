@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import { bootstrap } from "./cool";
+import { bootstrap } from "./v";
 
 const app = createApp(App);
 
@@ -10,5 +10,5 @@ bootstrap(app)
 		app.mount("#app");
 	})
 	.catch((err) => {
-		console.error("COOL-ADMIN 启动失败", err);
+		console.error("v-ADMIN 启动失败", err);
 	});

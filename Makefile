@@ -14,7 +14,7 @@ cli: ## 安装gf-cli
 
 
 .PHONY: front
-front: ## 下载最新cool-admin-vue,并调整参数编译
+front: ## 下载最新v-admin-vue,并调整参数编译
 	bash scripts/frontend.sh
 
 .PHONY: docs

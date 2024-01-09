@@ -1,4 +1,4 @@
-import { BaseService, Service } from "/@/cool";
+import { BaseService, Service } from "/@/v";
 import Mock from "mockjs";
 
 @Service("chat/session")

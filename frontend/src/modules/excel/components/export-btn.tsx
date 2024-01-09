@@ -1,5 +1,5 @@
 import { defineComponent, PropType } from "vue";
-import { useCrud } from "@cool-vue/crud";
+import { useCrud } from "@v-vue/crud";
 import { ElMessage } from "element-plus";
 import { isRef, ref } from "vue";
 import { currentDate, export_json_to_excel } from "../utils";

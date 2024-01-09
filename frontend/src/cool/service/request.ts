@@ -2,8 +2,8 @@ import axios from "axios";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { ElMessage } from "element-plus";
-import { isDev, config } from "/@/cool";
-import { storage } from "/@/cool/utils";
+import { isDev, config } from "/@/v";
+import { storage } from "/@/v/utils";
 import { useBase } from "/$/base";
 import { router } from "../router";
 

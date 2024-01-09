@@ -156,8 +156,8 @@ import dayjs from "dayjs";
 import Draggable from "vuedraggable";
 import { ElMessage } from "element-plus";
 import { PictureFilled, ZoomIn, Delete } from "@element-plus/icons-vue";
-import { useCool, module } from "/@/cool";
-import { extname, uuid, isPromise } from "/@/cool/utils";
+import { usev, module } from "/@/v";
+import { extname, uuid, isPromise } from "/@/v/utils";
 import { useBase } from "/$/base";
 import { fileSize, fileName, fileType, getUrls } from "../utils";
 import { Upload } from "../types";
@@ -203,7 +203,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue", "upload", "success", "error", "progress"]);
 
-const { service } = useCool();
+const { service } = usev();
 const { user } = useBase();
 
 // 模块配置

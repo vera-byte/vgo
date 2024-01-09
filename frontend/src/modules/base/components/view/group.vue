@@ -35,7 +35,7 @@
 <script lang="ts">
 import { defineComponent, provide, ref, watch } from "vue";
 import { ArrowLeft, ArrowRight } from "@element-plus/icons-vue";
-import { useBrowser } from "/@/cool";
+import { useBrowser } from "/@/v";
 
 export default defineComponent({
 	name: "cl-view-group",

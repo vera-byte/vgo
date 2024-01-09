@@ -2,7 +2,7 @@
   "name": "vgo",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "git@github.com:cool-team-official/vgo.git",
+  "repository": "git@github.com:v-team-official/vgo.git",
   "author": "Vera <https://github.com/vera-byte>",
   "license": "MIT",
   "devDependencies": {

@@ -4,8 +4,8 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import compression from "vite-plugin-compression";
 import { visualizer } from "rollup-plugin-visualizer";
-import { proxy } from "./src/cool/config/proxy";
-import { cool } from "./build/cool";
+import { proxy } from "./src/v/config/proxy";
+import { v } from "./build/v";
 
 function resolve(dir: string) {
 	return path.resolve(__dirname, ".", dir);
@@ -20,7 +20,7 @@ export default (): UserConfig => {
 			vue(),
 			compression(),
 			vueJsx(),
-			cool(),
+			v(),
 			visualizer({
 				open: false,
 				gzipSize: true,
@@ -64,7 +64,7 @@ export default (): UserConfig => {
 					assetFileNames: "static/[ext]/[name]-[hash].[ext]",
 					manualChunks(id) {
 						if (id.includes("node_modules")) {
-							if (!["@cool-vue/crud"].find((e) => id.includes(e))) {
+							if (!["@v-vue/crud"].find((e) => id.includes(e))) {
 								let str = id.toString().split("node_modules/")[1];
 
 								if (str[0] == "@") {

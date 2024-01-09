@@ -17,7 +17,7 @@ pack.template-simple:
 pack.template-simple.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  git@github.com:cool-team-official/vgo.git vgo-simple
+	@cd temp && git clone --depth=1 -b simple  git@github.com:v-team-official/vgo.git vgo-simple
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp
@@ -34,7 +34,7 @@ pack.docs:
 pack.docs.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages git@github.com:cool-team-official/vgo.git docs/vgo
+	@cd temp && git clone --depth=1 -b gh-pages git@github.com:v-team-official/vgo.git docs/vgo
 	@rm -fr temp/docs/vgo/.git
 	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
 	@rm -fr temp/docs
@@ -54,7 +54,7 @@ cli:
 .PHONY: tools
 tools:
 	@set -e; \
-	curl -L https://download.fastgit.org/cool-team-official/vgo/releases/latest/download/vgo-tools_$(shell go env GOOS)_$(shell go env GOARCH) -o ./vgo-tools && \
+	curl -L https://download.fastgit.org/v-team-official/vgo/releases/latest/download/vgo-tools_$(shell go env GOOS)_$(shell go env GOARCH) -o ./vgo-tools && \
 	chmod +x vgo-tools && \
 	./vgo-tools install && \
 	rm ./vgo-tools

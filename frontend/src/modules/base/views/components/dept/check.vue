@@ -26,9 +26,9 @@
 
 <script lang="ts" name="dept-check" setup>
 import { ref, watch } from "vue";
-import { deepTree } from "/@/cool/utils";
-import { useCool } from "/@/cool";
-import { useUpsert } from "@cool-vue/crud";
+import { deepTree } from "/@/v/utils";
+import { usev } from "/@/v";
+import { useUpsert } from "@v-vue/crud";
 
 const props = defineProps({
 	modelValue: {
@@ -40,7 +40,7 @@ const props = defineProps({
 
 const emit = defineEmits(["update:modelValue"]);
 
-const { service } = useCool();
+const { service } = usev();
 
 // el-tree
 const Tree = ref();

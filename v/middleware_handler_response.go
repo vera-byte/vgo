@@ -59,7 +59,7 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 		// code = gcode.CodeOK
 		code = 1000
 	}
-	// 做一些code转换适配cooladmin的错误码
+	// 做一些code转换适配vadmin的错误码
 	switch code {
 	case 51: // 参数错误
 		code = 51

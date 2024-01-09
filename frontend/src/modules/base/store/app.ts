@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { reactive, ref } from "vue";
-import { config, useBrowser } from "/@/cool";
-import { deepMerge, storage } from "/@/cool/utils";
+import { config, useBrowser } from "/@/v";
+import { deepMerge, storage } from "/@/v/utils";
 
 export const useAppStore = defineStore("app", function () {
 	const { browser, onScreenChange } = useBrowser();

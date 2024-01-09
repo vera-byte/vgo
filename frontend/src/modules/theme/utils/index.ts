@@ -1,6 +1,6 @@
 import { Theme } from "../types";
 import { useBase } from "/$/base";
-import { storage } from "/@/cool";
+import { storage } from "/@/v";
 
 function mix(color1: string, color2: string, weight: number) {
 	weight = Math.max(Math.min(Number(weight), 1), 0);

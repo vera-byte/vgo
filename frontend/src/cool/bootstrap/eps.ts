@@ -59,7 +59,7 @@ export async function createEps() {
 
 		// 本地服务
 		return service.request({
-			url: "/__cool_eps",
+			url: "/__v_eps",
 			method: "POST",
 			proxy: false,
 			data: {

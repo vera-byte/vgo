@@ -17,7 +17,7 @@ module.exports = {
     editLinkText: '在 GitHub 上编辑此页',
     nav: [
       { text: '首页', link: '/' },
-      { text: 'CoolAdmin官网', link: 'https://cool-js.com' },
+      { text: 'vAdmin官网', link: 'https://v-js.com' },
       { text: 'GoFrame官网', link: 'https://goframe.org' },
     ],
     lastUpdated: '上次更新',

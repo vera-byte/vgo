@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { storage } from "/@/cool/utils";
-import { service, config, router } from "/@/cool";
+import { storage } from "/@/v/utils";
+import { service, config, router } from "/@/v";
 
 // 本地缓存
 const data = storage.info();

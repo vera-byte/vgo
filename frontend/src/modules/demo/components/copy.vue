@@ -6,7 +6,7 @@
 		</div>
 
 		<div class="c">
-			<el-button type="success" @click="toCopy"> https://cool-js.com 点击复制</el-button>
+			<el-button type="success" @click="toCopy"> https://v-js.com 点击复制</el-button>
 		</div>
 
 		<div class="f">
@@ -21,7 +21,7 @@ import { ElMessage } from "element-plus";
 const { copy } = useClipboard();
 
 function toCopy() {
-	copy("https://cool-js.com");
+	copy("https://v-js.com");
 	ElMessage.success("保存成功");
 }
 </script>

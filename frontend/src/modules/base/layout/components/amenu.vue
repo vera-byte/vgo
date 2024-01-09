@@ -17,9 +17,9 @@
 <script lang="ts" name="a-menu" setup>
 import { onMounted, ref } from "vue";
 import { useBase } from "/$/base";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 
-const { router, route } = useCool();
+const { router, route } = usev();
 const { menu } = useBase();
 
 // 选中标识

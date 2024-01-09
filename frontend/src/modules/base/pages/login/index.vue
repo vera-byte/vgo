@@ -59,11 +59,11 @@
 <script lang="ts" name="login" setup>
 import { reactive, ref } from "vue";
 import { ElMessage } from "element-plus";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { useBase } from "/$/base";
 import Captcha from "./components/captcha.vue";
 
-const { refs, setRefs, router, service } = useCool();
+const { refs, setRefs, router, service } = usev();
 const { user, app } = useBase();
 
 // 状态1

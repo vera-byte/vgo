@@ -1,4 +1,4 @@
-import { ModuleConfig, config } from "/@/cool";
+import { ModuleConfig, config } from "/@/v";
 import { useStore } from "./store";
 import "./static/css/index.scss";
 

@@ -2,7 +2,7 @@ package vconfig
 
 import "github.com/gogf/gf/v2/frame/g"
 
-// cool config
+// v config
 type sConfig struct {
 	AutoMigrate bool  `json:"auto_migrate,omitempty"` // 是否自动创建表
 	Eps         bool  `json:"eps,omitempty"`          // 是否开启eps
@@ -30,18 +30,18 @@ type file struct {
 func newConfig() *sConfig {
 	var ctx g.Ctx
 	config := &sConfig{
-		AutoMigrate: GetCfgWithDefault(ctx, "cool.autoMigrate", g.NewVar(false)).Bool(),
-		Eps:         GetCfgWithDefault(ctx, "cool.eps", g.NewVar(false)).Bool(),
+		AutoMigrate: GetCfgWithDefault(ctx, "v.autoMigrate", g.NewVar(false)).Bool(),
+		Eps:         GetCfgWithDefault(ctx, "v.eps", g.NewVar(false)).Bool(),
 		File: &file{
-			Mode:   GetCfgWithDefault(ctx, "cool.file.mode", g.NewVar("none")).String(),
-			Domain: GetCfgWithDefault(ctx, "cool.file.domain", g.NewVar("http://127.0.0.1:8300")).String(),
+			Mode:   GetCfgWithDefault(ctx, "v.file.mode", g.NewVar("none")).String(),
+			Domain: GetCfgWithDefault(ctx, "v.file.domain", g.NewVar("http://127.0.0.1:8300")).String(),
 			Oss: &oss{
-				Endpoint:        GetCfgWithDefault(ctx, "cool.file.oss.endpoint", g.NewVar("127.0.0.1:9000")).String(),
-				AccessKeyID:     GetCfgWithDefault(ctx, "cool.file.oss.accessKeyID", g.NewVar("")).String(),
-				SecretAccessKey: GetCfgWithDefault(ctx, "cool.file.oss.secretAccessKey", g.NewVar("")).String(),
-				UseSSL:          GetCfgWithDefault(ctx, "cool.file.oss.useSSL", g.NewVar(false)).Bool(),
-				BucketName:      GetCfgWithDefault(ctx, "cool.file.oss.bucketName", g.NewVar("vgo")).String(),
-				Location:        GetCfgWithDefault(ctx, "cool.file.oss.location", g.NewVar("us-east-1")).String(),
+				Endpoint:        GetCfgWithDefault(ctx, "v.file.oss.endpoint", g.NewVar("127.0.0.1:9000")).String(),
+				AccessKeyID:     GetCfgWithDefault(ctx, "v.file.oss.accessKeyID", g.NewVar("")).String(),
+				SecretAccessKey: GetCfgWithDefault(ctx, "v.file.oss.secretAccessKey", g.NewVar("")).String(),
+				UseSSL:          GetCfgWithDefault(ctx, "v.file.oss.useSSL", g.NewVar(false)).Bool(),
+				BucketName:      GetCfgWithDefault(ctx, "v.file.oss.bucketName", g.NewVar("vgo")).String(),
+				Location:        GetCfgWithDefault(ctx, "v.file.oss.location", g.NewVar("us-east-1")).String(),
 			},
 		},
 	}

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { service } from "/@/cool";
+import { service } from "/@/v";
 
 export const useSessionStore = defineStore("chat-session", () => {
 	// 加载状态

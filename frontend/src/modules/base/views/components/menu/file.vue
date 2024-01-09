@@ -6,7 +6,7 @@
 
 <script lang="ts" name="menu-file" setup>
 import { ref, watch } from "vue";
-import { deepPaths } from "/@/cool/utils";
+import { deepPaths } from "/@/v/utils";
 
 const props = defineProps({
 	modelValue: {
@@ -47,7 +47,7 @@ function onChange(arr: string[]) {
 watch(
 	() => props.modelValue,
 	(val) => {
-		value.value = (val || "").replace(/(modules\/|cool\/)/g, "").split("/");
+		value.value = (val || "").replace(/(modules\/|v\/)/g, "").split("/");
 	},
 	{
 		immediate: true

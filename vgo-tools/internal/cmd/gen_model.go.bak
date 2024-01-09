@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 	"github.com/gogf/gf/v2/frame/g"
 	"gorm.io/gen"
 )
@@ -23,7 +23,7 @@ type cGenModelOutput struct{}
 func (c *cGenModel) Index(ctx g.Ctx, in cGenModelInput) (out cGenModelOutput, err error) {
 	g.Log().Print(ctx, in.Database)
 	// 获取数据库
-	db, err := cool.InitDB(in.Database)
+	db, err := v.InitDB(in.Database)
 	if err != nil {
 		panic(err.Error())
 	}

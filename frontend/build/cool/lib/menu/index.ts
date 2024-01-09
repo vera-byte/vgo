@@ -313,10 +313,10 @@ export async function createMenu({ router, columns, prefix, api, filePath }: any
 </template>
 
 <script lang="ts" name="${getPageName(router)}" setup>
-import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
-import { useCool } from "/@/cool";
+import { useCrud, useTable, useUpsert } from "@v-vue/crud";
+import { usev } from "/@/v";
 
-const { service } = useCool();
+const { service } = usev();
 
 // cl-upsert 配置
 const Upsert = useUpsert(${JSON.stringify(upsert)});

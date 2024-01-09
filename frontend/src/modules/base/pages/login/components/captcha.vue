@@ -8,11 +8,11 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { ElMessage } from "element-plus";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 
 const emit = defineEmits(["update:modelValue", "change"]);
 
-const { service } = useCool();
+const { service } = usev();
 
 // base64
 const base64 = ref("");

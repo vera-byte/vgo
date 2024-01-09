@@ -55,11 +55,11 @@
 
 <script lang="ts" name="topbar" setup>
 import { useBase } from "/$/base";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import RouteNav from "./route-nav.vue";
 import AMenu from "./amenu.vue";
 
-const { router, service } = useCool();
+const { router, service } = usev();
 const { user, app } = useBase();
 
 async function onCommand(name: string) {

@@ -5,7 +5,7 @@
 配置文件中的配置项示例：
 
 ```yaml
-cool:
+v:
   file:
     mode: "local"
     domain: "http://127.0.0.1:8002"

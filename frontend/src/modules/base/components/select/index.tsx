@@ -1,4 +1,4 @@
-import { useCrud } from "@cool-vue/crud";
+import { useCrud } from "@v-vue/crud";
 import { computed, defineComponent, isRef, Ref, ref, watch } from "vue";
 
 export default defineComponent({

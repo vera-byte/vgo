@@ -14,7 +14,7 @@ import { onMounted, onUnmounted, ref, watch } from "vue";
 import * as Monaco from "monaco-editor/esm/vs/editor/editor.api";
 import "./worker";
 import "./theme";
-import { deepMerge, parsePx } from "/@/cool/utils";
+import { deepMerge, parsePx } from "/@/v/utils";
 
 const props = defineProps({
 	modelValue: String,

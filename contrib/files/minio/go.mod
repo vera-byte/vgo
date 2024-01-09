@@ -3,7 +3,7 @@ module github.com/vera-byte/vgo/contrib/files/minio
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/cool v1.0.19
+	github.com/vera-byte/vgo/v v1.0.19
 	github.com/gogf/gf/v2 v2.4.0
 	github.com/minio/minio-go/v7 v7.0.52
 )

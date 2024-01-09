@@ -1,8 +1,8 @@
-# CoolTools
+# vTools
 
 [![Go Reference](https://pkg.go.dev/badge/github.com/vera-byte/vgo/vgo-tools.svg)](https://pkg.go.dev/github.com/vera-byte/vgo/vgo-tools)
 
-vgo-tools is a collection of tools for cool people.
+vgo-tools is a collection of tools for v people.
 
 ## 安装
 

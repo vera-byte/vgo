@@ -4,22 +4,22 @@ import (
 	"context"
 
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseCommController struct {
-	*cool.ControllerSimple
+	*v.ControllerSimple
 }
 
 func init() {
 	var base_comm_controller = &BaseCommController{
-		ControllerSimple: &cool.ControllerSimple{
+		ControllerSimple: &v.ControllerSimple{
 			Perfix: "/admin/base/comm",
 		},
 	}
 	// 注册路由
-	cool.RegisterControllerSimple(base_comm_controller)
+	v.RegisterControllerSimple(base_comm_controller)
 }
 
 // BaseCommPersonReq 接口请求参数
@@ -29,13 +29,13 @@ type BaseCommPersonReq struct {
 }
 
 // Person 方法
-func (c *BaseCommController) Person(ctx context.Context, req *BaseCommPersonReq) (res *cool.BaseRes, err error) {
+func (c *BaseCommController) Person(ctx context.Context, req *BaseCommPersonReq) (res *v.BaseRes, err error) {
 	var (
 		baseSysUserService = service.NewBaseSysUserService()
-		admin              = cool.GetAdmin(ctx)
+		admin              = v.GetAdmin(ctx)
 	)
 	data, err := baseSysUserService.Person(admin.UserId)
-	res = cool.Ok(data)
+	res = v.Ok(data)
 	return
 }
 
@@ -46,13 +46,13 @@ type BaseCommPermmenuReq struct {
 }
 
 // Permmenu 方法
-func (c *BaseCommController) Permmenu(ctx context.Context, req *BaseCommPermmenuReq) (res *cool.BaseRes, err error) {
+func (c *BaseCommController) Permmenu(ctx context.Context, req *BaseCommPermmenuReq) (res *v.BaseRes, err error) {
 
 	var (
 		baseSysPermsService = service.NewBaseSysPermsService()
-		admin               = cool.GetAdmin(ctx)
+		admin               = v.GetAdmin(ctx)
 	)
-	res = cool.Ok(baseSysPermsService.Permmenu(ctx, admin.RoleIds))
+	res = v.Ok(baseSysPermsService.Permmenu(ctx, admin.RoleIds))
 	return
 }
 
@@ -62,12 +62,12 @@ type BaseCommLogoutReq struct {
 }
 
 // Logout BaseCommLogout 方法
-func (c *BaseCommController) Logout(ctx context.Context, req *BaseCommLogoutReq) (res *cool.BaseRes, err error) {
+func (c *BaseCommController) Logout(ctx context.Context, req *BaseCommLogoutReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysLoginService = service.NewBaseSysLoginService()
 	)
 	err = BaseSysLoginService.Logout(ctx)
-	res = cool.Ok(nil)
+	res = v.Ok(nil)
 	return
 }
 
@@ -77,9 +77,9 @@ type BaseCommUploadModeReq struct {
 }
 
 // UploadMode 方法
-func (c *BaseCommController) UploadMode(ctx context.Context, req *BaseCommUploadModeReq) (res *cool.BaseRes, err error) {
-	data, err := cool.File().GetMode()
-	res = cool.Ok(data)
+func (c *BaseCommController) UploadMode(ctx context.Context, req *BaseCommUploadModeReq) (res *v.BaseRes, err error) {
+	data, err := v.File().GetMode()
+	res = v.Ok(data)
 	return
 }
 
@@ -89,9 +89,9 @@ type BaseCommUploadReq struct {
 }
 
 // Upload 方法
-func (c *BaseCommController) Upload(ctx context.Context, req *BaseCommUploadReq) (res *cool.BaseRes, err error) {
-	data, err := cool.File().Upload(ctx)
-	res = cool.Ok(data)
+func (c *BaseCommController) Upload(ctx context.Context, req *BaseCommUploadReq) (res *v.BaseRes, err error) {
+	data, err := v.File().Upload(ctx)
+	res = v.Ok(data)
 	return
 }
 
@@ -101,16 +101,16 @@ type PersonUpdateReq struct {
 }
 
 // PersonUpdate 方法
-func (c *BaseCommController) PersonUpdate(ctx g.Ctx, req *PersonUpdateReq) (res *cool.BaseRes, err error) {
+func (c *BaseCommController) PersonUpdate(ctx g.Ctx, req *PersonUpdateReq) (res *v.BaseRes, err error) {
 	var (
 		baseSysUserService = service.NewBaseSysUserService()
 	)
 
-	_, err = baseSysUserService.ServiceUpdate(ctx, &cool.UpdateReq{})
+	_, err = baseSysUserService.ServiceUpdate(ctx, &v.UpdateReq{})
 	if err != nil {
 		return
 	}
 
-	res = cool.Ok(nil)
+	res = v.Ok(nil)
 	return
 }

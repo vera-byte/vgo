@@ -3,7 +3,7 @@
 		"prefix": "module-config",
 		"scope": "typescript",
 		"body": [
-			"import { ModuleConfig } from \"/@/cool\";",
+			"import { ModuleConfig } from \"/@/v\";",
 			"",
 			"export default (): ModuleConfig => {",
 			"    return {};",

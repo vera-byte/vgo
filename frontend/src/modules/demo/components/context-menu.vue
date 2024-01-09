@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ContextMenu } from "@cool-vue/crud";
+import { ContextMenu } from "@v-vue/crud";
 import { ElMessage } from "element-plus";
 
 function open(e: any) {

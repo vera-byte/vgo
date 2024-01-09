@@ -82,7 +82,7 @@
 import { provide, reactive, ref, watch } from "vue";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { UploadFilled } from "@element-plus/icons-vue";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { useViewGroup } from "/$/base";
 import ItemCategory from "./items/category.vue";
 import ItemFile from "./items/file.vue";
@@ -98,7 +98,7 @@ const props = defineProps({
 
 const emit = defineEmits(["selection-change"]);
 
-const { service, browser } = useCool();
+const { service, browser } = usev();
 const { ViewGroup } = useViewGroup();
 
 // cl-upload

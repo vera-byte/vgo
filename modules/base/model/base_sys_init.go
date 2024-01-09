@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 const TableNameBaseSysInit = "base_sys_init"
@@ -30,5 +30,5 @@ func (m *BaseSysInit) GetStruct() interface{} {
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysInit{})
+	v.CreateTable(&BaseSysInit{})
 }

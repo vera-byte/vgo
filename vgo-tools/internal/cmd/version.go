@@ -32,7 +32,7 @@ var (
 			// 生成sVersion结构体
 			res := sVersion{
 				Name:        "vgo-tools",
-				Homepage:    "https://cool-js.com",
+				Homepage:    "https://v-js.com",
 				Version:     binVersion,
 				GoFrame:     info.GoFrame,
 				Golang:      info.Golang,

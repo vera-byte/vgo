@@ -1,14 +1,14 @@
 package model
 
 import (
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 const TableNameTaskLog = "task_log"
 
 // TaskLog mapped from table <task_log>
 type TaskLog struct {
-	*cool.Model
+	*v.Model
 	TaskId uint64 `gorm:"column:taskId;comment:任务ID" json:"taskId"`
 	Status uint8  `gorm:"column:status;not null;comment:状态 0:失败 1:成功" json:"status"`
 	Detail string `gorm:"column:detail;comment:详情" json:"detail"`
@@ -27,11 +27,11 @@ func (*TaskLog) GroupName() string {
 // NewTaskLog create a new TaskLog
 func NewTaskLog() *TaskLog {
 	return &TaskLog{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&TaskLog{})
+	v.CreateTable(&TaskLog{})
 }

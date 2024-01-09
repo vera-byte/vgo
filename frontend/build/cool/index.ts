@@ -2,9 +2,9 @@ import { Plugin } from "vite";
 import { parseJson } from "./utils";
 import { createEps, createMenu, createSvg, createTag, getEps, getModules } from "./lib";
 
-export function cool(): Plugin {
+export function v(): Plugin {
 	return {
-		name: "vite-cool",
+		name: "vite-v",
 		enforce: "pre",
 		configureServer(server) {
 			server.middlewares.use(async (req, res, next) => {
@@ -13,23 +13,23 @@ export function cool(): Plugin {
 					res.end(JSON.stringify(data));
 				}
 
-				if (req.url?.includes("__cool")) {
+				if (req.url?.includes("__v")) {
 					const body = await parseJson(req);
 					let next: any;
 
 					switch (req.url) {
 						// 快速创建菜单
-						case "/__cool_createMenu":
+						case "/__v_createMenu":
 							next = createMenu(body);
 							break;
 
 						// 获取模块列表
-						case "/__cool_modules":
+						case "/__v_modules":
 							next = getModules();
 							break;
 
 						// 创建描述文件
-						case "/__cool_eps":
+						case "/__v_eps":
 							next = createEps(body);
 							break;
 					}

@@ -1,9 +1,9 @@
 import { ElMessage } from "element-plus";
 import { defineStore } from "pinia";
 import { ref } from "vue";
-import { deepTree, revDeepTree, storage } from "/@/cool/utils";
+import { deepTree, revDeepTree, storage } from "/@/v/utils";
 import { isEmpty, orderBy } from "lodash-es";
-import { service, config } from "/@/cool";
+import { service, config } from "/@/v";
 import { revisePath } from "../utils";
 import { Menu } from "../types";
 

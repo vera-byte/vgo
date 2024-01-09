@@ -35,10 +35,10 @@
 </template>
 
 <script lang="ts" name="菜单名称" setup>
-import { useCrud, useForm, useTable, useUpsert } from "@cool-vue/crud";
-import { useCool } from "/@/cool";
+import { useCrud, useForm, useTable, useUpsert } from "@v-vue/crud";
+import { usev } from "/@/v";
 
-const { refs, setRefs } = useCool();
+const { refs, setRefs } = usev();
 
 // cl-upsert 配置
 const Upsert = useUpsert({

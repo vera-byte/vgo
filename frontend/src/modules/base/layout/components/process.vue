@@ -33,13 +33,13 @@
 <script lang="ts" setup>
 import { watch } from "vue";
 import { last } from "lodash-es";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { ArrowLeftBold, Close, HomeFilled } from "@element-plus/icons-vue";
-import { ContextMenu } from "@cool-vue/crud";
+import { ContextMenu } from "@v-vue/crud";
 import { useBase } from "/$/base";
 import { Process } from "/$/base/types";
 
-const { refs, setRefs, route, router } = useCool();
+const { refs, setRefs, route, router } = usev();
 const { process } = useBase();
 
 // 跳转

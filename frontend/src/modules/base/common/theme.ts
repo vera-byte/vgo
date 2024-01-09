@@ -1,4 +1,4 @@
-import { config } from "/@/cool";
+import { config } from "/@/v";
 import { createLink } from "../utils";
 
 // 字体图标库加载

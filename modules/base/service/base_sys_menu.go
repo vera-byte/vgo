@@ -8,12 +8,12 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysMenuService struct {
-	*cool.Service
+	*v.Service
 }
 
 // GetPerms 获取菜单的权限
@@ -22,7 +22,7 @@ func (s *BaseSysMenuService) GetPerms(roleIds []string) []string {
 		perms  []string
 		result gdb.Result
 	)
-	m := cool.DBM(s.Model).As("a")
+	m := v.DBM(s.Model).As("a")
 	// 如果roldIds 包含 1 则表示是超级管理员，则返回所有权限
 	if garray.NewIntArrayFrom(gconv.Ints(roleIds)).Contains(1) {
 		result, _ = m.Fields("a.perms").All()
@@ -42,7 +42,7 @@ func (s *BaseSysMenuService) GetPerms(roleIds []string) []string {
 // GetMenus 获取菜单
 func (s *BaseSysMenuService) GetMenus(roleIds []string, isAdmin bool) (result gdb.Result) {
 	// 屏蔽 base_sys_role_menu.id 防止部分权限的用户登录时菜单渲染错误
-	m := cool.DBM(s.Model).As("a").Fields("a.*")
+	m := v.DBM(s.Model).As("a").Fields("a.*")
 	if isAdmin {
 		result, _ = m.Group("a.id").Order("a.orderNum asc").All()
 	} else {
@@ -57,7 +57,7 @@ func (s *BaseSysMenuService) ModifyAfter(ctx context.Context, method string, par
 	if method == "Delete" {
 		ids := gconv.Ints(param["ids"])
 		if len(ids) > 0 {
-			_, err = cool.DBM(s.Model).Where("parentId IN (?)", ids).Delete()
+			_, err = v.DBM(s.Model).Where("parentId IN (?)", ids).Delete()
 		}
 		return
 	}
@@ -65,14 +65,14 @@ func (s *BaseSysMenuService) ModifyAfter(ctx context.Context, method string, par
 }
 
 // ServiceAdd 添加
-func (s *BaseSysMenuService) ServiceAdd(ctx context.Context, req *cool.AddReq) (data interface{}, err error) {
+func (s *BaseSysMenuService) ServiceAdd(ctx context.Context, req *v.AddReq) (data interface{}, err error) {
 	r := g.RequestFromCtx(ctx)
 	rjson, err := r.GetJson()
 	if err != nil {
 		return
 	}
 	g.DumpWithType(rjson)
-	m := cool.DBM(s.Model)
+	m := v.DBM(s.Model)
 	lastInsertId, err := m.Data(rjson).InsertAndGetId()
 	if err != nil {
 		return
@@ -84,7 +84,7 @@ func (s *BaseSysMenuService) ServiceAdd(ctx context.Context, req *cool.AddReq) (
 // NewBaseSysMenuService 创建一个BaseSysMenuService实例
 func NewBaseSysMenuService() *BaseSysMenuService {
 	return &BaseSysMenuService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewBaseSysMenu(),
 		},
 	}

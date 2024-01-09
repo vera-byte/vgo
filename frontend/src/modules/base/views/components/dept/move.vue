@@ -5,12 +5,12 @@
 </template>
 
 <script lang="ts" name="dept-move" setup>
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { ElMessage, ElMessageBox } from "element-plus";
-import { useCrud, useForm } from "@cool-vue/crud";
+import { useCrud, useForm } from "@v-vue/crud";
 import DeptSelect from "./select.vue";
 
-const { service } = useCool();
+const { service } = usev();
 const Form = useForm();
 const Crud = useCrud();
 

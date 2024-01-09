@@ -6,19 +6,19 @@ import (
 	"github.com/gogf/gf/v2/os/gcron"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 // EnableTask 启用任务
 func EnableTask(ctx g.Ctx, cronId string, funcstring string, cron string, startDate string) (err error) {
 	funcName := gstr.SubStr(funcstring, 0, gstr.Pos(funcstring, "("))
-	if _, ok := cool.FuncMap[funcName]; !ok {
+	if _, ok := v.FuncMap[funcName]; !ok {
 		err = gerror.New("函数不存在" + funcName)
 		return
 	}
 	taskInfoService := NewTaskInfoService()
 
-	if cool.FuncMap[funcName].IsSingleton() {
+	if v.FuncMap[funcName].IsSingleton() {
 		gcron.Remove(cronId)
 		_, err = gcron.AddSingleton(ctx, cron, func(ctx g.Ctx) {
 			nowDate := gtime.Now().Format("Y-m-d H:i:s")
@@ -26,7 +26,7 @@ func EnableTask(ctx g.Ctx, cronId string, funcstring string, cron string, startD
 				g.Log().Debug(ctx, "当前时间小于启用时间, 不执行单例函数", funcName)
 				return
 			}
-			err := cool.RunFunc(ctx, funcstring)
+			err := v.RunFunc(ctx, funcstring)
 			if err != nil {
 				g.Log().Error(ctx, err)
 				taskInfoService.Record(ctx, cronId, 0, err.Error())
@@ -42,7 +42,7 @@ func EnableTask(ctx g.Ctx, cronId string, funcstring string, cron string, startD
 				g.Log().Debug(ctx, "当前时间小于启用时间, 不执行函数", funcName)
 				return
 			}
-			err := cool.RunFunc(ctx, funcstring)
+			err := v.RunFunc(ctx, funcstring)
 			if err != nil {
 				g.Log().Error(ctx, err)
 				taskInfoService.Record(ctx, cronId, 0, gstr.AddSlashes(err.Error()))

@@ -6,10 +6,10 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/vera-byte/vgo/cool"
 	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/config"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/encoding/gbase64"
@@ -21,7 +21,7 @@ import (
 )
 
 type BaseSysLoginService struct {
-	*cool.Service
+	*v.Service
 }
 
 type TokenResult struct {
@@ -41,7 +41,7 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 		baseSysUser = model.NewBaseSysUser()
 	)
 
-	vcode, _ := cool.CacheManager.Get(ctx, captchaId)
+	vcode, _ := v.CacheManager.Get(ctx, captchaId)
 	if vcode.String() != verifyCode {
 		err = gerror.New("验证码错误")
 		return
@@ -49,7 +49,7 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 	md5password, _ := gmd5.Encrypt(password)
 
 	var user *model.BaseSysUser
-	cool.DBM(baseSysUser).Where("username=?", username).Where("password=?", md5password).Where("status=?", 1).Scan(&user)
+	v.DBM(baseSysUser).Where("username=?", username).Where("password=?", md5password).Where("status=?", 1).Scan(&user)
 	if user == nil {
 		err = gerror.New("账户或密码不正确~")
 		return
@@ -81,31 +81,31 @@ func (*BaseSysLoginService) Captcha(req *v1.BaseOpenCaptchaReq) (interface{}, er
 
 	result.Data = `data:image/svg+xml;base64,` + svgbase64
 	result.CaptchaId = guid.S()
-	cool.CacheManager.Set(ctx, result.CaptchaId, captchaText, 1800*time.Second)
+	v.CacheManager.Set(ctx, result.CaptchaId, captchaText, 1800*time.Second)
 	g.Log().Debug(ctx, "验证码", result.CaptchaId, captchaText)
 	return result, err
 }
 
 // Logout 退出登录
 func (*BaseSysLoginService) Logout(ctx context.Context) (err error) {
-	userId := cool.GetAdmin(ctx).UserId
-	cool.CacheManager.Remove(ctx, "admin:department:"+gconv.String(userId))
-	cool.CacheManager.Remove(ctx, "admin:perms:"+gconv.String(userId))
-	cool.CacheManager.Remove(ctx, "admin:token:"+gconv.String(userId))
-	cool.CacheManager.Remove(ctx, "admin:token:refresh:"+gconv.String(userId))
+	userId := v.GetAdmin(ctx).UserId
+	v.CacheManager.Remove(ctx, "admin:department:"+gconv.String(userId))
+	v.CacheManager.Remove(ctx, "admin:perms:"+gconv.String(userId))
+	v.CacheManager.Remove(ctx, "admin:token:"+gconv.String(userId))
+	v.CacheManager.Remove(ctx, "admin:token:refresh:"+gconv.String(userId))
 	return
 }
 
 // RefreshToken 刷新token
 func (s *BaseSysLoginService) RefreshToken(ctx context.Context, token string) (result *TokenResult, err error) {
 
-	tokenClaims, err := jwt.ParseWithClaims(token, &cool.Claims{}, func(token *jwt.Token) (interface{}, error) {
+	tokenClaims, err := jwt.ParseWithClaims(token, &v.Claims{}, func(token *jwt.Token) (interface{}, error) {
 		return []byte(config.Config.Jwt.Secret), nil
 	})
 	if err != nil {
 		return
 	}
-	claims, ok := tokenClaims.Claims.(*cool.Claims)
+	claims, ok := tokenClaims.Claims.(*v.Claims)
 	if !ok {
 		err = gerror.New("tokenClaims.Claims.(*Claims) error")
 		return
@@ -128,7 +128,7 @@ func (s *BaseSysLoginService) RefreshToken(ctx context.Context, token string) (r
 		user        *model.BaseSysUser
 		baseSysUser = model.NewBaseSysUser()
 	)
-	cool.DBM(baseSysUser).Where("id=?", claims.UserId).Where("status=?", 1).Scan(&user)
+	v.DBM(baseSysUser).Where("id=?", claims.UserId).Where("status=?", 1).Scan(&user)
 	if user == nil {
 		err = gerror.New("用户不存在")
 		return
@@ -140,12 +140,12 @@ func (s *BaseSysLoginService) RefreshToken(ctx context.Context, token string) (r
 
 // generateToken  生成token
 func (*BaseSysLoginService) generateToken(ctx context.Context, user *model.BaseSysUser, roleIds []string, exprire uint, isRefresh bool) (token string) {
-	err := cool.CacheManager.Set(ctx, "admin:passwordVersion:"+gconv.String(user.ID), gconv.String(user.PasswordV), 0)
+	err := v.CacheManager.Set(ctx, "admin:passwordVersion:"+gconv.String(user.ID), gconv.String(user.PasswordV), 0)
 	if err != nil {
 		g.Log().Error(ctx, "生成token失败", err)
 	}
 
-	claims := &cool.Claims{
+	claims := &v.Claims{
 		IsRefresh:       isRefresh,
 		RoleIds:         roleIds,
 		Username:        user.Username,
@@ -189,10 +189,10 @@ func (s *BaseSysLoginService) generateTokenByUser(ctx context.Context, user *mod
 	// 将用户相关信息保存到缓存
 	perms := baseSysMenuService.GetPerms(roleIds)
 	departments := baseSysDepartmentService.GetByRoleIds(roleIds, user.Username == "admin")
-	cool.CacheManager.Set(ctx, "admin:department:"+gconv.String(user.ID), departments, 0)
-	cool.CacheManager.Set(ctx, "admin:perms:"+gconv.String(user.ID), perms, 0)
-	cool.CacheManager.Set(ctx, "admin:token:"+gconv.String(user.ID), result.Token, 0)
-	cool.CacheManager.Set(ctx, "admin:token:refresh:"+gconv.String(user.ID), result.RefreshToken, 0)
+	v.CacheManager.Set(ctx, "admin:department:"+gconv.String(user.ID), departments, 0)
+	v.CacheManager.Set(ctx, "admin:perms:"+gconv.String(user.ID), perms, 0)
+	v.CacheManager.Set(ctx, "admin:token:"+gconv.String(user.ID), result.Token, 0)
+	v.CacheManager.Set(ctx, "admin:token:refresh:"+gconv.String(user.ID), result.RefreshToken, 0)
 
 	return
 }

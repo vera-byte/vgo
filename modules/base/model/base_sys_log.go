@@ -1,12 +1,12 @@
 package model
 
-import "github.com/vera-byte/vgo/cool"
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseSysLog = "base_sys_log"
 
 // BaseSysLog mapped from table <base_sys_log>
 type BaseSysLog struct {
-	*cool.Model
+	*v.Model
 	UserID uint   `gorm:"column:userId;index:IDX_51a2caeb5713efdfcb343a8772,priority:1" json:"userId"`          // 用户ID
 	Action string `gorm:"column:action;not null;index:IDX_938f886fb40e163db174b7f6c3,priority:1" json:"action"` // 行为
 	IP     string `gorm:"column:ip;index:IDX_24e18767659f8c7142580893f2,priority:1" json:"ip"`                  // ip
@@ -21,12 +21,12 @@ func (*BaseSysLog) TableName() string {
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysLog{})
+	v.CreateTable(&BaseSysLog{})
 }
 
 // NewBaseSysLog 创建实例
 func NewBaseSysLog() *BaseSysLog {
 	return &BaseSysLog{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }

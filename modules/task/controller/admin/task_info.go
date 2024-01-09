@@ -4,24 +4,24 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/task/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type TaskInfoController struct {
-	*cool.Controller
+	*v.Controller
 }
 
 func init() {
 	var task_info_controller = &TaskInfoController{
-		&cool.Controller{
+		&v.Controller{
 			Perfix:  "/admin/task/info",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page", "Start", "Stop"},
 			Service: service.NewTaskInfoService(),
 		},
 	}
 	// 注册路由
-	cool.RegisterController(task_info_controller)
+	v.RegisterController(task_info_controller)
 }
 
 // TaskInfoStopReq 请求参数
@@ -31,13 +31,13 @@ type TaskInfoStopReq struct {
 }
 
 // Stop 停止任务
-func (c *TaskInfoController) Stop(ctx g.Ctx, req *TaskInfoStopReq) (res *cool.BaseRes, err error) {
+func (c *TaskInfoController) Stop(ctx g.Ctx, req *TaskInfoStopReq) (res *v.BaseRes, err error) {
 
-	err = cool.ClusterRunFunc(ctx, "TaskStopFunc("+gconv.String(req.ID)+")")
+	err = v.ClusterRunFunc(ctx, "TaskStopFunc("+gconv.String(req.ID)+")")
 	if err != nil {
-		return cool.Fail(err.Error()), err
+		return v.Fail(err.Error()), err
 	}
-	res = cool.Ok("停止成功")
+	res = v.Ok("停止成功")
 	return
 }
 
@@ -48,13 +48,13 @@ type TaskInfoStartReq struct {
 }
 
 // Start 启动任务
-func (c *TaskInfoController) Start(ctx g.Ctx, req *TaskInfoStartReq) (res *cool.BaseRes, err error) {
+func (c *TaskInfoController) Start(ctx g.Ctx, req *TaskInfoStartReq) (res *v.BaseRes, err error) {
 
-	err = cool.ClusterRunFunc(ctx, "TaskStartFunc("+gconv.String(req.ID)+")")
+	err = v.ClusterRunFunc(ctx, "TaskStartFunc("+gconv.String(req.ID)+")")
 	if err != nil {
-		return cool.Fail(err.Error()), err
+		return v.Fail(err.Error()), err
 	}
-	res = cool.Ok("启动成功")
+	res = v.Ok("启动成功")
 	return
 }
 
@@ -65,12 +65,12 @@ type TaskInfoOnceReq struct {
 }
 
 // Once 执行一次
-func (c *TaskInfoController) Once(ctx g.Ctx, req *TaskInfoOnceReq) (res *cool.BaseRes, err error) {
+func (c *TaskInfoController) Once(ctx g.Ctx, req *TaskInfoOnceReq) (res *v.BaseRes, err error) {
 	err = c.Service.(*service.TaskInfoService).Once(ctx, req.ID)
 	if err != nil {
-		return cool.Fail(err.Error()), err
+		return v.Fail(err.Error()), err
 	}
-	res = cool.Ok("执行成功")
+	res = v.Ok("执行成功")
 	return
 }
 
@@ -82,13 +82,13 @@ type TaskInfoLogReq struct {
 }
 
 // Log 任务日志
-func (c *TaskInfoController) Log(ctx g.Ctx, req *TaskInfoLogReq) (res *cool.BaseRes, err error) {
+func (c *TaskInfoController) Log(ctx g.Ctx, req *TaskInfoLogReq) (res *v.BaseRes, err error) {
 	r := ghttp.RequestFromCtx(ctx)
 	param := r.GetQueryMapStrStr()
 	data, err := c.Service.(*service.TaskInfoService).Log(ctx, param)
 	if err != nil {
-		return cool.Fail(err.Error()), err
+		return v.Fail(err.Error()), err
 	}
-	res = cool.Ok(data)
+	res = v.Ok(data)
 	return
 }

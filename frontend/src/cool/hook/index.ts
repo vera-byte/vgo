@@ -42,7 +42,7 @@ export function useParent(name: string, r: Ref) {
 	return r;
 }
 
-export function useCool() {
+export function usev() {
 	return {
 		service: useService(),
 		route: useRoute(),

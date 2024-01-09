@@ -103,7 +103,7 @@ import { useChat } from "../hooks";
 import { useStore } from "../store";
 import { PictureFilled, VideoCamera, Microphone } from "@element-plus/icons-vue";
 import { useBase } from "/$/base";
-import { ContextMenu } from "@cool-vue/crud";
+import { ContextMenu } from "@v-vue/crud";
 import { useClipboard } from "@vueuse/core";
 import { Chat } from "../types";
 

@@ -4,7 +4,7 @@ import (
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gres"
-	"github.com/vera-byte/vgo/cool/vdb"
+	"github.com/vera-byte/vgo/v/vdb"
 	"gorm.io/gorm"
 )
 

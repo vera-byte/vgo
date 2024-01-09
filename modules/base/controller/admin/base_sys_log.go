@@ -3,24 +3,24 @@ package admin
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysLogController struct {
-	*cool.Controller
+	*v.Controller
 }
 
 func init() {
 	var base_sys_log_controller = &BaseSysLogController{
-		&cool.Controller{
+		&v.Controller{
 			Perfix:  "/admin/base/sys/log",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			Service: service.NewBaseSysLogService(),
 		},
 	}
 	// 注册路由
-	cool.RegisterController(base_sys_log_controller)
+	v.RegisterController(base_sys_log_controller)
 }
 
 // SetKeepReq
@@ -30,7 +30,7 @@ type SetKeepReq struct {
 }
 
 // SetKeep 设置保留天数
-func (c *BaseSysLogController) SetKeep(ctx g.Ctx, req *SetKeepReq) (res *cool.BaseRes, err error) {
+func (c *BaseSysLogController) SetKeep(ctx g.Ctx, req *SetKeepReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysConfService = service.NewBaseSysConfService()
 	)
@@ -44,12 +44,12 @@ type GetKeepReq struct {
 }
 
 // GetKeep 获取保留天数
-func (c *BaseSysLogController) GetKeep(ctx g.Ctx, req *GetKeepReq) (res *cool.BaseRes, err error) {
+func (c *BaseSysLogController) GetKeep(ctx g.Ctx, req *GetKeepReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysConfService = service.NewBaseSysConfService()
 	)
 	// res.Data = BaseSysConfService.GetValue("logKeep")
-	res = cool.Ok(BaseSysConfService.GetValue("logKeep"))
+	res = v.Ok(BaseSysConfService.GetValue("logKeep"))
 	return
 }
 
@@ -59,7 +59,7 @@ type ClearReq struct {
 }
 
 // Clear 清空日志
-func (c *BaseSysLogController) Clear(ctx g.Ctx, req *ClearReq) (res *cool.BaseRes, err error) {
+func (c *BaseSysLogController) Clear(ctx g.Ctx, req *ClearReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysLogService = service.NewBaseSysLogService()
 	)

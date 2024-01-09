@@ -44,15 +44,15 @@
 </template>
 
 <script lang="ts" name="dict-list" setup>
-import { useCrud, useTable, useUpsert } from "@cool-vue/crud";
-import { useCool } from "/@/cool";
+import { useCrud, useTable, useUpsert } from "@v-vue/crud";
+import { usev } from "/@/v";
 import DictGroup from "../components/group.vue";
 import { computed } from "vue";
-import { deepTree } from "/@/cool/utils";
+import { deepTree } from "/@/v/utils";
 import { cloneDeep } from "lodash-es";
 import { useViewGroup } from "/$/base";
 
-const { service } = useCool();
+const { service } = usev();
 const { ViewGroup } = useViewGroup();
 
 // cl-upsert 配置

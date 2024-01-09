@@ -24,7 +24,7 @@
 import { defineComponent, onMounted, ref, watch } from "vue";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
-import { parsePx } from "/@/cool/utils";
+import { parsePx } from "/@/v/utils";
 
 export default defineComponent({
 	name: "cl-editor-quill",

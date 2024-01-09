@@ -17,10 +17,10 @@
 <script lang="ts" name="route-nav" setup>
 import { computed } from "vue";
 import { flattenDeep, last } from "lodash-es";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { useBase } from "/$/base";
 
-const { route, browser } = useCool();
+const { route, browser } = usev();
 const { menu } = useBase();
 
 // 数据列表

@@ -37,12 +37,12 @@
 import { ElMessage, ElMessageBox } from "element-plus";
 import { Folder, FolderOpened } from "@element-plus/icons-vue";
 import { computed, onMounted, ref } from "vue";
-import { useCool } from "/@/cool";
-import { ContextMenu, useForm } from "@cool-vue/crud";
+import { usev } from "/@/v";
+import { ContextMenu, useForm } from "@v-vue/crud";
 import { useViewGroup } from "/$/base";
 import { useSpace } from "../../hooks";
 
-const { service } = useCool();
+const { service } = usev();
 const { space } = useSpace();
 const { ViewGroup } = useViewGroup();
 const Form = useForm();

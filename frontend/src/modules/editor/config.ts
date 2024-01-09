@@ -1,4 +1,4 @@
-import { ModuleConfig } from "/@/cool";
+import { ModuleConfig } from "/@/v";
 
 export default (): ModuleConfig => {
 	return {

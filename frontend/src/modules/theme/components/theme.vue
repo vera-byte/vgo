@@ -70,7 +70,7 @@ import { Check, Moon, Sunny } from "@element-plus/icons-vue";
 import { ElMessage } from "element-plus";
 import { useBase } from "/$/base";
 import { useDark } from "@vueuse/core";
-import { storage } from "/@/cool";
+import { storage } from "/@/v";
 import { Theme } from "../types";
 import { setTheme, themes } from "../utils";
 

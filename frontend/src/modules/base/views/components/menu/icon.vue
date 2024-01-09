@@ -22,7 +22,7 @@
 
 <script lang="ts" name="menu-icon" setup>
 import { ref, watch } from "vue";
-import { basename } from "/@/cool/utils";
+import { basename } from "/@/v/utils";
 
 // svg 图标加载
 const svgFiles = import.meta.glob("/src/modules/*/static/**/*.svg", {

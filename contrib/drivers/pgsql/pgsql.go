@@ -4,7 +4,7 @@ import (
 	_ "github.com/gogf/gf/contrib/drivers/pgsql/v2"
 
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool/vdb"
+	"github.com/vera-byte/vgo/v/vdb"
 
 	"fmt"
 

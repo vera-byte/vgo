@@ -46,16 +46,16 @@
 </template>
 
 <script lang="ts" setup>
-import { ContextMenu, useForm } from "@cool-vue/crud";
+import { ContextMenu, useForm } from "@v-vue/crud";
 import { ElMessage, ElMessageBox } from "element-plus";
 import { onMounted, ref } from "vue";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 import { ArrowRightBold } from "@element-plus/icons-vue";
 import { checkPerm, useViewGroup } from "/$/base";
 
 const emit = defineEmits(["refresh"]);
 
-const { service } = useCool();
+const { service } = usev();
 const { ViewGroup } = useViewGroup();
 const Form = useForm();
 

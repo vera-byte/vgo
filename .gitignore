@@ -19,7 +19,7 @@ manifest/output/
 temp/
 data/db.sqlite
 public/uploads/
-cool.sqlite
+v.sqlite
 node_modules
 docs/.vuepress/dist/
 vgo-tools/vgo-tools

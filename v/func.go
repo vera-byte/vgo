@@ -8,7 +8,7 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 )
 
-type CoolFunc interface {
+type vFunc interface {
 	// Func handler
 	Func(ctx g.Ctx, param string) (err error)
 	// IsSingleton 是否单例,当为true时，只能有一个任务在执行,在注意函数为计划任务时使用
@@ -18,15 +18,15 @@ type CoolFunc interface {
 }
 
 // FuncMap 函数列表
-var FuncMap = make(map[string]CoolFunc)
+var FuncMap = make(map[string]vFunc)
 
 // RegisterFunc 注册函数
-func RegisterFunc(name string, f CoolFunc) {
+func RegisterFunc(name string, f vFunc) {
 	FuncMap[name] = f
 }
 
 // GetFunc 获取函数
-func GetFunc(name string) CoolFunc {
+func GetFunc(name string) vFunc {
 	return FuncMap[name]
 }
 
@@ -40,7 +40,7 @@ func RunFunc(ctx g.Ctx, funcstring string) (err error) {
 	}
 	if !FuncMap[funcName].IsAllWorker() {
 		// 检查当前是否为主进程, 如果不是主进程, 则不执行
-		if ProcessFlag != CacheManager.MustGetOrSet(ctx, "cool:masterflag", ProcessFlag, 60*time.Second).String() {
+		if ProcessFlag != CacheManager.MustGetOrSet(ctx, "v:masterflag", ProcessFlag, 60*time.Second).String() {
 			g.Log().Debug(ctx, "当前进程不是主进程, 不执行单例函数", funcName)
 			return
 		}
@@ -52,12 +52,12 @@ func RunFunc(ctx g.Ctx, funcstring string) (err error) {
 // ClusterRunFunc 集群运行函数,如果是单机模式, 则直接运行函数
 func ClusterRunFunc(ctx g.Ctx, funcstring string) (err error) {
 	if IsRedisMode {
-		conn, err := g.Redis("cool").Conn(ctx)
+		conn, err := g.Redis("v").Conn(ctx)
 		if err != nil {
 			return err
 		}
 		defer conn.Close(ctx)
-		_, err = conn.Do(ctx, "publish", "cool:func", funcstring)
+		_, err = conn.Do(ctx, "publish", "v:func", funcstring)
 		return err
 	} else {
 		return RunFunc(ctx, funcstring)
@@ -67,12 +67,12 @@ func ClusterRunFunc(ctx g.Ctx, funcstring string) (err error) {
 // ListenFunc 监听函数
 func ListenFunc(ctx g.Ctx) {
 	if IsRedisMode {
-		conn, err := g.Redis("cool").Conn(ctx)
+		conn, err := g.Redis("v").Conn(ctx)
 		if err != nil {
 			panic(err)
 		}
 		defer conn.Close(ctx)
-		_, err = conn.Do(ctx, "subscribe", "cool:func")
+		_, err = conn.Do(ctx, "subscribe", "v:func")
 		if err != nil {
 			panic(err)
 		}
@@ -88,7 +88,7 @@ func ListenFunc(ctx g.Ctx) {
 				if dataMap["Kind"] == "subscribe" {
 					continue
 				}
-				if dataMap["Channel"] == "cool:func" {
+				if dataMap["Channel"] == "v:func" {
 					g.Log().Debug(ctx, "执行函数", dataMap["Payload"])
 					err := RunFunc(ctx, dataMap["Payload"])
 					if err != nil {

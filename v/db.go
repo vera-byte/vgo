@@ -5,7 +5,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 )
 
-// Deprecated 请使用 cool.DBM 替代
+// Deprecated 请使用 v.DBM 替代
 func GDBM(m IModel) *gdb.Model {
 	return g.DB(m.GroupName()).Model(m.TableName())
 }

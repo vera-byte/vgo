@@ -1,13 +1,13 @@
 import { defineComponent, h } from "vue";
 import { useStore } from "../../store";
 import { Menu } from "../../types";
-import { useCool } from "/@/cool";
+import { usev } from "/@/v";
 
 export default defineComponent({
 	name: "b-menu",
 
 	setup() {
-		const { router, route, browser } = useCool();
+		const { router, route, browser } = usev();
 		const { menu, app } = useStore();
 
 		// 页面跳转

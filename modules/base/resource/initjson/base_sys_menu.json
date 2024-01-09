@@ -40,7 +40,7 @@
     "type": 1,
     "icon": "icon-menu",
     "orderNum": 2,
-    "viewPath": "cool/modules/base/views/menu.vue",
+    "viewPath": "v/modules/base/views/menu.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -115,7 +115,7 @@
     "type": 1,
     "icon": "icon-common",
     "orderNum": 3,
-    "viewPath": "cool/modules/base/views/role.vue",
+    "viewPath": "v/modules/base/views/role.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -205,7 +205,7 @@
     "type": 1,
     "icon": "icon-log",
     "orderNum": 1,
-    "viewPath": "cool/modules/base/views/log.vue",
+    "viewPath": "v/modules/base/views/log.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -235,7 +235,7 @@
     "type": 1,
     "icon": "icon-favor",
     "orderNum": 1,
-    "viewPath": "cool/modules/demo/views/crud.vue",
+    "viewPath": "v/modules/demo/views/crud.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -280,7 +280,7 @@
     "type": 1,
     "icon": "icon-log",
     "orderNum": 0,
-    "viewPath": "https://cool-js.com",
+    "viewPath": "https://v-js.com",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -295,7 +295,7 @@
     "type": 1,
     "icon": "icon-favor",
     "orderNum": 2,
-    "viewPath": "cool/modules/demo/views/editor-quill.vue",
+    "viewPath": "v/modules/demo/views/editor-quill.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -415,7 +415,7 @@
     "type": 1,
     "icon": "icon-menu",
     "orderNum": 0,
-    "viewPath": "cool/modules/base/views/param.vue",
+    "viewPath": "v/modules/base/views/param.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -520,7 +520,7 @@
     "type": 1,
     "icon": "icon-favor",
     "orderNum": 3,
-    "viewPath": "cool/modules/demo/views/upload.vue",
+    "viewPath": "v/modules/demo/views/upload.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -550,7 +550,7 @@
     "type": 1,
     "icon": "icon-favor",
     "orderNum": 0,
-    "viewPath": "cool/modules/demo/views/demo.vue",
+    "viewPath": "v/modules/demo/views/demo.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -565,7 +565,7 @@
     "type": 1,
     "icon": "icon-user",
     "orderNum": 0,
-    "viewPath": "cool/modules/base/views/user.vue",
+    "viewPath": "v/modules/base/views/user.vue",
     "keepAlive": 1,
     "isShow": 1
   },
@@ -670,7 +670,7 @@
     "type": 1,
     "icon": "icon-menu",
     "orderNum": 0,
-    "viewPath": "cool/modules/task/views/task.vue",
+    "viewPath": "v/modules/task/views/task.vue",
     "keepAlive": 1,
     "isShow": 1
   },

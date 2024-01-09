@@ -36,7 +36,7 @@ import (
 database:
   default: # 数据源名称,当不指定数据源时 default 为默认数据源
     type: "sqlite" # 数据库类型
-    link: "cool.sqlite" # 数据库文件名称，可以带路径，如：/tmp/cool.sqlite
+    link: "v.sqlite" # 数据库文件名称，可以带路径，如：/tmp/v.sqlite
     extra: busy_timeout=5000 # 数据库连接扩展参数
     createdAt: "createTime" # 创建时间字段
     updatedAt: "updateTime" # 更新时间字段
@@ -73,7 +73,7 @@ database:
     port: "3306" # 数据库端口
     user: "root" # 数据库用户名
     pass: "123456" # 数据库密码
-    name: "cooltest" # 数据库名称
+    name: "vtest" # 数据库名称
     charset: "utf8mb4" # 数据库编码
     timezone: "Asia/Shanghai" # 数据库时区
     debug: true # 是否开启调试模式，开启后会打印SQL日志
@@ -96,8 +96,8 @@ services:
     environment:
       TZ: Asia/Shanghai # 指定时区
       MYSQL_ROOT_PASSWORD: "123456" # 配置root用户密码
-      MYSQL_DATABASE: "cooltest" # 业务库名
-      MYSQL_USER: "cooltest" # 业务库用户名
+      MYSQL_DATABASE: "vtest" # 业务库名
+      MYSQL_USER: "vtest" # 业务库用户名
       MTSQL_PASSWORD: "123123" # 业务库密码
     ports:
       - 3306:3306
@@ -145,9 +145,9 @@ database:
     type: "pgsql" # 数据库类型
     host: "127.0.0.1" # 数据库地址
     port: "5432" # 数据库端口
-    user: "cooltest" # 数据库用户名
+    user: "vtest" # 数据库用户名
     pass: "123456" # 数据库密码
-    name: "cooltest" # 数据库名称
+    name: "vtest" # 数据库名称
     debug: true # 是否开启调试模式，开启后会打印SQL日志
     createdAt: "createTime" # 创建时间字段
     updatedAt: "updateTime" # 更新时间字段

@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { computed, reactive, toRaw } from "vue";
-import { isDev, service } from "/@/cool";
+import { isDev, service } from "/@/v";
 
 declare interface Data {
 	[key: string]: Array<{ label: string; value: any }>;

@@ -4,14 +4,14 @@
 [![Build Release](https://github.com/vera-byte/vgo/actions/workflows/release.yml/badge.svg)](https://github.com/vera-byte/vgo/actions/workflows/release.yml)
 [![Goproxy.cn](https://goproxy.cn/stats/github.com/vera-byte/vgo/badges/download-count.svg)](https://goproxy.cn)
 
-CoolAdmin 的 Go 版本后端
+vAdmin 的 Go 版本后端
 
-- [docs](https://cool-team-official.github.io/vgo/) - 开发文档
+- [docs](https://v-team-official.github.io/vgo/) - 开发文档
 - [changelog](docs/changelog.md) - 更新日志
 - [github](https://github.com/vera-byte/vgo) - vgo 仓库
 - [release](https://github.com/vera-byte/vgo/releases) - vgo-tools 编译版本下载
 - [issues](https://github.com/vera-byte/vgo/issues) - 问答区
-- [CoolAdmin](https://cool-js.com) - CoolAdmin 官网
+- [vAdmin](https://v-js.com) - vAdmin 官网
 - [GoFrame](https://goframe.org) - GoFrame 官网
 
 ## TODO

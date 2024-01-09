@@ -1,6 +1,6 @@
 import { ElMessage } from "element-plus";
 import { createRouter, createWebHashHistory, createWebHistory, RouteRecordRaw } from "vue-router";
-import { config, Router, storage, module } from "/@/cool";
+import { config, Router, storage, module } from "/@/v";
 import { isArray } from "lodash-es";
 import { useBase } from "/$/base";
 import { Loading } from "../utils";
@@ -63,7 +63,7 @@ router.append = function (data) {
 
 					d.component = () => import(`/$/base/views/frame.vue`);
 				} else {
-					d.component = files["/src/" + url.replace("cool/", "")];
+					d.component = files["/src/" + url.replace("v/", "")];
 				}
 			} else {
 				d.redirect = "/404";

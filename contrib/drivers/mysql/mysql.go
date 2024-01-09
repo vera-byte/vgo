@@ -9,7 +9,7 @@ import (
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gregex"
-	"github.com/vera-byte/vgo/cool/vdb"
+	"github.com/vera-byte/vgo/v/vdb"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

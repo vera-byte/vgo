@@ -2,9 +2,9 @@ package funcs
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/task/model"
 	"github.com/vera-byte/vgo/modules/task/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type TaskStopFunc struct {
@@ -12,7 +12,7 @@ type TaskStopFunc struct {
 
 func (t *TaskStopFunc) Func(ctx g.Ctx, id string) error {
 	taskInfo := model.NewTaskInfo()
-	_, err := cool.DBM(taskInfo).Where("id = ?", id).Update(g.Map{"status": 0})
+	_, err := v.DBM(taskInfo).Where("id = ?", id).Update(g.Map{"status": 0})
 	if err != nil {
 		return err
 	}
@@ -29,5 +29,5 @@ func (t *TaskStopFunc) IsAllWorker() bool {
 }
 
 func init() {
-	cool.RegisterFunc("TaskStopFunc", &TaskStopFunc{})
+	v.RegisterFunc("TaskStopFunc", &TaskStopFunc{})
 }

@@ -5,7 +5,7 @@ import (
 
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysPermsService struct {
@@ -23,7 +23,7 @@ func (c *BaseSysPermsService) Permmenu(ctx context.Context, roleIds []string) (r
 	}
 	var (
 		baseSysMenuService = NewBaseSysMenuService()
-		admin              = cool.GetAdmin(ctx)
+		admin              = v.GetAdmin(ctx)
 	)
 
 	res = &permmenu{
@@ -44,10 +44,10 @@ func (c *BaseSysPermsService) RefreshPerms(ctx context.Context, userId uint) (er
 		roleIds                  = baseSysUserRoleService.GetByUser(userId)
 		perms                    = baseSysMenuService.GetPerms(roleIds)
 	)
-	cool.CacheManager.Set(ctx, "admin:perms:"+gconv.String(userId), perms, 0)
+	v.CacheManager.Set(ctx, "admin:perms:"+gconv.String(userId), perms, 0)
 	// 更新部门权限
 	departments := baseSysDepartmentService.GetByRoleIds(roleIds, userId == 1)
-	cool.CacheManager.Set(ctx, "admin:department:"+gconv.String(userId), departments, 0)
+	v.CacheManager.Set(ctx, "admin:department:"+gconv.String(userId), departments, 0)
 
 	return
 }

@@ -22,7 +22,7 @@ import (
 database:
   default:
     type: "sqlite" # 数据库类型
-    name: "cool.sqlite" # 数据库名称,对于sqlite来说就是数据库文件名
+    name: "v.sqlite" # 数据库名称,对于sqlite来说就是数据库文件名
     extra: busy_timeout=5000 # 扩展参数 如 busy_timeout=5000&journal_mode=ALL
     createdAt: "createTime" # 创建时间字段名称
     updatedAt: "updateTime" # 更新时间字段名称

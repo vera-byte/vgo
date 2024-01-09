@@ -13,14 +13,14 @@
 
 <script lang="ts" setup>
 import { useBase } from "/$/base";
-import { useBrowser } from "/@/cool";
+import { useBrowser } from "/@/v";
 import BMenu from "./bmenu";
 
 const { browser } = useBrowser();
 const { app } = useBase();
 
 function toHome() {
-	location.href = "https://cool-js.com";
+	location.href = "https://v-js.com";
 }
 </script>
 

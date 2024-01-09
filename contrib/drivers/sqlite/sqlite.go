@@ -10,7 +10,7 @@ import (
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool/vdb"
+	"github.com/vera-byte/vgo/v/vdb"
 	"gorm.io/gorm"
 )
 

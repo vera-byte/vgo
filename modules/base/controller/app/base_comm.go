@@ -3,26 +3,26 @@ package admin
 import (
 	"context"
 
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/service"
+	"github.com/vera-byte/vgo/v"
 
 	"github.com/gogf/gf/v2/frame/g"
 )
 
 type BaseCommController struct {
-	*cool.ControllerSimple
+	*v.ControllerSimple
 }
 
 func init() {
 	var base_comm_controller = &BaseCommController{
-		&cool.ControllerSimple{
+		&v.ControllerSimple{
 			Perfix: "/app/base/comm",
 			//    Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			//    Service: service.NewBaseCommService(),
 		},
 	}
 	// 注册路由
-	cool.RegisterControllerSimple(base_comm_controller)
+	v.RegisterControllerSimple(base_comm_controller)
 }
 
 // eps 接口请求
@@ -31,18 +31,18 @@ type BaseCommControllerEpsReq struct {
 }
 
 // eps 接口
-func (c *BaseCommController) Eps(ctx context.Context, req *BaseCommControllerEpsReq) (res *cool.BaseRes, err error) {
-	if !cool.Config.Eps {
+func (c *BaseCommController) Eps(ctx context.Context, req *BaseCommControllerEpsReq) (res *v.BaseRes, err error) {
+	if !v.Config.Eps {
 		g.Log().Error(ctx, "eps is not open")
-		res = cool.Ok(nil)
+		res = v.Ok(nil)
 		return
 	}
 	baseOpenService := service.NewBaseOpenService()
 	data, err := baseOpenService.AppEPS(ctx)
 	if err != nil {
 		g.Log().Error(ctx, "eps error", err)
-		return cool.Fail(err.Error()), err
+		return v.Fail(err.Error()), err
 	}
-	res = cool.Ok(data)
+	res = v.Ok(data)
 	return
 }

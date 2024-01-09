@@ -3,7 +3,7 @@ package vfile
 import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool/vconfig"
+	"github.com/vera-byte/vgo/v/vconfig"
 )
 
 type Driver interface {
@@ -31,7 +31,7 @@ func NewFile() (d Driver) {
 
 }
 
-// Register registers custom file driver to cool.
+// Register registers custom file driver to v.
 func Register(name string, driver Driver) error {
 	FileMap[name] = driver
 	return nil

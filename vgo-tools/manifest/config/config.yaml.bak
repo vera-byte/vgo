@@ -12,13 +12,13 @@ logger:
 database:
   default:
     - type: "mysql"
-      link: "root:123456@tcp(127.0.0.1:3306)/cooltest?charset=utf8mb4&parseTime=True&loc=Local"
+      link: "root:123456@tcp(127.0.0.1:3306)/vtest?charset=utf8mb4&parseTime=True&loc=Local"
       role: "master"
       debug: true
       createdAt: "createTime"
       updatedAt: "updateTime"
     - type: "mysql"
-      link: "root:123456@tcp(127.0.0.1:3306)/cooltest?charset=utf8mb4&parseTime=True&loc=Local"
+      link: "root:123456@tcp(127.0.0.1:3306)/vtest?charset=utf8mb4&parseTime=True&loc=Local"
       role: "slave"
       debug: true
       createdAt: "createTime"

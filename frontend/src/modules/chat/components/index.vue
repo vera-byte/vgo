@@ -52,7 +52,7 @@
 <script lang="ts" name="cl-chat" setup>
 import { nextTick, provide, ref } from "vue";
 import dayjs from "dayjs";
-import { useCool, config, module, useBrowser } from "/@/cool";
+import { usev, config, module, useBrowser } from "/@/v";
 import { useBase } from "/$/base";
 import { Notebook, ArrowLeft, BellFilled } from "@element-plus/icons-vue";
 import { debounce } from "lodash-es";
@@ -63,7 +63,7 @@ import ChatSession from "./session.vue";
 import { Chat } from "../types";
 import { useStore } from "../store";
 
-const { mitt } = useCool();
+const { mitt } = usev();
 const { browser, onScreenChange } = useBrowser();
 
 // 缓存
