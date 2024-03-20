@@ -8,7 +8,7 @@ help: ## 查看帮助
 pack.template-simple:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  https://github.com/vera-byte/vgo.git vgo-simple
+	@cd temp && git clone --depth=1 -b simple  https://github.com/vera-byte/vgo.git vgo-simple || { echo "Failed to clone repository"; exit 1; }
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp/vgo-simple
@@ -17,7 +17,7 @@ pack.template-simple:
 pack.template-simple.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  git@github.com:vera-byte/vgo.git vgo-simple
+	@cd temp && git clone --depth=1 -b simple  git@github.com:vera-byte/vgo.git vgo-simple || { echo "Failed to clone repository"; exit 1; }
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp
