@@ -8,8 +8,8 @@ set -e
 # fi
 
 # 检查当前是否为main分支
-if [ "$(git rev-parse --abbrev-ref HEAD)" != "main" ]; then
-    echo "You must be on the main branch to release"
+if [ "$(git rev-parse --abbrev-ref HEAD)" != "master" ]; then
+    echo "You must be on the master branch to release"
     exit 1
 fi
 
