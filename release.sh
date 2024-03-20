@@ -43,7 +43,7 @@ if ! echo "$TAG" | grep -q '^v[0-9]\+\.[0-9]\+\.[0-9]\+$'; then
 fi
 
 # 推送到main
-git push origin main
+git push origin master
 # 创建tag
 git tag $TAG
 # 提交tag
