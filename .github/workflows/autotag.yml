@@ -8,7 +8,7 @@ on:
 
 env:
   TZ: Asia/Shanghai
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.TOKEN }}
 permissions:
   contents: read
   pages: write
