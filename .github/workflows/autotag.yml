@@ -22,8 +22,7 @@ jobs:
 
       - name: Auto Creating Tags
         run: |
-          git config --global user.email "xykj@email.metoyun.com"
-          git config --global user.name  "vera"
+
           for file in `find contrib -name go.mod`; do
               tag=$(dirname $file)/$GITHUB_REF_NAME
               git tag $tag
