@@ -23,9 +23,9 @@ fi
 
 # 进入脚本所在目录
 cd "$(dirname "$0")"
-yarn install
-# 发布文档
-yarn docs:deploy
+# yarn install
+# # 发布文档
+# yarn docs:deploy
 
 # 进入vgo-tools目录
 cd vgo-tools
@@ -34,9 +34,9 @@ cd vgo-tools
 if [ -n "$CODESPACES" ]; then
     echo "github codespace detected, using https to pull"
     make pack.template-simple
-    make pack.docs
+    # make pack.docs
 else
     echo "github codespace not detected, use ssh"
     make pack.template-simple.ssh
-    make pack.docs.ssh
+    # make pack.docs.ssh
 fi
