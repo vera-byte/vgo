@@ -17,7 +17,7 @@ pack.template-simple:
 pack.template-simple.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  git@github.com:v-team-official/vgo.git vgo-simple
+	@cd temp && git clone --depth=1 -b simple  git@github.com:vera-byte/vgo.git vgo-simple
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp
@@ -34,7 +34,7 @@ pack.docs:
 pack.docs.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages git@github.com:v-team-official/vgo.git docs/vgo
+	@cd temp && git clone --depth=1 -b gh-pages git@github.com:vera-byte/vgo.git docs/vgo
 	@rm -fr temp/docs/vgo/.git
 	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
 	@rm -fr temp/docs

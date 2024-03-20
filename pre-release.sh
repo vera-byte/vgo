@@ -23,7 +23,7 @@ fi
 
 # 进入脚本所在目录
 cd "$(dirname "$0")"
-
+# yarn install
 # 发布文档
 yarn docs:deploy
 

@@ -35,7 +35,7 @@ if [ -n "$CODESPACES" ]; then
     git push -f https://github.com/vera-byte/vgo.git master:gh-pages
 else
     echo "github codespace not detected, use ssh"
-    git push -f git@github.com:v-team-official/vgo.git master:gh-pages
+    git push -f git@github.com:vera-byte/vgo.git master:gh-pages
 fi
 
 # 如果发布到 https://<USERNAME>.github.io
