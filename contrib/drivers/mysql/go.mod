@@ -3,9 +3,8 @@ module github.com/vera-byte/vgo/contrib/drivers/mysql
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/v v1.0.19
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.4.0
-	github.com/gogf/gf/v2 v2.4.0
+	github.com/gogf/gf/v2 v2.6.4
 	gorm.io/driver/mysql v1.5.0
 	gorm.io/gorm v1.25.0
 )

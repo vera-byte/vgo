@@ -24,8 +24,8 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	for _, v := range result {
-		id := v["id"].String()
+	for _, item := range result {
+		id := item["id"].String()
 		v.RunFunc(ctx, "TaskAddTask("+id+")")
 	}
 	g.Log().Debug(ctx, "module task init finished ...")

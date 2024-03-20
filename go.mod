@@ -3,16 +3,7 @@ module github.com/vera-byte/vgo
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/contrib/drivers/mysql v1.5.11
-	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.5.11
-	github.com/vera-byte/vgo/contrib/files/local v1.5.11
-	github.com/vera-byte/vgo/v v1.5.11
-	github.com/vera-byte/vgo/modules/base v1.5.11
-	github.com/vera-byte/vgo/modules/demo v1.5.11
-	github.com/vera-byte/vgo/modules/dict v1.5.11
-	github.com/vera-byte/vgo/modules/space v1.5.11
-	github.com/vera-byte/vgo/modules/task v1.5.11
-	github.com/gogf/gf/v2 v2.5.1
+	github.com/gogf/gf/v2 v2.6.4
 )
 
 require (
@@ -30,8 +21,8 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-sql-driver/mysql v1.7.1 // indirect
-	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.5.1 // indirect
-	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.5.1 // indirect
+	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.6.4 // indirect
+	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.6.4 // indirect
 	github.com/gogf/gf/contrib/nosql/redis/v2 v2.5.1
 	github.com/golang-jwt/jwt/v4 v4.5.0 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect

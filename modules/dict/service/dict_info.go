@@ -31,16 +31,16 @@ func (s *DictInfoService) Data(ctx context.Context, types []string) (data interf
 		return g.Map{}, nil
 	}
 	data = g.Map{}
-	for _, v := range typeData {
+	for _, item := range typeData {
 		m := v.DBM(dictInfoModel)
-		result, err := m.Where("typeId=?", v["id"]).Fields("id", "name", "parentId", "typeId").Order("orderNum asc").All()
+		result, err := m.Where("typeId=?", item["id"]).Fields("id", "name", "parentId", "typeId").Order("orderNum asc").All()
 		if err != nil {
 			return nil, err
 		}
 		if result.IsEmpty() {
 			continue
 		}
-		data.(g.Map)[v["key"].String()] = result
+		data.(g.Map)[item["key"].String()] = result
 	}
 	return
 }

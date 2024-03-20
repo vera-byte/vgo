@@ -3,9 +3,8 @@ module github.com/vera-byte/vgo/contrib/drivers/sqlite
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/v v1.0.19
 	github.com/glebarez/sqlite v1.8.0
-	github.com/gogf/gf/v2 v2.4.0
+	github.com/gogf/gf/v2 v2.6.4
 	gorm.io/gorm v1.25.0
 )
 

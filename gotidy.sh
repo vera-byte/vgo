@@ -16,9 +16,9 @@ find $DIR -name "go.mod" | while read line; do
     go mod tidy
 done
 
-# go get -u
-# go mod tidy
+go get -u
+go mod tidy
 
-# cd vgo-tools
-# go get -u
-# go mod tidy
+cd vgo-tools
+go get -u
+go mod tidy

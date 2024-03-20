@@ -3,8 +3,7 @@ module github.com/vera-byte/vgo/contrib/files/local
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/v v1.0.19
-	github.com/gogf/gf/v2 v2.4.0
+	github.com/gogf/gf/v2 v2.6.4
 )
 
 require (

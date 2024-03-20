@@ -56,8 +56,8 @@ func (s *BaseSysDepartmentService) Order(ctx g.Ctx) (err error) {
 
 	var data *item
 
-	for _, v := range r {
-		err = gconv.Struct(v, &data)
+	for _, item := range r {
+		err = gconv.Struct(item, &data)
 		if err != nil {
 			continue
 		}

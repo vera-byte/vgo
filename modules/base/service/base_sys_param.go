@@ -52,9 +52,9 @@ func (s *BaseSysParamService) ModifyAfter(ctx context.Context, method string, pa
 	if err != nil {
 		return
 	}
-	for _, v := range result {
-		key := "param:" + v["keyName"].String()
-		value := v["data"].String()
+	for _, item := range result {
+		key := "param:" + item["keyName"].String()
+		value := item["data"].String()
 		err = v.CacheManager.Set(ctx, key, value, 0)
 		if err != nil {
 			return
