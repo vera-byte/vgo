@@ -1,6 +1,6 @@
 module github.com/vera-byte/vgo
 
-go 1.18
+go 1.19
 
 require (
 	github.com/gogf/gf/v2 v2.6.4
@@ -20,6 +20,9 @@ require (
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/go-redis/redis/v8 v8.11.5 // indirect
 	github.com/gogf/gf v1.16.9 // indirect
+	go.opentelemetry.io/otel v1.14.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.14.0 // indirect
+	go.opentelemetry.io/otel/trace v1.14.0 // indirect
 )
 
 require (
