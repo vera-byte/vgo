@@ -1,8 +1,6 @@
 # Vgo
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/vera-byte/vgo.svg)](https://pkg.go.dev/github.com/vera-byte/vgo)
 [![Build Release](https://github.com/vera-byte/vgo/actions/workflows/release.yml/badge.svg)](https://github.com/vera-byte/vgo/actions/workflows/release.yml)
-[![Goproxy.cn](https://goproxy.cn/stats/github.com/vera-byte/vgo/badges/download-count.svg)](https://goproxy.cn)
 
 vAdmin 的 Go 版本后端
 
