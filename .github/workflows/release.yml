@@ -37,15 +37,23 @@ jobs:
         run: |
           pwd
           cd vgo-tools/temp
-          for OS in */; do
-            for FILE in "$OS"*; do
-                echo $FILE
-                echo $OS
-                if [[ "$OS" =~ 'windows' ]]; then
-                    mv "$FILE" "vgo-tools_${OS::-1}.exe" && rm -rf "$OS"
-                else
-                    mv "$FILE" "vgo-tools_${OS::-1}" && rm -rf "$OS"
-                fi
+          for OS_DIR in */; do
+            # 获取操作系统目录名（去掉末尾的斜杠）
+            OS=${OS_DIR%/}
+
+            # 循环遍历每个操作系统目录中的文件
+            for FILE in "$OS_DIR"*; do
+              # 构建目标文件名，包括操作系统名称
+              if [[ $OS =~ 'windows' ]]; then
+                  # 如果操作系统名称包含 'windows'，则添加 '.exe' 后缀
+                  TARGET_FILE="vgo-tools_${OS}.exe"
+              else
+                  # 否则，不添加后缀
+                  TARGET_FILE="vgo-tools_${OS}"
+              fi
+              
+              # 将文件移动到目标文件名，并删除操作系统目录
+              mv "$FILE" "$TARGET_FILE" && rm -rf "$OS_DIR"
             done
           done
           pwd
