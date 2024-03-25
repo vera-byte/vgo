@@ -4,4 +4,5 @@ gfcli:
   build:
     name: "vgo-tools"
     arch: "all"
-    system: "linux,darwin,windows"
+    system: "linux"
+# ,darwin,windows

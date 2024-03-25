@@ -37,7 +37,7 @@ jobs:
         run: |
           pwd
           ls
-          cd vgo-simple/temp
+          cd vgo-tools/temp
           for OS in *;do for FILE in $OS/*;\
           do if [[ ${OS} =~ 'windows' ]];\
           then mv $FILE vgo-tools_$OS.exe && rm -rf $OS;\
