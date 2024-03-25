@@ -32,26 +32,24 @@ jobs:
           go mod tidy
           make pack.template-simple
           gf build
+
       - name: Move Files Before Release
         run: |
-          pwd
           cd vgo-tools/temp
           for OS in *;do for FILE in $OS/*;\
           do if [[ ${OS} =~ 'windows' ]];\
-          then mv $FILE vgo-tools_${OS}.exe && rm -rf $OS;\
+          then mv $FILE vgo-tools_$OS.exe && rm -rf $OS;\
           else mv $FILE vgo-tools_$OS && rm -rf $OS;\
           fi;done;done
-          pwd
-          ls
 
       - name: Create Github Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref }}
-          release_name: vgo-tools 发布 ${{ github.ref }}
+          name: Vgo Release ${{ github.ref }}
           draft: false
           prerelease: false
 
