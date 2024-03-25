@@ -36,7 +36,6 @@ jobs:
       - name: Move Files Before Release
         run: |
           pwd
-          ls
           cd vgo-tools/temp
           for OS in *;do for FILE in $OS/*;\
           do if [[ ${OS} =~ 'windows' ]];\
@@ -44,7 +43,7 @@ jobs:
           else mv $FILE vgo-tools_$OS && rm -rf $OS;\
           fi;done;done
           pwd
-          ls
+          ls ./vgo-tools/temp
 
       - name: Create Github Release
         id: create_release
