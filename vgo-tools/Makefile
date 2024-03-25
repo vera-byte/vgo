@@ -8,7 +8,7 @@ help: ## 查看帮助
 pack.template-simple:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  https://github.com/vera-byte/vgo.git vgo-simple || { echo "Failed to clone repository"; exit 1; }
+	@cd temp && git clone --depth=1 -b simple  https://github.com/vera-byte/vgo.git vgo-simple
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp/vgo-simple
@@ -17,7 +17,7 @@ pack.template-simple:
 pack.template-simple.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b simple  git@github.com:vera-byte/vgo.git vgo-simple || { echo "Failed to clone repository"; exit 1; }
+	@cd temp && git clone --depth=1 -b simple  git@github.com:vera-byte/vgo.git vgo-simple
 	@rm -fr temp/vgo-simple/.git
 	@cd temp && gf pack vgo-simple ../internal/packed/vgo-simple.go -n=packed -y
 	@rm -fr temp
@@ -26,16 +26,16 @@ pack.template-simple.ssh:
 pack.docs:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages https://github.com/vera-byte/vgo.git docs/vgo
-	@rm -fr temp/docs/vgo/.git
+	@cd temp && git clone --depth=1 -b gh-pages https://github.com/vera-byte/vgo.git docs/cool-admin-go
+	@rm -fr temp/docs/cool-admin-go/.git
 	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
 	@rm -fr temp/docs
 .PHONY: pack.docs.ssh
 pack.docs.ssh:
 	@rm -fr temp
 	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages git@github.com:vera-byte/vgo.git docs/vgo
-	@rm -fr temp/docs/vgo/.git
+	@cd temp && git clone --depth=1 -b gh-pages git@github.com:vera-byte/vgo.git docs/cool-admin-go
+	@rm -fr temp/docs/cool-admin-go/.git
 	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
 	@rm -fr temp/docs
 
@@ -54,7 +54,7 @@ cli:
 .PHONY: tools
 tools:
 	@set -e; \
-	curl -L https://download.fastgit.org/v-team-official/vgo/releases/latest/download/vgo-tools_$(shell go env GOOS)_$(shell go env GOARCH) -o ./vgo-tools && \
+	curl -L https://download.fastgit.org/cool-team-official/cool-admin-go/releases/latest/download/vgo-tools_$(shell go env GOOS)_$(shell go env GOARCH) -o ./vgo-tools && \
 	chmod +x vgo-tools && \
 	./vgo-tools install && \
 	rm ./vgo-tools
