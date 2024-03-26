@@ -56,8 +56,9 @@ jobs:
               mv "$FILE" "$TARGET_FILE" && rm -rf "$OS_DIR"
             done
           done
+          echo "Files moved successfully."
+          ls -l
           pwd
-          ls
 
       - name: Create Github Release
         id: create_release
