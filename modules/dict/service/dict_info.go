@@ -5,12 +5,12 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/dict/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type DictInfoService struct {
-	*cool.Service
+	*v.Service
 }
 
 // Data方法, 用于获取数据
@@ -19,7 +19,7 @@ func (s *DictInfoService) Data(ctx context.Context, types []string) (data interf
 		dictInfoModel = model.NewDictInfo()
 		dictTypeModel = model.NewDictType()
 	)
-	mType := cool.DBM(dictTypeModel)
+	mType := v.DBM(dictTypeModel)
 	// 如果types不为空, 则查询指定类型的数据
 	if len(types) > 0 {
 		mType = mType.Where("type in (?)", types)
@@ -32,7 +32,7 @@ func (s *DictInfoService) Data(ctx context.Context, types []string) (data interf
 	}
 	data = g.Map{}
 	for _, v := range typeData {
-		m := cool.DBM(dictInfoModel)
+		m := v.DBM(dictInfoModel)
 		result, err := m.Where("typeId=?", v["id"]).Fields("id", "name", "parentId", "typeId").Order("orderNum asc").All()
 		if err != nil {
 			return nil, err
@@ -68,7 +68,7 @@ func delChildDict(id int64) error {
 	var (
 		dictInfoModel = model.NewDictInfo()
 	)
-	m := cool.DBM(dictInfoModel)
+	m := v.DBM(dictInfoModel)
 	result, err := m.Where("parentId=?", id).Fields("id").All()
 	if err != nil {
 		return err
@@ -86,9 +86,9 @@ func delChildDict(id int64) error {
 // NewDictInfoService 初始化 DictInfoService
 func NewDictInfoService() *DictInfoService {
 	return &DictInfoService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewDictInfo(),
-			ListQueryOp: &cool.QueryOp{
+			ListQueryOp: &v.QueryOp{
 				FieldEQ:      []string{"typeId"},
 				KeyWordField: []string{"name"},
 				AddOrderby:   g.MapStrStr{"createTime": "ASC"},

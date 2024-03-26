@@ -1,21 +1,21 @@
 package service
 
 import (
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/demo/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type DemoGoodsService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewDemoGoodsService() *DemoGoodsService {
 	return &DemoGoodsService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewDemoGoods(),
-			ListQueryOp: &cool.QueryOp{
+			ListQueryOp: &v.QueryOp{
 
-				Join: []*cool.JoinOp{},
+				Join: []*v.JoinOp{},
 			},
 		},
 	}

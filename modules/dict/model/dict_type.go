@@ -1,14 +1,12 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/cool"
-)
+import "github.com/vera-byte/vgo/v"
 
 const TableNameDictType = "dict_type"
 
 // DictType mapped from table <dict_type>
 type DictType struct {
-	*cool.Model
+	*v.Model
 	Name string `gorm:"column:name;type:varchar(255);not null" json:"name"` // 名称
 	Key  string `gorm:"column:key;type:varchar(255);not null" json:"key"`   // 标识
 }
@@ -26,11 +24,11 @@ func (*DictType) GroupName() string {
 // NewDictType create a new DictType
 func NewDictType() *DictType {
 	return &DictType{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&DictType{})
+	v.CreateTable(&DictType{})
 }

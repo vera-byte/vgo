@@ -11,17 +11,17 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysUserService struct {
-	*cool.Service
+	*v.Service
 }
 
 // Person 方法 返回不带密码的用户信息
 func (s *BaseSysUserService) Person(userId uint) (res gdb.Record, err error) {
-	m := cool.DBM(s.Model)
+	m := v.DBM(s.Model)
 	res, err = m.Where("id = ?", userId).FieldsEx("password").One()
 	return
 }
@@ -50,15 +50,15 @@ func (s *BaseSysUserService) ModifyAfter(ctx context.Context, method string, par
 		userIds := garray.NewIntArrayFrom(gconv.Ints(param["ids"]))
 		userIds.RemoveValue(1)
 		// 删除用户时删除相关数据
-		cool.DBM(model.NewBaseSysUserRole()).WhereIn("userId", userIds.Slice()).Delete()
+		v.DBM(model.NewBaseSysUserRole()).WhereIn("userId", userIds.Slice()).Delete()
 	}
 	return
 }
 
 // ServiceAdd 方法 添加用户
-func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *cool.AddReq) (data interface{}, err error) {
+func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *v.AddReq) (data interface{}, err error) {
 	var (
-		m      = cool.DBM(s.Model)
+		m      = v.DBM(s.Model)
 		r      = g.RequestFromCtx(ctx)
 		reqmap = r.GetMap()
 	)
@@ -75,7 +75,7 @@ func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *cool.AddReq) (
 }
 
 // ServiceInfo 方法 返回服务信息
-func (s *BaseSysUserService) ServiceInfo(ctx g.Ctx, req *cool.InfoReq) (data interface{}, err error) {
+func (s *BaseSysUserService) ServiceInfo(ctx g.Ctx, req *v.InfoReq) (data interface{}, err error) {
 	result, err := s.Service.ServiceInfo(ctx, req)
 	if err != nil {
 		return nil, err
@@ -87,7 +87,7 @@ func (s *BaseSysUserService) ServiceInfo(ctx g.Ctx, req *cool.InfoReq) (data int
 	resultMap := result.(gdb.Record).Map()
 
 	// 获取角色
-	roleIds, err := cool.DBM(model.NewBaseSysUserRole()).Where("userId = ?", resultMap["id"]).Fields("roleId").Array()
+	roleIds, err := v.DBM(model.NewBaseSysUserRole()).Where("userId = ?", resultMap["id"]).Fields("roleId").Array()
 	if err != nil {
 		return nil, err
 	}
@@ -98,10 +98,10 @@ func (s *BaseSysUserService) ServiceInfo(ctx g.Ctx, req *cool.InfoReq) (data int
 }
 
 // ServiceUpdate 方法 更新用户信息
-func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *cool.UpdateReq) (data interface{}, err error) {
+func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *v.UpdateReq) (data interface{}, err error) {
 	var (
-		admin = cool.GetAdmin(ctx)
-		m     = cool.DBM(s.Model)
+		admin = v.GetAdmin(ctx)
+		m     = v.DBM(s.Model)
 	)
 
 	r := g.RequestFromCtx(ctx)
@@ -130,13 +130,13 @@ func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *cool.Update
 	if rPassword != "" && rPassword != userInfo["password"].String() {
 		rMap["password"], _ = gmd5.Encrypt(rPassword)
 		rMap["passwordV"] = userInfo["passwordV"].Int() + 1
-		cool.CacheManager.Set(ctx, fmt.Sprintf("admin:passwordVersion:%d", userId), rMap["passwordV"], 0)
+		v.CacheManager.Set(ctx, fmt.Sprintf("admin:passwordVersion:%d", userId), rMap["passwordV"], 0)
 	} else {
 		delete(rMap, "password")
 	}
 
 	err = g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
-		roleModel := cool.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId = ?", userId)
+		roleModel := v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId = ?", userId)
 		roleIds, err := roleModel.Fields("roleId").Array()
 		if err != nil {
 			return
@@ -186,7 +186,7 @@ func (s *BaseSysUserService) Move(ctx g.Ctx) (err error) {
 	departmentId := request.Get("departmentId").Int()
 	userIds := request.Get("userIds").Slice()
 
-	_, err = cool.DBM(s.Model).Where("`id` IN(?)", userIds).Data(g.Map{"departmentId": departmentId}).Update()
+	_, err = v.DBM(s.Model).Where("`id` IN(?)", userIds).Data(g.Map{"departmentId": departmentId}).Update()
 
 	return
 }
@@ -194,15 +194,15 @@ func (s *BaseSysUserService) Move(ctx g.Ctx) (err error) {
 // NewBaseSysUserService 创建一个新的BaseSysUserService实例
 func NewBaseSysUserService() *BaseSysUserService {
 	return &BaseSysUserService{
-		Service: &cool.Service{
+		Service: &v.Service{
 			Model:              model.NewBaseSysUser(),
 			InfoIgnoreProperty: "password",
 			UniqueKey: map[string]string{
 				"username": "用户名不能重复",
 			},
-			PageQueryOp: &cool.QueryOp{
+			PageQueryOp: &v.QueryOp{
 				Select: "base_sys_user.*,dept.`name` as departmentName,GROUP_CONCAT( role.`name` ) AS `roleName`",
-				Join: []*cool.JoinOp{
+				Join: []*v.JoinOp{
 					{
 						Model:     model.NewBaseSysDepartment(),
 						Alias:     "dept",

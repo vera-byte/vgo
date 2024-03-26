@@ -30,7 +30,7 @@
       "",
       "// ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} mapped from table <${TM_FILENAME_BASE/(.*)/${1:/downcase}/}>",
       "type ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} struct {",
-      "       *cool.Model",
+      "       *v.Model",
       "       // Name string `gorm:\"column:name;not null;comment:名称\" json:\"name\"`",
       "}",
       "",
@@ -47,13 +47,13 @@
       "// New${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} create a new ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}",
       "func New${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}() *${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} {",
       "       return &${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{",
-      "               Model: cool.NewModel(),",
+      "               Model: v.NewModel(),",
       "       }",
       "}",
       "",
       "// init 创建表",
       "func init() {",
-      "       cool.CreateTable(&${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{})",
+      "       v.CreateTable(&${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{})",
       "}"
     ]
   }

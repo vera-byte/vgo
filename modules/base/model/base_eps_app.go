@@ -1,8 +1,6 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/cool"
-)
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseEpsApp = "base_eps_app"
 
@@ -35,5 +33,5 @@ func NewBaseEpsApp() *BaseEpsApp {
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseEpsApp{})
+	v.CreateTable(&BaseEpsApp{})
 }

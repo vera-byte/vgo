@@ -3,16 +3,16 @@ module github.com/vera-byte/vgo
 go 1.18
 
 require (
-	github.com/vera-byte/vgo/contrib/drivers/mysql v2.0.0
-	github.com/vera-byte/vgo/contrib/drivers/pgsql v2.0.0
-	github.com/vera-byte/vgo/contrib/files/local v0.0.1
-	github.com/vera-byte/vgo/v v2.0.0
-	github.com/vera-byte/vgo/modules/base v2.0.0
-	github.com/vera-byte/vgo/modules/demo v2.0.0
-	github.com/vera-byte/vgo/modules/dict v2.0.0
-	github.com/vera-byte/vgo/modules/space v2.0.0
-	github.com/vera-byte/vgo/modules/task v2.0.0
-	github.com/gogf/gf/v2 v2.5.1
+	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.0
+	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.0
+	github.com/vera-byte/vgo/contrib/files/local v1.0.0
+	github.com/vera-byte/vgo/v v1.0.0
+	github.com/vera-byte/vgo/modules/base v1.0.0
+	github.com/vera-byte/vgo/modules/demo v1.0.0
+	github.com/vera-byte/vgo/modules/dict v1.0.0
+	github.com/vera-byte/vgo/modules/space v1.0.0
+	github.com/vera-byte/vgo/modules/task v1.0.0
+	github.com/gogf/gf/v2 v2.6.4
 )
 
 require (

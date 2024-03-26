@@ -3,9 +3,9 @@ package funcs
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/task/model"
 	"github.com/vera-byte/vgo/modules/task/service"
+	"github.com/vera-byte/vgo/v"
 )
 
 type TaskAddTask struct {
@@ -13,7 +13,7 @@ type TaskAddTask struct {
 
 func (t *TaskAddTask) Func(ctx g.Ctx, id string) error {
 	taskInfo := model.NewTaskInfo()
-	result, err := cool.DBM(taskInfo).Where("id = ?", id).One()
+	result, err := v.DBM(taskInfo).Where("id = ?", id).One()
 	if err != nil {
 		return err
 	}
@@ -42,5 +42,5 @@ func (t *TaskAddTask) IsAllWorker() bool {
 }
 
 func init() {
-	cool.RegisterFunc("TaskAddTask", &TaskAddTask{})
+	v.RegisterFunc("TaskAddTask", &TaskAddTask{})
 }

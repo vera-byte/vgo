@@ -5,21 +5,21 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysParamService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewBaseSysParamService() *BaseSysParamService {
 	return &BaseSysParamService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewBaseSysParam(),
 		},
 
-		// Service: cool.NewService(model.NewBaseSysParam()),
+		// Service: v.NewService(model.NewBaseSysParam()),
 	}
 }
 
@@ -28,7 +28,7 @@ func (s *BaseSysParamService) HtmlByKey(key string) string {
 	var (
 		html = "<html><body>@content</body></html>"
 	)
-	m := cool.DBM(s.Model)
+	m := v.DBM(s.Model)
 	record, err := m.Where("keyName = ?", key).One()
 	if err != nil {
 		html = gstr.Replace(html, "@content", err.Error())
@@ -46,7 +46,7 @@ func (s *BaseSysParamService) HtmlByKey(key string) string {
 // ModifyAfter 修改后
 func (s *BaseSysParamService) ModifyAfter(ctx context.Context, method string, param g.MapStrAny) (err error) {
 	var (
-		m = cool.DBM(s.Model)
+		m = v.DBM(s.Model)
 	)
 	result, err := m.All()
 	if err != nil {
@@ -55,7 +55,7 @@ func (s *BaseSysParamService) ModifyAfter(ctx context.Context, method string, pa
 	for _, v := range result {
 		key := "param:" + v["keyName"].String()
 		value := v["data"].String()
-		err = cool.CacheManager.Set(ctx, key, value, 0)
+		err = v.CacheManager.Set(ctx, key, value, 0)
 		if err != nil {
 			return
 		}
@@ -66,10 +66,10 @@ func (s *BaseSysParamService) ModifyAfter(ctx context.Context, method string, pa
 // DataByKey 根据配置参数key获取数据
 func (s *BaseSysParamService) DataByKey(ctx context.Context, key string) (data string, err error) {
 	var (
-		m = cool.DBM(s.Model)
+		m = v.DBM(s.Model)
 	)
 	rKey := "param:" + key
-	dataCache, err := cool.CacheManager.Get(ctx, rKey)
+	dataCache, err := v.CacheManager.Get(ctx, rKey)
 	if err != nil {
 		return
 	}
@@ -85,6 +85,6 @@ func (s *BaseSysParamService) DataByKey(ctx context.Context, key string) (data s
 		return
 	}
 	data = record["data"].String()
-	err = cool.CacheManager.Set(ctx, rKey, data, 0)
+	err = v.CacheManager.Set(ctx, rKey, data, 0)
 	return
 }

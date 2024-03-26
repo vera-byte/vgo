@@ -2,14 +2,14 @@ package model
 
 import (
 	"github.com/gogf/gf/v2/os/gtime"
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 const TableNameTaskInfo = "task_info"
 
 // TaskInfo mapped from table <task_info>
 type TaskInfo struct {
-	*cool.Model
+	*v.Model
 	JobId       string     `json:"jobId" gorm:"column:jobId;type:varchar(255);comment:任务ID"`
 	RepeatConf  string     `json:"repeatConf" gorm:"column:repeatConf;comment:重复配置"`
 	Name        string     `json:"name" gorm:"column:name;type:varchar(255);comment:任务名称"`
@@ -40,11 +40,11 @@ func (*TaskInfo) GroupName() string {
 // NewTaskInfo create a new TaskInfo
 func NewTaskInfo() *TaskInfo {
 	return &TaskInfo{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&TaskInfo{})
+	v.CreateTable(&TaskInfo{})
 }

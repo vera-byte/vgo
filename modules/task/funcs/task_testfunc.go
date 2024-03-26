@@ -2,7 +2,7 @@ package funcs
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 type TaskTest struct {
@@ -20,5 +20,5 @@ func (t *TaskTest) IsAllWorker() bool {
 }
 
 func init() {
-	cool.RegisterFunc("TaskTest", &TaskTest{})
+	v.RegisterFunc("TaskTest", &TaskTest{})
 }

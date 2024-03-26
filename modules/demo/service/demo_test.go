@@ -1,16 +1,14 @@
 package service
 
-import (
-	"github.com/vera-byte/vgo/cool"
-)
+import "github.com/vera-byte/vgo/v"
 
 type DemoTestService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewDemoTestService() *DemoTestService {
 	return &DemoTestService{
-		&cool.Service{},
+		&v.Service{},
 	}
 }
 

@@ -1,14 +1,12 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/cool"
-)
+import "github.com/vera-byte/vgo/v"
 
 const TableNameDemoSample = "demo_sample"
 
 // DemoSample mapped from table <demo_sample>
 type DemoSample struct {
-	*cool.Model
+	*v.Model
 	// Name string `gorm:"column:name;not null;comment:名称" json:"name"`
 }
 
@@ -25,11 +23,11 @@ func (*DemoSample) GroupName() string {
 // NewDemoSample create a new DemoSample
 func NewDemoSample() *DemoSample {
 	return &DemoSample{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&DemoSample{})
+	v.CreateTable(&DemoSample{})
 }

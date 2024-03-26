@@ -4,12 +4,12 @@ import (
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysDepartmentService struct {
-	*cool.Service
+	*v.Service
 }
 
 // GetByRoleIds 获取部门
@@ -22,7 +22,7 @@ func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) 
 	if len(roleIds) > 0 {
 		// 如果是超级管理员，则返回所有部门
 		if isAdmin {
-			result, _ = cool.DBM(s.Model).Fields("id").All()
+			result, _ = v.DBM(s.Model).Fields("id").All()
 			for _, v := range result {
 				vmap := v.Map()
 				if vmap["id"] != nil {
@@ -31,7 +31,7 @@ func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) 
 			}
 		} else {
 			// 如果不是超级管理员，则返回角色所在部门
-			result, _ = cool.DBM(BaseSysRoleDepartment).Where("roleId IN (?)", roleIds).Fields("departmentId").All()
+			result, _ = v.DBM(BaseSysRoleDepartment).Where("roleId IN (?)", roleIds).Fields("departmentId").All()
 			for _, v := range result {
 				vmap := v.Map()
 				if vmap["departmentId"] != nil {
@@ -61,7 +61,7 @@ func (s *BaseSysDepartmentService) Order(ctx g.Ctx) (err error) {
 		if err != nil {
 			continue
 		}
-		cool.DBM(s.Model).Where("id = ?", data.Id).Data(data).Update()
+		v.DBM(s.Model).Where("id = ?", data.Id).Data(data).Update()
 	}
 
 	return
@@ -70,9 +70,9 @@ func (s *BaseSysDepartmentService) Order(ctx g.Ctx) (err error) {
 // NewBaseSysDepartmentService 创建一个BaseSysDepartmentService实例
 func NewBaseSysDepartmentService() *BaseSysDepartmentService {
 	return &BaseSysDepartmentService{
-		Service: &cool.Service{
+		Service: &v.Service{
 			Model:       model.NewBaseSysDepartment(),
-			ListQueryOp: &cool.QueryOp{},
+			ListQueryOp: &v.QueryOp{},
 		},
 	}
 }

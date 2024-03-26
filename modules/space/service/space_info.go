@@ -1,20 +1,20 @@
 package service
 
 import (
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/space/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type SpaceInfoService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewSpaceInfoService() *SpaceInfoService {
 	return &SpaceInfoService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewSpaceInfo(),
 		},
 
-		// Service: cool.NewService(model.NewSpaceInfo()),
+		// Service: v.NewService(model.NewSpaceInfo()),
 	}
 }

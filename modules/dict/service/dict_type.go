@@ -1,19 +1,19 @@
 package service
 
 import (
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/dict/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type DictTypeService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewDictTypeService() *DictTypeService {
 	return &DictTypeService{
-		Service: &cool.Service{
+		Service: &v.Service{
 			Model: model.NewDictType(),
-			ListQueryOp: &cool.QueryOp{
+			ListQueryOp: &v.QueryOp{
 				KeyWordField: []string{"name"},
 			},
 		},

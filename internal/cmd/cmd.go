@@ -18,8 +18,8 @@ var (
 		Brief: "start http server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			// g.Dump(g.DB("test").GetConfig())
-			if cool.IsRedisMode {
-				go cool.ListenFunc(ctx)
+			if v.IsRedisMode {
+				go v.ListenFunc(ctx)
 			}
 
 			s := g.Server()

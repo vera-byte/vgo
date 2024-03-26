@@ -4,22 +4,22 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/model"
+	"github.com/vera-byte/vgo/v"
 )
 
 type BaseSysLogService struct {
-	*cool.Service
+	*v.Service
 }
 
 func NewBaseSysLogService() *BaseSysLogService {
 	return &BaseSysLogService{
-		&cool.Service{
+		&v.Service{
 			Model: model.NewBaseSysLog(),
-			PageQueryOp: &cool.QueryOp{
+			PageQueryOp: &v.QueryOp{
 				KeyWordField: []string{"name", "params", "ipAddr"},
 				Select:       "base_sys_log.*,user.name ",
-				Join: []*cool.JoinOp{
+				Join: []*v.JoinOp{
 					{
 						Model:     model.NewBaseSysUser(),
 						Alias:     "user",
@@ -35,7 +35,7 @@ func NewBaseSysLogService() *BaseSysLogService {
 // Record 记录日志
 func (s *BaseSysLogService) Record(ctx g.Ctx) {
 	var (
-		admin = cool.GetAdmin(ctx)
+		admin = v.GetAdmin(ctx)
 		r     = g.RequestFromCtx(ctx)
 	)
 	baseSysLog := model.NewBaseSysLog()
@@ -44,7 +44,7 @@ func (s *BaseSysLogService) Record(ctx g.Ctx) {
 	baseSysLog.IP = r.GetClientIp()
 	baseSysLog.IPAddr = r.GetClientIp()
 	baseSysLog.Params = r.GetBodyString()
-	m := cool.DBM(s.Model)
+	m := v.DBM(s.Model)
 	m.Insert(g.Map{
 		"userId": baseSysLog.UserID,
 		"action": baseSysLog.Action,
@@ -57,7 +57,7 @@ func (s *BaseSysLogService) Record(ctx g.Ctx) {
 // Clear 清除日志
 func (s *BaseSysLogService) Clear(isAll bool) (err error) {
 	BaseSysConfService := NewBaseSysConfService()
-	m := cool.DBM(s.Model)
+	m := v.DBM(s.Model)
 	if isAll {
 		_, err = m.Delete("1=1")
 	} else {

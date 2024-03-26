@@ -7,8 +7,8 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/vera-byte/vgo/cool"
 	"github.com/vera-byte/vgo/modules/base/config"
+	"github.com/vera-byte/vgo/v"
 )
 
 // 本类接口无需权限验证
@@ -41,7 +41,7 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	}
 
 	tokenString := r.GetHeader("Authorization")
-	token, err := jwt.ParseWithClaims(tokenString, &cool.Claims{}, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &v.Claims{}, func(token *jwt.Token) (interface{}, error) {
 
 		return []byte(config.Config.Jwt.Secret), nil
 	})
@@ -61,11 +61,11 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 			"message": "登陆失效～",
 		})
 	}
-	admin := token.Claims.(*cool.Claims)
+	admin := token.Claims.(*v.Claims)
 	// 将用户信息放入上下文
 	r.SetCtxVar("admin", admin)
 
-	cachetoken, _ := cool.CacheManager.Get(ctx, "admin:token:"+gconv.String(admin.UserId))
+	cachetoken, _ := v.CacheManager.Get(ctx, "admin:token:"+gconv.String(admin.UserId))
 	rtoken := cachetoken.String()
 	// 超管拥有所有权限
 	if admin.UserId == 1 && !admin.IsRefresh {
@@ -97,7 +97,7 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		})
 	}
 	// 判断密码版本是否正确
-	passwordV, _ := cool.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(admin.UserId))
+	passwordV, _ := v.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(admin.UserId))
 	if passwordV.Int32() != *admin.PasswordVersion {
 		g.Log().Error(ctx, "BaseAuthorityMiddleware", "passwordV invalid")
 		statusCode = 401
@@ -125,7 +125,7 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		})
 	}
 	// 从缓存获取perms
-	permsCache, _ := cool.CacheManager.Get(ctx, "admin:perms:"+gconv.String(admin.UserId))
+	permsCache, _ := v.CacheManager.Get(ctx, "admin:perms:"+gconv.String(admin.UserId))
 	// 转换为数组
 	permsVar := permsCache.Strings()
 	// 转换为garray

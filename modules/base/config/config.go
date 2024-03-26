@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/cool"
+	"github.com/vera-byte/vgo/v"
 )
 
 // sConfig 配置
@@ -42,19 +42,19 @@ func NewConfig() *sConfig {
 	)
 	config := &sConfig{
 		Jwt: &Jwt{
-			Sso:    cool.GetCfgWithDefault(ctx, "modules.base.jwt.sso", g.NewVar(false)).Bool(),
-			Secret: cool.GetCfgWithDefault(ctx, "modules.base.jwt.secret", g.NewVar(cool.ProcessFlag)).String(),
+			Sso:    v.GetCfgWithDefault(ctx, "modules.base.jwt.sso", g.NewVar(false)).Bool(),
+			Secret: v.GetCfgWithDefault(ctx, "modules.base.jwt.secret", g.NewVar(v.ProcessFlag)).String(),
 			Token: &Token{
-				Expire:        cool.GetCfgWithDefault(ctx, "modules.base.jwt.token.expire", g.NewVar(2*3600)).Uint(),
-				RefreshExpire: cool.GetCfgWithDefault(ctx, "modules.base.jwt.token.refreshExpire", g.NewVar(15*24*3600)).Uint(),
+				Expire:        v.GetCfgWithDefault(ctx, "modules.base.jwt.token.expire", g.NewVar(2*3600)).Uint(),
+				RefreshExpire: v.GetCfgWithDefault(ctx, "modules.base.jwt.token.refreshExpire", g.NewVar(15*24*3600)).Uint(),
 			},
 		},
 		Middleware: &Middleware{
 			Authority: &Authority{
-				Enable: cool.GetCfgWithDefault(ctx, "modules.base.middleware.authority.enable", g.NewVar(true)).Bool(),
+				Enable: v.GetCfgWithDefault(ctx, "modules.base.middleware.authority.enable", g.NewVar(true)).Bool(),
 			},
 			Log: &Log{
-				Enable: cool.GetCfgWithDefault(ctx, "modules.base.middleware.log.enable", g.NewVar(true)).Bool(),
+				Enable: v.GetCfgWithDefault(ctx, "modules.base.middleware.log.enable", g.NewVar(true)).Bool(),
 			},
 		},
 	}

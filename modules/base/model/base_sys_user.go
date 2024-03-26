@@ -1,12 +1,12 @@
 package model
 
-import "github.com/vera-byte/vgo/cool"
+import "github.com/vera-byte/vgo/v"
 
 const TableNameBaseSysUser = "base_sys_user"
 
 // BaseSysUser mapped from table <base_sys_user>
 type BaseSysUser struct {
-	*cool.Model
+	*v.Model
 	DepartmentID uint    `gorm:"column:departmentId;type:bigint;index" json:"departmentId"`        // 部门ID
 	Name         *string `gorm:"column:name;type:varchar(255)" json:"name"`                        // 姓名
 	Username     string  `gorm:"column:username;type:varchar(100);not null;Index" json:"username"` // 用户名
@@ -29,11 +29,11 @@ func (*BaseSysUser) TableName() string {
 // NewBaseSysUser 创建一个新的BaseSysUser
 func NewBaseSysUser() *BaseSysUser {
 	return &BaseSysUser{
-		Model: cool.NewModel(),
+		Model: v.NewModel(),
 	}
 }
 
 // init 创建表
 func init() {
-	cool.CreateTable(&BaseSysUser{})
+	v.CreateTable(&BaseSysUser{})
 }
