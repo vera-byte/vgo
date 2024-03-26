@@ -17,13 +17,13 @@
   // }
   "model": {
     "scope": "go",
-    "prefix": "cool-model",
+    "prefix": "v-model",
     "description": "创建model",
     "body": [
       "package model",
       "",
       "import (",
-      "       \"github.com/vera-byte/vgo/cool\"",
+      "       \"github.com/vera-byte/vgo/v\"",
       ")",
       "",
       "const TableName${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} = \"${TM_FILENAME_BASE/(.*)/${1:/downcase}/}\"",

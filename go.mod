@@ -6,7 +6,7 @@ require (
 	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.1
 	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.1
 	github.com/vera-byte/vgo/contrib/files/local v1.0.1
-	github.com/vera-byte/vgo/v v1.0.1
+	github.com/vera-byte/vgo/v v1.0.2
 	github.com/vera-byte/vgo/modules/base v1.0.1
 	github.com/vera-byte/vgo/modules/demo v1.0.1
 	github.com/vera-byte/vgo/modules/dict v1.0.1

@@ -17,13 +17,13 @@
   // }
   "model": {
     "scope": "go",
-    "prefix": "cool-service",
+    "prefix": "v-service",
     "description": "创建service",
     "body": [
       "package service",
       "",
       "import (",
-      "       \"github.com/vera-byte/vgo/cool\"",
+      "       \"github.com/vera-byte/vgo/v\"",
       ")",
       "",
       "type ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}Service struct {",

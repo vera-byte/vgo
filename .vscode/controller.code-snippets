@@ -17,7 +17,7 @@
   // }
   "model": {
     "scope": "go",
-    "prefix": "cool-controller",
+    "prefix": "v-controller",
     "description": "创建controller",
     "body": [
       "package admin",

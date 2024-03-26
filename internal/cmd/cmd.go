@@ -3,8 +3,8 @@ package cmd
 import (
 	"context"
 
-	"github.com/vera-byte/vgo/cool"
 	i18n "github.com/vera-byte/vgo/modules/base/middleware"
+	"github.com/vera-byte/vgo/v"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -24,7 +24,7 @@ var (
 
 			s := g.Server()
 
-			// 如果存在 data/cool-admin-vue/dist 目录，则设置为主目录
+			// 如果存在 data/v-admin-vue/dist 目录，则设置为主目录
 			if gfile.IsDir("frontend/dist") {
 				s.SetServerRoot("frontend/dist")
 			}
