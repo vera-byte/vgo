@@ -1,7 +1,7 @@
 package main
 
 import (
-	_ "github.com/vera-byte/vgo/internal/packed"
+	_ "vgo-simple/internal/packed"
 
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 
@@ -23,7 +23,7 @@ import (
 
 	"github.com/gogf/gf/v2/os/gctx"
 
-	"github.com/vera-byte/vgo/internal/cmd"
+	"vgo-simple/internal/cmd"
 )
 
 func main() {
