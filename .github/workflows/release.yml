@@ -32,7 +32,7 @@ jobs:
           make pack.template-simple
           gf build
           echo "Build completed. list files:"
-          ls -a ./vgo-tools/temp
+          ls -R
 
       - name: Move Files Before Release
         run: |

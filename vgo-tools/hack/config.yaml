@@ -3,6 +3,6 @@
 gfcli:
   build:
     name: "vgo-tools"
-    arch: "all"
+    arch: "amd64"
     system: "linux"
 # ,darwin,windows
