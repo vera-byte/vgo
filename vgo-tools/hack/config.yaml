@@ -5,4 +5,5 @@ gfcli:
     name: "vgo-tools"
     arch: "amd64"
     system: "linux"
+    path: "temp"
 # ,darwin,windows
