@@ -5,5 +5,4 @@ gfcli:
     name: "vgo-tools"
     arch: "all"
     system: "linux"
-    output: "./temp"
 # ,darwin,windows
