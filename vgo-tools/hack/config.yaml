@@ -3,7 +3,6 @@
 gfcli:
   build:
     name: "vgo-tools"
-    arch: "amd64"
-    system: "linux"
+    arch: "all"
+    system: "linux,darwin,windows"
     path: "temp"
-# ,darwin,windows
