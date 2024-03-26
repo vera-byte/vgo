@@ -27,7 +27,6 @@ jobs:
           pwd
           go work init
           go work use -r .
-
           cd vgo-tools
           go mod tidy
           make pack.template-simple
@@ -37,6 +36,7 @@ jobs:
         run: |
           pwd
           cd vgo-tools/temp
+          ls
           for OS_DIR in */; do
             # 获取操作系统目录名（去掉末尾的斜杠）
             OS=${OS_DIR%/}
