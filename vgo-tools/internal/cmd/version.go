@@ -27,12 +27,12 @@ var (
 		Brief: "查看版本信息",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			info := gbuild.Info()
-			binVersion := "v2.0.0"
+			binVersion := "v1.0.0"
 
 			// 生成sVersion结构体
 			res := sVersion{
 				Name:        "vgo-tools",
-				Homepage:    "https://v-js.com",
+				Homepage:    "https://github.com/vera-byte/vgo",
 				Version:     binVersion,
 				GoFrame:     info.GoFrame,
 				Golang:      info.Golang,
