@@ -15,6 +15,7 @@ type BaseOpenLoginReq struct {
 
 type BaseOpenCaptchaReq struct {
 	g.Meta `path:"/captcha" method:"GET"`
-	Height int `json:"height" in:"query" default:"40"`
-	Width  int `json:"width"  in:"query" default:"150"`
+	Height int    `json:"height" in:"query" default:"40"`
+	Width  int    `json:"width"  in:"query" default:"150"`
+	Color  string `json:"color" in:"query" default:"#2c3142"`
 }

@@ -76,7 +76,8 @@ func (*BaseSysLoginService) Captcha(req *v1.BaseOpenCaptchaReq) (interface{}, er
 		result = &capchaInfo{}
 	)
 	captchaText := grand.Digits(4)
-	svg := `<svg width="150" height="50" xmlns="http://www.w3.org/2000/svg"><text x="75" y="25" text-anchor="middle" font-size="25" fill="#fff">` + captchaText + `</text></svg>`
+	svg := `<svg width="` + gconv.String(req.Width) + `" height="` + gconv.String(req.Height) + `" xmlns="http://www.w3.org/2000/svg"><text x="75" y="25" text-anchor="middle" font-size="25" fill="#` + gconv.String(req.Color) + `
+	">` + captchaText + `</text></svg>`
 	svgbase64 := gbase64.EncodeString(svg)
 
 	result.Data = `data:image/svg+xml;base64,` + svgbase64

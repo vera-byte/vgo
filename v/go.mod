@@ -8,7 +8,12 @@ require (
 	gorm.io/gorm v1.25.0
 )
 
-require github.com/clbanning/mxj v1.8.5-0.20200714211355-ff02cfb8ea28 // indirect
+require (
+	github.com/clbanning/mxj v1.8.5-0.20200714211355-ff02cfb8ea28 // indirect
+	go.opentelemetry.io/otel v1.14.0 // indirect
+	go.opentelemetry.io/otel/sdk v1.14.0 // indirect
+	go.opentelemetry.io/otel/trace v1.14.0 // indirect
+)
 
 require (
 	github.com/BurntSushi/toml v1.2.1 // indirect
@@ -29,7 +34,6 @@ require (
 	github.com/mattn/go-runewidth v0.0.15 // indirect
 	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/rivo/uniseg v0.4.4 // indirect
-
 	golang.org/x/net v0.17.0 // indirect
 	golang.org/x/sys v0.13.0 // indirect
 	golang.org/x/text v0.13.0 // indirect
