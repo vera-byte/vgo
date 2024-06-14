@@ -6,14 +6,14 @@ toolchain go1.22.0
 
 require (
 	github.com/gogf/gf/v2 v2.6.4
-	github.com/vera-byte/vgo/contrib/drivers/mysql v1.10.9
-	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.4
-	github.com/vera-byte/vgo/contrib/files/local v1.10.9
-	github.com/vera-byte/vgo/modules/base v1.10.9
-	github.com/vera-byte/vgo/modules/dict v1.0.4
-	github.com/vera-byte/vgo/modules/space v1.10.9
-	github.com/vera-byte/vgo/modules/task v1.0.4
-	github.com/vera-byte/vgo/v v1.10.9
+	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.6
+	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.6
+	github.com/vera-byte/vgo/contrib/files/local v1.0.6
+	github.com/vera-byte/vgo/modules/base v1.0.6
+	github.com/vera-byte/vgo/modules/dict v1.0.6
+	github.com/vera-byte/vgo/modules/space v1.0.6
+	github.com/vera-byte/vgo/modules/task v1.0.6
+	github.com/vera-byte/vgo/v v1.0.6
 )
 
 require (
