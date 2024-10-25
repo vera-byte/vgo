@@ -13,6 +13,7 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 )
 
 type DriverPgsql struct {
@@ -63,7 +64,12 @@ func (d *DriverPgsql) GetConn(config *gdb.ConfigNode) (db *gorm.DB, err error) {
 			}
 		}
 	}
-	db, err = gorm.Open(postgres.Open(source), &gorm.Config{})
+	db, err = gorm.Open(postgres.Open(source), &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{
+			// 禁止自动将驼峰命名转换为下划线
+			NoLowerCase: true,
+		},
+	})
 	return
 }
 
