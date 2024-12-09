@@ -89,7 +89,7 @@ func New() vfile.Driver {
 
 	if err != nil {
 		g.Log().Fatal(ctx, err)
-		return nil
+		// 	return nil
 	}
 
 	if exist {
