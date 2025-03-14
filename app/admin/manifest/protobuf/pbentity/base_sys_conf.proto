@@ -1,0 +1,20 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "vgo/app/admin/api/pbentity";
+
+
+
+message BaseSysConf {
+    int32  Id         = 1; // ID
+    string CreateTime = 2; // 创建时间
+    string UpdateTime = 3; // 更新时间
+    int32  TenantId   = 4; // 租户ID
+    string CKey       = 5; // 配置键
+    string CValue     = 6; // 配置值
+}

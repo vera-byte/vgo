@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package base.v1;
+option go_package = "vgo/app/admin/api/base/v1/protobuf";
+
+service Base {
+    rpc Captcha (CaptchaReq) returns (CaptchaRes);
+}
+
+message CaptchaReq{
+    int32 Height  = 1; // v:required
+    int32 Widget  = 2; // v:required
+    string Color  = 3; // v:required
+}
+message CaptchaRes{
+    string CaptchaId = 1;
+    string Data = 2;
+}
