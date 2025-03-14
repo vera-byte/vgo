@@ -6,7 +6,6 @@ import (
 	"vgo/app/admin/internal/service"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
-	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
@@ -26,5 +25,5 @@ func (*Controller) Captcha(ctx context.Context, req *v1.CaptchaReq) (res *v1.Cap
 	return &v1.CaptchaRes{
 		CaptchaId: id,
 		Data:      b64s,
-	}, gerror.NewCode(gcode.CodeNotImplemented)
+	}, nil
 }

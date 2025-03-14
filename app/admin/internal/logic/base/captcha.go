@@ -2,17 +2,24 @@ package base
 
 import (
 	"context"
+	"vgo/app/admin/internal/service"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/mojocn/base64Captcha"
 )
 
+func init() {
+	service.RegisterCaptcha(New())
+}
+
 type sCaptcha struct {
 	store base64Captcha.Store
 }
 
-var Captcha = &sCaptcha{
-	store: base64Captcha.DefaultMemStore,
+func New() *sCaptcha {
+	return &sCaptcha{
+		store: base64Captcha.DefaultMemStore,
+	}
 }
 
 // 生成验证码
