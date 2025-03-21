@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysLogDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysLogDao = *internal.BaseSysLogDao
-
 // baseSysLogDao is the data access object for the table base_sys_log.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysLogDao struct {
-	internalBaseSysLogDao
+	*internal.BaseSysLogDao
 }
 
 var (
 	// BaseSysLog is a globally accessible object for table base_sys_log operations.
-	BaseSysLog = baseSysLogDao{
-		internal.NewBaseSysLogDao(),
-	}
+	BaseSysLog = baseSysLogDao{internal.NewBaseSysLogDao()}
 )
 
 // Add your custom methods and functionality below.

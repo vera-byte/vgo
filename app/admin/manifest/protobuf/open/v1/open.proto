@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package v1.base.open;
+
+option go_package = "vgo/app/admin/api/v1/base_open/protobuf";
+
+service BaseOpen {
+  rpc Captcha(CaptchaRpcInvoke) returns (CaptchaRpcRes);
+  rpc Login(LoginRpcInvoke) returns (LoginRpcRes);
+}
+
+message CaptchaRpcInvoke {
+  int32 Height = 1; // v:required
+  int32 Widget = 2; // v:required
+}
+message CaptchaRpcRes {
+  string CaptchaId = 1;
+  string Data = 2;
+}
+
+message LoginRpcInvoke {
+  string CaptchaId = 1; // v:required
+  string Password = 2; // v:required
+  string Username = 3; // v:required
+  string VerifyCode = 4; // v:required
+}
+message LoginRpcRes {
+  int64 Expire = 1;
+  int64 RefreshExpire = 2;
+  string RefreshToken = 3;
+  string Token = 4;
+}

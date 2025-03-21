@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,16 +13,17 @@ import (
 
 // BaseSysRoleDao is the data access object for the table base_sys_role.
 type BaseSysRoleDao struct {
-	table   string             // table is the underlying table name of the DAO.
-	group   string             // group is the database configuration group name of the current DAO.
-	columns BaseSysRoleColumns // columns contains all the column names of Table for convenient usage.
+	table    string             // table is the underlying table name of the DAO.
+	group    string             // group is the database configuration group name of the current DAO.
+	columns  BaseSysRoleColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler // handlers for customized model modification.
 }
 
 // BaseSysRoleColumns defines and stores column names for the table base_sys_role.
 type BaseSysRoleColumns struct {
 	Id               string // ID
-	CreateTime       string // 创建时间
-	UpdateTime       string // 更新时间
+	CreatedAt        string // 创建时间
+	UpdatedAt        string // 更新时间
 	TenantId         string // 租户ID
 	UserId           string // 用户ID
 	Name             string // 名称
@@ -31,29 +32,32 @@ type BaseSysRoleColumns struct {
 	Relevance        string // 数据权限是否关联上下级
 	MenuIdList       string // 菜单权限
 	DepartmentIdList string // 部门权限
+	DeletedAt        string // 软删除时间
 }
 
 // baseSysRoleColumns holds the columns for the table base_sys_role.
 var baseSysRoleColumns = BaseSysRoleColumns{
 	Id:               "id",
-	CreateTime:       "createTime",
-	UpdateTime:       "updateTime",
-	TenantId:         "tenantId",
-	UserId:           "userId",
+	CreatedAt:        "created_at",
+	UpdatedAt:        "updated_at",
+	TenantId:         "tenant_id",
+	UserId:           "user_id",
 	Name:             "name",
 	Label:            "label",
 	Remark:           "remark",
 	Relevance:        "relevance",
-	MenuIdList:       "menuIdList",
-	DepartmentIdList: "departmentIdList",
+	MenuIdList:       "menu_id_list",
+	DepartmentIdList: "department_id_list",
+	DeletedAt:        "deleted_at",
 }
 
 // NewBaseSysRoleDao creates and returns a new DAO object for table data access.
-func NewBaseSysRoleDao() *BaseSysRoleDao {
+func NewBaseSysRoleDao(handlers ...gdb.ModelHandler) *BaseSysRoleDao {
 	return &BaseSysRoleDao{
-		group:   "default",
-		table:   "base_sys_role",
-		columns: baseSysRoleColumns,
+		group:    "default",
+		table:    "base_sys_role",
+		columns:  baseSysRoleColumns,
+		handlers: handlers,
 	}
 }
 
@@ -79,7 +83,11 @@ func (dao *BaseSysRoleDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysRoleDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

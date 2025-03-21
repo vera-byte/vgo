@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,53 +13,57 @@ import (
 
 // BaseSysMenuDao is the data access object for the table base_sys_menu.
 type BaseSysMenuDao struct {
-	table   string             // table is the underlying table name of the DAO.
-	group   string             // group is the database configuration group name of the current DAO.
-	columns BaseSysMenuColumns // columns contains all the column names of Table for convenient usage.
+	table    string             // table is the underlying table name of the DAO.
+	group    string             // group is the database configuration group name of the current DAO.
+	columns  BaseSysMenuColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler // handlers for customized model modification.
 }
 
 // BaseSysMenuColumns defines and stores column names for the table base_sys_menu.
 type BaseSysMenuColumns struct {
-	Id         string // ID
-	CreateTime string // 创建时间
-	UpdateTime string // 更新时间
-	TenantId   string // 租户ID
-	ParentId   string // 父菜单ID
-	Name       string // 菜单名称
-	Router     string // 菜单地址
-	Perms      string // 权限标识
-	Type       string // 类型 0-目录 1-菜单 2-按钮
-	Icon       string // 图标
-	OrderNum   string // 排序
-	ViewPath   string // 视图地址
-	KeepAlive  string // 路由缓存
-	IsShow     string // 是否显示
+	Id        string // ID
+	CreatedAt string // 创建时间
+	UpdatedAt string // 更新时间
+	TenantId  string // 租户ID
+	ParentId  string // 父菜单ID
+	Name      string // 菜单名称
+	Router    string // 菜单地址
+	Perms     string // 权限标识
+	Type      string // 类型 0-目录 1-菜单 2-按钮
+	Icon      string // 图标
+	OrderNum  string // 排序
+	ViewPath  string // 视图地址
+	KeepAlive string // 路由缓存
+	IsShow    string // 是否显示
+	DeletedAt string // 软删除时间
 }
 
 // baseSysMenuColumns holds the columns for the table base_sys_menu.
 var baseSysMenuColumns = BaseSysMenuColumns{
-	Id:         "id",
-	CreateTime: "createTime",
-	UpdateTime: "updateTime",
-	TenantId:   "tenantId",
-	ParentId:   "parentId",
-	Name:       "name",
-	Router:     "router",
-	Perms:      "perms",
-	Type:       "type",
-	Icon:       "icon",
-	OrderNum:   "orderNum",
-	ViewPath:   "viewPath",
-	KeepAlive:  "keepAlive",
-	IsShow:     "isShow",
+	Id:        "id",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
+	TenantId:  "tenant_id",
+	ParentId:  "parent_id",
+	Name:      "name",
+	Router:    "router",
+	Perms:     "perms",
+	Type:      "type",
+	Icon:      "icon",
+	OrderNum:  "order_num",
+	ViewPath:  "view_path",
+	KeepAlive: "keep_alive",
+	IsShow:    "is_show",
+	DeletedAt: "deleted_at",
 }
 
 // NewBaseSysMenuDao creates and returns a new DAO object for table data access.
-func NewBaseSysMenuDao() *BaseSysMenuDao {
+func NewBaseSysMenuDao(handlers ...gdb.ModelHandler) *BaseSysMenuDao {
 	return &BaseSysMenuDao{
-		group:   "default",
-		table:   "base_sys_menu",
-		columns: baseSysMenuColumns,
+		group:    "default",
+		table:    "base_sys_menu",
+		columns:  baseSysMenuColumns,
+		handlers: handlers,
 	}
 }
 
@@ -85,7 +89,11 @@ func (dao *BaseSysMenuDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysMenuDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

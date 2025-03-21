@@ -1,0 +1,79 @@
+2025-03-14 17:39:13.390 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258025993"
+2025-03-14 18:24:05.024 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258025997"
+2025-03-14 18:24:18.003 [DEBU] Watch key "/service/default/default/vgo_admin/latest/"
+2025-03-14 18:25:20.281 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026004"
+2025-03-14 18:25:21.830 [DEBU] Watch key "/service/default/default/vgo_admin/latest/"
+2025-03-14 18:25:31.142 [ERRO] {0086e5d967a42c180e05c80cca05b3d9} context canceled 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:26:27.571 [ERRO] {6880573a6aa42c180f05c80cfbd0886a} context canceled 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:26:33.472 [ERRO] {088b97d877a42c181005c80c1ccea79d} context canceled 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:26:42.106 [ERRO] {608bbdc278a42c181105c80c6eaa4ee1} context canceled 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:26:54.137 [ERRO] {489daa147ca42c181205c80ccea4be65} context canceled 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:28:33.336 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026011"
+2025-03-14 18:28:52.028 [DEBU] Watch key "/service/default/default/vgo_admin/latest/"
+2025-03-14 18:28:55.030 [ERRO] {8846adca98a42c1814fe6b55138eed09} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:29:15.336 [ERRO] {f0a107859da42c1815fe6b55e5017916} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:29:29.059 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026018"
+2025-03-14 18:29:51.356 [DEBU] Watch key "/service/default/default/vgo_admin/latest/"
+2025-03-14 18:29:54.357 [ERRO] {e0fbdf9aa6a42c18bfe45c26d6dc1155} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:37:39.728 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026032"
+2025-03-14 18:41:38.086 [DEBU] Watch key "/service/default/default/vgo_admin/latest/"
+2025-03-14 18:41:41.088 [ERRO] {007547274ba52c182c51f646a203a10c} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:43:07.268 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026048"
+2025-03-14 18:44:43.182 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026051"
+2025-03-14 18:44:48.307 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-14 18:44:48.317 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000708720\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000708720\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-14 18:44:48.322 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362cc0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362cc0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-14 18:44:48.324 [ERRO] {7019537177a52c1882bc9d174aec8aba} panic recovered: implement not found for interface ICaptcha, forgot register? 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 18:45:04.149 [ERRO] {903f86217ba52c1883bc9d1753ca9898} panic recovered: implement not found for interface ICaptcha, forgot register? 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 19:06:36.078 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362f00\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362f00\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-14 19:06:39.894 [ERRO] {604176d1a8a62c1884bc9d178a8571fb} Not Implemented 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:20
+
+2025-03-14 19:08:24.525 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000708d80\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000708d80\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-14 19:38:55.715 [DEBU] resolver closed

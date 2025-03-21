@@ -8,21 +8,19 @@ package pbentity;
 
 option go_package = "vgo/app/admin/api/pbentity";
 
-
-
 message BaseSysMenu {
-    int32  Id         = 1;  // ID
-    string CreateTime = 2;  // 创建时间
-    string UpdateTime = 3;  // 更新时间
-    int32  TenantId   = 4;  // 租户ID
-    int32  ParentId   = 5;  // 父菜单ID
-    string Name       = 6;  // 菜单名称
-    string Router     = 7;  // 菜单地址
-    string Perms      = 8;  // 权限标识
-    int32  Type       = 9;  // 类型 0-目录 1-菜单 2-按钮
-    string Icon       = 10; // 图标
-    int32  OrderNum   = 11; // 排序
-    string ViewPath   = 12; // 视图地址
-    int32  KeepAlive  = 13; // 路由缓存
-    int32  IsShow     = 14; // 是否显示
+  int32 Id = 1; // ID
+  string CreateTime = 2; // 创建时间
+  string UpdateTime = 3; // 更新时间
+  int32 TenantId = 4; // 租户ID
+  int32 ParentId = 5; // 父菜单ID
+  string Name = 6; // 菜单名称
+  string Router = 7; // 菜单地址
+  string Perms = 8; // 权限标识
+  int32 Type = 9; // 类型 0-目录 1-菜单 2-按钮
+  string Icon = 10; // 图标
+  int32 OrderNum = 11; // 排序
+  string ViewPath = 12; // 视图地址
+  int32 KeepAlive = 13; // 路由缓存
+  int32 IsShow = 14; // 是否显示
 }

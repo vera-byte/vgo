@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysUserDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysUserDao = *internal.BaseSysUserDao
-
 // baseSysUserDao is the data access object for the table base_sys_user.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysUserDao struct {
-	internalBaseSysUserDao
+	*internal.BaseSysUserDao
 }
 
 var (
 	// BaseSysUser is a globally accessible object for table base_sys_user operations.
-	BaseSysUser = baseSysUserDao{
-		internal.NewBaseSysUserDao(),
-	}
+	BaseSysUser = baseSysUserDao{internal.NewBaseSysUserDao()}
 )
 
 // Add your custom methods and functionality below.

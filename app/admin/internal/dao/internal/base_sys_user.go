@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,16 +13,17 @@ import (
 
 // BaseSysUserDao is the data access object for the table base_sys_user.
 type BaseSysUserDao struct {
-	table   string             // table is the underlying table name of the DAO.
-	group   string             // group is the database configuration group name of the current DAO.
-	columns BaseSysUserColumns // columns contains all the column names of Table for convenient usage.
+	table    string             // table is the underlying table name of the DAO.
+	group    string             // group is the database configuration group name of the current DAO.
+	columns  BaseSysUserColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler // handlers for customized model modification.
 }
 
 // BaseSysUserColumns defines and stores column names for the table base_sys_user.
 type BaseSysUserColumns struct {
 	Id           string // ID
-	CreateTime   string // 创建时间
-	UpdateTime   string // 更新时间
+	CreatedAt    string // 创建时间
+	UpdatedAt    string // 更新时间
 	TenantId     string // 租户ID
 	DepartmentId string // 部门ID
 	Name         string // 姓名
@@ -36,34 +37,37 @@ type BaseSysUserColumns struct {
 	Remark       string // 备注
 	Status       string // 状态 0-禁用 1-启用
 	SocketId     string // socketId
+	DeletedAt    string // 软删除时间
 }
 
 // baseSysUserColumns holds the columns for the table base_sys_user.
 var baseSysUserColumns = BaseSysUserColumns{
 	Id:           "id",
-	CreateTime:   "createTime",
-	UpdateTime:   "updateTime",
-	TenantId:     "tenantId",
-	DepartmentId: "departmentId",
+	CreatedAt:    "created_at",
+	UpdatedAt:    "updated_at",
+	TenantId:     "tenant_id",
+	DepartmentId: "department_id",
 	Name:         "name",
 	Username:     "username",
 	Password:     "password",
-	PasswordV:    "passwordV",
-	NickName:     "nickName",
-	HeadImg:      "headImg",
+	PasswordV:    "password_v",
+	NickName:     "nick_name",
+	HeadImg:      "head_img",
 	Phone:        "phone",
 	Email:        "email",
 	Remark:       "remark",
 	Status:       "status",
-	SocketId:     "socketId",
+	SocketId:     "socket_id",
+	DeletedAt:    "deleted_at",
 }
 
 // NewBaseSysUserDao creates and returns a new DAO object for table data access.
-func NewBaseSysUserDao() *BaseSysUserDao {
+func NewBaseSysUserDao(handlers ...gdb.ModelHandler) *BaseSysUserDao {
 	return &BaseSysUserDao{
-		group:   "default",
-		table:   "base_sys_user",
-		columns: baseSysUserColumns,
+		group:    "default",
+		table:    "base_sys_user",
+		columns:  baseSysUserColumns,
+		handlers: handlers,
 	}
 }
 
@@ -89,7 +93,11 @@ func (dao *BaseSysUserDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysUserDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

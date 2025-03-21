@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysDepartmentDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysDepartmentDao = *internal.BaseSysDepartmentDao
-
 // baseSysDepartmentDao is the data access object for the table base_sys_department.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysDepartmentDao struct {
-	internalBaseSysDepartmentDao
+	*internal.BaseSysDepartmentDao
 }
 
 var (
 	// BaseSysDepartment is a globally accessible object for table base_sys_department operations.
-	BaseSysDepartment = baseSysDepartmentDao{
-		internal.NewBaseSysDepartmentDao(),
-	}
+	BaseSysDepartment = baseSysDepartmentDao{internal.NewBaseSysDepartmentDao()}
 )
 
 // Add your custom methods and functionality below.

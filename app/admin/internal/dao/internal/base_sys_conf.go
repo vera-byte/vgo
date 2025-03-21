@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,37 +13,41 @@ import (
 
 // BaseSysConfDao is the data access object for the table base_sys_conf.
 type BaseSysConfDao struct {
-	table   string             // table is the underlying table name of the DAO.
-	group   string             // group is the database configuration group name of the current DAO.
-	columns BaseSysConfColumns // columns contains all the column names of Table for convenient usage.
+	table    string             // table is the underlying table name of the DAO.
+	group    string             // group is the database configuration group name of the current DAO.
+	columns  BaseSysConfColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler // handlers for customized model modification.
 }
 
 // BaseSysConfColumns defines and stores column names for the table base_sys_conf.
 type BaseSysConfColumns struct {
-	Id         string // ID
-	CreateTime string // 创建时间
-	UpdateTime string // 更新时间
-	TenantId   string // 租户ID
-	CKey       string // 配置键
-	CValue     string // 配置值
+	Id        string // ID
+	CreatedAt string // 创建时间
+	UpdatedAt string // 更新时间
+	TenantId  string // 租户ID
+	CKey      string // 配置键
+	CValue    string // 配置值
+	DeletedAt string // 软删除时间
 }
 
 // baseSysConfColumns holds the columns for the table base_sys_conf.
 var baseSysConfColumns = BaseSysConfColumns{
-	Id:         "id",
-	CreateTime: "createTime",
-	UpdateTime: "updateTime",
-	TenantId:   "tenantId",
-	CKey:       "cKey",
-	CValue:     "cValue",
+	Id:        "id",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
+	TenantId:  "tenant_id",
+	CKey:      "c_key",
+	CValue:    "c_value",
+	DeletedAt: "deleted_at",
 }
 
 // NewBaseSysConfDao creates and returns a new DAO object for table data access.
-func NewBaseSysConfDao() *BaseSysConfDao {
+func NewBaseSysConfDao(handlers ...gdb.ModelHandler) *BaseSysConfDao {
 	return &BaseSysConfDao{
-		group:   "default",
-		table:   "base_sys_conf",
-		columns: baseSysConfColumns,
+		group:    "default",
+		table:    "base_sys_conf",
+		columns:  baseSysConfColumns,
+		handlers: handlers,
 	}
 }
 
@@ -69,7 +73,11 @@ func (dao *BaseSysConfDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysConfDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

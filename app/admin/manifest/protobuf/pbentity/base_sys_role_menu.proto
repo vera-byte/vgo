@@ -8,13 +8,11 @@ package pbentity;
 
 option go_package = "vgo/app/admin/api/pbentity";
 
-
-
 message BaseSysRoleMenu {
-    int32  Id         = 1; // ID
-    string CreateTime = 2; // 创建时间
-    string UpdateTime = 3; // 更新时间
-    int32  TenantId   = 4; // 租户ID
-    int32  RoleId     = 5; // 角色ID
-    int32  MenuId     = 6; // 菜单ID
+  int32 Id = 1; // ID
+  string CreateTime = 2; // 创建时间
+  string UpdateTime = 3; // 更新时间
+  int32 TenantId = 4; // 租户ID
+  int32 RoleId = 5; // 角色ID
+  int32 MenuId = 6; // 菜单ID
 }

@@ -8,18 +8,16 @@ package pbentity;
 
 option go_package = "vgo/app/admin/api/pbentity";
 
-
-
 message BaseSysRole {
-    int32  Id               = 1;  // ID
-    string CreateTime       = 2;  // 创建时间
-    string UpdateTime       = 3;  // 更新时间
-    int32  TenantId         = 4;  // 租户ID
-    string UserId           = 5;  // 用户ID
-    string Name             = 6;  // 名称
-    string Label            = 7;  // 角色标签
-    string Remark           = 8;  // 备注
-    int32  Relevance        = 9;  // 数据权限是否关联上下级
-    string MenuIdList       = 10; // 菜单权限
-    string DepartmentIdList = 11; // 部门权限
+  int32 Id = 1; // ID
+  string CreateTime = 2; // 创建时间
+  string UpdateTime = 3; // 更新时间
+  int32 TenantId = 4; // 租户ID
+  string UserId = 5; // 用户ID
+  string Name = 6; // 名称
+  string Label = 7; // 角色标签
+  string Remark = 8; // 备注
+  int32 Relevance = 9; // 数据权限是否关联上下级
+  string MenuIdList = 10; // 菜单权限
+  string DepartmentIdList = 11; // 部门权限
 }

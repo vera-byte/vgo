@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysParamDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysParamDao = *internal.BaseSysParamDao
-
 // baseSysParamDao is the data access object for the table base_sys_param.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysParamDao struct {
-	internalBaseSysParamDao
+	*internal.BaseSysParamDao
 }
 
 var (
 	// BaseSysParam is a globally accessible object for table base_sys_param operations.
-	BaseSysParam = baseSysParamDao{
-		internal.NewBaseSysParamDao(),
-	}
+	BaseSysParam = baseSysParamDao{internal.NewBaseSysParamDao()}
 )
 
 // Add your custom methods and functionality below.

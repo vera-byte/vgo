@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package v1.base.comm;
+
+option go_package = "vgo/app/admin/api/v1/base_comm/protobuf";
+
+service BaseComm {
+  rpc Permmenu(PermmenuRpcInvoke) returns (PermmenuRpcRes);
+  rpc Person(PersonRpcInvoke) returns (PersonRpcRes);
+}
+
+message PermmenuRpcInvoke {}
+message PermmenuRpcRes {
+  repeated string Perms = 1;
+  repeated Menu Menus = 2;
+}
+message Menu {
+  string CreateTime = 1;
+  string UpdateTime = 2;
+  string Icon = 3;
+  int64 Id = 4;
+  bool IsShow = 5;
+  bool KeepAlive = 6;
+  string Name = 7;
+  int64 OrderNum = 8;
+  int64 ParentId = 9;
+  string Perms = 10;
+  string Router = 11;
+  int64 TenantId = 12;
+  int32 Type = 13;
+  string ViewPath = 14;
+}
+message PersonRpcInvoke {
+  int64 AdminUserId = 1;
+}
+message PersonRpcRes {
+  int64 Id = 1;
+  int64 DepartmentId = 2;
+  string HeadImg = 3;
+  string Name = 4;
+  string NickName = 5;
+  int64 PasswordV = 6;
+  string Phone = 7;
+  string Remark = 8;
+  int32 Status = 9;
+  int64 TenantId = 10;
+  string UserName = 11;
+}

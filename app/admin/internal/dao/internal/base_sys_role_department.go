@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,37 +13,41 @@ import (
 
 // BaseSysRoleDepartmentDao is the data access object for the table base_sys_role_department.
 type BaseSysRoleDepartmentDao struct {
-	table   string                       // table is the underlying table name of the DAO.
-	group   string                       // group is the database configuration group name of the current DAO.
-	columns BaseSysRoleDepartmentColumns // columns contains all the column names of Table for convenient usage.
+	table    string                       // table is the underlying table name of the DAO.
+	group    string                       // group is the database configuration group name of the current DAO.
+	columns  BaseSysRoleDepartmentColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler           // handlers for customized model modification.
 }
 
 // BaseSysRoleDepartmentColumns defines and stores column names for the table base_sys_role_department.
 type BaseSysRoleDepartmentColumns struct {
 	Id           string // ID
-	CreateTime   string // 创建时间
-	UpdateTime   string // 更新时间
+	CreatedAt    string // 创建时间
+	UpdatedAt    string // 更新时间
 	TenantId     string // 租户ID
 	RoleId       string // 角色ID
 	DepartmentId string // 部门ID
+	DeletedAt    string // 软删除时间
 }
 
 // baseSysRoleDepartmentColumns holds the columns for the table base_sys_role_department.
 var baseSysRoleDepartmentColumns = BaseSysRoleDepartmentColumns{
 	Id:           "id",
-	CreateTime:   "createTime",
-	UpdateTime:   "updateTime",
-	TenantId:     "tenantId",
-	RoleId:       "roleId",
-	DepartmentId: "departmentId",
+	CreatedAt:    "created_at",
+	UpdatedAt:    "updated_at",
+	TenantId:     "tenant_id",
+	RoleId:       "role_id",
+	DepartmentId: "department_id",
+	DeletedAt:    "deleted_at",
 }
 
 // NewBaseSysRoleDepartmentDao creates and returns a new DAO object for table data access.
-func NewBaseSysRoleDepartmentDao() *BaseSysRoleDepartmentDao {
+func NewBaseSysRoleDepartmentDao(handlers ...gdb.ModelHandler) *BaseSysRoleDepartmentDao {
 	return &BaseSysRoleDepartmentDao{
-		group:   "default",
-		table:   "base_sys_role_department",
-		columns: baseSysRoleDepartmentColumns,
+		group:    "default",
+		table:    "base_sys_role_department",
+		columns:  baseSysRoleDepartmentColumns,
+		handlers: handlers,
 	}
 }
 
@@ -69,7 +73,11 @@ func (dao *BaseSysRoleDepartmentDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysRoleDepartmentDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

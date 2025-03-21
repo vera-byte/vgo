@@ -8,16 +8,14 @@ package pbentity;
 
 option go_package = "vgo/app/admin/api/pbentity";
 
-
-
 message BaseSysParam {
-    int32  Id         = 1; // ID
-    string CreateTime = 2; // 创建时间
-    string UpdateTime = 3; // 更新时间
-    int32  TenantId   = 4; // 租户ID
-    string KeyName    = 5; // 键
-    string Name       = 6; // 名称
-    string Data       = 7; // 数据
-    int32  DataType   = 8; // 数据类型 0-字符串 1-富文本 2-文件
-    string Remark     = 9; // 备注
+  int32 Id = 1; // ID
+  string CreateTime = 2; // 创建时间
+  string UpdateTime = 3; // 更新时间
+  int32 TenantId = 4; // 租户ID
+  string KeyName = 5; // 键
+  string Name = 6; // 名称
+  string Data = 7; // 数据
+  int32 DataType = 8; // 数据类型 0-字符串 1-富文本 2-文件
+  string Remark = 9; // 备注
 }

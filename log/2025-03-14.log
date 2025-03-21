@@ -1,0 +1,1 @@
+2025-03-14 10:54:28.607 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258025988"

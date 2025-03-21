@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysRoleDepartmentDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysRoleDepartmentDao = *internal.BaseSysRoleDepartmentDao
-
 // baseSysRoleDepartmentDao is the data access object for the table base_sys_role_department.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysRoleDepartmentDao struct {
-	internalBaseSysRoleDepartmentDao
+	*internal.BaseSysRoleDepartmentDao
 }
 
 var (
 	// BaseSysRoleDepartment is a globally accessible object for table base_sys_role_department operations.
-	BaseSysRoleDepartment = baseSysRoleDepartmentDao{
-		internal.NewBaseSysRoleDepartmentDao(),
-	}
+	BaseSysRoleDepartment = baseSysRoleDepartmentDao{internal.NewBaseSysRoleDepartmentDao()}
 )
 
 // Add your custom methods and functionality below.

@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysConfDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysConfDao = *internal.BaseSysConfDao
-
 // baseSysConfDao is the data access object for the table base_sys_conf.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysConfDao struct {
-	internalBaseSysConfDao
+	*internal.BaseSysConfDao
 }
 
 var (
 	// BaseSysConf is a globally accessible object for table base_sys_conf operations.
-	BaseSysConf = baseSysConfDao{
-		internal.NewBaseSysConfDao(),
-	}
+	BaseSysConf = baseSysConfDao{internal.NewBaseSysConfDao()}
 )
 
 // Add your custom methods and functionality below.

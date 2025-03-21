@@ -8,20 +8,15 @@ import (
 	"vgo/app/admin/internal/dao/internal"
 )
 
-// internalBaseSysMenuDao is an internal type for wrapping the internal DAO implementation.
-type internalBaseSysMenuDao = *internal.BaseSysMenuDao
-
 // baseSysMenuDao is the data access object for the table base_sys_menu.
 // You can define custom methods on it to extend its functionality as needed.
 type baseSysMenuDao struct {
-	internalBaseSysMenuDao
+	*internal.BaseSysMenuDao
 }
 
 var (
 	// BaseSysMenu is a globally accessible object for table base_sys_menu operations.
-	BaseSysMenu = baseSysMenuDao{
-		internal.NewBaseSysMenuDao(),
-	}
+	BaseSysMenu = baseSysMenuDao{internal.NewBaseSysMenuDao()}
 )
 
 // Add your custom methods and functionality below.

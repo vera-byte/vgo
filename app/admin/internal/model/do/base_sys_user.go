@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // =================================================================================
 
 package do
@@ -12,8 +12,8 @@ import (
 type BaseSysUser struct {
 	g.Meta       `orm:"table:base_sys_user, do:true"`
 	Id           interface{} // ID
-	CreateTime   interface{} // 创建时间
-	UpdateTime   interface{} // 更新时间
+	CreatedAt    interface{} // 创建时间
+	UpdatedAt    interface{} // 更新时间
 	TenantId     interface{} // 租户ID
 	DepartmentId interface{} // 部门ID
 	Name         interface{} // 姓名
@@ -27,4 +27,5 @@ type BaseSysUser struct {
 	Remark       interface{} // 备注
 	Status       interface{} // 状态 0-禁用 1-启用
 	SocketId     interface{} // socketId
+	DeletedAt    interface{} // 软删除时间
 }

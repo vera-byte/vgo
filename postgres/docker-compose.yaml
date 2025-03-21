@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: vgo-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: vgo
+      POSTGRES_PASSWORD: vgo
+      POSTGRES_DB: vgo
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    platform: linux/arm64
+
+volumes:
+  postgres_data:

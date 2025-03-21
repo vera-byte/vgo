@@ -1,0 +1,497 @@
+2025-03-21T14:00:12.101+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:00:12.158+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004649c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004649c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:00:12.167+08:00 [ERRO] {f0317a89ffbb2e18daa8f666905e1e90} unknown service base.v1.Base 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:00:12.166+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e810\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e810\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:00:12.924+08:00 [ERRO] {d09542beffbb2e18dea8f66638f55b63} unknown service base.v1.Base 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:00:22.040+08:00 [ERRO] {88de21dc01bc2e18dfa8f66619723bd2} unknown service base.v1.Base 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:01:09.649+08:00 [ERRO] {481f5a9a0abc2e18e0a8f666e5277247} unknown service base.v1.Base 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:03:09.500+08:00 [DEBU] vck init start ...
+2025-03-21T14:03:09.500+08:00 [DEBU] 当前实例ID: 1166w2y2vn0d8lpt5srtlsg100uttew2
+2025-03-21T14:03:13.732+08:00 [DEBU] vck init start ...
+2025-03-21T14:03:13.732+08:00 [DEBU] 当前实例ID: 1166w2y2yk0d8lpt7qrjl7c100azc0gt
+2025-03-21T14:03:23.694+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:03:24.238+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000387440\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000387440\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:03:24.250+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e6b10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e6b10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:03:41.575+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:03:41.582+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e7650\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e7650\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:03:41.584+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000ba8a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000ba8a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:07:29.223+08:00 [DEBU] vck init start ...
+2025-03-21T14:07:29.223+08:00 [DEBU] 当前实例ID: 8kx3vu05qo0d8lpwh44u54w100tv5ptk
+2025-03-21T14:08:17.634+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:08:17.643+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a20c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a20c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:08:17.646+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000608b40\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000608b40\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:08:20.502+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:08:20.519+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042cf30\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042cf30\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:08:20.520+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006098f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140006098f0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:09:58.707+08:00 [ERRO] {f05dd66e87bc2e187f2fdc15838a0176} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:10:32.906+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a2000\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a2000\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:10:32.908+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000796600\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000796600\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:11:45.404+08:00 [DEBU] vck init start ...
+2025-03-21T14:11:45.410+08:00 [DEBU] 当前实例ID: 4e44ru08l90d8lpzqsuizh4100bbbp5y
+2025-03-21T14:11:48.037+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:11:48.045+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000480cc0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000480cc0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:11:48.046+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e8ab0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e8ab0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:11:51.335+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:11:51.343+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007fdd0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007fdd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:11:51.348+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000237f20\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000237f20\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:14:05.081+08:00 [ERRO] {38dccecbc0bc2e18eb67dc19f2912aef} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:15:31.594+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008664e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008664e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:15:31.597+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000431590\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000431590\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:15:44.298+08:00 [DEBU] vck init start ...
+2025-03-21T14:15:44.299+08:00 [DEBU] 当前实例ID: 1cseoyyb4e0d8lq2sjogi7s1005b4vzv
+2025-03-21T14:15:59.313+08:00 [DEBU] vck init start ...
+2025-03-21T14:15:59.313+08:00 [DEBU] 当前实例ID: 1cseoyybct0d8lq2zg4ydcg100u4u85m
+2025-03-21T14:16:01.343+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:16:01.351+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003dab10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003dab10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:16:01.352+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007e8d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007e8d0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:16:08.286+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:16:08.335+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400056c900\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056c900\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:16:08.341+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000636ea0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000636ea0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:17:08.165+08:00 [ERRO] {405d756cebbc2e18cb1d540aac866a13} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:17:17.748+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037eb10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037eb10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:17:17.748+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140003b8bd0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003b8bd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:18:36.708+08:00 [ERRO] {c8ed00bd00bd2e18cc1d540a338f1b86} last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.0.0.192:8002: connect: connection refused" 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:18:38.117+08:00 [ERRO] {205c041101bd2e18cd1d540a646a265b} last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.0.0.192:8002: connect: connection refused" 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:18:50.396+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000894de0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000894de0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:18:50.396+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400041ba10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400041ba10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:19:02.274+08:00 [ERRO] {3075eefd05bd2e18d31d540aa23b4523} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:19:24.556+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c5440\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c5440\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:19:24.557+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007f0b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007f0b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:19:57.466+08:00 [ERRO] {d0f2bcd712bd2e18d91d540ab06bacc4} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+
+2025-03-21T14:20:53.631+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048bbf0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048bbf0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:20:53.631+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000214840\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000214840\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:22:34.228+08:00 [DEBU] vck init start ...
+2025-03-21T14:22:34.229+08:00 [DEBU] 当前实例ID: 1q9adgqfnd0d8lq80vb4lrk100auxh4h
+2025-03-21T14:27:26.498+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:27:26.505+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035a510\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035a510\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:27:26.506+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002d02d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002d02d0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:27:29.895+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:27:29.902+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061ab10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061ab10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:27:29.903+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004d74d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140004d74d0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:28:28.591+08:00 [DEBU] vck init start ...
+2025-03-21T14:28:28.592+08:00 [DEBU] 当前实例ID: 1u9mpbejao0d8lqcjntklt4100dz96no
+2025-03-21T14:28:41.053+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:28:41.062+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035a390\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035a390\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:28:41.064+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035ae10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400035ae10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:28:41.154+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:28:41.167+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140007035c0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007035c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:28:41.170+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400043fc50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400043fc50\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:29:03.029+08:00 [DEBU] vck init start ...
+2025-03-21T14:29:03.029+08:00 [DEBU] 当前实例ID: 1u9mpbejox0d8lqczhcw0f4100tmewrv
+2025-03-21T14:29:11.311+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:29:11.320+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c34a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c34a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:29:11.323+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400027eae0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400027eae0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:29:11.418+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:29:11.426+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000481590\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000481590\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:29:11.428+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000808540\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000808540\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:30:12.946+08:00 [DEBU] vck init start ...
+2025-03-21T14:30:12.948+08:00 [DEBU] 当前实例ID: 1u9mpbekf50d8lqdvlnemgw100oenax1
+2025-03-21T14:30:23.524+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:30:23.590+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000421d40\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000421d40\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:30:23.591+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000236f00\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000236f00\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:30:30.572+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:30:30.581+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400071f410\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400071f410\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:30:30.583+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007908a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007908a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:31:13.744+08:00 [DEBU] vck init start ...
+2025-03-21T14:31:13.744+08:00 [DEBU] 当前实例ID: izwoa00l2y0d8lqenj4yj0o100t36n6g
+2025-03-21T14:31:56.477+08:00 [DEBU] vck init start ...
+2025-03-21T14:31:56.478+08:00 [DEBU] 当前实例ID: vr6xyi0lpr0d8lqf75w6160100aoiz8d
+2025-03-21T14:32:16.292+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:32:16.307+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400049c840\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400049c840\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:32:16.312+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:32:16.411+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:32:16.419+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400067afc0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400067afc0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:32:16.422+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007cba0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007cba0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:33:43.410+08:00 [DEBU] vck init start ...
+2025-03-21T14:33:43.410+08:00 [DEBU] 当前实例ID: 19tiysqn6c0d8lqgkac4vhc100btie2k
+2025-03-21T14:33:43.448+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026395"
+2025-03-21T14:33:56.053+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:33:56.078+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000481050\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000481050\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:33:56.081+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000804a50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000804a50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:34:00.691+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:34:00.698+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003ad8c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003ad8c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:34:00.701+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003da150\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003da150\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:36:52.021+08:00 [DEBU] vck init start ...
+2025-03-21T14:36:52.022+08:00 [DEBU] 当前实例ID: an9ui20p540d8lqiyxhwfqw100k88zdz
+2025-03-21T14:36:52.059+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026404"
+2025-03-21T14:36:56.242+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:36:56.259+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000814990\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000814990\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:36:56.261+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000686030\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000686030\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:40:15.956+08:00 [DEBU] vck init start ...
+2025-03-21T14:40:15.957+08:00 [DEBU] 当前实例ID: nkplii0ral0d8lqlkm6yls0100v1dzy5
+2025-03-21T14:40:15.982+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026410"
+2025-03-21T14:40:20.991+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:40:21.101+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000405c50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000405c50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:40:21.105+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400015bb00\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400015bb00\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:40:28.574+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:40:28.592+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006e0630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006e0630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:40:28.597+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006e0270\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006e0270\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:41:07.840+08:00 [DEBU] vck init start ...
+2025-03-21T14:41:07.841+08:00 [DEBU] 当前实例ID: nkplii0rv90d8lqm8gdohc0100l1ektd
+2025-03-21T14:41:07.878+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026419"
+2025-03-21T14:41:11.256+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:41:11.306+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000546630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000546630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:41:11.310+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140002ee840\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002ee840\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:41:15.257+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:41:15.262+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140002ef290\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002ef290\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:41:15.264+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400080a4b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400080a4b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:41:46.104+08:00 [WARN] keepalive exit, lease id: 8676067663258026419, retry register
+2025-03-21T14:41:46.122+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026428"
+2025-03-21T14:42:09.173+08:00 [DEBU] vck init start ...
+2025-03-21T14:42:09.173+08:00 [DEBU] 当前实例ID: 1561x4asjc0d8lqn0mr5ylk100idaalz
+2025-03-21T14:42:09.204+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026431"
+2025-03-21T14:42:12.771+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:42:12.807+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140007000c0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007000c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:42:12.810+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048ef00\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048ef00\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:42:51.858+08:00 [DEBU] vck init start ...
+2025-03-21T14:42:51.859+08:00 [DEBU] 当前实例ID: gy7yzu0t1j0d8lqnk8oijzk100beykmm
+2025-03-21T14:42:51.878+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026437"
+2025-03-21T14:43:36.392+08:00 [DEBU] vck init start ...
+2025-03-21T14:43:36.393+08:00 [DEBU] 当前实例ID: l51vu20tji0d8lqo4ozv01s100o5g9q4
+2025-03-21T14:43:36.436+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026440"
+2025-03-21T14:43:40.544+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:43:40.594+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003406f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003406f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:43:40.598+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000556240\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000556240\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:43:44.095+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:43:44.127+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008249c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140008249c0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:43:44.134+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005562d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005562d0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:45:11.624+08:00 [DEBU] vck init start ...
+2025-03-21T14:45:11.625+08:00 [DEBU] 当前实例ID: 1p44zjeuta0d8lqpcfz4z60100vx7fx6
+2025-03-21T14:45:11.660+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026449"
+2025-03-21T14:45:23.360+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:45:23.527+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400015b6b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400015b6b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:45:23.548+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000336630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000336630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:45:42.820+08:00 [DEBU] vck init start ...
+2025-03-21T14:45:42.821+08:00 [DEBU] 当前实例ID: 1p44zjev5x0d8lqpqs2eud410023dgyu
+2025-03-21T14:45:42.861+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026455"
+2025-03-21T14:45:46.094+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:45:46.189+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003a1e60\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003a1e60\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:45:46.192+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005a0030\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005a0030\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:46:03.353+08:00 [DEBU] vck init start ...
+2025-03-21T14:46:03.354+08:00 [DEBU] 当前实例ID: 1p44zjevf90d8lqq07h5kc01001cdrto
+2025-03-21T14:46:03.424+08:00 [DEBU] etcd put success with key "/service/default/default/default/latest/10.0.0.192:8001,10.10.10.1:8001", value "{"insecure":true,"protocol":"http"}", lease "8676067663258026461"
+2025-03-21T14:46:26.670+08:00 [DEBU] vck init start ...
+2025-03-21T14:46:26.670+08:00 [DEBU] 当前实例ID: 1o3fgq2w2p0d8lqqax9xktc100vlnzep
+2025-03-21T14:46:29.033+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:46:29.045+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042e7e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042e7e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:46:29.068+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007c360\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007c360\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:46:33.638+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:46:33.644+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003fb500\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003fb500\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:46:33.647+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007cea0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007cea0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:47:07.869+08:00 [DEBU] vck init start ...
+2025-03-21T14:47:07.870+08:00 [DEBU] 当前实例ID: 1o3fgq2wjn0d8lqqtufyic8100l91si9
+2025-03-21T14:47:26.880+08:00 [DEBU] vck init start ...
+2025-03-21T14:47:26.881+08:00 [DEBU] 当前实例ID: 1o3fgq2wrx0d8lqr2kztfsg1008m547s
+2025-03-21T14:48:02.292+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:48:02.310+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000d6780\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000d6780\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:48:02.320+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d7c20\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d7c20\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:48:29.709+08:00 [DEBU] vck init start ...
+2025-03-21T14:48:29.710+08:00 [DEBU] 当前实例ID: wlas6i0xk60d8lqrvfyd89k1000plyiu
+2025-03-21T14:49:28.013+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:49:28.044+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e8bd0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e8bd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:49:28.050+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003ed680\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140003ed680\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:49:30.841+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T14:49:30.851+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d65d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140007d65d0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T14:49:30.854+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056e900\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056e900\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T15:19:30.861+08:00 [DEBU] resolver closed
+2025-03-21T15:19:30.908+08:00 [DEBU] resolver closed
+2025-03-21T16:00:47.606+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T16:00:48.803+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T16:00:48.946+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T16:00:52.199+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T16:00:52.303+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d64e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d64e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T16:00:52.309+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000378150\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000378150\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T16:30:52.404+08:00 [DEBU] resolver closed
+2025-03-21T18:31:36.249+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T18:31:36.286+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003797d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140003797d0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T18:31:36.288+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6810\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6810\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T18:58:41.922+08:00 [DEBU] vck init start ...
+2025-03-21T18:58:41.922+08:00 [DEBU] 当前实例ID: 1m5omi21mdjd8lw3fy4x1ag100tp1w9n
+2025-03-21T18:59:02.723+08:00 [ERRO] {58498a594ecc2e18877a630300bd4dfc} missing metadata 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:07:20.617+08:00 [ERRO] {0079872f53cc2e18887a63038d64d4f0} missing metadata 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:09:58.985+08:00 [DEBU] vck init start ...
+2025-03-21T19:09:58.986+08:00 [DEBU] 当前实例ID: 6p3okq01txhd8lwc302a5ig100xdp6mu
+2025-03-21T19:10:13.056+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:10:13.071+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a990\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a990\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:10:13.076+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400044c7b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400044c7b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:13:04.941+08:00 [DEBU] vck init start ...
+2025-03-21T19:13:04.941+08:00 [DEBU] 当前实例ID: e7qn1m01w00d8lwegfdtnow1003xe6cd
+2025-03-21T19:13:22.525+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:13:22.539+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400020af60\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400020af60\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:13:22.542+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000466e70\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000466e70\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:13:26.148+08:00 [INFO] {0810ce6117cd2e18be33000566528acc} AuthInterceptor
+2025-03-21T19:14:24.802+08:00 [INFO] {58ebe20925cd2e18c33300052c604062} AuthInterceptor
+2025-03-21T19:14:56.482+08:00 [DEBU] vck init start ...
+2025-03-21T19:14:56.482+08:00 [DEBU] 当前实例ID: cyxnl601x6td8lwfvo2ztyg100xcq3qb
+2025-03-21T19:15:18.831+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:15:18.839+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400023d020\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400023d020\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:15:18.841+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004672f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004672f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:15:30.361+08:00 [INFO] {409d7d4d34cd2e18e2c338389f02e39a} AuthInterceptor
+2025-03-21T19:15:48.395+08:00 [INFO] {d81c668038cd2e18e6c33838fef96522} AuthInterceptor
+2025-03-21T19:19:47.991+08:00 [DEBU] vck init start ...
+2025-03-21T19:19:47.992+08:00 [DEBU] 当前实例ID: 1xeslbe20c7d8lwjll4fqeg100pncwl9
+2025-03-21T19:20:17.262+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T19:20:17.330+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T19:20:18.072+08:00 [INFO] {e8c35f4a77cd2e18aeb4191c3f6a6c2f} AuthInterceptor
+2025-03-21T19:20:18.072+08:00 [INFO] {e8c35f4a77cd2e18aeb4191c3f6a6c2f} tokens eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1JlZnJlc2giOmZhbHNlLCJyb2xlSWRzIjpbIjEiXSwidXNlcm5hbWUiOiJhZG1pbiIsInVzZXJJZCI6MSwicGFzc3dvcmRWZXJzaW9uIjo3LCJleHAiOjE3NDI1NjI5NDgsImlhdCI6MTc0MjU1NTc0OH0.YAKzBo3y4EMVB6RuF4SBE3NAQ5hYHMSsIpcgYXrf4WA
+2025-03-21T19:20:29.644+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:20:29.656+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400055b080\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400055b080\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:20:29.664+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002ce780\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002ce780\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:21:49.782+08:00 [DEBU] vck init start ...
+2025-03-21T19:21:49.782+08:00 [DEBU] 当前实例ID: 15enhpm21q0d8lwl5jbn2go100zdmm1l
+2025-03-21T19:22:09.859+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T19:22:09.893+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T19:22:10.395+08:00 [INFO] {781ccd7091cd2e182ccbc70bbb618b02} AuthInterceptor
+2025-03-21T19:22:10.396+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:22:10.466+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056c4e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056c4e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:22:10.469+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056d530\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400056d530\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:22:39.941+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:22:39.951+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000467530\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000467530\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:22:39.953+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002cac90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002cac90\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:22:46.671+08:00 [INFO] {308b94e399cd2e1830cbc70bdc2e6538} AuthInterceptor
+2025-03-21T19:22:52.726+08:00 [ERRO] {906512999acd2e1831cbc70bc3037f99} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:23:04.099+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400085f530\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400085f530\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:23:04.100+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400020cf90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400020cf90\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:23:32.074+08:00 [INFO] {3822d675a4cd2e1834cbc70b7bde39b9} AuthInterceptor
+2025-03-21T19:23:49.637+08:00 [INFO] {584da78ca8cd2e1839cbc70bb9439ef3} AuthInterceptor
+2025-03-21T19:23:55.668+08:00 [ERRO] {98374541a9cd2e183bcbc70b919b7beb} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:25:15.117+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400088a0f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400088a0f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:15.117+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000748570\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000748570\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:39.204+08:00 [DEBU] vck init start ...
+2025-03-21T19:25:39.204+08:00 [DEBU] 当前实例ID: 18o3dwq244id8lwo2xjzcug100cfa9lm
+2025-03-21T19:25:48.937+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:25:48.947+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054a3c0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054a3c0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:48.950+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054abd0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054abd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:52.541+08:00 [INFO] {b074542ac5cd2e182f713d2b88b5f796} AuthInterceptor
+2025-03-21T19:25:52.541+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:25:52.545+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000272a20\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000272a20\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:52.547+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004893b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004893b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:25:58.578+08:00 [ERRO] {f85340dfc5cd2e1831713d2b2f4069d6} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:26:08.487+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000711920\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000711920\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:26:08.488+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054ba40\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054ba40\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:30:03.482+08:00 [DEBU] vck init start ...
+2025-03-21T19:30:03.482+08:00 [DEBU] 当前实例ID: 187ps8a1z70d8lwrgc8ngz4100g3sq1r
+2025-03-21T19:30:10.722+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T19:30:10.858+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T19:30:11.331+08:00 [INFO] {584b4e6b01ce2e18c4669f30bf63a433} AuthInterceptor {"isRefresh":false,"roleIds":["1"],"username":"admin","userId":1,"passwordVersion":7}
+2025-03-21T19:30:11.332+08:00 [INFO] {584b4e6b01ce2e18c4669f30bf63a433} AuthInterceptor
+2025-03-21T19:30:11.333+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:30:11.408+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000354ae0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000354ae0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:30:11.427+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004811a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004811a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:30:38.932+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:30:38.938+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001d2120\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001d2120\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:30:38.940+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000355f50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000355f50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:30:45.286+08:00 [INFO] {605b465309ce2e18c8669f30f42304d2} AuthInterceptor {"isRefresh":false,"roleIds":["1"],"username":"admin","userId":1,"passwordVersion":7}
+2025-03-21T19:30:45.286+08:00 [INFO] {605b465309ce2e18c8669f30f42304d2} AuthInterceptor
+2025-03-21T19:30:51.316+08:00 [ERRO] {c851d3070ace2e18ca669f30107ef415} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-21T19:31:44.033+08:00 [DEBU] vck init start ...
+2025-03-21T19:31:44.033+08:00 [DEBU] 当前实例ID: pt5gq0038q0d8lwsqj67ijs1009e11t8
+2025-03-21T19:31:48.374+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:31:48.385+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140005502a0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005502a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:31:48.387+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000480420\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000480420\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:31:54.147+08:00 [INFO] {705fb55b19ce2e1824b85b2b8e0091a0} AuthInterceptor {"isRefresh":false,"roleIds":["1"],"username":"admin","userId":1,"passwordVersion":7}
+2025-03-21T19:31:54.148+08:00 [INFO] {705fb55b19ce2e1824b85b2b8e0091a0} AuthInterceptor
+2025-03-21T19:31:54.148+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:31:54.152+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000335620\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000335620\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:31:54.153+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004855f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004855f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:38:18.638+08:00 [DEBU] vck init start ...
+2025-03-21T19:38:18.638+08:00 [DEBU] 当前实例ID: 11tu1re7ni0d8lwxrt516yg1002b4pf8
+2025-03-21T19:38:29.199+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:38:29.214+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002f08a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002f08a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:38:29.217+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a240\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400053a240\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:38:33.639+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:38:33.672+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005cc000\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005cc000\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:38:33.675+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005ccd20\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140005ccd20\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:42:49.701+08:00 [DEBU] vck init start ...
+2025-03-21T19:42:49.702+08:00 [DEBU] 当前实例ID: 1t8trmyb2i0d8lx18c2orlk100q9bb02
+2025-03-21T19:43:04.141+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:43:04.151+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054a480\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054a480\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:43:04.153+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054ad20\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054ad20\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:43:10.636+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:43:10.642+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037d050\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037d050\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:43:10.645+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037de90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037de90\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:45:46.625+08:00 [DEBU] vck init start ...
+2025-03-21T19:45:46.626+08:00 [DEBU] 当前实例ID: 5ki3ai0d1w0d8lx3hm2oei0100unjfu5
+2025-03-21T19:45:48.740+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:45:48.751+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004062d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004062d0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:45:48.760+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d9bf0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140003d9bf0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:45:57.229+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:45:57.277+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c2de0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c2de0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:45:57.284+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c3620\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c3620\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:46:32.907+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T19:46:33.001+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T19:48:15.831+08:00 [DEBU] vck init start ...
+2025-03-21T19:48:15.831+08:00 [DEBU] 当前实例ID: eludka0ert0d8lx5e5p2ro810035820p
+2025-03-21T19:48:18.933+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-21T19:48:19.093+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-21T19:48:19.479+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-21T19:48:19.507+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T19:48:19.545+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000702b10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000702b10\u003e"},"BalancerAttributes":null,"Metadata":null}]

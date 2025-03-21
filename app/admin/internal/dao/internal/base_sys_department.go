@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // ==========================================================================
 
 package internal
@@ -13,39 +13,43 @@ import (
 
 // BaseSysDepartmentDao is the data access object for the table base_sys_department.
 type BaseSysDepartmentDao struct {
-	table   string                   // table is the underlying table name of the DAO.
-	group   string                   // group is the database configuration group name of the current DAO.
-	columns BaseSysDepartmentColumns // columns contains all the column names of Table for convenient usage.
+	table    string                   // table is the underlying table name of the DAO.
+	group    string                   // group is the database configuration group name of the current DAO.
+	columns  BaseSysDepartmentColumns // columns contains all the column names of Table for convenient usage.
+	handlers []gdb.ModelHandler       // handlers for customized model modification.
 }
 
 // BaseSysDepartmentColumns defines and stores column names for the table base_sys_department.
 type BaseSysDepartmentColumns struct {
-	Id         string // ID
-	CreateTime string // 创建时间
-	UpdateTime string // 更新时间
-	TenantId   string // 租户ID
-	Name       string // 部门名称
-	ParentId   string // 上级部门ID
-	OrderNum   string // 排序
+	Id        string // ID
+	CreatedAt string // 创建时间
+	UpdatedAt string // 更新时间
+	TenantId  string // 租户ID
+	Name      string // 部门名称
+	ParentId  string // 上级部门ID
+	OrderNum  string // 排序
+	DeletedAt string // 软删除时间
 }
 
 // baseSysDepartmentColumns holds the columns for the table base_sys_department.
 var baseSysDepartmentColumns = BaseSysDepartmentColumns{
-	Id:         "id",
-	CreateTime: "createTime",
-	UpdateTime: "updateTime",
-	TenantId:   "tenantId",
-	Name:       "name",
-	ParentId:   "parentId",
-	OrderNum:   "orderNum",
+	Id:        "id",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
+	TenantId:  "tenant_id",
+	Name:      "name",
+	ParentId:  "parent_id",
+	OrderNum:  "order_num",
+	DeletedAt: "deleted_at",
 }
 
 // NewBaseSysDepartmentDao creates and returns a new DAO object for table data access.
-func NewBaseSysDepartmentDao() *BaseSysDepartmentDao {
+func NewBaseSysDepartmentDao(handlers ...gdb.ModelHandler) *BaseSysDepartmentDao {
 	return &BaseSysDepartmentDao{
-		group:   "default",
-		table:   "base_sys_department",
-		columns: baseSysDepartmentColumns,
+		group:    "default",
+		table:    "base_sys_department",
+		columns:  baseSysDepartmentColumns,
+		handlers: handlers,
 	}
 }
 
@@ -71,7 +75,11 @@ func (dao *BaseSysDepartmentDao) Group() string {
 
 // Ctx creates and returns a Model for the current DAO. It automatically sets the context for the current operation.
 func (dao *BaseSysDepartmentDao) Ctx(ctx context.Context) *gdb.Model {
-	return dao.DB().Model(dao.table).Safe().Ctx(ctx)
+	model := dao.DB().Model(dao.table)
+	for _, handler := range dao.handlers {
+		model = handler(model)
+	}
+	return model.Safe().Ctx(ctx)
 }
 
 // Transaction wraps the transaction logic using function f.

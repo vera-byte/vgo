@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // =================================================================================
 
 package do
@@ -12,8 +12,8 @@ import (
 type BaseSysRole struct {
 	g.Meta           `orm:"table:base_sys_role, do:true"`
 	Id               interface{} // ID
-	CreateTime       interface{} // 创建时间
-	UpdateTime       interface{} // 更新时间
+	CreatedAt        interface{} // 创建时间
+	UpdatedAt        interface{} // 更新时间
 	TenantId         interface{} // 租户ID
 	UserId           interface{} // 用户ID
 	Name             interface{} // 名称
@@ -22,4 +22,5 @@ type BaseSysRole struct {
 	Relevance        interface{} // 数据权限是否关联上下级
 	MenuIdList       interface{} // 菜单权限
 	DepartmentIdList interface{} // 部门权限
+	DeletedAt        interface{} // 软删除时间
 }

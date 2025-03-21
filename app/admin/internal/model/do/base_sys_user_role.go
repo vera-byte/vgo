@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-14 15:21:22
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
 // =================================================================================
 
 package do
@@ -10,11 +10,12 @@ import (
 
 // BaseSysUserRole is the golang structure of table base_sys_user_role for DAO operations like Where/Data.
 type BaseSysUserRole struct {
-	g.Meta     `orm:"table:base_sys_user_role, do:true"`
-	Id         interface{} // ID
-	CreateTime interface{} // 创建时间
-	UpdateTime interface{} // 更新时间
-	TenantId   interface{} // 租户ID
-	UserId     interface{} // 用户ID
-	RoleId     interface{} // 角色ID
+	g.Meta    `orm:"table:base_sys_user_role, do:true"`
+	Id        interface{} // ID
+	CreatedAt interface{} // 创建时间
+	UpdatedAt interface{} // 更新时间
+	TenantId  interface{} // 租户ID
+	UserId    interface{} // 用户ID
+	RoleId    interface{} // 角色ID
+	DeletedAt interface{} // 软删除时间
 }
