@@ -33,6 +33,7 @@ func NewBaseSysLoginLogic() *sBaseSysLoginLogic {
 
 // 生成验证码
 func (c *sBaseSysLoginLogic) GenerateCaptcha(ctx context.Context, width int, height int) (id string, b64s string, answer string, err error) {
+
 	driver := base64Captcha.NewDriverDigit(height, width, 4, 0, 10)
 	captcha := base64Captcha.NewCaptcha(driver, c.store)
 	id, b64s, answer, err = captcha.Generate()
@@ -45,6 +46,22 @@ func (c *sBaseSysLoginLogic) GenerateCaptcha(ctx context.Context, width int, hei
 // 验证验证码
 func (c *sBaseSysLoginLogic) VerifyCaptcha(id, answer string) bool {
 	return c.store.Verify(id, answer, true)
+}
+
+// 退出登录
+func (c *sBaseSysLoginLogic) LoginOut(ctx context.Context) (err error) {
+	var (
+		admin = vck.GetAdminAtGateway(ctx)
+	)
+	if admin == nil {
+		return gerror.New("用户不存在")
+	}
+	vck.CacheManager.Remove(ctx, "admin:passwordVersionadmin:passwordVersion:"+gconv.String(admin.UserId))
+	vck.CacheManager.Remove(ctx, "admin:department:"+gconv.String(admin.UserId))
+	vck.CacheManager.Remove(ctx, "admin:perms:"+gconv.String(admin.UserId))
+	vck.CacheManager.Remove(ctx, "admin:token:"+gconv.String(admin.UserId))
+	vck.CacheManager.Remove(ctx, "admin:token:refresh:"+gconv.String(admin.UserId))
+	return nil
 }
 
 // 密码登录 此处只验证密码和验证码 Token由其他函数生成

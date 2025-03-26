@@ -51,9 +51,30 @@ func (*Controller) Permmenu(ctx context.Context, req *v1.PermmenuRpcInvoke) (res
 func (*Controller) Person(ctx context.Context, req *v1.PersonRpcInvoke) (res *v1.PersonRpcRes, err error) {
 	var (
 		baseSysUserService = service.BaseSysUserLogic()
+		admin              = vck.GetAdminAtGrpcService(ctx)
 	)
-	_, err = baseSysUserService.Person(ctx, req.AdminUserId)
+	person, err := baseSysUserService.Person(ctx, admin.UserId)
+	if err != nil {
+		return nil, err
+	}
 	return &v1.PersonRpcRes{
-		// UserName: person.user,
+		UserName:     person.Username,
+		NickName:     person.NickName,
+		HeadImg:      person.HeadImg,
+		Phone:        person.Phone,
+		Remark:       person.Remark,
+		Name:         person.Name,
+		PasswordV:    int64(person.PasswordV),
+		Status:       int32(person.Status),
+		TenantId:     int64(person.TenantId),
+		Id:           int64(person.Id),
+		DepartmentId: int64(person.DepartmentId),
+		Email:        person.Email,
+		CreateTime:   person.CreatedAt.Unix(),
+		UpdateTime:   person.UpdatedAt.Unix(),
 	}, nil
+}
+
+func (*Controller) LoginOut(ctx context.Context, req *v1.LoginOutRpcInvoke) (res *v1.LoginOutRes, err error) {
+	return nil, service.BaseSysLoginLogic().LoginOut(ctx)
 }

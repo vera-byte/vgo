@@ -7,6 +7,8 @@ option go_package = "vgo/app/admin/api/v1/base_open/protobuf";
 service BaseOpen {
   rpc Captcha(CaptchaRpcInvoke) returns (CaptchaRpcRes);
   rpc Login(LoginRpcInvoke) returns (LoginRpcRes);
+  rpc RefreshToken(RefreshTokenInvoke) returns (LoginRpcRes);
+
 }
 
 message CaptchaRpcInvoke {
@@ -30,3 +32,8 @@ message LoginRpcRes {
   string RefreshToken = 3;
   string Token = 4;
 }
+
+message RefreshTokenInvoke {
+  string RefreshToken = 1;
+}
+

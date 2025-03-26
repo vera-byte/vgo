@@ -1,0 +1,178 @@
+2025-03-24T14:39:08.025+08:00 [DEBU] vck init start ...
+2025-03-24T14:39:08.025+08:00 [DEBU] 当前实例ID: 1qzxjl619q2d8oagc90c5ag1009ww6kl
+2025-03-24T14:39:26.523+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:39:26.599+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:40:57.623+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:40:57.747+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:40:58.426+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-24T14:40:58.444+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400040d110\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400040d110\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:40:58.448+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362d80\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000362d80\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:41:10.741+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-24T14:41:10.757+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000171140\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000171140\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:41:10.775+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000422d80\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000422d80\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:48:04.807+08:00 [DEBU] vck init start ...
+2025-03-24T14:48:04.807+08:00 [DEBU] 当前实例ID: imm96201g9nd8oan6udlfw0100ri4hq5
+2025-03-24T14:48:13.405+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:48:13.454+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:48:14.218+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-24T14:48:14.255+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2a50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2a50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:48:14.259+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d3380\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d3380\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:48:24.686+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:48:24.747+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:49:23.476+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:49:23.603+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:49:36.980+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:49:37.000+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:50:54.859+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:50:55.036+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:51:09.735+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c5860\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c5860\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:51:30.064+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004bad50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004bad50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:51:37.531+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:51:37.648+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T14:53:21.189+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d26f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d26f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T14:54:15.844+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T14:54:15.888+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T15:02:59.992+08:00 [DEBU] vck init start ...
+2025-03-24T15:02:59.993+08:00 [DEBU] 当前实例ID: 181q8fe1r9sd8oaym32su60100oa4zw6
+2025-03-24T15:06:13.360+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T15:06:13.399+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T15:06:13.985+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-24T15:06:14.120+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000f62a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000f62a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T15:06:14.124+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140007022a0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007022a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-24T15:09:10.305+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T15:09:10.338+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T15:09:14.627+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T15:09:14.647+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T15:09:19.382+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-24T15:09:19.396+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-24T15:39:19.783+08:00 [DEBU] resolver closed

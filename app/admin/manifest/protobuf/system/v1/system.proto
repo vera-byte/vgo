@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+
+package v1.base.system;
+option go_package = "vgo/app/admin/api/v1/base_system/protobuf";
+
+
+service BaseSys {
+    // 系统日志分页
+    rpc SystemLogPage(SystemLogPageRpcInvoke) returns (SystemLogPageRpcRes);
+    // 记录日志
+    rpc SystemLogGateway(SystemLogGatewayRpcInvoke) returns (SystemLogGatewayRpcRes);
+}
+
+message SystemLogPageRpcInvoke {
+    
+    
+}
+
+message SystemLogPageRpcRes {}
+
+
+message SystemLogGatewayRpcInvoke {
+    // ip
+    string Ip = 1;
+    // action
+    string Action = 2;
+    // 参数
+    string Params = 3;
+    // 租父ID
+    optional int64 TenantId = 4;
+    // 用户ID
+    optional  int64 UserId = 5;
+    // 追踪ID
+    string TraceId = 6;
+}
+message SystemLogGatewayRpcRes{}

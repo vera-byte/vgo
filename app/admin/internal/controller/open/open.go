@@ -6,6 +6,7 @@ import (
 	"vgo/app/admin/internal/service"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
+	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 )
 
@@ -43,4 +44,8 @@ func (*Controller) Login(ctx context.Context, req *v1.LoginRpcInvoke) (res *v1.L
 		Token:         *token,
 		RefreshToken:  *refreshToken,
 	}, nil
+}
+
+func (*Controller) RefreshToken(ctx context.Context, req *v1.RefreshTokenInvoke) (res *v1.LoginRpcRes, err error) {
+	return nil, gerror.NewCode(gcode.CodeNotImplemented)
 }

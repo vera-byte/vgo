@@ -1,12 +1,17 @@
 syntax = "proto3";
 
-package v1.base.comm;
 
+package v1.base.comm;
 option go_package = "vgo/app/admin/api/v1/base_comm/protobuf";
 
 service BaseComm {
+  // 菜单权限
   rpc Permmenu(PermmenuRpcInvoke) returns (PermmenuRpcRes);
+  // 个人信息
   rpc Person(PersonRpcInvoke) returns (PersonRpcRes);
+  // 退出登录
+  rpc LoginOut(LoginOutRpcInvoke) returns (LoginOutRes);
+
 }
 
 message PermmenuRpcInvoke {}
@@ -31,7 +36,6 @@ message Menu {
   string ViewPath = 14;
 }
 message PersonRpcInvoke {
-  int64 AdminUserId = 1;
 }
 message PersonRpcRes {
   int64 Id = 1;
@@ -45,4 +49,10 @@ message PersonRpcRes {
   int32 Status = 9;
   int64 TenantId = 10;
   string UserName = 11;
+  int64 createTime = 12;
+  int64 updateTime = 14;
+  string Email = 15;
 }
+
+message LoginOutRpcInvoke {}
+message LoginOutRes {}

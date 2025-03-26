@@ -1,0 +1,305 @@
+2025-03-25T09:43:24.707+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T09:43:24.744+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T10:59:40.133+08:00 [DEBU] vck init start ...
+2025-03-25T10:59:40.134+08:00 [DEBU] 当前实例ID: 1whszje22oid8p0eum6ku0w100v51iht
+2025-03-25T11:01:51.045+08:00 [DEBU] vck init start ...
+2025-03-25T11:01:51.045+08:00 [DEBU] 当前实例ID: 1whszje244ad8p0gir7nyy0100lha4fi
+2025-03-25T11:02:12.043+08:00 [DEBU] vck init start ...
+2025-03-25T11:02:25.015+08:00 [DEBU] 当前实例ID: 1whszje24dgd8p0gsehhvmo1008a1itg
+2025-03-25T11:03:27.939+08:00 [DEBU] vck init start ...
+2025-03-25T11:03:52.315+08:00 [DEBU] 当前实例ID: 1whszje5200d8p0hr9nzgo81004oq3j3
+2025-03-25T11:04:16.358+08:00 [DEBU] vck init start ...
+2025-03-25T11:04:36.031+08:00 [DEBU] 当前实例ID: 1whszjerb00d8p0idig475s10057lpv9
+2025-03-25T11:05:16.749+08:00 [DEBU] vck init start ...
+2025-03-25T11:05:16.749+08:00 [INFO] 初始化缓存成功
+2025-03-25T11:05:16.749+08:00 [DEBU] 当前实例ID: 1whszje1fk0d8p0j595ovq0100n45zpi
+2025-03-25T11:09:37.280+08:00 [DEBU] vck init start ...
+2025-03-25T11:09:37.280+08:00 [INFO] 初始化缓存成功
+2025-03-25T11:09:37.280+08:00 [DEBU] 当前实例ID: 1whszje49r0d8p0mgxu4ww0100irwk4c
+2025-03-25T13:39:33.387+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T13:39:33.490+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T13:39:34.847+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T13:39:35.022+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400026d110\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400026d110\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T13:39:35.024+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005acdb0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005acdb0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T13:39:47.208+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T13:39:47.213+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000265470\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000265470\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T13:39:47.215+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000715ef0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000715ef0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:09:47.139+08:00 [DEBU] resolver closed
+2025-03-25T14:09:47.248+08:00 [DEBU] resolver closed
+2025-03-25T14:32:40.677+08:00 [DEBU] vck init start ...
+2025-03-25T14:32:40.678+08:00 [INFO] 初始化缓存成功
+2025-03-25T14:32:40.678+08:00 [DEBU] 当前实例ID: 1whszje1tadd8p4xxwyf2q0100dj2v1p
+2025-03-25T14:42:25.892+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T14:42:25.918+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T14:42:26.644+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T14:42:26.748+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e600\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400061e600\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:42:26.786+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006d0a80\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006d0a80\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:43:00.158+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T14:43:00.312+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T14:43:01.079+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T14:43:01.088+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400051c120\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400051c120\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:43:01.091+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000213da0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000213da0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:43:15.580+08:00 [ERRO] {d89dfba2aaf82f185095e2679a99c4bc} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-25T14:45:11.377+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400062a8a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400062a8a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:45:11.377+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e1b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e1b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:45:59.732+08:00 [DEBU] vck init start ...
+2025-03-25T14:45:59.732+08:00 [INFO] 初始化缓存成功
+2025-03-25T14:45:59.732+08:00 [DEBU] 当前实例ID: 1whszje21ppd8p584zvqvvs100c0dit2
+2025-03-25T14:46:15.067+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T14:46:21.111+08:00 [ERRO] {087384d5d5f82f1853339d214e3277e1} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-25T14:47:03.709+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400019e270\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400019e270\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:47:22.777+08:00 [ERRO] {58621c31e4f82f1856339d2163ffd6f2} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-25T14:47:42.556+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000510a50\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000510a50\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:49:18.032+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140005109f0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005109f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:49:23.380+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400019eb70\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400019eb70\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:49:28.392+08:00 [DEBU] vck init start ...
+2025-03-25T14:49:28.393+08:00 [INFO] 初始化缓存成功
+2025-03-25T14:49:28.393+08:00 [DEBU] 当前实例ID: 1whszje240ud8p5asur77m8100fqvo3m
+2025-03-25T14:49:31.028+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T14:49:31.042+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000bba10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000bba10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:49:31.046+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003a13e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003a13e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:49:51.320+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000434c30\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000434c30\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:50:13.201+08:00 [ERRO] {782f27df0bf92f18a264762ab0425227} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-25T14:52:56.691+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054a390\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054a390\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:53:46.129+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000758ae0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000758ae0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:54:44.693+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054a6f0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054a6f0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:54:59.825+08:00 [ERRO] {f835569b4ef92f18a564762a826a4d75} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+
+2025-03-25T14:55:07.187+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140004734a0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004734a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T14:55:16.686+08:00 [DEBU] vck init start ...
+2025-03-25T14:55:58.845+08:00 [DEBU] vck init start ...
+2025-03-25T14:55:58.846+08:00 [INFO] 初始化缓存成功
+2025-03-25T14:55:58.846+08:00 [DEBU] 当前实例ID: 1whszje3jt0d8p5fs84qrr41004iwumt
+2025-03-25T15:02:51.076+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T15:02:51.082+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400011dbf0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011dbf0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T15:02:51.083+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T15:02:54.740+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T15:02:54.762+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000643da0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000643da0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T15:02:54.770+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400073eb10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400073eb10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T15:32:54.623+08:00 [DEBU] resolver closed
+2025-03-25T15:32:54.783+08:00 [DEBU] resolver closed
+2025-03-25T16:26:35.287+08:00 [DEBU] vck init start ...
+2025-03-25T16:26:35.288+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:26:35.288+08:00 [DEBU] 当前实例ID: 1whszje1xfbd8p7d5oxgur41000ns7jo
+2025-03-25T16:26:52.162+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:26:52.213+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T16:26:52.826+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:26:52.860+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002adb0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002adb0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:26:52.867+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002b800\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002b800\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:26:55.926+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:26:55.937+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002a510\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400002a510\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:26:55.948+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000612780\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000612780\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:27:39.045+08:00 [DEBU] vck init start ...
+2025-03-25T16:27:39.045+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:27:39.045+08:00 [DEBU] 当前实例ID: 1whszje1y3ud8p7dyzc4vmg100h1qhsu
+2025-03-25T16:27:42.294+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:27:42.313+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000466360\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000466360\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:27:42.316+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000467260\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000467260\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:27:46.132+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:27:46.144+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000598f30\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000598f30\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:27:46.146+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000483bf0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000483bf0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:29:09.002+08:00 [DEBU] vck init start ...
+2025-03-25T16:29:09.003+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:29:09.003+08:00 [DEBU] 当前实例ID: 1whszje1z2zd8p7f4b4k16g100vdrukf
+2025-03-25T16:29:14.443+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:29:14.456+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001ec300\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001ec300\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:29:14.460+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000f3b60\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000f3b60\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:29:17.933+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:29:17.943+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001ec6c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140001ec6c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:29:17.945+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003485a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003485a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:35:30.156+08:00 [DEBU] vck init start ...
+2025-03-25T16:35:30.157+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:35:30.158+08:00 [DEBU] 当前实例ID: 1whszje23ufd8p7jzep5avs100velr1r
+2025-03-25T16:36:07.348+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:36:07.422+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T16:36:07.994+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:36:08.011+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140004f0bd0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004f0bd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:36:08.016+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e0300\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002e0300\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:48:58.860+08:00 [DEBU] vck init start ...
+2025-03-25T16:48:58.861+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:48:58.861+08:00 [DEBU] 当前实例ID: 1whszje8ou0d8p7uax74yls100qkueal
+2025-03-25T16:49:08.183+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:49:08.191+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140000c3440\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140000c3440\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:49:08.194+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005f6420\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005f6420\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:49:08.195+08:00 [ERRO] {98cb22d089ff2f1855a3623834b487b1} Not Implemented 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:16
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:79
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:50:41.592+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400023b230\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400023b230\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:50:48.134+08:00 [ERRO] {80a86f15a1ff2f1857a3623850d20716} 用户不存在 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:16
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:79
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:51:05.480+08:00 [DEBU] vck init start ...
+2025-03-25T16:51:05.481+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:51:05.481+08:00 [DEBU] 当前实例ID: 1whszjea7o0d8p7vx38vzh4100upvonl
+2025-03-25T16:51:10.719+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:51:10.728+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400039b680\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400039b680\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:51:10.732+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004e9680\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004e9680\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:51:10.733+08:00 [ERRO] {a011db57a6ff2f18c4cbf67531d20b6f} 用户不存在 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:15
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:79
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:51:10.858+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:51:10.885+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005d65d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005d65d0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:51:10.888+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000014ae0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000014ae0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:51:31.504+08:00 [ERRO] {b0aa8d2eabff2f18cecbf67515c21710} 用户不存在 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:15
+2.  vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
+3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:79
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:51:53.693+08:00 [DEBU] vck init start ...
+2025-03-25T16:51:53.694+08:00 [INFO] 初始化缓存成功
+2025-03-25T16:51:53.694+08:00 [DEBU] 当前实例ID: 1whszjeaqw0d8p7wj8ltx6o100bdtaou
+2025-03-25T16:51:57.412+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+
+2025-03-25T16:51:57.511+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
+Stack:
+1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+
+2025-03-25T16:51:58.074+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-25T16:51:58.109+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000810a80\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000810a80\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T16:51:58.117+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400058a990\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400058a990\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-25T17:21:58.282+08:00 [DEBU] resolver closed

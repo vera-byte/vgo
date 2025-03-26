@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-26 14:02:11
 // =================================================================================
 
 package entity
@@ -19,4 +19,5 @@ type BaseSysLog struct {
 	Ip        string    `json:"ip"        orm:"ip"         description:"ip"`    // ip
 	Params    string    `json:"params"    orm:"params"     description:"参数"`    // 参数
 	DeletedAt time.Time `json:"deletedAt" orm:"deleted_at" description:"软删除时间"` // 软删除时间
+	TraceId   string    `json:"traceId"   orm:"trace_id"   description:"追踪id"`  // 追踪id
 }

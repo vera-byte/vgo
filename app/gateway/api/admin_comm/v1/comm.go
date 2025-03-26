@@ -7,6 +7,20 @@ type PersonReq struct {
 }
 
 type PersonRes struct {
+	CreateTime   int64  `json:"createTime" dc:"创建时间"`
+	UpdateTime   int64  `json:"updateTime" dc:"更新时间"`
+	Username     string `json:"username" dc:"用户名"`
+	DepartmentId int64  `json:"departmentId" dc:"部门ID"`
+	Email        string `json:"email" dc:"邮箱"`
+	HeadImg      string `json:"headImg" dc:"头像"`
+	Id           int64  `json:"id" dc:"ID"`
+	Name         string `json:"name" dc:"名称"`
+	NickName     string `json:"nickName" dc:"昵称"`
+	PasswordV    int64  `json:"passwordV" dc:"密码版本"`
+	Phone        string `json:"phone" dc:"手机号"`
+	Remark       string `json:"remark" dc:"备注"`
+	Status       int32  `json:"status" dc:"状态"`
+	TenantId     int64  `json:"tenantId" dc:"租户ID"`
 }
 
 type PermmenuReq struct {
@@ -32,3 +46,8 @@ type PermmenuRes struct {
 	Menus []Menu   `json:"menus" dc:"菜单"`
 	Perms []string `json:"perms"  dc:"权限"`
 }
+
+type LogoutReq struct {
+	g.Meta `path:"logout" method:"post" sm:"退出登录" tags:"鉴权"`
+}
+type LogoutRes struct{}

@@ -495,3 +495,4 @@ Stack:
 2025-03-21T19:48:19.479+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-21T19:48:19.507+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:48:19.545+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000702b10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000702b10\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-21T20:18:19.707+08:00 [DEBU] resolver closed

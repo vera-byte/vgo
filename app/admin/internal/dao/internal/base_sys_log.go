@@ -1,5 +1,5 @@
 // ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-26 14:02:11
 // ==========================================================================
 
 package internal
@@ -30,6 +30,7 @@ type BaseSysLogColumns struct {
 	Ip        string // ip
 	Params    string // 参数
 	DeletedAt string // 软删除时间
+	TraceId   string // 追踪id
 }
 
 // baseSysLogColumns holds the columns for the table base_sys_log.
@@ -43,6 +44,7 @@ var baseSysLogColumns = BaseSysLogColumns{
 	Ip:        "ip",
 	Params:    "params",
 	DeletedAt: "deleted_at",
+	TraceId:   "trace_id",
 }
 
 // NewBaseSysLogDao creates and returns a new DAO object for table data access.

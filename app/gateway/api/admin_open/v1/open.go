@@ -27,3 +27,15 @@ type LoginRes struct {
 	RefreshToken  string `json:"refreshToken"  dc:"刷新token"`
 	Token         string `json:"token"  dc:"访问token"`
 }
+
+type RefreshTokenReq struct {
+	g.Meta       `path:"refreshToken" method:"get" sm:"刷新token" tags:"开放"`
+	RefreshToken string `json:"refreshToken" v:"required#请输入token" dc:"token"`
+}
+
+type RefreshTokenRes struct {
+	Expire        int64  `json:"expire"  dc:"过期时间"`
+	RefreshExpire int64  `json:"refreshExpire" dc:"刷新时效"`
+	RefreshToken  string `json:"refreshToken"  dc:"刷新token"`
+	Token         string `json:"token"  dc:"访问token"`
+}

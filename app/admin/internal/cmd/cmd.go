@@ -4,6 +4,7 @@ import (
 	"context"
 	"vgo/app/admin/internal/controller/comm"
 	"vgo/app/admin/internal/controller/open"
+	"vgo/app/admin/internal/controller/system"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/os/gcmd"
@@ -27,6 +28,7 @@ var (
 			s := grpcx.Server.New(c)
 			open.Register(s)
 			comm.Register(s)
+			system.Register(s)
 
 			s.Run()
 			return nil

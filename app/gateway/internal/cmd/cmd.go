@@ -10,6 +10,8 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gogf/gf/v2/util/gconv"
+	vck "github.com/vera-byte/vgo/vgo_core_kit"
 )
 
 var (
@@ -19,7 +21,6 @@ var (
 		Brief: "start http gateway server",
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			s := g.Server()
-
 			/// admin-base
 			s.Group("/v1/admin/base", func(admin *ghttp.RouterGroup) {
 				admin.Group("/open", func(open *ghttp.RouterGroup) {
@@ -34,7 +35,12 @@ var (
 			s.Group("/v1/admin/dict", func(admin *ghttp.RouterGroup) {
 
 			})
+			_, err = vck.EtcdManager.Client.Put(ctx, "admin", gconv.String(vck.GetAdminConfig))
+			if err == nil {
+				data, _ := vck.EtcdManager.GetConfig("admin")
+				g.Dump(gconv.Map(data))
 
+			}
 			s.Run()
 			return nil
 		},

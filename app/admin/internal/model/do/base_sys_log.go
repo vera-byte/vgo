@@ -1,5 +1,5 @@
 // =================================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-19 16:43:14
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT. Created at 2025-03-26 14:02:11
 // =================================================================================
 
 package do
@@ -20,4 +20,5 @@ type BaseSysLog struct {
 	Ip        interface{} // ip
 	Params    interface{} // 参数
 	DeletedAt interface{} // 软删除时间
+	TraceId   interface{} // 追踪id
 }

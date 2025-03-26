@@ -41,7 +41,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 
 	tokenString := r.GetHeader("Authorization")
 	token, err := jwt.ParseWithClaims(tokenString, &vck_config.Claims{}, func(token *jwt.Token) (interface{}, error) {
-
 		return []byte(vck.GetAdminConfig.Jwt.Secret), nil
 	})
 	if err != nil {

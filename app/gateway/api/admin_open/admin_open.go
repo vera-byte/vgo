@@ -13,4 +13,5 @@ import (
 type IAdminOpenV1 interface {
 	Captcha(ctx context.Context, req *v1.CaptchaReq) (res *v1.CaptchaRes, err error)
 	Login(ctx context.Context, req *v1.LoginReq) (res *v1.LoginRes, err error)
+	RefreshToken(ctx context.Context, req *v1.RefreshTokenReq) (res *v1.RefreshTokenRes, err error)
 }

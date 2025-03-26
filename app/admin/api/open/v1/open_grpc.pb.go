@@ -20,8 +20,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BaseOpen_Captcha_FullMethodName = "/v1.base.open.BaseOpen/Captcha"
-	BaseOpen_Login_FullMethodName   = "/v1.base.open.BaseOpen/Login"
+	BaseOpen_Captcha_FullMethodName      = "/v1.base.open.BaseOpen/Captcha"
+	BaseOpen_Login_FullMethodName        = "/v1.base.open.BaseOpen/Login"
+	BaseOpen_RefreshToken_FullMethodName = "/v1.base.open.BaseOpen/RefreshToken"
 )
 
 // BaseOpenClient is the client API for BaseOpen service.
@@ -30,6 +31,7 @@ const (
 type BaseOpenClient interface {
 	Captcha(ctx context.Context, in *CaptchaRpcInvoke, opts ...grpc.CallOption) (*CaptchaRpcRes, error)
 	Login(ctx context.Context, in *LoginRpcInvoke, opts ...grpc.CallOption) (*LoginRpcRes, error)
+	RefreshToken(ctx context.Context, in *RefreshTokenInvoke, opts ...grpc.CallOption) (*LoginRpcRes, error)
 }
 
 type baseOpenClient struct {
@@ -60,12 +62,23 @@ func (c *baseOpenClient) Login(ctx context.Context, in *LoginRpcInvoke, opts ...
 	return out, nil
 }
 
+func (c *baseOpenClient) RefreshToken(ctx context.Context, in *RefreshTokenInvoke, opts ...grpc.CallOption) (*LoginRpcRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginRpcRes)
+	err := c.cc.Invoke(ctx, BaseOpen_RefreshToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaseOpenServer is the server API for BaseOpen service.
 // All implementations must embed UnimplementedBaseOpenServer
 // for forward compatibility.
 type BaseOpenServer interface {
 	Captcha(context.Context, *CaptchaRpcInvoke) (*CaptchaRpcRes, error)
 	Login(context.Context, *LoginRpcInvoke) (*LoginRpcRes, error)
+	RefreshToken(context.Context, *RefreshTokenInvoke) (*LoginRpcRes, error)
 	mustEmbedUnimplementedBaseOpenServer()
 }
 
@@ -81,6 +94,9 @@ func (UnimplementedBaseOpenServer) Captcha(context.Context, *CaptchaRpcInvoke) (
 }
 func (UnimplementedBaseOpenServer) Login(context.Context, *LoginRpcInvoke) (*LoginRpcRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedBaseOpenServer) RefreshToken(context.Context, *RefreshTokenInvoke) (*LoginRpcRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
 func (UnimplementedBaseOpenServer) mustEmbedUnimplementedBaseOpenServer() {}
 func (UnimplementedBaseOpenServer) testEmbeddedByValue()                  {}
@@ -139,6 +155,24 @@ func _BaseOpen_Login_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaseOpen_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RefreshTokenInvoke)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseOpenServer).RefreshToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BaseOpen_RefreshToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseOpenServer).RefreshToken(ctx, req.(*RefreshTokenInvoke))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BaseOpen_ServiceDesc is the grpc.ServiceDesc for BaseOpen service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -153,6 +187,10 @@ var BaseOpen_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _BaseOpen_Login_Handler,
+		},
+		{
+			MethodName: "RefreshToken",
+			Handler:    _BaseOpen_RefreshToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
