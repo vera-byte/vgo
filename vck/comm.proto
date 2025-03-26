@@ -1,0 +1,8 @@
+syntax = "proto3";
+package comm;
+message PageRpcInvoke{
+    int32 Page = 1;
+    int32 Size = 2;
+    string Sort = 3;
+    string Order = 4;
+}

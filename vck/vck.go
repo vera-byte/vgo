@@ -4,6 +4,7 @@ import (
 	_ "github.com/gogf/gf/contrib/drivers/pgsql/v2"
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
 	"github.com/gogf/gf/v2/database/gredis"
+	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcache"
 	"github.com/gogf/gf/v2/os/gctx"
@@ -17,8 +18,8 @@ var (
 	GetAdminConfig        = vck_config.NewAdminConfig()      // 配置中的v节相关配置
 	GetAdminAtGateway     = vck_config.GetAdminAtGateway     // 在网关中获取传入ctx 中的 admin 对象
 	GetAdminAtGrpcService = vck_config.GetAdminAtGrpcService // 在微服务中获取metadata中的 admin 对象
-
-	GetCfgWithDefault = vck_config.GetCfgWithDefault // GetCfgWithDefault 获取配置，如果配置不存在，则使用默认值
+	GetCfgWithDefault     = vck_config.GetCfgWithDefault     // GetCfgWithDefault 获取配置，如果配置不存在，则使用默认值
+	EtcdManager           = vck_config.NewChainableEtcdClient()
 )
 
 func init() {
@@ -39,9 +40,14 @@ func init() {
 		if err != nil {
 			panic(err)
 		}
+		if redisConfig.Address == "" {
+			panic(gerror.New("redis 配置错误"))
+		}
+		g.Log().Info(ctx, "初始化缓存成功")
 		CacheManager.SetAdapter(gcache.NewAdapterRedis(redis))
 
 	}
+	go vck_config.WatchVckConfig()
 	g.Log().Debug(ctx, "当前实例ID:", ProcessFlag)
 
 }
