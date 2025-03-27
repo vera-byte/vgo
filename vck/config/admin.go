@@ -56,6 +56,13 @@ type Jwt struct {
 	Token  *Token `json:"token"`
 }
 
+type TokenResult struct {
+	Expire        int64  `json:"expire"`
+	Token         string `json:"token"`
+	RefreshExpire int64  `json:"refreshExpire"`
+	RefreshToken  string `json:"refreshToken"`
+}
+
 // NewAdminConfig new config
 func NewAdminConfig() *AdminConfig {
 	var (
@@ -64,7 +71,7 @@ func NewAdminConfig() *AdminConfig {
 		etcd   = NewChainableEtcdClient()
 	)
 	if etcd != nil {
-		g.Log().Warning(ctx, "Admin配置为分布式配置")
+		g.Log().Info(ctx, "Admin配置为分布式配置")
 		adminConfig, err := etcd.GetConfig("admin")
 		if err != nil {
 			err = gerror.New("当前实例未配置admin配置")
@@ -117,7 +124,7 @@ func putAdminAtEtcd() {
 		// 处理 etcd 操作错误
 		g.Log().Errorf(context.Background(), "Failed to put data in etcd: %v", err)
 	}
-	g.Dump(NewAdminConfig())
+	NewAdminConfig()
 }
 
 // 获取传入ctx 中的 admin 对象

@@ -34,15 +34,15 @@ func (*Controller) Login(ctx context.Context, req *v1.LoginRpcInvoke) (res *v1.L
 		baseSysLoginService = service.BaseSysLoginLogic()
 	)
 	// 核验用户信息
-	expire, refreshExpire, token, refreshToken, err := baseSysLoginService.Login(ctx, req.CaptchaId, req.Password, req.Username, req.VerifyCode)
+	result, err := baseSysLoginService.Login(ctx, req.CaptchaId, req.Password, req.Username, req.VerifyCode)
 	if err != nil {
 		return nil, err
 	}
 	return &v1.LoginRpcRes{
-		Expire:        *expire,
-		RefreshExpire: *refreshExpire,
-		Token:         *token,
-		RefreshToken:  *refreshToken,
+		Expire:        result.Expire,
+		RefreshExpire: result.RefreshExpire,
+		Token:         result.Token,
+		RefreshToken:  result.RefreshToken,
 	}, nil
 }
 

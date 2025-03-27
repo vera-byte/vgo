@@ -5,8 +5,11 @@ package v1.base.open;
 option go_package = "vgo/app/admin/api/v1/base_open/protobuf";
 
 service BaseOpen {
+  // 验证码
   rpc Captcha(CaptchaRpcInvoke) returns (CaptchaRpcRes);
+  // 登录
   rpc Login(LoginRpcInvoke) returns (LoginRpcRes);
+  // token刷新
   rpc RefreshToken(RefreshTokenInvoke) returns (LoginRpcRes);
 
 }
@@ -34,6 +37,6 @@ message LoginRpcRes {
 }
 
 message RefreshTokenInvoke {
-  string RefreshToken = 1;
+  string RefreshToken = 1; // v:required
 }
 

@@ -65,25 +65,19 @@ func (c *sBaseSysLoginLogic) LoginOut(ctx context.Context) (err error) {
 }
 
 // 密码登录 此处只验证密码和验证码 Token由其他函数生成
-func (c *sBaseSysLoginLogic) Login(ctx context.Context, captchaId string, password string, userName string, code string) (expire *int64, refreshExpire *int64, token *string, refreshToken *string, err error) {
+func (c *sBaseSysLoginLogic) Login(ctx context.Context, captchaId string, password string, userName string, code string) (result *vck_config.TokenResult, err error) {
 	var (
-		md5password, _           = gmd5.Encrypt(password)
-		baseSysRoleService       = service.BaseSysRoleLogic()
-		baseSysMenuService       = service.BaseSysMenuLogic()
-		baseSysDepartmentService = service.BaseSysDepartmentLogic()
-		user                     *entity.BaseSysUser
-
-		_refreshExpire = vck.GetAdminConfig.Jwt.Token.RefreshExpire
-		_expire        = vck.GetAdminConfig.Jwt.Token.Expire
+		md5password, _ = gmd5.Encrypt(password)
+		user           *entity.BaseSysUser
 	)
 
 	if !c.VerifyCaptcha(captchaId, code) {
-		return nil, nil, nil, nil, gerror.New("验证码错误")
+		return nil, gerror.New("验证码错误")
 	}
 
 	err = dao.BaseSysUser.Ctx(ctx).Where("username=?", userName).Scan(&user)
 	if err != nil {
-		return nil, nil, nil, nil, gerror.New("系统异常!")
+		return nil, gerror.New("系统异常!")
 	}
 	if user == nil {
 		err = gerror.New("账户或密码不正确~")
@@ -93,6 +87,53 @@ func (c *sBaseSysLoginLogic) Login(ctx context.Context, captchaId string, passwo
 		err = gerror.New("账户或密码不正确~")
 		return
 	}
+	result, err = c.generateTokenByUser(ctx, user)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (c *sBaseSysLoginLogic) RefreshToken(ctx context.Context, _refreshToken string) (result *vck_config.TokenResult, err error) {
+	claims, err := vck_config.ParseToken(ctx, _refreshToken)
+	if err != nil {
+		return
+	}
+
+	if !claims.IsRefresh {
+		err = gerror.New("claims.IsRefresh error")
+		return
+	}
+
+	if !(claims.UserId > 0) {
+		err = gerror.New("claims.UserId error")
+		return
+	}
+	var (
+		user *entity.BaseSysUser
+	)
+	dao.BaseSysUser.Ctx(ctx).Where(dao.BaseSysUser.Columns().Id, claims.UserId).Where(dao.BaseSysUser.Columns().Status, 1).Scan(&user)
+	if user == nil {
+		err = gerror.New("用户不存在")
+		return
+	}
+
+	result, err = c.generateTokenByUser(ctx, user)
+	if err != nil {
+		return
+	}
+	return nil, nil
+}
+
+// 根据用户生成前端需要的Token信息
+func (c *sBaseSysLoginLogic) generateTokenByUser(ctx context.Context, user *entity.BaseSysUser) (result *vck_config.TokenResult, err error) {
+	var (
+		baseSysRoleService       = service.BaseSysRoleLogic()
+		baseSysMenuService       = service.BaseSysMenuLogic()
+		baseSysDepartmentService = service.BaseSysDepartmentLogic()
+		_refreshExpire           = vck.GetAdminConfig.Jwt.Token.RefreshExpire
+		_expire                  = vck.GetAdminConfig.Jwt.Token.Expire
+	)
 	// 获取用户角色
 	roleIds, err := baseSysRoleService.GetByUser(ctx, int64(user.Id))
 	if err != nil {
@@ -103,34 +144,30 @@ func (c *sBaseSysLoginLogic) Login(ctx context.Context, captchaId string, passwo
 		err = gerror.New("该用户未设置任何角色，无法登录~")
 		return
 	}
-
 	// 生成token
-	_token, err := c.generateTokenByUser(ctx, int64(user.Id), roleIds, user.Username, user.PasswordV, _expire, false)
-	if err != nil {
-		return
-	}
-	token = &_token
-	// 生成刷新token
-	_refreshToken, err := c.generateTokenByUser(ctx, int64(user.Id), roleIds, user.Username, user.PasswordV, _refreshExpire, true)
-	if err != nil {
-		return
-	}
-	refreshToken = &_refreshToken
-	expire = &_expire
-	refreshExpire = &_refreshExpire
+	result = &vck_config.TokenResult{}
+	result.Expire = _expire
+	result.RefreshExpire = _refreshExpire
+	result.Token = c.generateToken(ctx, int64(user.Id), roleIds, user.Username, user.PasswordV, result.Expire, false)
+	result.RefreshToken = c.generateToken(ctx, int64(user.Id), roleIds, user.Username, user.PasswordV, result.Expire, true)
+
 	// 将用户相关信息保存到缓存
 	perms := baseSysMenuService.GetPerms(ctx, roleIds)
 	departments := baseSysDepartmentService.GetByRoleIds(ctx, roleIds, user.Username == "admin")
-	vck.CacheManager.Set(ctx, "admin:passwordVersionadmin:passwordVersion:"+gconv.String(user.Id), departments, 0)
 	vck.CacheManager.Set(ctx, "admin:department:"+gconv.String(user.Id), departments, 0)
 	vck.CacheManager.Set(ctx, "admin:perms:"+gconv.String(user.Id), perms, 0)
-	vck.CacheManager.Set(ctx, "admin:token:"+gconv.String(user.Id), token, 0)
-	vck.CacheManager.Set(ctx, "admin:token:refresh:"+gconv.String(user.Id), refreshToken, 0)
+	vck.CacheManager.Set(ctx, "admin:token:"+gconv.String(user.Id), result.Token, 0)
+	vck.CacheManager.Set(ctx, "admin:token:refresh:"+gconv.String(user.Id), result.RefreshToken, 0)
+
 	return
 }
 
 // 生成token
-func (c *sBaseSysLoginLogic) generateTokenByUser(ctx context.Context, userId int64, roleIds []string, username string, userPasswordV int, expire int64, isRefresh bool) (token string, err error) {
+func (c *sBaseSysLoginLogic) generateToken(ctx context.Context, userId int64, roleIds []string, username string, userPasswordV int, expire int64, isRefresh bool) string {
+	err := vck.CacheManager.Set(ctx, "admin:passwordVersion:"+gconv.String(userId), gconv.String(userPasswordV), 0)
+	if err != nil {
+		g.Log().Error(ctx, "生成token失败", err)
+	}
 	claims := &vck_config.Claims{
 		IsRefresh:       isRefresh,
 		RoleIds:         roleIds,
@@ -144,10 +181,10 @@ func (c *sBaseSysLoginLogic) generateTokenByUser(ctx context.Context, userId int
 	}
 	tokenClaims := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
-	token, err = tokenClaims.SignedString([]byte(vck.GetAdminConfig.Jwt.Secret))
+	token, err := tokenClaims.SignedString([]byte(vck.GetAdminConfig.Jwt.Secret))
 	if err != nil {
 		g.Log().Error(ctx, "生成token失败", err)
-		return "", err
+		return ""
 	}
-	return
+	return token
 }

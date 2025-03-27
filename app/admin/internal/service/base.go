@@ -10,11 +10,15 @@ import (
 	"vgo/app/admin/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
+	vck_config "github.com/vera-byte/vgo/vgo_core_kit/config"
 )
 
 type (
 	IBaseSysDepartmentLogic interface {
 		// GetByRoleIds 获取部门
+		// GetByRoleIds 根据角色 ID 获取部门 ID 列表
+		// 如果 isAdmin 为 true，则返回所有部门 ID（超级管理员权限）
+		// 如果 isAdmin 为 false，则返回该角色所属的部门 ID
 		GetByRoleIds(ctx context.Context, roleIds []string, isAdmin bool) (res []uint)
 		// Order 排序部门
 		Order(ctx g.Ctx) (err error)
@@ -31,12 +35,14 @@ type (
 		// 退出登录
 		LoginOut(ctx context.Context) (err error)
 		// 密码登录 此处只验证密码和验证码 Token由其他函数生成
-		Login(ctx context.Context, captchaId string, password string, userName string, code string) (expire *int64, refreshExpire *int64, token *string, refreshToken *string, err error)
+		Login(ctx context.Context, captchaId string, password string, userName string, code string) (result *vck_config.TokenResult, err error)
+		RefreshToken(ctx context.Context, _refreshToken string) (result *vck_config.TokenResult, err error)
 	}
 	IBaseSysMenuLogic interface {
-		// GetPerms 获取菜单的权限
 		GetPerms(ctx context.Context, roleIds []string) []string
-		// GetMenus 获取菜单
+		// GetMenus 获取指定角色的菜单列表
+		// 如果 isAdmin 为 true，则返回所有菜单（超级管理员权限）
+		// 如果 isAdmin 为 false，则根据角色 ID 查询对应的菜单
 		GetMenus(ctx context.Context, roleIds []string, isAdmin bool) []entity.BaseSysMenu
 	}
 	IBaseSysRoleLogic interface {
@@ -45,6 +51,7 @@ type (
 	}
 	IBaseSysUserLogic interface {
 		Person(ctx context.Context, userId int64) (user *entity.BaseSysUser, err error)
+		PersonUpdate(ctx context.Context, userId int64, k string, v string, o string) error
 	}
 )
 

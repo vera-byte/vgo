@@ -5,7 +5,6 @@ import (
 	"vgo/app/admin/internal/dao"
 	"vgo/app/admin/internal/service"
 
-	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -22,33 +21,47 @@ func NewBaseSysDepartmentLogic() *sBaseSysDepartmentLogic {
 }
 
 // GetByRoleIds 获取部门
+// GetByRoleIds 根据角色 ID 获取部门 ID 列表
+// 如果 isAdmin 为 true，则返回所有部门 ID（超级管理员权限）
+// 如果 isAdmin 为 false，则返回该角色所属的部门 ID
 func (s *sBaseSysDepartmentLogic) GetByRoleIds(ctx context.Context, roleIds []string, isAdmin bool) (res []uint) {
-	var (
-		result gdb.Result
-	)
-	// 如果roleIds不为空
-	if len(roleIds) > 0 {
-		// 如果是超级管理员，则返回所有部门
-		if isAdmin {
-			result, _ = dao.BaseSysDepartment.Ctx(ctx).Fields("id").All()
-			for _, v := range result {
-				vmap := v.Map()
-				if vmap["id"] != nil {
-					res = append(res, gconv.Uint(vmap["id"]))
-				}
-			}
-		} else {
-			// 如果不是超级管理员，则返回角色所在部门
-			result, _ = dao.BaseSysRoleDepartment.Ctx(ctx).Where("roleId IN (?)", roleIds).Fields("departmentId").All()
-			for _, v := range result {
-				vmap := v.Map()
-				if vmap["departmentId"] != nil {
-					res = append(res, gconv.Uint(vmap["departmentId"]))
-				}
-			}
-		}
-
+	// 如果 roleIds 为空，直接返回空结果
+	if len(roleIds) == 0 {
+		return
 	}
+
+	// // 获取数据库表名
+	// departmentTable := dao.BaseSysDepartment.Table()
+	// roleDepartmentTable := dao.BaseSysRoleDepartment.Table()
+
+	// 获取字段名
+	departmentIdField := dao.BaseSysDepartment.Columns().Id
+	roleDepartmentRoleIdField := dao.BaseSysRoleDepartment.Columns().RoleId
+	roleDepartmentDepartmentIdField := dao.BaseSysRoleDepartment.Columns().DepartmentId
+
+	// 定义查询结果
+	var result []map[string]interface{}
+
+	if isAdmin {
+		// 如果是超级管理员，获取所有部门 ID
+		_ = dao.BaseSysDepartment.Ctx(ctx).
+			Fields(departmentIdField).
+			Scan(&result)
+	} else {
+		// 角色对应的部门 ID 查询
+		_ = dao.BaseSysRoleDepartment.Ctx(ctx).
+			Where(roleDepartmentRoleIdField+" IN(?)", roleIds).
+			Fields(roleDepartmentDepartmentIdField).
+			Scan(&result)
+	}
+
+	// 转换查询结果
+	for _, v := range result {
+		if id, ok := v[departmentIdField]; ok {
+			res = append(res, gconv.Uint(id))
+		}
+	}
+
 	return
 }
 
@@ -69,7 +82,7 @@ func (s *sBaseSysDepartmentLogic) Order(ctx g.Ctx) (err error) {
 		if err != nil {
 			continue
 		}
-		dao.BaseSysDepartment.Ctx(ctx).Where("id = ?", data.Id).Data(data).Update()
+		dao.BaseSysDepartment.Ctx(ctx).Where(dao.BaseSysDepartment.Columns().Id, data.Id).Data(data).Update()
 	}
 
 	return

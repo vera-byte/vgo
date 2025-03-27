@@ -78,3 +78,10 @@ func (*Controller) Person(ctx context.Context, req *v1.PersonRpcInvoke) (res *v1
 func (*Controller) LoginOut(ctx context.Context, req *v1.LoginOutRpcInvoke) (res *v1.LoginOutRes, err error) {
 	return nil, service.BaseSysLoginLogic().LoginOut(ctx)
 }
+
+func (*Controller) PersonUpdate(ctx context.Context, req *v1.PersonUpdateInvoke) (res *v1.PersonUpdateRes, err error) {
+	var (
+		admin = vck.GetAdminAtGrpcService(ctx)
+	)
+	return nil, service.BaseSysUserLogic().PersonUpdate(ctx, admin.UserId, req.Key, req.Value, req.Other)
+}

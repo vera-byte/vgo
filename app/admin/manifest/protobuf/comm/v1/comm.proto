@@ -11,46 +11,85 @@ service BaseComm {
   rpc Person(PersonRpcInvoke) returns (PersonRpcRes);
   // 退出登录
   rpc LoginOut(LoginOutRpcInvoke) returns (LoginOutRes);
+  // 更新用户信息
+  rpc PersonUpdate(PersonUpdateInvoke) returns (PersonUpdateRes);
 
 }
 
+message PersonUpdateInvoke {
+  // 更新标识
+  string Key = 1;
+  // 更新值
+  string Value = 2;
+  // 其他参数
+  string Other = 3;
+}
+message PersonUpdateRes{}
+
 message PermmenuRpcInvoke {}
 message PermmenuRpcRes {
+  // 权限集合
   repeated string Perms = 1;
+  // 菜单集合
   repeated Menu Menus = 2;
 }
 message Menu {
   string CreateTime = 1;
   string UpdateTime = 2;
+  // 图标
   string Icon = 3;
+  // 菜单ID
   int64 Id = 4;
+  // 是否显示
   bool IsShow = 5;
+  // 是否缓存
   bool KeepAlive = 6;
+  // 菜单名称
   string Name = 7;
+  // 排序
   int64 OrderNum = 8;
+  // 父ID
   int64 ParentId = 9;
+  // 菜单权限
   string Perms = 10;
+  // 路由地址
   string Router = 11;
+  // 租户ID
   int64 TenantId = 12;
+  // 菜单类型
   int32 Type = 13;
+  // 视图路径
   string ViewPath = 14;
 }
 message PersonRpcInvoke {
 }
 message PersonRpcRes {
+  // 用户ID
   int64 Id = 1;
+  // 部门ID
   int64 DepartmentId = 2;
+  // 头像
   string HeadImg = 3;
+  // 姓名
   string Name = 4;
+  // 昵称
   string NickName = 5;
+  // 密码版本
   int64 PasswordV = 6;
+  // 电话
   string Phone = 7;
+  // 备注
   string Remark = 8;
+  // 状态
   int32 Status = 9;
+  // 租户ID
   int64 TenantId = 10;
+  // 用户名
   string UserName = 11;
+
   int64 createTime = 12;
   int64 updateTime = 14;
+  // 邮箱
   string Email = 15;
 }
 

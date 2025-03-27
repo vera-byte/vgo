@@ -23,6 +23,15 @@ type PersonRes struct {
 	TenantId     int64  `json:"tenantId" dc:"租户ID"`
 }
 
+type PersonUpdateReq struct {
+	g.Meta      `path:"personUpdate" method:"post" sm:"更新个人用户信息" tags:"鉴权"`
+	HeadImg     string `json:"headImg"  dc:"头像"`
+	NickName    string `json:"nickName"  dc:"昵称"`
+	OldPassword string `json:"oldPassword"  dc:"旧密码"`
+	Password    string `json:"password"  dc:"新密码"`
+}
+type PersonUpdateRes struct{}
+
 type PermmenuReq struct {
 	g.Meta `path:"permmenu" method:"get" sm:"权限菜单" tags:"鉴权"`
 }

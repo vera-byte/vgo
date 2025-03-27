@@ -264,7 +264,7 @@ func (x *LoginRpcRes) GetToken() string {
 
 type RefreshTokenInvoke struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	RefreshToken  string                 `protobuf:"bytes,1,opt,name=RefreshToken,proto3" json:"RefreshToken,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=RefreshToken,proto3" json:"RefreshToken,omitempty" v:"required"` // v:required
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

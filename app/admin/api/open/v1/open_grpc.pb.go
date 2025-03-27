@@ -29,8 +29,11 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BaseOpenClient interface {
+	// 验证码
 	Captcha(ctx context.Context, in *CaptchaRpcInvoke, opts ...grpc.CallOption) (*CaptchaRpcRes, error)
+	// 登录
 	Login(ctx context.Context, in *LoginRpcInvoke, opts ...grpc.CallOption) (*LoginRpcRes, error)
+	// token刷新
 	RefreshToken(ctx context.Context, in *RefreshTokenInvoke, opts ...grpc.CallOption) (*LoginRpcRes, error)
 }
 
@@ -76,8 +79,11 @@ func (c *baseOpenClient) RefreshToken(ctx context.Context, in *RefreshTokenInvok
 // All implementations must embed UnimplementedBaseOpenServer
 // for forward compatibility.
 type BaseOpenServer interface {
+	// 验证码
 	Captcha(context.Context, *CaptchaRpcInvoke) (*CaptchaRpcRes, error)
+	// 登录
 	Login(context.Context, *LoginRpcInvoke) (*LoginRpcRes, error)
+	// token刷新
 	RefreshToken(context.Context, *RefreshTokenInvoke) (*LoginRpcRes, error)
 	mustEmbedUnimplementedBaseOpenServer()
 }

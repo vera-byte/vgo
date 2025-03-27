@@ -6,8 +6,7 @@ import (
 	"vgo/app/admin/internal/model/entity"
 	"vgo/app/admin/internal/service"
 
-	"github.com/gogf/gf/v2/container/garray"
-	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/container/gset"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -24,41 +23,92 @@ func NewBaseSysMenuLogic() *sBaseSysMenuLogic {
 	return &sBaseSysMenuLogic{}
 }
 
-// GetPerms 获取菜单的权限
 func (s *sBaseSysMenuLogic) GetPerms(ctx context.Context, roleIds []string) []string {
-	var (
-		perms  []string
-		result gdb.Result
-	)
-	m := dao.BaseSysMenu.Ctx(ctx).As("a")
-	// 如果roldIds 包含 1 则表示是超级管理员，则返回所有权限
-	if garray.NewIntArrayFrom(gconv.Ints(roleIds)).Contains(1) {
-		result, _ = m.Fields("a.perms").All()
+	var perms []string
+
+	// 转换 roleIds 为整数集合
+	roleIdSet := gset.NewIntSetFrom(gconv.Ints(roleIds))
+
+	// 定义存储权限的结构体
+	var menus []entity.BaseSysMenu
+
+	// 获取表名和字段
+	menuTable := dao.BaseSysMenu.Table()
+	roleMenuTable := dao.BaseSysRoleMenu.Table()
+	roleTable := dao.BaseSysRole.Table()
+
+	menuIdField := dao.BaseSysMenu.Columns().Id
+	menuPermsField := dao.BaseSysMenu.Columns().Perms
+	roleIdField := dao.BaseSysRole.Columns().Id
+	roleMenuRoleIdField := dao.BaseSysRoleMenu.Columns().RoleId
+	roleMenuMenuIdField := dao.BaseSysRoleMenu.Columns().MenuId
+
+	// 查询数据库
+	if roleIdSet.Contains(1) {
+		// 超级管理员获取所有权限
+		err := dao.BaseSysMenu.Ctx(ctx).
+			Fields(menuPermsField).
+			Scan(&menus)
+		if err != nil {
+			return nil
+		}
 	} else {
-		result, _ = m.InnerJoin("base_sys_role_menu b", "a.id=b.menu_id").InnerJoin("base_sys_role c", "b.role_id=c.id").Where("c.id IN (?)", roleIds).Fields("a.perms").All()
-	}
-	for _, v := range result {
-		vmap := v.Map()
-		if vmap["perms"] != nil {
-			p := gstr.Split(vmap["perms"].(string), ",")
-			perms = append(perms, p...)
+		// 普通角色权限查询
+		err := dao.BaseSysMenu.Ctx(ctx).
+			InnerJoin(roleMenuTable, menuTable+"."+menuIdField+"="+roleMenuTable+"."+roleMenuMenuIdField).
+			InnerJoin(roleTable, roleMenuTable+"."+roleMenuRoleIdField+"="+roleTable+"."+roleIdField).
+			Where(roleTable+"."+roleIdField+" IN(?)", roleIds).
+			Fields(menuPermsField).
+			Scan(&menus)
+		if err != nil {
+			return nil
 		}
 	}
+
+	// 解析权限
+	for _, menu := range menus {
+		if menu.Perms != "" {
+			perms = append(perms, gstr.Split(menu.Perms, ",")...)
+		}
+	}
+
 	return perms
 }
 
-// GetMenus 获取菜单
+// GetMenus 获取指定角色的菜单列表
+// 如果 isAdmin 为 true，则返回所有菜单（超级管理员权限）
+// 如果 isAdmin 为 false，则根据角色 ID 查询对应的菜单
 func (s *sBaseSysMenuLogic) GetMenus(ctx context.Context, roleIds []string, isAdmin bool) []entity.BaseSysMenu {
-	var (
-		menus = &[]entity.BaseSysMenu{}
-	)
-	// 屏蔽 base_sys_role_menu.id 防止部分权限的用户登录时菜单渲染错误
-	m := dao.BaseSysMenu.Ctx(ctx).As("a").Fields("a.*")
-	if isAdmin {
-		_ = m.Group("a.id").Order("a.order_num asc").Scan(menus)
-	} else {
-		_ = m.InnerJoin("base_sys_role_menu b", "a.id=b.menu_id").Where("b.role_id IN (?)", roleIds).Group("a.id").Order("a.order_num asc").Scan(menus)
-	}
-	return *menus
+	// 定义返回的菜单列表
+	var menus []entity.BaseSysMenu
 
+	// 获取数据库表名
+	menuTable := dao.BaseSysMenu.Table()
+	roleMenuTable := dao.BaseSysRoleMenu.Table()
+
+	// 获取字段名
+	menuIdField := dao.BaseSysMenu.Columns().Id
+	menuOrderNumField := dao.BaseSysMenu.Columns().OrderNum
+	roleMenuRoleIdField := dao.BaseSysRoleMenu.Columns().RoleId
+	roleMenuMenuIdField := dao.BaseSysRoleMenu.Columns().MenuId
+
+	// 查询构造器
+	m := dao.BaseSysMenu.Ctx(ctx).
+		Fields(menuTable + ".*") // 查询所有菜单字段
+
+	if isAdmin {
+		// 如果是超级管理员，获取所有菜单
+		_ = m.Group(menuIdField).
+			Order(menuOrderNumField + " ASC").
+			Scan(&menus)
+	} else {
+		// 普通用户通过角色 ID 关联查询菜单
+		_ = m.InnerJoin(roleMenuTable, menuTable+"."+menuIdField+"="+roleMenuTable+"."+roleMenuMenuIdField).
+			Where(roleMenuTable+"."+roleMenuRoleIdField+" IN(?)", roleIds).
+			Group(menuIdField).
+			Order(menuOrderNumField + " ASC").
+			Scan(&menus)
+	}
+
+	return menus
 }

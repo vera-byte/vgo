@@ -20,8 +20,10 @@ type sBaseSysRoleLogic struct {
 
 // 通过用户ID获取角色集合
 func (l *sBaseSysRoleLogic) GetByUser(ctx context.Context, userId int64) (roles []string, err error) {
-
-	res, err := dao.BaseSysUserRole.Ctx(ctx).Where("user_id = ?", userId).Array("role_id")
+	var (
+		daoBaseSysUserRole = dao.BaseSysUserRole
+	)
+	res, err := daoBaseSysUserRole.Ctx(ctx).Where(daoBaseSysUserRole.Columns().UserId, userId).Array(daoBaseSysUserRole.Columns().RoleId)
 	for _, v := range res {
 		roles = append(roles, gconv.String(v))
 	}

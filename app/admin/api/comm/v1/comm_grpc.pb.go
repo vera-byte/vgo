@@ -20,9 +20,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	BaseComm_Permmenu_FullMethodName = "/v1.base.comm.BaseComm/Permmenu"
-	BaseComm_Person_FullMethodName   = "/v1.base.comm.BaseComm/Person"
-	BaseComm_LoginOut_FullMethodName = "/v1.base.comm.BaseComm/LoginOut"
+	BaseComm_Permmenu_FullMethodName     = "/v1.base.comm.BaseComm/Permmenu"
+	BaseComm_Person_FullMethodName       = "/v1.base.comm.BaseComm/Person"
+	BaseComm_LoginOut_FullMethodName     = "/v1.base.comm.BaseComm/LoginOut"
+	BaseComm_PersonUpdate_FullMethodName = "/v1.base.comm.BaseComm/PersonUpdate"
 )
 
 // BaseCommClient is the client API for BaseComm service.
@@ -35,6 +36,8 @@ type BaseCommClient interface {
 	Person(ctx context.Context, in *PersonRpcInvoke, opts ...grpc.CallOption) (*PersonRpcRes, error)
 	// 退出登录
 	LoginOut(ctx context.Context, in *LoginOutRpcInvoke, opts ...grpc.CallOption) (*LoginOutRes, error)
+	// 更新用户信息
+	PersonUpdate(ctx context.Context, in *PersonUpdateInvoke, opts ...grpc.CallOption) (*PersonUpdateRes, error)
 }
 
 type baseCommClient struct {
@@ -75,6 +78,16 @@ func (c *baseCommClient) LoginOut(ctx context.Context, in *LoginOutRpcInvoke, op
 	return out, nil
 }
 
+func (c *baseCommClient) PersonUpdate(ctx context.Context, in *PersonUpdateInvoke, opts ...grpc.CallOption) (*PersonUpdateRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PersonUpdateRes)
+	err := c.cc.Invoke(ctx, BaseComm_PersonUpdate_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaseCommServer is the server API for BaseComm service.
 // All implementations must embed UnimplementedBaseCommServer
 // for forward compatibility.
@@ -85,6 +98,8 @@ type BaseCommServer interface {
 	Person(context.Context, *PersonRpcInvoke) (*PersonRpcRes, error)
 	// 退出登录
 	LoginOut(context.Context, *LoginOutRpcInvoke) (*LoginOutRes, error)
+	// 更新用户信息
+	PersonUpdate(context.Context, *PersonUpdateInvoke) (*PersonUpdateRes, error)
 	mustEmbedUnimplementedBaseCommServer()
 }
 
@@ -103,6 +118,9 @@ func (UnimplementedBaseCommServer) Person(context.Context, *PersonRpcInvoke) (*P
 }
 func (UnimplementedBaseCommServer) LoginOut(context.Context, *LoginOutRpcInvoke) (*LoginOutRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LoginOut not implemented")
+}
+func (UnimplementedBaseCommServer) PersonUpdate(context.Context, *PersonUpdateInvoke) (*PersonUpdateRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PersonUpdate not implemented")
 }
 func (UnimplementedBaseCommServer) mustEmbedUnimplementedBaseCommServer() {}
 func (UnimplementedBaseCommServer) testEmbeddedByValue()                  {}
@@ -179,6 +197,24 @@ func _BaseComm_LoginOut_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaseComm_PersonUpdate_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PersonUpdateInvoke)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseCommServer).PersonUpdate(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BaseComm_PersonUpdate_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseCommServer).PersonUpdate(ctx, req.(*PersonUpdateInvoke))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BaseComm_ServiceDesc is the grpc.ServiceDesc for BaseComm service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -197,6 +233,10 @@ var BaseComm_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "LoginOut",
 			Handler:    _BaseComm_LoginOut_Handler,
+		},
+		{
+			MethodName: "PersonUpdate",
+			Handler:    _BaseComm_PersonUpdate_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
