@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  valkey:
+    image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/valkey/valkey:8
+    container_name: valkey
+    restart: always
+    ports:
+      - "36379:6379"
+    volumes:
+      - ./data:/data # 持久化数据
+      - ./valkey.conf:/etc/valkey/valkey.conf # 挂载配置文件
+    environment:
+      - VALKEY_APPENDONLY=yes # 开启 AOF 持久化

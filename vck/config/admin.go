@@ -6,6 +6,7 @@ import (
 	"github.com/gogf/gf/v2/encoding/gjson"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/golang-jwt/jwt/v4"
 	"google.golang.org/grpc/metadata"
 )
@@ -30,8 +31,20 @@ type Admin struct {
 type AdminConfig struct {
 	Jwt        *Jwt
 	Middleware *Middleware
+	File       *File
 }
-
+type File struct {
+	Model string
+	Oss   *Oss
+}
+type Oss struct {
+	Host                string
+	AccessKeySecret     string
+	Expires             int64
+	SuccessActionStatus int32
+	AccessKeyId         string
+	ContentLength       int64
+}
 type Middleware struct {
 	Authority *Authority
 	Log       *Log
@@ -73,9 +86,13 @@ func NewAdminConfig() *AdminConfig {
 	if etcd != nil {
 		g.Log().Info(ctx, "Admin配置为分布式配置")
 		adminConfig, err := etcd.GetConfig("admin")
+
 		if err != nil {
-			err = gerror.New("当前实例未配置admin配置")
-			panic(err)
+			err = tryConfigFile()
+			if err != nil {
+				panic(err)
+
+			}
 		}
 		adminConfig.Scan(&config)
 	} else {
@@ -86,12 +103,42 @@ func NewAdminConfig() *AdminConfig {
 	return config
 }
 
+func tryConfigFile() (err error) {
+	var (
+		etcd   = NewChainableEtcdClient()
+		config = GetAdminConfigAtFile()
+	)
+	if config == nil {
+		err = gerror.New("从配置文件中初始化到etcd出错:未找到配置文件")
+		return
+	}
+	err = etcd.PutConfig("admin", config)
+	if err == nil {
+		data, _ := etcd.GetConfig("admin")
+		g.Dump(gconv.Map(data))
+		NewAdminConfig()
+
+	}
+	return
+}
+
 func GetAdminConfigAtFile() *AdminConfig {
 	var (
 		ctx    g.Ctx
 		config *AdminConfig
 	)
 	config = &AdminConfig{
+		File: &File{
+			Model: GetCfgWithDefault(ctx, "file.model", "oss").String(),
+			Oss: &Oss{
+				Host:                GetCfgWithDefault(ctx, "file.oss.host", "").String(),
+				AccessKeySecret:     GetCfgWithDefault(ctx, "file.oss.access_key_secret", "").String(),
+				Expires:             GetCfgWithDefault(ctx, "file.oss.expires", 120).Int64(),
+				SuccessActionStatus: GetCfgWithDefault(ctx, "file.oss.success_action_status", 200).Int32(),
+				AccessKeyId:         GetCfgWithDefault(ctx, "file.oss.access_key_id", "").String(),
+				ContentLength:       GetCfgWithDefault(ctx, "file.oss.content_length", 1048576000).Int64(),
+			},
+		},
 		Jwt: &Jwt{
 			Sso:    GetCfgWithDefault(ctx, "admin.jwt.sso", false).Bool(),
 			Secret: GetCfgWithDefault(ctx, "admin.jwt.secret", "").String(),
@@ -110,21 +157,6 @@ func GetAdminConfigAtFile() *AdminConfig {
 		},
 	}
 	return config
-}
-
-func putAdminAtEtcd() {
-	var (
-		config = GetAdminConfigAtFile()
-		etcd   = NewChainableEtcdClient()
-	)
-
-	// 执行 Put 操作
-	err := etcd.PutConfig("admin", config)
-	if err != nil {
-		// 处理 etcd 操作错误
-		g.Log().Errorf(context.Background(), "Failed to put data in etcd: %v", err)
-	}
-	NewAdminConfig()
 }
 
 // 获取传入ctx 中的 admin 对象

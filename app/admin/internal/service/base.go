@@ -11,6 +11,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	vck_config "github.com/vera-byte/vgo/vgo_core_kit/config"
+	vck_request "github.com/vera-byte/vgo/vgo_core_kit/request"
 )
 
 type (
@@ -22,6 +23,8 @@ type (
 		GetByRoleIds(ctx context.Context, roleIds []string, isAdmin bool) (res []uint)
 		// Order 排序部门
 		Order(ctx g.Ctx) (err error)
+		// 部门列表
+		List(ctx context.Context) (res []entity.BaseSysDepartment, err error)
 	}
 	IBaseSysLogLogic interface {
 		// 记录日志
@@ -50,8 +53,12 @@ type (
 		GetByUser(ctx context.Context, userId int64) (roles []string, err error)
 	}
 	IBaseSysUserLogic interface {
+		// 用户信息
 		Person(ctx context.Context, userId int64) (user *entity.BaseSysUser, err error)
+		// 更新用户信息
 		PersonUpdate(ctx context.Context, userId int64, k string, v string, o string) error
+		// page
+		Page(ctx context.Context, pageReq *vck_request.PageReq, departmentIds []int64) (res []*entity.BaseSysUser, pagination *vck_request.Pagination, err error)
 	}
 )
 

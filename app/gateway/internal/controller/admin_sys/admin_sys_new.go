@@ -19,6 +19,8 @@ type ControllerV1 struct {
 func NewV1() *ControllerV1 {
 	var conn = grpcx.Client.MustNewGrpcClientConn("admin", grpcx.Client.ChainUnary(
 		utility.GrpcClientTimeout,
+		utility.AuthInterceptor,
+		utility.PageRequestInterceptor,
 	))
 	return &ControllerV1{
 		AdminBaseSysClient: v1.NewBaseSysClient(conn),

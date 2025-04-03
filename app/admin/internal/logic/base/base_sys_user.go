@@ -9,6 +9,7 @@ import (
 	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	vck_request "github.com/vera-byte/vgo/vgo_core_kit/request"
 )
 
 func init() {
@@ -63,4 +64,19 @@ func (s *sBaseSysUserLogic) PersonUpdate(ctx context.Context, userId int64, k st
 	}
 	_, err := daoBaseSysUser.Ctx(ctx).Data(data).Where(daoBaseSysUser.Columns().Id, userId).Update()
 	return err
+}
+
+// page
+func (s *sBaseSysUserLogic) Page(ctx context.Context, pageReq *vck_request.PageReq, departmentIds []int64) (res []*entity.BaseSysUser, pagination *vck_request.Pagination, err error) {
+	var (
+		m = dao.BaseSysUser.Ctx(ctx).WhereIn(dao.BaseSysUser.Columns().DepartmentId, departmentIds).Order(pageReq.Order, pageReq.Sort).Limit(pageReq.Size).Offset((pageReq.Page - 1) * pageReq.Size)
+	)
+	pagination = &vck_request.Pagination{
+		Page: pageReq.Page,
+		Size: pageReq.Size,
+	}
+	pagination.Total, _ = m.Clone().Count()
+
+	err = m.Scan(&res)
+	return
 }

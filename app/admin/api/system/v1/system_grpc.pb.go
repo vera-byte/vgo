@@ -22,6 +22,8 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	BaseSys_SystemLogPage_FullMethodName    = "/v1.base.system.BaseSys/SystemLogPage"
 	BaseSys_SystemLogGateway_FullMethodName = "/v1.base.system.BaseSys/SystemLogGateway"
+	BaseSys_DepartmentList_FullMethodName   = "/v1.base.system.BaseSys/DepartmentList"
+	BaseSys_UserPage_FullMethodName         = "/v1.base.system.BaseSys/UserPage"
 )
 
 // BaseSysClient is the client API for BaseSys service.
@@ -32,6 +34,10 @@ type BaseSysClient interface {
 	SystemLogPage(ctx context.Context, in *SystemLogPageRpcInvoke, opts ...grpc.CallOption) (*SystemLogPageRpcRes, error)
 	// 记录日志
 	SystemLogGateway(ctx context.Context, in *SystemLogGatewayRpcInvoke, opts ...grpc.CallOption) (*SystemLogGatewayRpcRes, error)
+	// 部门列表
+	DepartmentList(ctx context.Context, in *DepartmentListRpcInvoke, opts ...grpc.CallOption) (*DepartmentListRpcRes, error)
+	// 用户分页
+	UserPage(ctx context.Context, in *UserPageRpcInvoke, opts ...grpc.CallOption) (*UserPageRpcRes, error)
 }
 
 type baseSysClient struct {
@@ -62,6 +68,26 @@ func (c *baseSysClient) SystemLogGateway(ctx context.Context, in *SystemLogGatew
 	return out, nil
 }
 
+func (c *baseSysClient) DepartmentList(ctx context.Context, in *DepartmentListRpcInvoke, opts ...grpc.CallOption) (*DepartmentListRpcRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DepartmentListRpcRes)
+	err := c.cc.Invoke(ctx, BaseSys_DepartmentList_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *baseSysClient) UserPage(ctx context.Context, in *UserPageRpcInvoke, opts ...grpc.CallOption) (*UserPageRpcRes, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserPageRpcRes)
+	err := c.cc.Invoke(ctx, BaseSys_UserPage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // BaseSysServer is the server API for BaseSys service.
 // All implementations must embed UnimplementedBaseSysServer
 // for forward compatibility.
@@ -70,6 +96,10 @@ type BaseSysServer interface {
 	SystemLogPage(context.Context, *SystemLogPageRpcInvoke) (*SystemLogPageRpcRes, error)
 	// 记录日志
 	SystemLogGateway(context.Context, *SystemLogGatewayRpcInvoke) (*SystemLogGatewayRpcRes, error)
+	// 部门列表
+	DepartmentList(context.Context, *DepartmentListRpcInvoke) (*DepartmentListRpcRes, error)
+	// 用户分页
+	UserPage(context.Context, *UserPageRpcInvoke) (*UserPageRpcRes, error)
 	mustEmbedUnimplementedBaseSysServer()
 }
 
@@ -85,6 +115,12 @@ func (UnimplementedBaseSysServer) SystemLogPage(context.Context, *SystemLogPageR
 }
 func (UnimplementedBaseSysServer) SystemLogGateway(context.Context, *SystemLogGatewayRpcInvoke) (*SystemLogGatewayRpcRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SystemLogGateway not implemented")
+}
+func (UnimplementedBaseSysServer) DepartmentList(context.Context, *DepartmentListRpcInvoke) (*DepartmentListRpcRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DepartmentList not implemented")
+}
+func (UnimplementedBaseSysServer) UserPage(context.Context, *UserPageRpcInvoke) (*UserPageRpcRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UserPage not implemented")
 }
 func (UnimplementedBaseSysServer) mustEmbedUnimplementedBaseSysServer() {}
 func (UnimplementedBaseSysServer) testEmbeddedByValue()                 {}
@@ -143,6 +179,42 @@ func _BaseSys_SystemLogGateway_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _BaseSys_DepartmentList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DepartmentListRpcInvoke)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseSysServer).DepartmentList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BaseSys_DepartmentList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseSysServer).DepartmentList(ctx, req.(*DepartmentListRpcInvoke))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _BaseSys_UserPage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserPageRpcInvoke)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(BaseSysServer).UserPage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: BaseSys_UserPage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(BaseSysServer).UserPage(ctx, req.(*UserPageRpcInvoke))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // BaseSys_ServiceDesc is the grpc.ServiceDesc for BaseSys service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -157,6 +229,14 @@ var BaseSys_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SystemLogGateway",
 			Handler:    _BaseSys_SystemLogGateway_Handler,
+		},
+		{
+			MethodName: "DepartmentList",
+			Handler:    _BaseSys_DepartmentList_Handler,
+		},
+		{
+			MethodName: "UserPage",
+			Handler:    _BaseSys_UserPage_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

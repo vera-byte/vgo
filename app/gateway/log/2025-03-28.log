@@ -1,0 +1,59 @@
+2025-03-28T13:40:58.344+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004b4630\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004b4630\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T13:40:58.342+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d3860\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d3860\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T13:40:58.342+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008fc870\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008fc870\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:37.467+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:37.545+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000f311a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000f311a0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:37.555+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2060\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003d2060\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:43.771+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:43.788+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400027de00\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400027de00\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:43.797+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008a1140\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008a1140\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:49.904+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:49.915+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000396c30\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000396c30\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:49.918+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000a22750\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000a22750\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:55.768+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:55.798+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008a1d70\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008a1d70\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:55.802+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002be450\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002be450\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:57.628+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:57.635+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002bf6b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140002bf6b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:57.639+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007a1080\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007a1080\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:58.196+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:58.224+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140010106f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140010106f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:58.236+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001011200\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001011200\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:59.948+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-03-28T16:30:59.955+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000988390\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000988390\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T16:30:59.958+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000af0e70\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000af0e70\u003e"},"BalancerAttributes":null,"Metadata":null}]
+2025-03-28T18:42:05.832+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T18:42:05.833+08:00 [INFO] Admin配置为分布式配置
+2025-03-28T18:42:05.840+08:00 [WARN] etcd  admin not found
+2025-03-28T18:42:05.840+08:00 [DEBU] vck init start ...
+2025-03-28T18:42:05.841+08:00 [INFO] 初始化缓存成功
+2025-03-28T18:42:05.841+08:00 [DEBU] 当前实例ID: 12uncdmccz0d8ru4jndlig8100ljwthn
+2025-03-28T18:42:05.841+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:05:56.882+08:00 [WARN] Admin配置当前为单接点配置,如分布式模式请配置etcd
+2025-03-28T19:05:56.884+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:05:56.885+08:00 [DEBU] vck init start ...
+2025-03-28T19:05:56.885+08:00 [INFO] 初始化缓存成功
+2025-03-28T19:05:56.885+08:00 [DEBU] 当前实例ID: l17i960tiu0d8rumt2cm6jk1003b62zl
+2025-03-28T19:05:56.885+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:09:13.160+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:09:13.168+08:00 [INFO] Admin配置为分布式配置
+2025-03-28T19:09:13.169+08:00 [DEBU] vck init start ...
+2025-03-28T19:09:13.170+08:00 [INFO] 初始化缓存成功
+2025-03-28T19:09:13.170+08:00 [DEBU] 当前实例ID: l17i960w120d8rupb8e3mp4100eokj6b
+2025-03-28T19:09:13.170+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:11:56.542+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:12:06.418+08:00 [INFO] Admin配置为分布式配置
+2025-03-28T19:12:34.712+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:12:34.721+08:00 [INFO] Admin配置为分布式配置
+2025-03-28T19:13:26.516+08:00 [WARN] Admin配置当前为单接点配置,如分布式模式请配置etcd
+2025-03-28T19:13:26.519+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:13:26.520+08:00 [DEBU] vck init start ...
+2025-03-28T19:13:26.520+08:00 [INFO] 初始化缓存成功
+2025-03-28T19:13:26.520+08:00 [DEBU] 当前实例ID: l17i960zgi0d8rusjmgg0601004rzeng
+2025-03-28T19:13:26.520+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:14:06.830+08:00 [DEBU] Etcd配置中心开启
+2025-03-28T19:14:06.831+08:00 [INFO] Admin配置为分布式配置
+2025-03-28T19:14:21.769+08:00 [DEBU] vck init start ...
+2025-03-28T19:14:21.770+08:00 [INFO] 初始化缓存成功
+2025-03-28T19:14:21.770+08:00 [DEBU] 当前实例ID: l17i9601061d8rut255y4gw100mbo85r
+2025-03-28T19:14:21.770+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config

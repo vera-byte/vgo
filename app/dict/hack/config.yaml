@@ -1,13 +1,18 @@
-
 # CLI tool, only in development environment.
 # https://goframe.org/docs/cli
 gfcli:
   gen:
     dao:
-      - link: "mysql:root:12345678@tcp(127.0.0.1:3306)/test"
-        descriptionTag: true
+      - link: "pgsql:vgo:vgo@tcp(127.0.0.1:5432)/vgo"
+        descriptionTag: true # 用于指定是否为数据模型结构体属性增加 desription 的标签，内容为对应的数据表字段注释。
+        tables: "dict_info,dict_type" # 指定当前数据库中需要执行代码生成的数据表。如果为空，表示数据库的所有表都会生成。
+        group: "default" # 在数据库配置中的数据库分组名称。只能配置一个名称。数据库在配置文件中的分组名称往往确定之后便不再修改。
+        withTime: true # 为每个自动生成的代码文件增加生成时间注释
+        gJsonSupport: true # 当数据表字段类型为 JSON 类型时，代码生成的属性类型使用 *gjson.Json 类型。
+        noModelComment: false # 用于指定是否关闭数据模型结构体属性的注释自动生成，内容为数据表对应字段的注释
+        stdTime: true # 当数据表字段类型为时间类型时，代码生成的属性类型使用标准库的 time.Time 而不是框架的 *gtime.Time 类型。
+        overwriteDao: true # 每次生成 dao 代码时是否重新生成覆盖 dao/internal 目录外层的文件。注意 dao/internal 目录外层的文件可能由开发者自定义扩展了功能，覆盖可能会产生风险。
+    pbentity:
+      - link: "pgsql:vgo:vgo@tcp(127.0.0.1:5432)/vgo"
+        tables: "dict_info,dict_type" # 指定当前数据库中需要执行代码生成的数据表。如果为空，表示数据库的所有表都会生成。
 
-  docker:
-    build: "-a amd64 -s linux -p temp -ew"
-    tagPrefixes:
-      - my.image.pub/my-app

@@ -6,7 +6,6 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/golang-jwt/jwt/v4"
 	vck "github.com/vera-byte/vgo/vgo_core_kit"
 	vck_config "github.com/vera-byte/vgo/vgo_core_kit/config"
 )
@@ -40,33 +39,21 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	}
 
 	tokenString := r.GetHeader("Authorization")
-	token, err := jwt.ParseWithClaims(tokenString, &vck_config.Claims{}, func(token *jwt.Token) (interface{}, error) {
-		return []byte(vck.GetAdminConfig.Jwt.Secret), nil
-	})
+	token, err := vck_config.ParseToken(ctx, tokenString)
 	if err != nil {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", err)
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
 			"message": "登陆失效～",
 		})
 	}
-	if !token.Valid {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	admin := token.Claims.(*vck_config.Claims)
 	// 将用户信息放入上下文
-	r.SetCtxVar("admin", admin)
+	r.SetCtxVar("admin", token)
 
-	cachetoken, _ := vck.CacheManager.Get(ctx, "admin:token:"+gconv.String(admin.UserId))
+	cachetoken, _ := vck.CacheManager.Get(ctx, "admin:token:"+gconv.String(token.UserId))
 	rtoken := cachetoken.String()
 	// 超管拥有所有权限
-	if admin.UserId == 1 && !admin.IsRefresh {
+	if token.UserId == 1 && !token.IsRefresh {
 		if tokenString != rtoken && vck.GetAdminConfig.Jwt.Sso {
 			g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 			statusCode = 401
@@ -86,7 +73,7 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		return
 	}
 	// 如果传的token是refreshToken则校验失败
-	if admin.IsRefresh {
+	if token.IsRefresh {
 		g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
@@ -95,8 +82,8 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		})
 	}
 	// 判断密码版本是否正确
-	passwordV, _ := vck.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(admin.UserId))
-	if passwordV.Int() != admin.PasswordVersion {
+	passwordV, _ := vck.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(token.UserId))
+	if passwordV.Int() != token.PasswordVersion {
 		g.Log().Error(ctx, "BaseAuthorityMiddleware", "passwordV invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
@@ -123,7 +110,7 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		})
 	}
 	// 从缓存获取perms
-	permsCache, _ := vck.CacheManager.Get(ctx, "admin:perms:"+gconv.String(admin.UserId))
+	permsCache, _ := vck.CacheManager.Get(ctx, "admin:perms:"+gconv.String(token.UserId))
 	// 转换为数组
 	permsVar := permsCache.Strings()
 	// 转换为garray

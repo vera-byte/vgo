@@ -2,6 +2,7 @@ package base
 
 import (
 	"context"
+	"fmt"
 	"time"
 	"vgo/app/admin/internal/dao"
 	"vgo/app/admin/internal/model/entity"
@@ -56,11 +57,12 @@ func (c *sBaseSysLoginLogic) LoginOut(ctx context.Context) (err error) {
 	if admin == nil {
 		return gerror.New("用户不存在")
 	}
-	vck.CacheManager.Remove(ctx, "admin:passwordVersionadmin:passwordVersion:"+gconv.String(admin.UserId))
-	vck.CacheManager.Remove(ctx, "admin:department:"+gconv.String(admin.UserId))
-	vck.CacheManager.Remove(ctx, "admin:perms:"+gconv.String(admin.UserId))
-	vck.CacheManager.Remove(ctx, "admin:token:"+gconv.String(admin.UserId))
-	vck.CacheManager.Remove(ctx, "admin:token:refresh:"+gconv.String(admin.UserId))
+	vck.CacheManager.Remove(ctx, fmt.Sprintf("admin:%d:passwordVersion", admin.UserId))
+	vck.CacheManager.Remove(ctx, fmt.Sprintf("admin:%d:department", admin.UserId))
+	vck.CacheManager.Remove(ctx, fmt.Sprintf("admin:%d:perms", admin.UserId))
+	vck.CacheManager.Remove(ctx, fmt.Sprintf("admin:%d:token", admin.UserId))
+	vck.CacheManager.Remove(ctx, fmt.Sprintf("admin:%d:refreshToken", admin.UserId))
+
 	return nil
 }
 
@@ -120,9 +122,9 @@ func (c *sBaseSysLoginLogic) RefreshToken(ctx context.Context, _refreshToken str
 
 	result, err = c.generateTokenByUser(ctx, user)
 	if err != nil {
-		return
+		return nil, err
 	}
-	return nil, nil
+	return result, nil
 }
 
 // 根据用户生成前端需要的Token信息
@@ -154,17 +156,17 @@ func (c *sBaseSysLoginLogic) generateTokenByUser(ctx context.Context, user *enti
 	// 将用户相关信息保存到缓存
 	perms := baseSysMenuService.GetPerms(ctx, roleIds)
 	departments := baseSysDepartmentService.GetByRoleIds(ctx, roleIds, user.Username == "admin")
-	vck.CacheManager.Set(ctx, "admin:department:"+gconv.String(user.Id), departments, 0)
-	vck.CacheManager.Set(ctx, "admin:perms:"+gconv.String(user.Id), perms, 0)
-	vck.CacheManager.Set(ctx, "admin:token:"+gconv.String(user.Id), result.Token, 0)
-	vck.CacheManager.Set(ctx, "admin:token:refresh:"+gconv.String(user.Id), result.RefreshToken, 0)
+	vck.CacheManager.Set(ctx, fmt.Sprintf("admin:%d:department", user.Id), departments, 0)
+	vck.CacheManager.Set(ctx, fmt.Sprintf("admin:%d:perms", user.Id), perms, 0)
+	vck.CacheManager.Set(ctx, fmt.Sprintf("admin:%d:token", user.Id), result.Token, 0)
+	vck.CacheManager.Set(ctx, fmt.Sprintf("admin:%d:refreshToken", user.Id), result.RefreshToken, 0)
 
 	return
 }
 
 // 生成token
 func (c *sBaseSysLoginLogic) generateToken(ctx context.Context, userId int64, roleIds []string, username string, userPasswordV int, expire int64, isRefresh bool) string {
-	err := vck.CacheManager.Set(ctx, "admin:passwordVersion:"+gconv.String(userId), gconv.String(userPasswordV), 0)
+	err := vck.CacheManager.Set(ctx, fmt.Sprintf("admin:%d:passwordVersion", userId), gconv.String(userPasswordV), 0)
 	if err != nil {
 		g.Log().Error(ctx, "生成token失败", err)
 	}

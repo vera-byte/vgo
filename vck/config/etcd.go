@@ -69,7 +69,7 @@ func (c *ChainableEtcdClient) GetConfig(key string) (*g.Var, error) {
 
 // 链式调用：从 Etcd 写入信息
 func (c *ChainableEtcdClient) PutConfig(key string, val interface{}) error {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	// 从 Etcd 获取配置值
 	_, err := c.Client.Put(ctx, key, gconv.String(val))

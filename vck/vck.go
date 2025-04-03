@@ -47,7 +47,6 @@ func init() {
 		CacheManager.SetAdapter(gcache.NewAdapterRedis(redis))
 
 	}
-	go vck_config.WatchVckConfig()
 	g.Log().Debug(ctx, "当前实例ID:", ProcessFlag)
 
 }

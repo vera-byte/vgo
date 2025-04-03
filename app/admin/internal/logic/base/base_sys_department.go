@@ -3,8 +3,10 @@ package base
 import (
 	"context"
 	"vgo/app/admin/internal/dao"
+	"vgo/app/admin/internal/model/entity"
 	"vgo/app/admin/internal/service"
 
+	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 )
@@ -85,5 +87,16 @@ func (s *sBaseSysDepartmentLogic) Order(ctx g.Ctx) (err error) {
 		dao.BaseSysDepartment.Ctx(ctx).Where(dao.BaseSysDepartment.Columns().Id, data.Id).Data(data).Update()
 	}
 
+	return
+}
+
+// 部门列表
+func (s *sBaseSysDepartmentLogic) List(ctx context.Context) (res []entity.BaseSysDepartment, err error) {
+	err = dao.BaseSysDepartment.Ctx(ctx).Scan(&res)
+	if err != nil {
+		_err := gerror.New("部门列表失败")
+		g.Log().Error(ctx, _err.Error(), err)
+		return nil, _err
+	}
 	return
 }

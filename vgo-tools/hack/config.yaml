@@ -1,0 +1,9 @@
+# CLI tool, only in development environment.
+# https://goframe.org/docs/cli
+gfcli:
+  build:
+    name: "vgo-tools"
+    arch: "all"
+    # system: "linux,darwin,windows"
+    system: "darwin"
+    path: "temp"
