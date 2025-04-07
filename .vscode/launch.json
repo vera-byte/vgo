@@ -10,7 +10,6 @@
             "request": "launch",
             "mode": "debug",
             "program": "${workspaceFolder}/app/gateway/main.go",
-            "args": [],
             "output": "${workspaceFolder}/debug/gateway",
             "showLog": true
         },
@@ -20,9 +19,8 @@
             "request": "launch",
             "mode": "debug",
             "program": "${workspaceFolder}/app/admin/main.go",
-            "args": [],
             "output": "${workspaceFolder}/debug/admin",
             "showLog": true
-        },
+        }
     ]
 }

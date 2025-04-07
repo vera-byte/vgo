@@ -28,7 +28,7 @@ const (
 )
 
 type cVersion struct {
-	g.Meta `name:"version" brief:"show version information of current binary"`
+	g.Meta `name:"version" brief:"显示当前二进制文件的版本信息"`
 }
 
 type cVersionInput struct {

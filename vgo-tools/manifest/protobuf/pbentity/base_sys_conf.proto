@@ -1,0 +1,21 @@
+// ==========================================================================
+// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
+// ==========================================================================
+
+syntax = "proto3";
+
+package pbentity;
+
+option go_package = "vgo/vgo-tools/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
+
+message BaseSysConf {
+    int32                     Id        = 1; // ID
+    google.protobuf.Timestamp CreatedAt = 2; // 创建时间
+    google.protobuf.Timestamp UpdatedAt = 3; // 更新时间
+    int32                     TenantId  = 4; // 租户ID
+    string                    CKey      = 5; // 配置键
+    string                    CValue    = 6; // 配置值
+    google.protobuf.Timestamp DeletedAt = 7; // 软删除时间
+}

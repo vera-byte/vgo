@@ -6,6 +6,7 @@ import (
 	"github.com/gogf/gf/v2/database/gredis"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcache"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/util/guid"
@@ -13,8 +14,9 @@ import (
 )
 
 var (
-	CacheManager          = gcache.New()                     // 定义全局缓存对象	供其他业务使用
-	ProcessFlag           = guid.S()                         // 定义全局进程标识
+	CacheManager          = gcache.New() // 定义全局缓存对象	供其他业务使用
+	ProcessFlag           = guid.S()     // 定义全局进程标识
+	GetVckConfig          = vck_config.NewVCKConfig()
 	GetAdminConfig        = vck_config.NewAdminConfig()      // 配置中的v节相关配置
 	GetAdminAtGateway     = vck_config.GetAdminAtGateway     // 在网关中获取传入ctx 中的 admin 对象
 	GetAdminAtGrpcService = vck_config.GetAdminAtGrpcService // 在微服务中获取metadata中的 admin 对象
@@ -47,6 +49,18 @@ func init() {
 		CacheManager.SetAdapter(gcache.NewAdapterRedis(redis))
 
 	}
-	g.Log().Debug(ctx, "当前实例ID:", ProcessFlag)
+	if GetVckConfig.IsDebug {
+		g.Log().Debug(ctx, "当前为Debug模式,将开启 pprof 性能分析工具")
+		go func() {
+			s, err := ghttp.StartPProfServer(GetVckConfig.PprofAddress)
+			if err != nil {
+				g.Log().Error(ctx, err)
+			}
+			s.EnablePProf()
+		}()
+
+	}
+
+	g.Log().Info(ctx, "当前实例ID:", ProcessFlag)
 
 }

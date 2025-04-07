@@ -14,7 +14,7 @@ type cEnv struct {
 	g.Meta `name:"env" ad:"{cGFAd}"`
 }
 type cEnvInput struct {
-	g.Meta `name:"version"`
+	g.Meta `name:"env"`
 }
 
 func (c cEnv) Index(ctx context.Context, in cEnvInput) (out *cGFOutput, err error) {

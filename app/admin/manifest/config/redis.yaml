@@ -1,0 +1,4 @@
+# https://goframe.org/docs/core/g#%E5%8D%95%E4%BE%8B-%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E5%AF%B9%E8%B1%A1s
+redis:
+  address: 127.0.0.1:36379
+  db: 0

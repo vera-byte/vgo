@@ -17,7 +17,7 @@ func main() {
 		mlog.Fatalf(`%+v`, err)
 	}
 	if command == nil {
-		panic(gerror.New(`retrieve root command failed for "vgo-tools"`))
+		panic(gerror.New(`retrieve root command failed for "vgo"`))
 	}
 	command.Run(ctx)
 }

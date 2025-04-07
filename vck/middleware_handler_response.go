@@ -9,9 +9,9 @@ import (
 
 // DefaultHandlerResponse is the default implementation of HandlerResponse.
 type DefaultHandlerResponse struct {
-	Code    int         `json:"code"    dc:"Error code"`
-	Message string      `json:"message" dc:"Error message"`
-	Data    interface{} `json:"data,omitempty"    dc:"Result data for certain request according API definition"`
+	Code    int    `json:"code"    dc:"Error code"`
+	Message string `json:"message" dc:"Error message"`
+	Data    any    `json:"data,omitempty"    dc:"Result data for certain request according API definition"`
 }
 
 // MiddlewareHandlerResponse is the default middleware handling handler response object and its error.
@@ -61,13 +61,11 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 		code = 1003
 	default:
 	}
-	// g.Log().Debug(ctx, code, msg, res)
-	// 如果是正常返回，直接返回res
-	// if code == 1000 && r.Response.Status == 200 {
-	// 	r.Response.WriteJsonExit(res)
-	// }
+	if code == 1000 && r.Response.Status == 200 {
+		r.Response.WriteJsonExit(res)
+	}
 	r.Response.WriteJson(DefaultHandlerResponse{
 		Code:    code,
-		Message: msg, Data: res,
+		Message: msg,
 	})
 }

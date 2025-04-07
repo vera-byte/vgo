@@ -1,0 +1,261 @@
+2025-04-07T10:06:47.377+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T10:06:47.378+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T10:06:47.392+08:00 [DEBU] vck init start ...
+2025-04-07T10:06:47.392+08:00 [INFO] 初始化缓存成功
+2025-04-07T10:06:47.392+08:00 [DEBU] 当前实例ID: 1xtof1a1rbvd901fg0wdwcw1001215qf
+2025-04-07T10:06:47.394+08:00 [INFO] 注册路由
+2025-04-07T10:06:47.395+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T10:08:21.537+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T10:08:21.538+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T10:08:21.543+08:00 [DEBU] vck init start ...
+2025-04-07T10:08:21.544+08:00 [INFO] 初始化缓存成功
+2025-04-07T10:08:21.544+08:00 [DEBU] 当前实例ID: 1xtof1a1su2d901gna7e3g8100f9po46
+2025-04-07T10:08:21.545+08:00 [INFO] 注册路由
+2025-04-07T10:08:21.545+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T10:11:33.718+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T10:11:33.719+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T10:11:33.725+08:00 [DEBU] vck init start ...
+2025-04-07T10:11:33.725+08:00 [INFO] 初始化缓存成功
+2025-04-07T10:11:33.725+08:00 [DEBU] 当前实例ID: 1xtof1a1vh0d901j3kjf68w100e0tdls
+2025-04-07T10:11:33.726+08:00 [INFO] 注册base模块路由
+2025-04-07T10:11:33.726+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T11:00:52.846+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T11:00:52.848+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T11:00:52.858+08:00 [DEBU] vck init start ...
+2025-04-07T11:00:52.858+08:00 [INFO] 初始化缓存成功
+2025-04-07T11:00:52.858+08:00 [DEBU] 当前实例ID: 1xtof1aqjs0d902kuz3tftk100094vfn
+2025-04-07T11:00:52.860+08:00 [INFO] 注册base模块路由
+2025-04-07T11:00:52.860+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T11:55:58.378+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T11:55:58.380+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T11:55:58.394+08:00 [DEBU] vck init start ...
+2025-04-07T11:55:58.394+08:00 [INFO] 初始化缓存成功
+2025-04-07T11:55:58.400+08:00 [DEBU] 当前实例ID: 1xtof1a1tsud903r1ikcse0100ewmbs1
+2025-04-07T11:55:58.400+08:00 [INFO] 注册base模块路由
+2025-04-07T11:55:58.400+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T11:58:37.880+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T11:59:15.459+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:00:17.273+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:00:23.385+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:00:35.329+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:00:35.329+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:00:38.331+08:00 [ERRO] {98759b3a56ed3318da97490b831b5257} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T12:01:05.971+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T12:01:08.973+08:00 [ERRO] {38befc5c5ded3318db97490b9c8ed61e} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T13:54:12.994+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T13:54:15.996+08:00 [ERRO] {a853819689f33318dc97490bb73d7a31} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T13:58:35.368+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T13:58:38.369+08:00 [ERRO] {10c4ccadc6f33318dd97490b0ca38e75} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T14:00:44.337+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:00:44.338+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:00:44.346+08:00 [DEBU] vck init start ...
+2025-04-07T14:00:44.347+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:00:44.351+08:00 [DEBU] 当前实例ID: 1xtof1a8g00d906ekimmz3s100w9zk6u
+2025-04-07T14:00:44.352+08:00 [INFO] 注册base模块路由
+2025-04-07T14:00:44.352+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:01:45.379+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:01:45.382+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:01:48.383+08:00 [ERRO] {506e50ebf2f333184ee2d42184a0ec64} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T14:01:51.158+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:01:54.159+08:00 [ERRO] {7048ca43f4f333184fe2d4213e98c36c} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T14:06:12.065+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:06:12.068+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:06:12.075+08:00 [DEBU] vck init start ...
+2025-04-07T14:06:12.075+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:06:12.084+08:00 [DEBU] 当前实例ID: 1xtof1a4m40d906ir2is3601002kz401
+2025-04-07T14:06:12.084+08:00 [INFO] 注册base模块路由
+2025-04-07T14:06:12.084+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:19:03.656+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:19:03.659+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:19:03.666+08:00 [DEBU] vck init start ...
+2025-04-07T14:19:03.667+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:19:03.674+08:00 [DEBU] 当前实例ID: 1xtof1ae9o0d906sgkbaxsg100jce8o7
+2025-04-07T14:19:03.675+08:00 [INFO] 注册base模块路由
+2025-04-07T14:19:03.675+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:19:23.902+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:19:23.905+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:19:23.918+08:00 [DEBU] vck init start ...
+2025-04-07T14:19:23.919+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:19:23.926+08:00 [DEBU] 当前实例ID: 1xtof1aejy0d906sqexic3s100d3km3m
+2025-04-07T14:19:23.926+08:00 [INFO] 注册base模块路由
+2025-04-07T14:19:23.926+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:20:59.621+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:20:59.627+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:20:59.647+08:00 [DEBU] vck init start ...
+2025-04-07T14:20:59.648+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:20:59.648+08:00 [INFO] 当前实例ID: 1xtof1afz80d906u2szmhxk10098x6l5
+2025-04-07T14:20:59.651+08:00 [INFO] 注册base模块路由
+2025-04-07T14:20:59.651+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:22:01.162+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:22:01.163+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:22:01.171+08:00 [DEBU] vck init start ...
+2025-04-07T14:22:01.171+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:22:07.056+08:00 [INFO] 当前实例ID: 1xtof1agqk0d906uv2xtakw100s21w6n
+2025-04-07T14:22:07.063+08:00 [INFO] 注册base模块路由
+2025-04-07T14:22:07.063+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:23:07.319+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:23:07.320+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:23:07.328+08:00 [DEBU] vck init start ...
+2025-04-07T14:23:07.329+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:23:07.329+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:23:07.335+08:00 [INFO] 当前实例ID: 1xtof1ahls0d906vph17dzs100rb8go0
+2025-04-07T14:23:07.337+08:00 [INFO] 注册base模块路由
+2025-04-07T14:23:07.337+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:23:40.551+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:23:40.552+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:23:40.557+08:00 [DEBU] vck init start ...
+2025-04-07T14:23:40.558+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:23:40.558+08:00 [INFO] 当前实例ID: 1xtof1ai0w0d906w4qnnqlc100yn9bmf
+2025-04-07T14:23:40.559+08:00 [INFO] 注册base模块路由
+2025-04-07T14:23:40.559+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:24:02.961+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:24:02.962+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:24:02.970+08:00 [DEBU] vck init start ...
+2025-04-07T14:24:02.971+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:24:02.971+08:00 [INFO] 当前实例ID: 1xtof1aibh0d906wf19rna0100xxok7k
+2025-04-07T14:24:02.973+08:00 [INFO] 注册base模块路由
+2025-04-07T14:24:02.973+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:24:25.463+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:24:25.464+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:24:25.471+08:00 [DEBU] vck init start ...
+2025-04-07T14:24:25.472+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:24:25.472+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:24:25.477+08:00 [INFO] 当前实例ID: 1xtof1aim10d906wpdcyb00100as1bjs
+2025-04-07T14:24:25.477+08:00 [INFO] 注册base模块路由
+2025-04-07T14:24:25.477+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:28:57.623+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:28:57.625+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:28:57.631+08:00 [DEBU] vck init start ...
+2025-04-07T14:28:57.631+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:28:57.631+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:28:57.631+08:00 [INFO] 当前实例ID: 1xtof1amb10d90706ef9qq01004reynv
+2025-04-07T14:28:57.634+08:00 [INFO] 注册base模块路由
+2025-04-07T14:28:57.634+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:29:56.954+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:29:56.955+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:29:56.962+08:00 [DEBU] vck init start ...
+2025-04-07T14:29:56.962+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:29:56.962+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:29:56.962+08:00 [INFO] 当前实例ID: 1xtof1an270d9070xnm7gyg100src2p5
+2025-04-07T14:29:56.964+08:00 [INFO] 注册base模块路由
+2025-04-07T14:29:56.964+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:34:51.251+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:34:51.252+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:34:51.255+08:00 [DEBU] vck init start ...
+2025-04-07T14:34:51.256+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:34:51.256+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:34:51.256+08:00 [INFO] 当前实例ID: 1xtof1at2v0d9074outzxq0100d6vwaw
+2025-04-07T14:34:51.257+08:00 [INFO] 注册base模块路由
+2025-04-07T14:34:51.257+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:37:33.537+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:37:33.539+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:37:36.539+08:00 [ERRO] {98ad8c13e7f53318155cdb58b49b8c46} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T14:38:04.867+08:00 [DEBU] Etcd配置中心开启
+2025-04-07T14:38:04.868+08:00 [INFO] Admin配置为分布式配置
+2025-04-07T14:38:04.872+08:00 [DEBU] vck init start ...
+2025-04-07T14:38:04.872+08:00 [INFO] 初始化缓存成功
+2025-04-07T14:38:04.872+08:00 [DEBU] 当前为Debug模式,将开启 pprof 性能分析工具
+2025-04-07T14:38:04.872+08:00 [INFO] 当前实例ID: 1xtof1avgg0d90775svem541005d05dq
+2025-04-07T14:38:04.874+08:00 [INFO] 注册base模块路由
+2025-04-07T14:38:04.874+08:00 [DEBU] set default registry using file registry as no custom registry set, path: /var/folders/q4/1d7dtwsn68g8w13rs9swms_m0000gn/T/gsvc
+2025-04-07T14:38:13.344+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:38:13.346+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T14:38:16.349+08:00 [ERRO] {70b92858f0f53318b2e1307c86c8c5c4} context deadline exceeded 
+Stack:
+1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
+    /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
+3.  vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
+4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
+5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+
+2025-04-07T15:00:18.565+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T18:00:25.534+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
