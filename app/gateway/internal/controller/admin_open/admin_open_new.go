@@ -5,9 +5,10 @@
 package admin_open
 
 import (
-	v1 "vgo/app/admin/api/open/v1"
-	"vgo/app/gateway/api/admin_open"
 	"vgo/utility"
+
+	v1 "github.com/vera-byte/vgo/app/admin/api/open/v1"
+	"github.com/vera-byte/vgo/app/gateway/api/admin_open"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 )

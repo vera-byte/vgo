@@ -3,12 +3,12 @@ package admin_open
 import (
 	"context"
 
-	protobuf "vgo/app/admin/api/open/v1"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/open/v1"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 
-	v1 "vgo/app/gateway/api/admin_open/v1"
+	v1 "github.com/vera-byte/vgo/app/gateway/api/admin_open/v1"
 )
 
 func (c *ControllerV1) Captcha(ctx context.Context, req *v1.CaptchaReq) (res *v1.CaptchaRes, err error) {

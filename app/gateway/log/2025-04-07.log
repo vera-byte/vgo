@@ -41,58 +41,58 @@
 2025-04-07T12:00:35.329+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T12:00:38.331+08:00 [ERRO] {98759b3a56ed3318da97490b831b5257} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T12:01:05.971+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T12:01:08.973+08:00 [ERRO] {38befc5c5ded3318db97490b9c8ed61e} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T13:54:12.994+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T13:54:15.996+08:00 [ERRO] {a853819689f33318dc97490bb73d7a31} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T13:58:35.368+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T13:58:38.369+08:00 [ERRO] {10c4ccadc6f33318dd97490b0ca38e75} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T14:00:44.337+08:00 [DEBU] Etcd配置中心开启
 2025-04-07T14:00:44.338+08:00 [INFO] Admin配置为分布式配置
@@ -105,30 +105,30 @@ Stack:
 2025-04-07T14:01:45.382+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T14:01:48.383+08:00 [ERRO] {506e50ebf2f333184ee2d42184a0ec64} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T14:01:51.158+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T14:01:54.159+08:00 [ERRO] {7048ca43f4f333184fe2d4213e98c36c} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T14:06:12.065+08:00 [DEBU] Etcd配置中心开启
 2025-04-07T14:06:12.068+08:00 [INFO] Admin配置为分布式配置
@@ -223,16 +223,16 @@ Stack:
 2025-04-07T14:37:33.539+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T14:37:36.539+08:00 [ERRO] {98ad8c13e7f53318155cdb58b49b8c46} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T14:38:04.867+08:00 [DEBU] Etcd配置中心开启
 2025-04-07T14:38:04.868+08:00 [INFO] Admin配置为分布式配置
@@ -246,16 +246,17 @@ Stack:
 2025-04-07T14:38:13.346+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T14:38:16.349+08:00 [ERRO] {70b92858f0f53318b2e1307c86c8c5c4} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 2.  github.com/vera-byte/vgo/vgo_core_kit.MiddlewareHandlerResponse
     /Users/mac/workspace/vgo/vck/middleware_handler_response.go:19
-3.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:37
-5.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:16
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:37
+5.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:16
 
 2025-04-07T15:00:18.565+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-04-07T18:00:25.534+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
+2025-04-07T21:00:37.683+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"

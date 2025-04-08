@@ -7,7 +7,7 @@ package service
 
 import (
 	"context"
-	"vgo/app/admin/internal/model/entity"
+	"github.com/vera-byte/vgo/app/admin/internal/model/entity"
 
 	"github.com/gogf/gf/v2/frame/g"
 	vck_config "github.com/vera-byte/vgo/vgo_core_kit/config"

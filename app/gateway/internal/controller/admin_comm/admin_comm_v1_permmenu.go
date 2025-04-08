@@ -3,8 +3,8 @@ package admin_comm
 import (
 	"context"
 
-	protobuf "vgo/app/admin/api/comm/v1"
-	v1 "vgo/app/gateway/api/admin_comm/v1"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/comm/v1"
+	v1 "github.com/vera-byte/vgo/app/gateway/api/admin_comm/v1"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/util/gconv"

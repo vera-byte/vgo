@@ -5,8 +5,8 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 
-	protobuf "vgo/app/admin/api/comm/v1"
-	v1 "vgo/app/gateway/api/admin_comm/v1"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/comm/v1"
+	v1 "github.com/vera-byte/vgo/app/gateway/api/admin_comm/v1"
 )
 
 func (c *ControllerV1) PersonUpdate(ctx context.Context, req *v1.PersonUpdateReq) (res *v1.PersonUpdateRes, err error) {

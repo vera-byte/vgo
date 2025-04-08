@@ -2,9 +2,10 @@ package admin_open
 
 import (
 	"context"
-	protobuf "vgo/app/admin/api/open/v1"
 
-	v1 "vgo/app/gateway/api/admin_open/v1"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/open/v1"
+
+	v1 "github.com/vera-byte/vgo/app/gateway/api/admin_open/v1"
 )
 
 func (c *ControllerV1) Login(ctx context.Context, req *v1.LoginReq) (res *v1.LoginRes, err error) {

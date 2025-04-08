@@ -7,7 +7,7 @@ package admin_comm
 import (
 	"context"
 
-	"vgo/app/gateway/api/admin_comm/v1"
+	"github.com/vera-byte/vgo/app/gateway/api/admin_comm/v1"
 )
 
 type IAdminCommV1 interface {

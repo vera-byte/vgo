@@ -5,10 +5,11 @@
 package admin_comm
 
 import (
-	"vgo/app/gateway/api/admin_comm"
 	"vgo/utility"
 
-	v1 "vgo/app/admin/api/comm/v1"
+	"github.com/vera-byte/vgo/app/gateway/api/admin_comm"
+
+	v1 "github.com/vera-byte/vgo/app/admin/api/comm/v1"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 )

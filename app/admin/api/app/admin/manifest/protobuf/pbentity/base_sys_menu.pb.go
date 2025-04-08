@@ -28,20 +28,20 @@ const (
 
 type BaseSysMenu struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                           // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`        // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`        // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"` // 租户ID
-	ParentId      int32                  `protobuf:"varint,5,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID"`     // 父菜单ID
-	Name          string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称"`          // 菜单名称
-	Router        string                 `protobuf:"bytes,7,opt,name=Router,proto3" json:"Router,omitempty" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址"`      // 菜单地址
-	Perms         string                 `protobuf:"bytes,8,opt,name=Perms,proto3" json:"Perms,omitempty" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识"`        // 权限标识
-	Type          int32                  `protobuf:"varint,9,opt,name=Type,proto3" json:"Type,omitempty" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮"`          // 类型 0-目录 1-菜单 2-按钮
-	Icon          string                 `protobuf:"bytes,10,opt,name=Icon,proto3" json:"Icon,omitempty" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标"`                       // 图标
-	OrderNum      int32                  `protobuf:"varint,11,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`              // 排序
-	ViewPath      string                 `protobuf:"bytes,12,opt,name=ViewPath,proto3" json:"ViewPath,omitempty" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址"` // 视图地址
-	KeepAlive     int32                  `protobuf:"varint,13,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存"`        // 路由缓存
-	IsShow        int32                  `protobuf:"varint,14,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示"`    // 是否显示
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                                // ID
+	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`     // 创建时间
+	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`     // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`        // 租户ID
+	ParentId      int32                  `protobuf:"varint,5,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID" dc:"父菜单ID"`         // 父菜单ID
+	Name          string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称"`       // 菜单名称
+	Router        string                 `protobuf:"bytes,7,opt,name=Router,proto3" json:"Router,omitempty" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址" dc:"菜单地址"`   // 菜单地址
+	Perms         string                 `protobuf:"bytes,8,opt,name=Perms,proto3" json:"Perms,omitempty" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识" dc:"权限标识"`     // 权限标识
+	Type          int32                  `protobuf:"varint,9,opt,name=Type,proto3" json:"Type,omitempty" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮" dc:"类型 0-目录 1-菜单 2-按钮"` // 类型 0-目录 1-菜单 2-按钮
+	Icon          string                 `protobuf:"bytes,10,opt,name=Icon,proto3" json:"Icon,omitempty" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标"`                            // 图标
+	OrderNum      int32                  `protobuf:"varint,11,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`                   // 排序
+	ViewPath      string                 `protobuf:"bytes,12,opt,name=ViewPath,proto3" json:"ViewPath,omitempty" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址" dc:"视图地址"`        // 视图地址
+	KeepAlive     int32                  `protobuf:"varint,13,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存" dc:"路由缓存"`     // 路由缓存
+	IsShow        int32                  `protobuf:"varint,14,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示"` // 是否显示
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

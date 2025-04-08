@@ -5,5 +5,5 @@
 package logic
 
 import (
-	_ "vgo/app/admin/internal/logic/base"
+	_ "github.com/vera-byte/vgo/app/admin/internal/logic/base"
 )

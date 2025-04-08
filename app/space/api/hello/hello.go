@@ -7,7 +7,7 @@ package hello
 import (
 	"context"
 
-	"vgo/app/space/api/hello/v1"
+	"github.com/vera-byte/vgo/app/space/api/hello/v1"
 )
 
 type IHelloV1 interface {

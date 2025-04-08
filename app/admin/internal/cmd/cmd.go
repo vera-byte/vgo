@@ -2,9 +2,10 @@ package cmd
 
 import (
 	"context"
-	"vgo/app/admin/internal/controller/comm"
-	"vgo/app/admin/internal/controller/open"
-	"vgo/app/admin/internal/controller/system"
+
+	"github.com/vera-byte/vgo/app/admin/internal/controller/comm"
+	"github.com/vera-byte/vgo/app/admin/internal/controller/open"
+	"github.com/vera-byte/vgo/app/admin/internal/controller/system"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/os/gcmd"

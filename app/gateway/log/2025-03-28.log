@@ -28,19 +28,19 @@
 2025-03-28T18:42:05.840+08:00 [DEBU] vck init start ...
 2025-03-28T18:42:05.841+08:00 [INFO] 初始化缓存成功
 2025-03-28T18:42:05.841+08:00 [DEBU] 当前实例ID: 12uncdmccz0d8ru4jndlig8100ljwthn
-2025-03-28T18:42:05.841+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T18:42:05.841+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-28T19:05:56.882+08:00 [WARN] Admin配置当前为单接点配置,如分布式模式请配置etcd
 2025-03-28T19:05:56.884+08:00 [DEBU] Etcd配置中心开启
 2025-03-28T19:05:56.885+08:00 [DEBU] vck init start ...
 2025-03-28T19:05:56.885+08:00 [INFO] 初始化缓存成功
 2025-03-28T19:05:56.885+08:00 [DEBU] 当前实例ID: l17i960tiu0d8rumt2cm6jk1003b62zl
-2025-03-28T19:05:56.885+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:05:56.885+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-28T19:09:13.160+08:00 [DEBU] Etcd配置中心开启
 2025-03-28T19:09:13.168+08:00 [INFO] Admin配置为分布式配置
 2025-03-28T19:09:13.169+08:00 [DEBU] vck init start ...
 2025-03-28T19:09:13.170+08:00 [INFO] 初始化缓存成功
 2025-03-28T19:09:13.170+08:00 [DEBU] 当前实例ID: l17i960w120d8rupb8e3mp4100eokj6b
-2025-03-28T19:09:13.170+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:09:13.170+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-28T19:11:56.542+08:00 [DEBU] Etcd配置中心开启
 2025-03-28T19:12:06.418+08:00 [INFO] Admin配置为分布式配置
 2025-03-28T19:12:34.712+08:00 [DEBU] Etcd配置中心开启
@@ -50,10 +50,10 @@
 2025-03-28T19:13:26.520+08:00 [DEBU] vck init start ...
 2025-03-28T19:13:26.520+08:00 [INFO] 初始化缓存成功
 2025-03-28T19:13:26.520+08:00 [DEBU] 当前实例ID: l17i960zgi0d8rusjmgg0601004rzeng
-2025-03-28T19:13:26.520+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:13:26.520+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-28T19:14:06.830+08:00 [DEBU] Etcd配置中心开启
 2025-03-28T19:14:06.831+08:00 [INFO] Admin配置为分布式配置
 2025-03-28T19:14:21.769+08:00 [DEBU] vck init start ...
 2025-03-28T19:14:21.770+08:00 [INFO] 初始化缓存成功
 2025-03-28T19:14:21.770+08:00 [DEBU] 当前实例ID: l17i9601061d8rut255y4gw100mbo85r
-2025-03-28T19:14:21.770+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-28T19:14:21.770+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config

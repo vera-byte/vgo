@@ -25,11 +25,11 @@ const (
 type PersonUpdateInvoke struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 更新标识
-	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识"`
+	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识" dc:"更新标识"`
 	// 更新值
-	Value string `protobuf:"bytes,2,opt,name=Value,proto3" json:"Value,omitempty" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值"`
+	Value string `protobuf:"bytes,2,opt,name=Value,proto3" json:"Value,omitempty" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值" dc:"更新值"`
 	// 其他参数
-	Other         string `protobuf:"bytes,3,opt,name=Other,proto3" json:"Other,omitempty" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数"`
+	Other         string `protobuf:"bytes,3,opt,name=Other,proto3" json:"Other,omitempty" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数" dc:"其他参数"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -160,9 +160,9 @@ func (*PermmenuRpcInvoke) Descriptor() ([]byte, []int) {
 type PermmenuRpcRes struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 权限集合
-	Perms []string `protobuf:"bytes,1,rep,name=Perms,proto3" json:"Perms,omitempty" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合"`
+	Perms []string `protobuf:"bytes,1,rep,name=Perms,proto3" json:"Perms,omitempty" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合" dc:"权限集合"`
 	// 菜单集合
-	Menus         []*Menu `protobuf:"bytes,2,rep,name=Menus,proto3" json:"Menus,omitempty" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合"`
+	Menus         []*Menu `protobuf:"bytes,2,rep,name=Menus,proto3" json:"Menus,omitempty" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合" dc:"菜单集合"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -216,29 +216,29 @@ type Menu struct {
 	CreateTime string                 `protobuf:"bytes,1,opt,name=CreateTime,proto3" json:"CreateTime,omitempty"`
 	UpdateTime string                 `protobuf:"bytes,2,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty"`
 	// 图标
-	Icon string `protobuf:"bytes,3,opt,name=Icon,proto3" json:"Icon,omitempty" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标"`
+	Icon string `protobuf:"bytes,3,opt,name=Icon,proto3" json:"Icon,omitempty" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标" dc:"图标"`
 	// 菜单ID
-	Id int64 `protobuf:"varint,4,opt,name=Id,proto3" json:"Id,omitempty" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID"`
+	Id int64 `protobuf:"varint,4,opt,name=Id,proto3" json:"Id,omitempty" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID"`
 	// 是否显示
-	IsShow bool `protobuf:"varint,5,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示"`
+	IsShow bool `protobuf:"varint,5,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示" dc:"是否显示"`
 	// 是否缓存
-	KeepAlive bool `protobuf:"varint,6,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存"`
+	KeepAlive bool `protobuf:"varint,6,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存" dc:"是否缓存"`
 	// 菜单名称
-	Name string `protobuf:"bytes,7,opt,name=Name,proto3" json:"Name,omitempty" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称"`
+	Name string `protobuf:"bytes,7,opt,name=Name,proto3" json:"Name,omitempty" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称" dc:"菜单名称"`
 	// 排序
-	OrderNum int64 `protobuf:"varint,8,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`
+	OrderNum int64 `protobuf:"varint,8,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`
 	// 父ID
-	ParentId int64 `protobuf:"varint,9,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID"`
+	ParentId int64 `protobuf:"varint,9,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID" dc:"父ID"`
 	// 菜单权限
-	Perms string `protobuf:"bytes,10,opt,name=Perms,proto3" json:"Perms,omitempty" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限"`
+	Perms string `protobuf:"bytes,10,opt,name=Perms,proto3" json:"Perms,omitempty" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限"`
 	// 路由地址
-	Router string `protobuf:"bytes,11,opt,name=Router,proto3" json:"Router,omitempty" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址"`
+	Router string `protobuf:"bytes,11,opt,name=Router,proto3" json:"Router,omitempty" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址" dc:"路由地址"`
 	// 租户ID
-	TenantId int64 `protobuf:"varint,12,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`
+	TenantId int64 `protobuf:"varint,12,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`
 	// 菜单类型
-	Type int32 `protobuf:"varint,13,opt,name=Type,proto3" json:"Type,omitempty" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型"`
+	Type int32 `protobuf:"varint,13,opt,name=Type,proto3" json:"Type,omitempty" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型" dc:"菜单类型"`
 	// 视图路径
-	ViewPath      string `protobuf:"bytes,14,opt,name=ViewPath,proto3" json:"ViewPath,omitempty" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径"`
+	ViewPath      string `protobuf:"bytes,14,opt,name=ViewPath,proto3" json:"ViewPath,omitempty" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径" dc:"视图路径"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -410,31 +410,31 @@ func (*PersonRpcInvoke) Descriptor() ([]byte, []int) {
 type PersonRpcRes struct {
 	state protoimpl.MessageState `protogen:"open.v1"`
 	// 用户ID
-	Id int64 `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID"`
+	Id int64 `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID"`
 	// 部门ID
-	DepartmentId int64 `protobuf:"varint,2,opt,name=DepartmentId,proto3" json:"DepartmentId,omitempty" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID"`
+	DepartmentId int64 `protobuf:"varint,2,opt,name=DepartmentId,proto3" json:"DepartmentId,omitempty" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID" dc:"部门ID"`
 	// 头像
-	HeadImg string `protobuf:"bytes,3,opt,name=HeadImg,proto3" json:"HeadImg,omitempty" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像"`
+	HeadImg string `protobuf:"bytes,3,opt,name=HeadImg,proto3" json:"HeadImg,omitempty" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像" dc:"头像"`
 	// 姓名
-	Name string `protobuf:"bytes,4,opt,name=Name,proto3" json:"Name,omitempty" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名"`
+	Name string `protobuf:"bytes,4,opt,name=Name,proto3" json:"Name,omitempty" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名" dc:"姓名"`
 	// 昵称
-	NickName string `protobuf:"bytes,5,opt,name=NickName,proto3" json:"NickName,omitempty" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称"`
+	NickName string `protobuf:"bytes,5,opt,name=NickName,proto3" json:"NickName,omitempty" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称" dc:"昵称"`
 	// 密码版本
-	PasswordV int64 `protobuf:"varint,6,opt,name=PasswordV,proto3" json:"PasswordV,omitempty" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本"`
+	PasswordV int64 `protobuf:"varint,6,opt,name=PasswordV,proto3" json:"PasswordV,omitempty" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本" dc:"密码版本"`
 	// 电话
-	Phone string `protobuf:"bytes,7,opt,name=Phone,proto3" json:"Phone,omitempty" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话"`
+	Phone string `protobuf:"bytes,7,opt,name=Phone,proto3" json:"Phone,omitempty" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话" dc:"电话"`
 	// 备注
-	Remark string `protobuf:"bytes,8,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`
+	Remark string `protobuf:"bytes,8,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`
 	// 状态
-	Status int32 `protobuf:"varint,9,opt,name=Status,proto3" json:"Status,omitempty" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态"`
+	Status int32 `protobuf:"varint,9,opt,name=Status,proto3" json:"Status,omitempty" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态" dc:"状态"`
 	// 租户ID
-	TenantId int64 `protobuf:"varint,10,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`
+	TenantId int64 `protobuf:"varint,10,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`
 	// 用户名
-	UserName   string `protobuf:"bytes,11,opt,name=UserName,proto3" json:"UserName,omitempty" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名"`
+	UserName   string `protobuf:"bytes,11,opt,name=UserName,proto3" json:"UserName,omitempty" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名" dc:"用户名"`
 	CreateTime int64  `protobuf:"varint,12,opt,name=createTime,proto3" json:"createTime,omitempty"`
 	UpdateTime int64  `protobuf:"varint,14,opt,name=updateTime,proto3" json:"updateTime,omitempty"`
 	// 邮箱
-	Email         string `protobuf:"bytes,15,opt,name=Email,proto3" json:"Email,omitempty" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱"`
+	Email         string `protobuf:"bytes,15,opt,name=Email,proto3" json:"Email,omitempty" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱" dc:"邮箱"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

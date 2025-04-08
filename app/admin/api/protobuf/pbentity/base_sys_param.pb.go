@@ -28,15 +28,15 @@ const (
 
 type BaseSysParam struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                                      // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`                   // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`                   // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`                      // 租户ID
-	KeyName       string                 `protobuf:"bytes,5,opt,name=KeyName,proto3" json:"KeyName,omitempty" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键"`                                    // 键
-	Name          string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称"`                                   // 名称
-	Data          string                 `protobuf:"bytes,7,opt,name=Data,proto3" json:"Data,omitempty" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据"`                                   // 数据
-	DataType      int32                  `protobuf:"varint,8,opt,name=DataType,proto3" json:"DataType,omitempty" dc:"数据类型 0-字符串 1-富文本 2-文件" dc:"数据类型 0-字符串 1-富文本 2-文件" dc:"数据类型 0-字符串 1-富文本 2-文件"` // 数据类型 0-字符串 1-富文本 2-文件
-	Remark        string                 `protobuf:"bytes,9,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`                               // 备注
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                                 // ID
+	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`                // 创建时间
+	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`                // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`         // 租户ID
+	KeyName       string                 `protobuf:"bytes,5,opt,name=KeyName,proto3" json:"KeyName,omitempty" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键" dc:"键"`                                   // 键
+	Name          string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称"`                              // 名称
+	Data          string                 `protobuf:"bytes,7,opt,name=Data,proto3" json:"Data,omitempty" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据" dc:"数据"`                              // 数据
+	DataType      int32                  `protobuf:"varint,8,opt,name=DataType,proto3" json:"DataType,omitempty" dc:"数据类型 0-字符串 1-富文本 2-文件" dc:"数据类型 0-字符串 1-富文本 2-文件" dc:"数据类型 0-字符串 1-富文本 2-文件" dc:"数据类型 0-字符串 1-富文本 2-文件"` // 数据类型 0-字符串 1-富文本 2-文件
+	Remark        string                 `protobuf:"bytes,9,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`                          // 备注
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

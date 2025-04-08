@@ -128,10 +128,10 @@ func (x *CaptchaRpcRes) GetData() string {
 
 type LoginRpcInvoke struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	CaptchaId     string                 `protobuf:"bytes,1,opt,name=CaptchaId,proto3" json:"CaptchaId,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required"`   // v:required
-	Password      string                 `protobuf:"bytes,2,opt,name=Password,proto3" json:"Password,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required"`     // v:required
-	Username      string                 `protobuf:"bytes,3,opt,name=Username,proto3" json:"Username,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required"`     // v:required
-	VerifyCode    string                 `protobuf:"bytes,4,opt,name=VerifyCode,proto3" json:"VerifyCode,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required"` // v:required
+	CaptchaId     string                 `protobuf:"bytes,1,opt,name=CaptchaId,proto3" json:"CaptchaId,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required"` // v:required
+	Password      string                 `protobuf:"bytes,2,opt,name=Password,proto3" json:"Password,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required"`   // v:required
+	Username      string                 `protobuf:"bytes,3,opt,name=Username,proto3" json:"Username,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required"`   // v:required
+	VerifyCode    string                 `protobuf:"bytes,4,opt,name=VerifyCode,proto3" json:"VerifyCode,omitempty" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required" v:"required"`            // v:required
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

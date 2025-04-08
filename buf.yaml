@@ -1,0 +1,7 @@
+version: v1
+name: github.com/vera-byte/vgo
+lint:
+  use:
+    - DEFAULT
+  except:
+    - FIELD_LOWER_SNAKE_CASE

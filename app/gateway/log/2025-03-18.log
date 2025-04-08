@@ -27,20 +27,20 @@
 2025-03-18T19:45:03.609+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042a300\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400042a300\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-18T19:46:31.949+08:00 [ERRO] {3856e95527e32d18d5f72739919f3ee5} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
 
 2025-03-18T19:46:47.285+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400034e810\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400034e810\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-18T19:47:09.610+08:00 [ERRO] {a0bfc21a30e32d18d8f72739cf0aa2ce} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
 
 2025-03-18T19:48:09.094+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400080ca80\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400080ca80\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-18T19:52:06.164+08:00 [ERRO] {18ebbe2675e32d18dbf727394cc81d3f} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_base/admin_base_v1_captcha.go:19
 
 2025-03-18T19:56:32.152+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004fb500\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140004fb500\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-18T20:00:46.466+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e28d0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007e28d0\u003e"},"BalancerAttributes":null,"Metadata":null}]

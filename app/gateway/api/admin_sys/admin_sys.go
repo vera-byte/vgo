@@ -7,7 +7,7 @@ package admin_sys
 import (
 	"context"
 
-	"vgo/app/gateway/api/admin_sys/v1"
+	"github.com/vera-byte/vgo/app/gateway/api/admin_sys/v1"
 )
 
 type IAdminSysV1 interface {

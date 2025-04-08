@@ -2,8 +2,9 @@ package system
 
 import (
 	"context"
-	v1 "vgo/app/admin/api/system/v1"
-	"vgo/app/admin/internal/service"
+
+	v1 "github.com/vera-byte/vgo/app/admin/api/system/v1"
+	"github.com/vera-byte/vgo/app/admin/internal/service"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/errors/gcode"

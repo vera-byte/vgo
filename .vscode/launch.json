@@ -21,6 +21,19 @@
             "program": "${workspaceFolder}/app/admin/main.go",
             "output": "${workspaceFolder}/debug/admin",
             "showLog": true
+        },
+        {
+            "name": "Vgo Debug",
+            "type": "go",
+            "request": "launch",
+            "mode": "debug",
+            "program": "${workspaceFolder}/vgo-tools/main.go",
+            "output": "${workspaceFolder}/debug/vgo",
+            "args": [
+                "gen",
+                "grpc-crud"
+            ],
+            "showLog": true
         }
     ]
 }

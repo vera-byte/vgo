@@ -28,12 +28,12 @@ const (
 
 type BaseSysConf struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`          // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"` // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"` // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`    // 租户ID
-	CKey          string                 `protobuf:"bytes,5,opt,name=CKey,proto3" json:"CKey,omitempty" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键"`         // 配置键
-	CValue        string                 `protobuf:"bytes,6,opt,name=CValue,proto3" json:"CValue,omitempty" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值"`     // 配置值
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`      // ID
+	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`         // 创建时间
+	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`         // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`  // 租户ID
+	CKey          string                 `protobuf:"bytes,5,opt,name=CKey,proto3" json:"CKey,omitempty" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键" dc:"配置键"` // 配置键
+	CValue        string                 `protobuf:"bytes,6,opt,name=CValue,proto3" json:"CValue,omitempty" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值" dc:"配置值"`      // 配置值
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

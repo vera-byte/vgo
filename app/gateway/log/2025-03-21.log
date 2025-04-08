@@ -2,24 +2,24 @@
 2025-03-21T14:00:12.158+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004649c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004649c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:00:12.167+08:00 [ERRO] {f0317a89ffbb2e18daa8f666905e1e90} unknown service base.v1.Base 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:00:12.166+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e810\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400061e810\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:00:12.924+08:00 [ERRO] {d09542beffbb2e18dea8f66638f55b63} unknown service base.v1.Base 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:00:22.040+08:00 [ERRO] {88de21dc01bc2e18dfa8f66619723bd2} unknown service base.v1.Base 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:01:09.649+08:00 [ERRO] {481f5a9a0abc2e18e0a8f666e5277247} unknown service base.v1.Base 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:03:09.500+08:00 [DEBU] vck init start ...
 2025-03-21T14:03:09.500+08:00 [DEBU] 当前实例ID: 1166w2y2vn0d8lpt5srtlsg100uttew2
@@ -41,8 +41,8 @@ Stack:
 2025-03-21T14:08:20.520+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006098f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140006098f0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:09:58.707+08:00 [ERRO] {f05dd66e87bc2e187f2fdc15838a0176} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:10:32.906+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a2000\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140006a2000\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:10:32.908+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000796600\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000796600\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -56,8 +56,8 @@ Stack:
 2025-03-21T14:11:51.348+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000237f20\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000237f20\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:14:05.081+08:00 [ERRO] {38dccecbc0bc2e18eb67dc19f2912aef} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:15:31.594+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008664e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140008664e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:15:31.597+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000431590\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000431590\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -73,34 +73,34 @@ Stack:
 2025-03-21T14:16:08.341+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000636ea0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000636ea0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:17:08.165+08:00 [ERRO] {405d756cebbc2e18cb1d540aac866a13} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:17:17.748+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037eb10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400037eb10\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:17:17.748+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140003b8bd0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140003b8bd0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:18:36.708+08:00 [ERRO] {c8ed00bd00bd2e18cc1d540a338f1b86} last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.0.0.192:8002: connect: connection refused" 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:18:38.117+08:00 [ERRO] {205c041101bd2e18cd1d540a646a265b} last connection error: connection error: desc = "transport: Error while dialing: dial tcp 10.0.0.192:8002: connect: connection refused" 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:18:50.396+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000894de0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000894de0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:18:50.396+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400041ba10\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400041ba10\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:19:02.274+08:00 [ERRO] {3075eefd05bd2e18d31d540aa23b4523} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:19:24.556+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c5440\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007c5440\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:19:24.557+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007f0b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400007f0b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:19:57.466+08:00 [ERRO] {d0f2bcd712bd2e18d91d540ab06bacc4} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
 
 2025-03-21T14:20:53.631+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048bbf0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400048bbf0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T14:20:53.631+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000214840\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000214840\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -241,20 +241,20 @@ Stack:
 2025-03-21T15:19:30.908+08:00 [DEBU] resolver closed
 2025-03-21T16:00:47.606+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T16:00:48.803+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T16:00:48.946+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T16:00:52.199+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-21T16:00:52.303+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d64e0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d64e0\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -267,25 +267,25 @@ Stack:
 2025-03-21T18:58:41.922+08:00 [DEBU] 当前实例ID: 1m5omi21mdjd8lw3fy4x1ag100tp1w9n
 2025-03-21T18:59:02.723+08:00 [ERRO] {58498a594ecc2e18877a630300bd4dfc} missing metadata 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:07:20.617+08:00 [ERRO] {0079872f53cc2e18887a63038d64d4f0} missing metadata 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:09:58.985+08:00 [DEBU] vck init start ...
 2025-03-21T19:09:58.986+08:00 [DEBU] 当前实例ID: 6p3okq01txhd8lwc302a5ig100xdp6mu
@@ -310,15 +310,15 @@ Stack:
 2025-03-21T19:19:47.992+08:00 [DEBU] 当前实例ID: 1xeslbe20c7d8lwjll4fqeg100pncwl9
 2025-03-21T19:20:17.262+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T19:20:17.330+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T19:20:18.072+08:00 [INFO] {e8c35f4a77cd2e18aeb4191c3f6a6c2f} AuthInterceptor
 2025-03-21T19:20:18.072+08:00 [INFO] {e8c35f4a77cd2e18aeb4191c3f6a6c2f} tokens eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1JlZnJlc2giOmZhbHNlLCJyb2xlSWRzIjpbIjEiXSwidXNlcm5hbWUiOiJhZG1pbiIsInVzZXJJZCI6MSwicGFzc3dvcmRWZXJzaW9uIjo3LCJleHAiOjE3NDI1NjI5NDgsImlhdCI6MTc0MjU1NTc0OH0.YAKzBo3y4EMVB6RuF4SBE3NAQ5hYHMSsIpcgYXrf4WA
@@ -329,15 +329,15 @@ Stack:
 2025-03-21T19:21:49.782+08:00 [DEBU] 当前实例ID: 15enhpm21q0d8lwl5jbn2go100zdmm1l
 2025-03-21T19:22:09.859+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T19:22:09.893+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T19:22:10.395+08:00 [INFO] {781ccd7091cd2e182ccbc70bbb618b02} AuthInterceptor
 2025-03-21T19:22:10.396+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -349,14 +349,14 @@ Stack:
 2025-03-21T19:22:46.671+08:00 [INFO] {308b94e399cd2e1830cbc70bdc2e6538} AuthInterceptor
 2025-03-21T19:22:52.726+08:00 [ERRO] {906512999acd2e1831cbc70bc3037f99} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:23:04.099+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400085f530\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400085f530\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:23:04.100+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400020cf90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400020cf90\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
@@ -364,14 +364,14 @@ Stack:
 2025-03-21T19:23:49.637+08:00 [INFO] {584da78ca8cd2e1839cbc70bb9439ef3} AuthInterceptor
 2025-03-21T19:23:55.668+08:00 [ERRO] {98374541a9cd2e183bcbc70b919b7beb} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:25:15.117+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400088a0f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400088a0f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:25:15.117+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000748570\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000748570\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -386,14 +386,14 @@ Stack:
 2025-03-21T19:25:52.547+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004893b0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140004893b0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:25:58.578+08:00 [ERRO] {f85340dfc5cd2e1831713d2b2f4069d6} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:26:08.487+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000711920\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000711920\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:26:08.488+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x1400054ba40\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400054ba40\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -401,15 +401,15 @@ Stack:
 2025-03-21T19:30:03.482+08:00 [DEBU] 当前实例ID: 187ps8a1z70d8lwrgc8ngz4100g3sq1r
 2025-03-21T19:30:10.722+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T19:30:10.858+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T19:30:11.331+08:00 [INFO] {584b4e6b01ce2e18c4669f30bf63a433} AuthInterceptor {"isRefresh":false,"roleIds":["1"],"username":"admin","userId":1,"passwordVersion":7}
 2025-03-21T19:30:11.332+08:00 [INFO] {584b4e6b01ce2e18c4669f30bf63a433} AuthInterceptor
@@ -423,14 +423,14 @@ Stack:
 2025-03-21T19:30:45.286+08:00 [INFO] {605b465309ce2e18c8669f30f42304d2} AuthInterceptor
 2025-03-21T19:30:51.316+08:00 [ERRO] {c851d3070ace2e18ca669f30107ef415} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:13
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:13
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-21T19:31:44.033+08:00 [DEBU] vck init start ...
 2025-03-21T19:31:44.033+08:00 [DEBU] 当前实例ID: pt5gq0038q0d8lwsqj67ijs1009e11t8
@@ -468,29 +468,29 @@ Stack:
 2025-03-21T19:45:57.284+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c3620\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140005c3620\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-21T19:46:32.907+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T19:46:33.001+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T19:48:15.831+08:00 [DEBU] vck init start ...
 2025-03-21T19:48:15.831+08:00 [DEBU] 当前实例ID: eludka0ert0d8lx5e5p2ro810035820p
 2025-03-21T19:48:18.933+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-21T19:48:19.093+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:48
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:48
 
 2025-03-21T19:48:19.479+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-21T19:48:19.507+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400011def0\u003e"},"BalancerAttributes":null,"Metadata":null}]

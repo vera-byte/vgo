@@ -5,7 +5,7 @@
 package admin_sys
 
 import (
-	v1 "vgo/app/admin/api/system/v1"
+	v1 "github.com/vera-byte/vgo/app/admin/api/system/v1"
 
 	"vgo/utility"
 

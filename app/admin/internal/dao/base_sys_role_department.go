@@ -5,7 +5,7 @@
 package dao
 
 import (
-	"vgo/app/admin/internal/dao/internal"
+	"github.com/vera-byte/vgo/app/admin/internal/dao/internal"
 )
 
 // baseSysRoleDepartmentDao is the data access object for the table base_sys_role_department.

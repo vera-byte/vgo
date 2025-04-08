@@ -2,8 +2,9 @@ package cmd
 
 import (
 	"context"
-	_ "vgo/app/gateway/internal/middleware"
-	_ "vgo/app/gateway/internal/route"
+
+	_ "github.com/vera-byte/vgo/app/gateway/internal/middleware"
+	_ "github.com/vera-byte/vgo/app/gateway/internal/route"
 
 	"github.com/gogf/gf/v2/os/gcmd"
 )

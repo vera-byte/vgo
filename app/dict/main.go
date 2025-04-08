@@ -1,7 +1,7 @@
 package main
 
 import (
-	"vgo/app/dict/internal/cmd"
+	"github.com/vera-byte/vgo/app/dict/internal/cmd"
 
 	"github.com/gogf/gf/v2/os/gctx"
 )

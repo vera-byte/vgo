@@ -2,9 +2,10 @@ package base
 
 import (
 	"context"
-	"vgo/app/admin/internal/dao"
-	"vgo/app/admin/internal/model/entity"
-	"vgo/app/admin/internal/service"
+
+	"github.com/vera-byte/vgo/app/admin/internal/dao"
+	"github.com/vera-byte/vgo/app/admin/internal/model/entity"
+	"github.com/vera-byte/vgo/app/admin/internal/service"
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"

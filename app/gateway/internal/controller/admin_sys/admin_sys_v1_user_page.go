@@ -6,9 +6,9 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 
-	"vgo/app/admin/api/pbentity"
-	protobuf "vgo/app/admin/api/system/v1"
-	v1 "vgo/app/gateway/api/admin_sys/v1"
+	"github.com/vera-byte/vgo/app/admin/api/pbentity"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/system/v1"
+	v1 "github.com/vera-byte/vgo/app/gateway/api/admin_sys/v1"
 )
 
 func (c *ControllerV1) UserPage(ctx context.Context, req *v1.UserPageReq) (res *v1.UserPageRes, err error) {

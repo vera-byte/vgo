@@ -1,16 +1,16 @@
 package main
 
 import (
-	_ "vgo/app/admin/internal/packed"
+	_ "github.com/vera-byte/vgo/app/admin/internal/packed"
 
-	_ "vgo/app/admin/internal/logic"
+	_ "github.com/vera-byte/vgo/app/admin/internal/logic"
 
 	"github.com/gogf/gf/contrib/registry/etcd/v2"
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 
-	"vgo/app/admin/internal/cmd"
+	"github.com/vera-byte/vgo/app/admin/internal/cmd"
 )
 
 func main() {

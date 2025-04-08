@@ -5,7 +5,7 @@
 package hello
 
 import (
-	"vgo/app/space/api/hello"
+	"github.com/vera-byte/vgo/app/space/api/hello"
 )
 
 type ControllerV1 struct{}

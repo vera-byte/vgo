@@ -28,17 +28,17 @@ const (
 
 type BaseSysRole struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	Id               int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                           // ID
-	CreateTime       string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`        // 创建时间
-	UpdateTime       string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`        // 更新时间
-	TenantId         int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`           // 租户ID
-	UserId           string                 `protobuf:"bytes,5,opt,name=UserId,proto3" json:"UserId,omitempty" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID"`      // 用户ID
-	Name             string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称"`                        // 名称
-	Label            string                 `protobuf:"bytes,7,opt,name=Label,proto3" json:"Label,omitempty" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签"`        // 角色标签
-	Remark           string                 `protobuf:"bytes,8,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`                    // 备注
-	Relevance        int32                  `protobuf:"varint,9,opt,name=Relevance,proto3" json:"Relevance,omitempty" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级"` // 数据权限是否关联上下级
-	MenuIdList       string                 `protobuf:"bytes,10,opt,name=MenuIdList,proto3" json:"MenuIdList,omitempty" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限"`       // 菜单权限
-	DepartmentIdList string                 `protobuf:"bytes,11,opt,name=DepartmentIdList,proto3" json:"DepartmentIdList,omitempty" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限"`     // 部门权限
+	Id               int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                             // ID
+	CreateTime       string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`  // 创建时间
+	UpdateTime       string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`  // 更新时间
+	TenantId         int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`     // 租户ID
+	UserId           string                 `protobuf:"bytes,5,opt,name=UserId,proto3" json:"UserId,omitempty" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID" dc:"用户ID"`          // 用户ID
+	Name             string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称" dc:"名称"`                          // 名称
+	Label            string                 `protobuf:"bytes,7,opt,name=Label,proto3" json:"Label,omitempty" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签" dc:"角色标签"`  // 角色标签
+	Remark           string                 `protobuf:"bytes,8,opt,name=Remark,proto3" json:"Remark,omitempty" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注" dc:"备注"`                      // 备注
+	Relevance        int32                  `protobuf:"varint,9,opt,name=Relevance,proto3" json:"Relevance,omitempty" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级" dc:"数据权限是否关联上下级"` // 数据权限是否关联上下级
+	MenuIdList       string                 `protobuf:"bytes,10,opt,name=MenuIdList,proto3" json:"MenuIdList,omitempty" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限" dc:"菜单权限"` // 菜单权限
+	DepartmentIdList string                 `protobuf:"bytes,11,opt,name=DepartmentIdList,proto3" json:"DepartmentIdList,omitempty" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限" dc:"部门权限"`         // 部门权限
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }

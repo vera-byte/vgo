@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	protobuf "vgo/app/admin/api/system/v1"
-	"vgo/app/gateway/internal/controller/admin_sys"
+	protobuf "github.com/vera-byte/vgo/app/admin/api/system/v1"
+	"github.com/vera-byte/vgo/app/gateway/internal/controller/admin_sys"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

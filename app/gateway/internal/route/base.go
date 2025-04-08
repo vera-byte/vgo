@@ -2,9 +2,10 @@ package route
 
 import (
 	"context"
-	"vgo/app/gateway/internal/controller/admin_comm"
-	"vgo/app/gateway/internal/controller/admin_open"
-	"vgo/app/gateway/internal/controller/admin_sys"
+
+	"github.com/vera-byte/vgo/app/gateway/internal/controller/admin_comm"
+	"github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open"
+	"github.com/vera-byte/vgo/app/gateway/internal/controller/admin_sys"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

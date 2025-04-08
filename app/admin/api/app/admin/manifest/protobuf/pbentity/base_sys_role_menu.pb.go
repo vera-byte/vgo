@@ -28,12 +28,12 @@ const (
 
 type BaseSysRoleMenu struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`          // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"` // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"` // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`    // 租户ID
-	RoleId        int32                  `protobuf:"varint,5,opt,name=RoleId,proto3" json:"RoleId,omitempty" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID"`        // 角色ID
-	MenuId        int32                  `protobuf:"varint,6,opt,name=MenuId,proto3" json:"MenuId,omitempty" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID"`        // 菜单ID
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`     // ID
+	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`        // 创建时间
+	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`        // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"` // 租户ID
+	RoleId        int32                  `protobuf:"varint,5,opt,name=RoleId,proto3" json:"RoleId,omitempty" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID" dc:"角色ID"`     // 角色ID
+	MenuId        int32                  `protobuf:"varint,6,opt,name=MenuId,proto3" json:"MenuId,omitempty" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID" dc:"菜单ID"`     // 菜单ID
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

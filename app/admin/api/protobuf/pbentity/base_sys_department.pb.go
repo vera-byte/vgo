@@ -28,13 +28,13 @@ const (
 
 type BaseSysDepartment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                 // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`        // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`        // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"` // 租户ID
-	Name          string                 `protobuf:"bytes,5,opt,name=Name,proto3" json:"Name,omitempty" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称"`          // 部门名称
-	ParentId      int32                  `protobuf:"varint,6,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID"` // 上级部门ID
-	OrderNum      int32                  `protobuf:"varint,7,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`     // 排序
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID" dc:"ID"`                // ID
+	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间" dc:"创建时间"`         // 创建时间
+	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间" dc:"更新时间"`         // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID" dc:"租户ID"`  // 租户ID
+	Name          string                 `protobuf:"bytes,5,opt,name=Name,proto3" json:"Name,omitempty" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称" dc:"部门名称"` // 部门名称
+	ParentId      int32                  `protobuf:"varint,6,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID" dc:"上级部门ID"`        // 上级部门ID
+	OrderNum      int32                  `protobuf:"varint,7,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序" dc:"排序"`            // 排序
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }

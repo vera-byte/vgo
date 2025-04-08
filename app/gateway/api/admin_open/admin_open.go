@@ -7,7 +7,7 @@ package admin_open
 import (
 	"context"
 
-	"vgo/app/gateway/api/admin_open/v1"
+	"github.com/vera-byte/vgo/app/gateway/api/admin_open/v1"
 )
 
 type IAdminOpenV1 interface {

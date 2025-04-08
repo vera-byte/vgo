@@ -1,15 +1,15 @@
 2025-03-27T09:50:09.130+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T09:50:09.146+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T09:50:09.196+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T09:50:09.709+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T09:50:09.790+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -18,20 +18,20 @@ Stack:
 2025-03-27T10:53:42.101+08:00 [DEBU] vck init start ...
 2025-03-27T10:53:42.101+08:00 [INFO] 初始化缓存成功
 2025-03-27T10:53:42.101+08:00 [DEBU] 当前实例ID: pox97u0152rd8qpjdcj77ew100iby5af
-2025-03-27T10:53:42.101+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T10:53:42.101+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T10:53:53.525+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T10:53:53.526+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T10:53:53.561+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000613cb0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000613cb0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:53:53.561+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T10:53:53.570+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000680900\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000680900\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:53:54.770+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -57,7 +57,7 @@ Stack:
 2025-03-27T10:55:15.375+08:00 [DEBU] vck init start ...
 2025-03-27T10:55:15.375+08:00 [INFO] 初始化缓存成功
 2025-03-27T10:55:15.375+08:00 [DEBU] 当前实例ID: pox97u0163vd8qpkk7g6fuo100hc6g8h
-2025-03-27T10:55:15.375+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T10:55:15.375+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T10:55:26.922+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T10:55:26.922+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T10:55:26.931+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000486db0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000486db0\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -81,14 +81,14 @@ Stack:
 2025-03-27T10:56:23.150+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400029ac30\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400029ac30\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:56:26.121+08:00 [ERRO] {0007b5127389301897ac9b3593612096} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-27T10:56:48.929+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6840\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6840\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:56:48.929+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000ad0db0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000ad0db0\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -108,14 +108,14 @@ Stack:
 2025-03-27T10:57:10.376+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009fc5a0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140009fc5a0\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:57:13.367+08:00 [ERRO] {c05db6127e8930189aac9b35cae1a397} context deadline exceeded 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
-2.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:38
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:17
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open.(*ControllerV1).Captcha
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_open/admin_open_v1_captcha.go:20
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:38
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareOpen
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:17
 
 2025-03-27T10:57:40.285+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140009bb860\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009bb860\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T10:57:40.285+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000b5e6c0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000b5e6c0\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -216,18 +216,18 @@ Stack:
 2025-03-27T11:15:45.707+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6870\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140007d6870\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:15:59.160+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T11:15:59.184+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T11:15:59.214+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x14000bc2390\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000bc2390\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:15:59.217+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009b2ae0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009b2ae0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:15:59.230+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T11:16:00.075+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T11:16:00.093+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -265,16 +265,16 @@ Stack:
 2025-03-27T11:17:22.238+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000b5cf90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000b5cf90\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:17:29.685+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T11:17:29.702+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T11:17:29.764+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T11:17:29.770+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"RawService":"\u003c0x140010bb170\u003e","protocol":"grpc"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140010bb170\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:17:29.783+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140011e43f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140011e43f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -318,18 +318,18 @@ Stack:
 2025-03-27T11:18:58.677+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009b2c00\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x140009b2c00\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:19:06.116+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T11:19:06.132+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T11:19:06.148+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001583620\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001583620\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:19:06.158+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001158f90\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14001158f90\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:19:06.179+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T11:19:06.948+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T11:19:06.948+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -344,14 +344,14 @@ Stack:
 2025-03-27T11:19:10.916+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400136cb40\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x1400136cb40\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:19:10.916+08:00 [ERRO] {98d17889b18a3018bfac9b3510bb6e0c} 用户不存在 
 Stack:
-1.  vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
-    /Users/mac/workspace/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:15
-2.  vgo/app/gateway/internal/middleware.BaseSysLog
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/log.go:44
-3.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:78
-4.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/controller/admin_comm.(*ControllerV1).Logout
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/controller/admin_comm/admin_comm_v1_logout.go:15
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseSysLog
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/log.go:44
+3.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:78
+4.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T11:19:10.920+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000bfbec0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000bfbec0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T11:19:10.960+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -434,13 +434,13 @@ Stack:
 2025-03-27T17:06:23.580+08:00 [DEBU] vck init start ...
 2025-03-27T17:06:23.582+08:00 [INFO] 初始化缓存成功
 2025-03-27T17:06:23.582+08:00 [DEBU] 当前实例ID: nokzt5021s2d8qxgq2hj3uw100p13xzv
-2025-03-27T17:06:23.583+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T17:06:23.583+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T17:53:13.784+08:00 [DEBU] Etcd配置中心开启
 2025-03-27T17:53:13.785+08:00 [INFO] Admin配置为分布式配置
 2025-03-27T17:53:13.797+08:00 [DEBU] vck init start ...
 2025-03-27T17:53:13.798+08:00 [INFO] 初始化缓存成功
 2025-03-27T17:53:13.798+08:00 [DEBU] 当前实例ID: 1g0a2i210yld8qygl2hzsc8100oi6coj
-2025-03-27T17:53:13.798+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T17:53:13.798+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T17:53:30.001+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T17:53:30.002+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T17:53:30.026+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000558e70\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000558e70\u003e"},"BalancerAttributes":null,"Metadata":null}]
@@ -515,17 +515,17 @@ Stack:
 2025-03-27T18:12:11.166+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000cc4750\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000cc4750\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T18:12:53.012+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
-2.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:23
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
+2.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddlewareComm
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:23
 
 2025-03-27T18:12:53.020+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T18:12:53.060+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000663980\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000663980\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T18:12:53.064+08:00 [ERRO] BaseAuthorityMiddleware token contains an invalid number of segments 
 Stack:
-1.  vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
-    /Users/mac/workspace/vgo/app/gateway/internal/middleware/authority.go:47
+1.  github.com/vera-byte/vgo/app/gateway/internal/middleware.BaseAuthorityMiddleware
+    /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/internal/middleware/authority.go:47
 
 2025-03-27T18:12:53.069+08:00 [DEBU] client conn updated with addresses [{"Addr":"10.0.0.192:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000adc6f0\u003e"},"BalancerAttributes":null,"Metadata":null},{"Addr":"10.10.10.1:8002","ServerName":"admin","Attributes":{"protocol":"grpc","RawService":"\u003c0x14000adc6f0\u003e"},"BalancerAttributes":null,"Metadata":null}]
 2025-03-27T18:12:54.242+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -591,7 +591,7 @@ Stack:
 2025-03-27T18:16:57.110+08:00 [DEBU] vck init start ...
 2025-03-27T18:16:57.110+08:00 [INFO] 初始化缓存成功
 2025-03-27T18:16:57.111+08:00 [DEBU] 当前实例ID: 1g0a2i21ixgd8qyyqxmlcbk100r33zj7
-2025-03-27T18:16:57.111+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T18:16:57.111+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T18:17:02.139+08:00 [INFO] {b00003e37ea130187c2ff2167154b068} 用户更改 nickName
 2025-03-27T18:17:02.139+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T18:17:02.139+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
@@ -649,7 +649,7 @@ Stack:
 2025-03-27T18:19:46.635+08:00 [DEBU] vck init start ...
 2025-03-27T18:19:46.636+08:00 [INFO] 初始化缓存成功
 2025-03-27T18:19:46.636+08:00 [DEBU] 当前实例ID: 1g0a2i21l3jd8qz0wt16ipc100js8e26
-2025-03-27T18:19:46.636+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/vgo/app/gateway/manifest/config
+2025-03-27T18:19:46.636+08:00 [DEBU] 开始监听配置文件 /Users/mac/workspace/github.com/vera-byte/vgo/app/gateway/manifest/config
 2025-03-27T18:20:17.945+08:00 [INFO] {8008e979aca13018ba2a7b0b0fdd3ee3} 用户更改 password
 2025-03-27T18:20:17.945+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"
 2025-03-27T18:20:17.946+08:00 [DEBU] Watch key "/service/default/default/admin/latest/"

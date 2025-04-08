@@ -7,7 +7,7 @@ import (
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
 
-	"vgo/app/space/internal/controller/hello"
+	"github.com/vera-byte/vgo/app/space/internal/controller/hello"
 )
 
 var (
