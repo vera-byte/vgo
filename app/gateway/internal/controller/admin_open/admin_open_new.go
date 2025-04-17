@@ -5,7 +5,7 @@
 package admin_open
 
 import (
-	"vgo/utility"
+	"github.com/vera-byte/vgo/utility"
 
 	v1 "github.com/vera-byte/vgo/app/admin/api/open/v1"
 	"github.com/vera-byte/vgo/app/gateway/api/admin_open"

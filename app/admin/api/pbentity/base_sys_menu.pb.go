@@ -17,6 +17,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -29,8 +30,8 @@ const (
 type BaseSysMenu struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                    // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间"`   // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间"`   // 更新时间
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" dc:"创建时间"`     // 创建时间
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty" dc:"更新时间"`     // 更新时间
 	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`      // 租户ID
 	ParentId      int32                  `protobuf:"varint,5,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"父菜单ID"`     // 父菜单ID
 	Name          string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"菜单名称"`               // 菜单名称
@@ -40,8 +41,9 @@ type BaseSysMenu struct {
 	Icon          string                 `protobuf:"bytes,10,opt,name=Icon,proto3" json:"Icon,omitempty" dc:"图标"`                // 图标
 	OrderNum      int32                  `protobuf:"varint,11,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序"`       // 排序
 	ViewPath      string                 `protobuf:"bytes,12,opt,name=ViewPath,proto3" json:"ViewPath,omitempty" dc:"视图地址"`      // 视图地址
-	KeepAlive     int32                  `protobuf:"varint,13,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"路由缓存"`   // 路由缓存
-	IsShow        int32                  `protobuf:"varint,14,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示"`         // 是否显示
+	KeepAlive     bool                   `protobuf:"varint,13,opt,name=KeepAlive,proto3" json:"KeepAlive,omitempty" dc:"路由缓存"`   // 路由缓存
+	IsShow        bool                   `protobuf:"varint,14,opt,name=IsShow,proto3" json:"IsShow,omitempty" dc:"是否显示"`         // 是否显示
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,15,opt,name=DeletedAt,proto3" json:"DeletedAt,omitempty" dc:"软删除时间"`   // 软删除时间
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -83,18 +85,18 @@ func (x *BaseSysMenu) GetId() int32 {
 	return 0
 }
 
-func (x *BaseSysMenu) GetCreateTime() string {
+func (x *BaseSysMenu) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreateTime
+		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *BaseSysMenu) GetUpdateTime() string {
+func (x *BaseSysMenu) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.UpdateTime
+		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *BaseSysMenu) GetTenantId() int32 {
@@ -160,33 +162,36 @@ func (x *BaseSysMenu) GetViewPath() string {
 	return ""
 }
 
-func (x *BaseSysMenu) GetKeepAlive() int32 {
+func (x *BaseSysMenu) GetKeepAlive() bool {
 	if x != nil {
 		return x.KeepAlive
 	}
-	return 0
+	return false
 }
 
-func (x *BaseSysMenu) GetIsShow() int32 {
+func (x *BaseSysMenu) GetIsShow() bool {
 	if x != nil {
 		return x.IsShow
 	}
-	return 0
+	return false
+}
+
+func (x *BaseSysMenu) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
 }
 
 var File_pbentity_base_sys_menu_proto protoreflect.FileDescriptor
 
 const file_pbentity_base_sys_menu_proto_rawDesc = "" +
 	"\n" +
-	"\x1cpbentity/base_sys_menu.proto\x12\bpbentity\"\xed\x02\n" +
+	"\x1cpbentity/base_sys_menu.proto\x12\bpbentity\x1a\x1fgoogle/protobuf/timestamp.proto\"\xdb\x03\n" +
 	"\vBaseSysMenu\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\x05R\x02Id\x12\x1e\n" +
-	"\n" +
-	"CreateTime\x18\x02 \x01(\tR\n" +
-	"CreateTime\x12\x1e\n" +
-	"\n" +
-	"UpdateTime\x18\x03 \x01(\tR\n" +
-	"UpdateTime\x12\x1a\n" +
+	"\x02Id\x18\x01 \x01(\x05R\x02Id\x128\n" +
+	"\tCreatedAt\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tCreatedAt\x128\n" +
+	"\tUpdatedAt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tUpdatedAt\x12\x1a\n" +
 	"\bTenantId\x18\x04 \x01(\x05R\bTenantId\x12\x1a\n" +
 	"\bParentId\x18\x05 \x01(\x05R\bParentId\x12\x12\n" +
 	"\x04Name\x18\x06 \x01(\tR\x04Name\x12\x16\n" +
@@ -197,8 +202,9 @@ const file_pbentity_base_sys_menu_proto_rawDesc = "" +
 	" \x01(\tR\x04Icon\x12\x1a\n" +
 	"\bOrderNum\x18\v \x01(\x05R\bOrderNum\x12\x1a\n" +
 	"\bViewPath\x18\f \x01(\tR\bViewPath\x12\x1c\n" +
-	"\tKeepAlive\x18\r \x01(\x05R\tKeepAlive\x12\x16\n" +
-	"\x06IsShow\x18\x0e \x01(\x05R\x06IsShowB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
+	"\tKeepAlive\x18\r \x01(\bR\tKeepAlive\x12\x16\n" +
+	"\x06IsShow\x18\x0e \x01(\bR\x06IsShow\x128\n" +
+	"\tDeletedAt\x18\x0f \x01(\v2\x1a.google.protobuf.TimestampR\tDeletedAtB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
 
 var (
 	file_pbentity_base_sys_menu_proto_rawDescOnce sync.Once
@@ -214,14 +220,18 @@ func file_pbentity_base_sys_menu_proto_rawDescGZIP() []byte {
 
 var file_pbentity_base_sys_menu_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pbentity_base_sys_menu_proto_goTypes = []any{
-	(*BaseSysMenu)(nil), // 0: pbentity.BaseSysMenu
+	(*BaseSysMenu)(nil),           // 0: pbentity.BaseSysMenu
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_pbentity_base_sys_menu_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pbentity.BaseSysMenu.CreatedAt:type_name -> google.protobuf.Timestamp
+	1, // 1: pbentity.BaseSysMenu.UpdatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: pbentity.BaseSysMenu.DeletedAt:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pbentity_base_sys_menu_proto_init() }

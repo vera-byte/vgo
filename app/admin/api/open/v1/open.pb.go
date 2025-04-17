@@ -196,7 +196,7 @@ func (x *LoginRpcInvoke) GetVerifyCode() string {
 
 type LoginRpcRes struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Expirea       int64                  `protobuf:"varint,1,opt,name=expirea,proto3" json:"expirea,omitempty"`
+	Expire        int64                  `protobuf:"varint,1,opt,name=Expire,proto3" json:"Expire,omitempty"`
 	RefreshExpire int64                  `protobuf:"varint,2,opt,name=RefreshExpire,proto3" json:"RefreshExpire,omitempty"`
 	RefreshToken  string                 `protobuf:"bytes,3,opt,name=RefreshToken,proto3" json:"RefreshToken,omitempty"`
 	Token         string                 `protobuf:"bytes,4,opt,name=Token,proto3" json:"Token,omitempty"`
@@ -234,9 +234,9 @@ func (*LoginRpcRes) Descriptor() ([]byte, []int) {
 	return file_open_v1_open_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *LoginRpcRes) GetExpirea() int64 {
+func (x *LoginRpcRes) GetExpire() int64 {
 	if x != nil {
-		return x.Expirea
+		return x.Expire
 	}
 	return 0
 }
@@ -323,9 +323,9 @@ const file_open_v1_open_proto_rawDesc = "" +
 	"\bUsername\x18\x03 \x01(\tR\bUsername\x12\x1e\n" +
 	"\n" +
 	"VerifyCode\x18\x04 \x01(\tR\n" +
-	"VerifyCode\"\x87\x01\n" +
-	"\vLoginRpcRes\x12\x18\n" +
-	"\aexpirea\x18\x01 \x01(\x03R\aexpirea\x12$\n" +
+	"VerifyCode\"\x85\x01\n" +
+	"\vLoginRpcRes\x12\x16\n" +
+	"\x06Expire\x18\x01 \x01(\x03R\x06Expire\x12$\n" +
 	"\rRefreshExpire\x18\x02 \x01(\x03R\rRefreshExpire\x12\"\n" +
 	"\fRefreshToken\x18\x03 \x01(\tR\fRefreshToken\x12\x14\n" +
 	"\x05Token\x18\x04 \x01(\tR\x05Token\"8\n" +

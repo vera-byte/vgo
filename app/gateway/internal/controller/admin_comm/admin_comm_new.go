@@ -5,7 +5,7 @@
 package admin_comm
 
 import (
-	"vgo/utility"
+	"github.com/vera-byte/vgo/utility"
 
 	"github.com/vera-byte/vgo/app/gateway/api/admin_comm"
 

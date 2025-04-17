@@ -6,23 +6,26 @@ syntax = "proto3";
 
 package pbentity;
 
-option go_package = "vgo/app/admin/api/pbentity";
+option go_package = "github.com/vera-byte/vgo/app/admin/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
 
 message BaseSysUser {
-  int32 Id = 1; // ID
-  string CreateTime = 2; // 创建时间
-  string UpdateTime = 3; // 更新时间
-  int32 TenantId = 4; // 租户ID
-  int32 DepartmentId = 5; // 部门ID
-  string Name = 6; // 姓名
-  string Username = 7; // 用户名
-  string Password = 8; // 密码
-  int32 PasswordV = 9; // 密码版本, 作用是改完密码，让原来的token失效
-  string NickName = 10; // 昵称
-  string HeadImg = 11; // 头像
-  string Phone = 12; // 手机
-  string Email = 13; // 邮箱
-  string Remark = 14; // 备注
-  int32 Status = 15; // 状态 0-禁用 1-启用
-  string SocketId = 16; // socketId
+    int32                     Id           = 1;  // ID
+    google.protobuf.Timestamp CreatedAt    = 2;  // 创建时间
+    google.protobuf.Timestamp UpdatedAt    = 3;  // 更新时间
+    int32                     TenantId     = 4;  // 租户ID
+    int32                     DepartmentId = 5;  // 部门ID
+    string                    Name         = 6;  // 姓名
+    string                    Username     = 7;  // 用户名
+    string                    Password     = 8;  // 密码
+    int32                     PasswordV    = 9;  // 密码版本, 作用是改完密码，让原来的token失效
+    string                    NickName     = 10; // 昵称
+    string                    HeadImg      = 11; // 头像
+    string                    Phone        = 12; // 手机
+    string                    Email        = 13; // 邮箱
+    string                    Remark       = 14; // 备注
+    int32                     Status       = 15; // 状态 0-禁用 1-启用
+    string                    SocketId     = 16; // socketId
+    google.protobuf.Timestamp DeletedAt    = 17; // 软删除时间
 }

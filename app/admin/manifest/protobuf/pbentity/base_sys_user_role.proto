@@ -6,13 +6,16 @@ syntax = "proto3";
 
 package pbentity;
 
-option go_package = "vgo/app/admin/api/pbentity";
+option go_package = "github.com/vera-byte/vgo/app/admin/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
 
 message BaseSysUserRole {
-  int32 Id = 1; // ID
-  string CreateTime = 2; // 创建时间
-  string UpdateTime = 3; // 更新时间
-  int32 TenantId = 4; // 租户ID
-  int32 UserId = 5; // 用户ID
-  int32 RoleId = 6; // 角色ID
+    int32                     Id        = 1; // ID
+    google.protobuf.Timestamp CreatedAt = 2; // 创建时间
+    google.protobuf.Timestamp UpdatedAt = 3; // 更新时间
+    int32                     TenantId  = 4; // 租户ID
+    int32                     UserId    = 5; // 用户ID
+    int32                     RoleId    = 6; // 角色ID
+    google.protobuf.Timestamp DeletedAt = 7; // 软删除时间
 }

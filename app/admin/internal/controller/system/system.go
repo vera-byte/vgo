@@ -9,8 +9,6 @@ import (
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
-	"github.com/gogf/gf/v2/util/gconv"
-	vck_request "github.com/vera-byte/vgo/vgo_core_kit/request"
 )
 
 type Controller struct {
@@ -66,20 +64,20 @@ func (*Controller) DepartmentList(ctx context.Context, req *v1.DepartmentListRpc
 }
 
 func (*Controller) UserPage(ctx context.Context, req *v1.UserPageRpcInvoke) (res *v1.UserPageRpcRes, err error) {
-	var (
-		baseSysUserService = service.BaseSysUserLogic()
-	)
-	user, page, err := baseSysUserService.Page(ctx, &vck_request.PageReq{
-		Page:  int(req.PageReq.Page),
-		Size:  int(req.PageReq.Size),
-		Sort:  req.PageReq.Sort,
-		Order: req.PageReq.Order,
-	}, req.DepartmentIds)
-	if err != nil {
-		return
-	}
-	res = &v1.UserPageRpcRes{}
-	gconv.Scan(user, &res.List)
-	gconv.Scan(page, &res.Pagination)
+	// var (
+	// 	baseSysUserService = service.BaseSysUserLogic()
+	// )
+	// user, page, err := baseSysUserService.Page(ctx, &vck_request.PageReq{
+	// 	Page:  int(req.PageReq.Page),
+	// 	Size:  int(req.PageReq.Size),
+	// 	Sort:  req.PageReq.Sort,
+	// 	Order: req.PageReq.Order,
+	// }, req.DepartmentIds)
+	// if err != nil {
+	// 	return
+	// }
+	// res = &v1.UserPageRpcRes{}
+	// gconv.Scan(user, &res.List)
+	// gconv.Scan(page, &res.Pagination)
 	return res, nil
 }

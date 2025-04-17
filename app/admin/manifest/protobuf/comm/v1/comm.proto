@@ -2,7 +2,7 @@ syntax = "proto3";
 
 
 package v1.base.comm;
-option go_package = "vgo/app/admin/api/v1/base_comm/protobuf";
+option go_package = "github.com/vera-byte/vgo/app/admin/api/v1/base_comm/protobuf";
 
 service BaseComm {
   // 菜单权限

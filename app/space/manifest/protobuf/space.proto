@@ -2,6 +2,4 @@ syntax = "proto3";
 
 package v1.space;
 
-option go_package = "vgo/app/space/api/v1/space/protobuf";
-
-
+option go_package = "github.com/vera-byte/vgo/app/space/api/v1/space/protobuf";

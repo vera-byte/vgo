@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package v1.base.open;
 
-option go_package = "vgo/app/admin/api/v1/base_open/protobuf";
+option go_package = "github.com/vera-byte/vgo/app/admin/api/v1/base_open/protobuf";
 
 service BaseOpen {
   // 验证码

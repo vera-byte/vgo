@@ -6,15 +6,19 @@ syntax = "proto3";
 
 package pbentity;
 
-option go_package = "vgo/app/admin/api/pbentity";
+option go_package = "github.com/vera-byte/vgo/app/admin/api/pbentity";
+
+import "google/protobuf/timestamp.proto";
 
 message BaseSysLog {
-  int32 Id = 1; // ID
-  string CreateTime = 2; // 创建时间
-  string UpdateTime = 3; // 更新时间
-  int32 TenantId = 4; // 租户ID
-  int32 UserId = 5; // 用户ID
-  string Action = 6; // 行为
-  string Ip = 7; // ip
-  string Params = 8; // 参数
+    google.protobuf.Timestamp CreatedAt = 1;  // 创建时间
+    google.protobuf.Timestamp UpdatedAt = 2;  // 更新时间
+    int32                     TenantId  = 3;  // 租户ID
+    int32                     UserId    = 4;  // 用户ID
+    string                    Action    = 5;  // 行为
+    string                    Ip        = 6;  // ip
+    string                    Params    = 7;  // 参数
+    google.protobuf.Timestamp DeletedAt = 8;  // 软删除时间
+    string                    TraceId   = 9;  // 追踪id
+    int64                     Id        = 10; //
 }

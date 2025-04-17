@@ -17,6 +17,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -28,13 +29,14 @@ const (
 
 type BaseSysDepartment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                  // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间"` // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间"` // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`    // 租户ID
-	Name          string                 `protobuf:"bytes,5,opt,name=Name,proto3" json:"Name,omitempty" dc:"部门名称"`             // 部门名称
-	ParentId      int32                  `protobuf:"varint,6,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"上级部门ID"`  // 上级部门ID
-	OrderNum      int32                  `protobuf:"varint,7,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序"`      // 排序
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                 // ID
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" dc:"创建时间"`  // 创建时间
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty" dc:"更新时间"`  // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`   // 租户ID
+	Name          string                 `protobuf:"bytes,5,opt,name=Name,proto3" json:"Name,omitempty" dc:"部门名称"`            // 部门名称
+	ParentId      int32                  `protobuf:"varint,6,opt,name=ParentId,proto3" json:"ParentId,omitempty" dc:"上级部门ID"` // 上级部门ID
+	OrderNum      int32                  `protobuf:"varint,7,opt,name=OrderNum,proto3" json:"OrderNum,omitempty" dc:"排序"`     // 排序
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=DeletedAt,proto3" json:"DeletedAt,omitempty" dc:"软删除时间"` // 软删除时间
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -76,18 +78,18 @@ func (x *BaseSysDepartment) GetId() int32 {
 	return 0
 }
 
-func (x *BaseSysDepartment) GetCreateTime() string {
+func (x *BaseSysDepartment) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreateTime
+		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *BaseSysDepartment) GetUpdateTime() string {
+func (x *BaseSysDepartment) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.UpdateTime
+		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *BaseSysDepartment) GetTenantId() int32 {
@@ -118,23 +120,27 @@ func (x *BaseSysDepartment) GetOrderNum() int32 {
 	return 0
 }
 
+func (x *BaseSysDepartment) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
 var File_pbentity_base_sys_department_proto protoreflect.FileDescriptor
 
 const file_pbentity_base_sys_department_proto_rawDesc = "" +
 	"\n" +
-	"\"pbentity/base_sys_department.proto\x12\bpbentity\"\xcb\x01\n" +
+	"\"pbentity/base_sys_department.proto\x12\bpbentity\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x02\n" +
 	"\x11BaseSysDepartment\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\x05R\x02Id\x12\x1e\n" +
-	"\n" +
-	"CreateTime\x18\x02 \x01(\tR\n" +
-	"CreateTime\x12\x1e\n" +
-	"\n" +
-	"UpdateTime\x18\x03 \x01(\tR\n" +
-	"UpdateTime\x12\x1a\n" +
+	"\x02Id\x18\x01 \x01(\x05R\x02Id\x128\n" +
+	"\tCreatedAt\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tCreatedAt\x128\n" +
+	"\tUpdatedAt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tUpdatedAt\x12\x1a\n" +
 	"\bTenantId\x18\x04 \x01(\x05R\bTenantId\x12\x12\n" +
 	"\x04Name\x18\x05 \x01(\tR\x04Name\x12\x1a\n" +
 	"\bParentId\x18\x06 \x01(\x05R\bParentId\x12\x1a\n" +
-	"\bOrderNum\x18\a \x01(\x05R\bOrderNumB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
+	"\bOrderNum\x18\a \x01(\x05R\bOrderNum\x128\n" +
+	"\tDeletedAt\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tDeletedAtB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
 
 var (
 	file_pbentity_base_sys_department_proto_rawDescOnce sync.Once
@@ -150,14 +156,18 @@ func file_pbentity_base_sys_department_proto_rawDescGZIP() []byte {
 
 var file_pbentity_base_sys_department_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pbentity_base_sys_department_proto_goTypes = []any{
-	(*BaseSysDepartment)(nil), // 0: pbentity.BaseSysDepartment
+	(*BaseSysDepartment)(nil),     // 0: pbentity.BaseSysDepartment
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_pbentity_base_sys_department_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pbentity.BaseSysDepartment.CreatedAt:type_name -> google.protobuf.Timestamp
+	1, // 1: pbentity.BaseSysDepartment.UpdatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: pbentity.BaseSysDepartment.DeletedAt:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pbentity_base_sys_department_proto_init() }

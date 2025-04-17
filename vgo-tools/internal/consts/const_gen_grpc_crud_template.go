@@ -1,9 +1,6 @@
 package consts
 
 const TemplatePbEntityMessageContent = `
-// ==========================================================================
-// Code generated and maintained by GoFrame CLI tool. DO NOT EDIT.
-// ==========================================================================
 
 syntax = "proto3";
 
@@ -14,4 +11,22 @@ option go_package = "{GoPackage}";
 {Imports}
 
 {EntityMessage}
+
+{RpcService}
+
+{RpcServiceImplement}
+`
+
+const TemplateServiceContent = `
+service {ServiceName}CrudService {
+{Rpc}
+}
+`
+
+const TemplateRpcServiceImplement = `
+{RpcInvoke}
+
+message {RpcRes} {
+{ResField}
+}
 `

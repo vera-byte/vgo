@@ -17,6 +17,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -28,14 +29,16 @@ const (
 
 type BaseSysLog struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                  // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间"` // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间"` // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`    // 租户ID
-	UserId        int32                  `protobuf:"varint,5,opt,name=UserId,proto3" json:"UserId,omitempty" dc:"用户ID"`        // 用户ID
-	Action        string                 `protobuf:"bytes,6,opt,name=Action,proto3" json:"Action,omitempty" dc:"行为"`           // 行为
-	Ip            string                 `protobuf:"bytes,7,opt,name=Ip,proto3" json:"Ip,omitempty" dc:"ip"`                   // ip
-	Params        string                 `protobuf:"bytes,8,opt,name=Params,proto3" json:"Params,omitempty" dc:"参数"`           // 参数
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" dc:"创建时间"`  // 创建时间
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty" dc:"更新时间"`  // 更新时间
+	TenantId      int32                  `protobuf:"varint,3,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`   // 租户ID
+	UserId        int32                  `protobuf:"varint,4,opt,name=UserId,proto3" json:"UserId,omitempty" dc:"用户ID"`       // 用户ID
+	Action        string                 `protobuf:"bytes,5,opt,name=Action,proto3" json:"Action,omitempty" dc:"行为"`          // 行为
+	Ip            string                 `protobuf:"bytes,6,opt,name=Ip,proto3" json:"Ip,omitempty" dc:"ip"`                  // ip
+	Params        string                 `protobuf:"bytes,7,opt,name=Params,proto3" json:"Params,omitempty" dc:"参数"`          // 参数
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=DeletedAt,proto3" json:"DeletedAt,omitempty" dc:"软删除时间"` // 软删除时间
+	TraceId       string                 `protobuf:"bytes,9,opt,name=TraceId,proto3" json:"TraceId,omitempty" dc:"追踪id"`      // 追踪id
+	Id            int64                  `protobuf:"varint,10,opt,name=Id,proto3" json:"Id,omitempty"`                        //
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -70,25 +73,18 @@ func (*BaseSysLog) Descriptor() ([]byte, []int) {
 	return file_pbentity_base_sys_log_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *BaseSysLog) GetId() int32 {
+func (x *BaseSysLog) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.Id
+		return x.CreatedAt
 	}
-	return 0
+	return nil
 }
 
-func (x *BaseSysLog) GetCreateTime() string {
+func (x *BaseSysLog) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreateTime
+		return x.UpdatedAt
 	}
-	return ""
-}
-
-func (x *BaseSysLog) GetUpdateTime() string {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return ""
+	return nil
 }
 
 func (x *BaseSysLog) GetTenantId() int32 {
@@ -126,25 +122,45 @@ func (x *BaseSysLog) GetParams() string {
 	return ""
 }
 
+func (x *BaseSysLog) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
+func (x *BaseSysLog) GetTraceId() string {
+	if x != nil {
+		return x.TraceId
+	}
+	return ""
+}
+
+func (x *BaseSysLog) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
 var File_pbentity_base_sys_log_proto protoreflect.FileDescriptor
 
 const file_pbentity_base_sys_log_proto_rawDesc = "" +
 	"\n" +
-	"\x1bpbentity/base_sys_log.proto\x12\bpbentity\"\xd0\x01\n" +
+	"\x1bpbentity/base_sys_log.proto\x12\bpbentity\x1a\x1fgoogle/protobuf/timestamp.proto\"\xd8\x02\n" +
 	"\n" +
-	"BaseSysLog\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\x05R\x02Id\x12\x1e\n" +
-	"\n" +
-	"CreateTime\x18\x02 \x01(\tR\n" +
-	"CreateTime\x12\x1e\n" +
-	"\n" +
-	"UpdateTime\x18\x03 \x01(\tR\n" +
-	"UpdateTime\x12\x1a\n" +
-	"\bTenantId\x18\x04 \x01(\x05R\bTenantId\x12\x16\n" +
-	"\x06UserId\x18\x05 \x01(\x05R\x06UserId\x12\x16\n" +
-	"\x06Action\x18\x06 \x01(\tR\x06Action\x12\x0e\n" +
-	"\x02Ip\x18\a \x01(\tR\x02Ip\x12\x16\n" +
-	"\x06Params\x18\b \x01(\tR\x06ParamsB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
+	"BaseSysLog\x128\n" +
+	"\tCreatedAt\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\tCreatedAt\x128\n" +
+	"\tUpdatedAt\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tUpdatedAt\x12\x1a\n" +
+	"\bTenantId\x18\x03 \x01(\x05R\bTenantId\x12\x16\n" +
+	"\x06UserId\x18\x04 \x01(\x05R\x06UserId\x12\x16\n" +
+	"\x06Action\x18\x05 \x01(\tR\x06Action\x12\x0e\n" +
+	"\x02Ip\x18\x06 \x01(\tR\x02Ip\x12\x16\n" +
+	"\x06Params\x18\a \x01(\tR\x06Params\x128\n" +
+	"\tDeletedAt\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tDeletedAt\x12\x18\n" +
+	"\aTraceId\x18\t \x01(\tR\aTraceId\x12\x0e\n" +
+	"\x02Id\x18\n" +
+	" \x01(\x03R\x02IdB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
 
 var (
 	file_pbentity_base_sys_log_proto_rawDescOnce sync.Once
@@ -160,14 +176,18 @@ func file_pbentity_base_sys_log_proto_rawDescGZIP() []byte {
 
 var file_pbentity_base_sys_log_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pbentity_base_sys_log_proto_goTypes = []any{
-	(*BaseSysLog)(nil), // 0: pbentity.BaseSysLog
+	(*BaseSysLog)(nil),            // 0: pbentity.BaseSysLog
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_pbentity_base_sys_log_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pbentity.BaseSysLog.CreatedAt:type_name -> google.protobuf.Timestamp
+	1, // 1: pbentity.BaseSysLog.UpdatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: pbentity.BaseSysLog.DeletedAt:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pbentity_base_sys_log_proto_init() }

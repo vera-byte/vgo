@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+package api;
+
+option go_package = "github.com/vera-byte/vgo/vgo-tools/api/v1/app/protobuf";
+
+import "google/protobuf/timestamp.proto";
+
+message BaseSysConf {
+    int32                     Id        = 1; // ID
+    google.protobuf.Timestamp CreatedAt = 2; // 创建时间
+    google.protobuf.Timestamp UpdatedAt = 3; // 更新时间
+    int32                     TenantId  = 4; // 租户ID
+    string                    CKey      = 5; // 配置键
+    string                    CValue    = 6; // 配置值
+    google.protobuf.Timestamp DeletedAt = 7; // 软删除时间
+}
+
+
+service BaseSysConfCrudService {
+    // Add
+    rpc Add(BaseSysConfAddRpcInvoke) returns (BaseSysConfAddRpcRes);
+    // Update
+    rpc Update(BaseSysConfUpdateRpcInvoke) returns (BaseSysConfUpdateRpcRes);
+    // Info
+    rpc Info(BaseSysConfInfoRpcInvoke) returns (BaseSysConfInfoRpcRes);
+    // Delete
+    rpc Delete(BaseSysConfDeleteRpcInvoke) returns (BaseSysConfDeleteRpcRes);
+    // Page
+    rpc Page(BaseSysConfPageRpcInvoke) returns (BaseSysConfPageRpcRes);
+    // List
+    rpc List(BaseSysConfListRpcInvoke) returns (BaseSysConfListRpcRes);
+
+}
+
+
+
+message BaseSysConfListRpcInvoke {}
+
+message BaseSysConfListRpcRes {
+repeated BaseSysConf BaseSysConf = 1;
+
+}
+
+message BaseSysConfAddRpcInvoke {
+			 BaseSysConf BaseSysConf = 1;
+		}
+
+message BaseSysConfAddRpcRes {
+
+}
+
+message BaseSysConfUpdateRpcInvoke {
+    int32 Id = 1; // ID
+}
+
+message BaseSysConfUpdateRpcRes {
+
+}
+
+message BaseSysConfInfoRpcInvoke {
+    int32 Id = 1; // ID
+}
+
+message BaseSysConfInfoRpcRes {
+    BaseSysConf BaseSysConf = 1;
+
+}
+
+message BaseSysConfDeleteRpcInvoke {
+    int32 Id = 1; // ID
+}
+
+message BaseSysConfDeleteRpcRes {
+
+}
+
+message BaseSysConfPageRpcInvoke {BaseSysConf BaseSysConf = 1;}
+
+message BaseSysConfPageRpcRes {
+
+}

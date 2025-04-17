@@ -17,6 +17,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -29,8 +30,8 @@ const (
 type BaseSysRole struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                               // ID
-	CreateTime       string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间"`              // 创建时间
-	UpdateTime       string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间"`              // 更新时间
+	CreatedAt        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" dc:"创建时间"`                // 创建时间
+	UpdatedAt        *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty" dc:"更新时间"`                // 更新时间
 	TenantId         int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`                 // 租户ID
 	UserId           string                 `protobuf:"bytes,5,opt,name=UserId,proto3" json:"UserId,omitempty" dc:"用户ID"`                      // 用户ID
 	Name             string                 `protobuf:"bytes,6,opt,name=Name,proto3" json:"Name,omitempty" dc:"名称"`                            // 名称
@@ -39,6 +40,7 @@ type BaseSysRole struct {
 	Relevance        int32                  `protobuf:"varint,9,opt,name=Relevance,proto3" json:"Relevance,omitempty" dc:"数据权限是否关联上下级"`        // 数据权限是否关联上下级
 	MenuIdList       string                 `protobuf:"bytes,10,opt,name=MenuIdList,proto3" json:"MenuIdList,omitempty" dc:"菜单权限"`             // 菜单权限
 	DepartmentIdList string                 `protobuf:"bytes,11,opt,name=DepartmentIdList,proto3" json:"DepartmentIdList,omitempty" dc:"部门权限"` // 部门权限
+	DeletedAt        *timestamppb.Timestamp `protobuf:"bytes,12,opt,name=DeletedAt,proto3" json:"DeletedAt,omitempty" dc:"软删除时间"`              // 软删除时间
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -80,18 +82,18 @@ func (x *BaseSysRole) GetId() int32 {
 	return 0
 }
 
-func (x *BaseSysRole) GetCreateTime() string {
+func (x *BaseSysRole) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreateTime
+		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *BaseSysRole) GetUpdateTime() string {
+func (x *BaseSysRole) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.UpdateTime
+		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *BaseSysRole) GetTenantId() int32 {
@@ -150,19 +152,22 @@ func (x *BaseSysRole) GetDepartmentIdList() string {
 	return ""
 }
 
+func (x *BaseSysRole) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
 var File_pbentity_base_sys_role_proto protoreflect.FileDescriptor
 
 const file_pbentity_base_sys_role_proto_rawDesc = "" +
 	"\n" +
-	"\x1cpbentity/base_sys_role.proto\x12\bpbentity\"\xbd\x02\n" +
+	"\x1cpbentity/base_sys_role.proto\x12\bpbentity\x1a\x1fgoogle/protobuf/timestamp.proto\"\xab\x03\n" +
 	"\vBaseSysRole\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\x05R\x02Id\x12\x1e\n" +
-	"\n" +
-	"CreateTime\x18\x02 \x01(\tR\n" +
-	"CreateTime\x12\x1e\n" +
-	"\n" +
-	"UpdateTime\x18\x03 \x01(\tR\n" +
-	"UpdateTime\x12\x1a\n" +
+	"\x02Id\x18\x01 \x01(\x05R\x02Id\x128\n" +
+	"\tCreatedAt\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tCreatedAt\x128\n" +
+	"\tUpdatedAt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tUpdatedAt\x12\x1a\n" +
 	"\bTenantId\x18\x04 \x01(\x05R\bTenantId\x12\x16\n" +
 	"\x06UserId\x18\x05 \x01(\tR\x06UserId\x12\x12\n" +
 	"\x04Name\x18\x06 \x01(\tR\x04Name\x12\x14\n" +
@@ -173,7 +178,8 @@ const file_pbentity_base_sys_role_proto_rawDesc = "" +
 	"MenuIdList\x18\n" +
 	" \x01(\tR\n" +
 	"MenuIdList\x12*\n" +
-	"\x10DepartmentIdList\x18\v \x01(\tR\x10DepartmentIdListB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
+	"\x10DepartmentIdList\x18\v \x01(\tR\x10DepartmentIdList\x128\n" +
+	"\tDeletedAt\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\tDeletedAtB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
 
 var (
 	file_pbentity_base_sys_role_proto_rawDescOnce sync.Once
@@ -189,14 +195,18 @@ func file_pbentity_base_sys_role_proto_rawDescGZIP() []byte {
 
 var file_pbentity_base_sys_role_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pbentity_base_sys_role_proto_goTypes = []any{
-	(*BaseSysRole)(nil), // 0: pbentity.BaseSysRole
+	(*BaseSysRole)(nil),           // 0: pbentity.BaseSysRole
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_pbentity_base_sys_role_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pbentity.BaseSysRole.CreatedAt:type_name -> google.protobuf.Timestamp
+	1, // 1: pbentity.BaseSysRole.UpdatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: pbentity.BaseSysRole.DeletedAt:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pbentity_base_sys_role_proto_init() }

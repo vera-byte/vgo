@@ -1,77 +1,65 @@
 syntax = "proto3";
 
-
 package v1.base.system;
-option go_package = "vgo/app/admin/api/v1/base_system/protobuf";
-
-import "pbentity/base_sys_user.proto";
-import "pbentity/page.proto";
-
+option go_package = "github.com/vera-byte/vgo/app/admin/api/v1/base_system/protobuf";
 
 service BaseSys {
-    // 系统日志分页
-    rpc SystemLogPage(SystemLogPageRpcInvoke) returns (SystemLogPageRpcRes);
-    // 记录日志
-    rpc SystemLogGateway(SystemLogGatewayRpcInvoke) returns (SystemLogGatewayRpcRes);
-    // 部门列表
-    rpc DepartmentList(DepartmentListRpcInvoke) returns (DepartmentListRpcRes);
-    // 用户分页
-    rpc UserPage(UserPageRpcInvoke) returns (UserPageRpcRes);
+  // 系统日志分页
+  rpc SystemLogPage(SystemLogPageRpcInvoke) returns (SystemLogPageRpcRes);
+  // 记录日志
+  rpc SystemLogGateway(SystemLogGatewayRpcInvoke)
+      returns (SystemLogGatewayRpcRes);
+  // 部门列表
+  rpc DepartmentList(DepartmentListRpcInvoke) returns (DepartmentListRpcRes);
+  // 用户分页
+  rpc UserPage(UserPageRpcInvoke) returns (UserPageRpcRes);
 }
 
-message SystemLogPageRpcInvoke {
-    
-    
-}
+message SystemLogPageRpcInvoke {}
 
 message SystemLogPageRpcRes {}
 
-
 message SystemLogGatewayRpcInvoke {
-    // ip
-    string Ip = 1;
-    // action
-    string Action = 2;
-    // 参数
-    string Params = 3;
-    // 租父ID
-    optional int64 TenantId = 4;
-    // 用户ID
-    optional  int64 UserId = 5;
-    // 追踪ID
-    string TraceId = 6;
+  // ip
+  string Ip = 1;
+  // action
+  string Action = 2;
+  // 参数
+  string Params = 3;
+  // 租父ID
+  optional int64 TenantId = 4;
+  // 用户ID
+  optional int64 UserId = 5;
+  // 追踪ID
+  string TraceId = 6;
 }
-message SystemLogGatewayRpcRes{}
-
+message SystemLogGatewayRpcRes {}
 
 // 部门List
 message DepartmentListRpcInvoke {}
 
-message DepartmentListRpcRes {
-    repeated DepartmentResultItem Items = 1;
-}
-message DepartmentResultItem  {
+message DepartmentListRpcRes { repeated DepartmentResultItem Items = 1; }
+message DepartmentResultItem {
 
-    // 部门名称
-    string	Name       = 1;
-    // 排序
-    int64	OrderNum   = 2;
-    // 父ID
-    int64	ParentId   = 3;
-    // 租户ID
-    int64	TenantId   = 4;
-    // 部门id
-    int64 Id         = 5;
-    int64	UpdateTime = 6;
-    int64	CreateTime = 7;
+  // 部门名称
+  string Name = 1;
+  // 排序
+  int64 OrderNum = 2;
+  // 父ID
+  int64 ParentId = 3;
+  // 租户ID
+  int64 TenantId = 4;
+  // 部门id
+  int64 Id = 5;
+  int64 UpdateTime = 6;
+  int64 CreateTime = 7;
 }
 
 message UserPageRpcInvoke {
-    pbentity.PageRpcInvoke PageReq = 1;
-    repeated int64 DepartmentIds = 2;
+  // pbentity.PageRpcInvoke PageReq = 1;
+  repeated int64 DepartmentIds = 2;
 }
 message UserPageRpcRes {
-    pbentity.Pagination Pagination = 1;
-    repeated pbentity.BaseSysUser List = 2;
+  // pbentity.Pagination Pagination = 1;
+  // repeated pbentity.BaseSysUser List = 2;
 }
-

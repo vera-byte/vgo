@@ -11,7 +11,6 @@ import (
 	sync "sync"
 	unsafe "unsafe"
 
-	pbentity "github.com/vera-byte/vgo/app/admin/api/pbentity"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 )
@@ -400,9 +399,9 @@ func (x *DepartmentResultItem) GetCreateTime() int64 {
 }
 
 type UserPageRpcInvoke struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	PageReq       *pbentity.PageRpcInvoke `protobuf:"bytes,1,opt,name=PageReq,proto3" json:"PageReq,omitempty"`
-	DepartmentIds []int64                 `protobuf:"varint,2,rep,packed,name=DepartmentIds,proto3" json:"DepartmentIds,omitempty"`
+	state protoimpl.MessageState `protogen:"open.v1"`
+	// pbentity.PageRpcInvoke PageReq = 1;
+	DepartmentIds []int64 `protobuf:"varint,2,rep,packed,name=DepartmentIds,proto3" json:"DepartmentIds,omitempty" dc:"pbentity.PageRpcInvoke PageReq = 1;"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -437,13 +436,6 @@ func (*UserPageRpcInvoke) Descriptor() ([]byte, []int) {
 	return file_system_v1_system_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *UserPageRpcInvoke) GetPageReq() *pbentity.PageRpcInvoke {
-	if x != nil {
-		return x.PageReq
-	}
-	return nil
-}
-
 func (x *UserPageRpcInvoke) GetDepartmentIds() []int64 {
 	if x != nil {
 		return x.DepartmentIds
@@ -452,9 +444,7 @@ func (x *UserPageRpcInvoke) GetDepartmentIds() []int64 {
 }
 
 type UserPageRpcRes struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Pagination    *pbentity.Pagination    `protobuf:"bytes,1,opt,name=Pagination,proto3" json:"Pagination,omitempty"`
-	List          []*pbentity.BaseSysUser `protobuf:"bytes,2,rep,name=List,proto3" json:"List,omitempty"`
+	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -489,25 +479,11 @@ func (*UserPageRpcRes) Descriptor() ([]byte, []int) {
 	return file_system_v1_system_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *UserPageRpcRes) GetPagination() *pbentity.Pagination {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-func (x *UserPageRpcRes) GetList() []*pbentity.BaseSysUser {
-	if x != nil {
-		return x.List
-	}
-	return nil
-}
-
 var File_system_v1_system_proto protoreflect.FileDescriptor
 
 const file_system_v1_system_proto_rawDesc = "" +
 	"\n" +
-	"\x16system/v1/system.proto\x12\x0ev1.base.system\x1a\x1cpbentity/base_sys_user.proto\x1a\x13pbentity/page.proto\"\x18\n" +
+	"\x16system/v1/system.proto\x12\x0ev1.base.system\"\x18\n" +
 	"\x16SystemLogPageRpcInvoke\"\x15\n" +
 	"\x13SystemLogPageRpcRes\"\xcb\x01\n" +
 	"\x19SystemLogGatewayRpcInvoke\x12\x0e\n" +
@@ -534,20 +510,15 @@ const file_system_v1_system_proto_rawDesc = "" +
 	"UpdateTime\x12\x1e\n" +
 	"\n" +
 	"CreateTime\x18\a \x01(\x03R\n" +
-	"CreateTime\"l\n" +
-	"\x11UserPageRpcInvoke\x121\n" +
-	"\aPageReq\x18\x01 \x01(\v2\x17.pbentity.PageRpcInvokeR\aPageReq\x12$\n" +
-	"\rDepartmentIds\x18\x02 \x03(\x03R\rDepartmentIds\"q\n" +
-	"\x0eUserPageRpcRes\x124\n" +
-	"\n" +
-	"Pagination\x18\x01 \x01(\v2\x14.pbentity.PaginationR\n" +
-	"Pagination\x12)\n" +
-	"\x04List\x18\x02 \x03(\v2\x15.pbentity.BaseSysUserR\x04List2\xfe\x02\n" +
+	"CreateTime\"9\n" +
+	"\x11UserPageRpcInvoke\x12$\n" +
+	"\rDepartmentIds\x18\x02 \x03(\x03R\rDepartmentIds\"\x10\n" +
+	"\x0eUserPageRpcRes2\xfe\x02\n" +
 	"\aBaseSys\x12\\\n" +
 	"\rSystemLogPage\x12&.v1.base.system.SystemLogPageRpcInvoke\x1a#.v1.base.system.SystemLogPageRpcRes\x12e\n" +
 	"\x10SystemLogGateway\x12).v1.base.system.SystemLogGatewayRpcInvoke\x1a&.v1.base.system.SystemLogGatewayRpcRes\x12_\n" +
 	"\x0eDepartmentList\x12'.v1.base.system.DepartmentListRpcInvoke\x1a$.v1.base.system.DepartmentListRpcRes\x12M\n" +
-	"\bUserPage\x12!.v1.base.system.UserPageRpcInvoke\x1a\x1e.v1.base.system.UserPageRpcResB+Z)vgo/app/admin/api/v1/base_system/protobufb\x06proto3"
+	"\bUserPage\x12!.v1.base.system.UserPageRpcInvoke\x1a\x1e.v1.base.system.UserPageRpcResB@Z>github.com/vera-byte/vgo/app/admin/api/v1/base_system/protobufb\x06proto3"
 
 var (
 	file_system_v1_system_proto_rawDescOnce sync.Once
@@ -572,28 +543,22 @@ var file_system_v1_system_proto_goTypes = []any{
 	(*DepartmentResultItem)(nil),      // 6: v1.base.system.DepartmentResultItem
 	(*UserPageRpcInvoke)(nil),         // 7: v1.base.system.UserPageRpcInvoke
 	(*UserPageRpcRes)(nil),            // 8: v1.base.system.UserPageRpcRes
-	(*pbentity.PageRpcInvoke)(nil),    // 9: pbentity.PageRpcInvoke
-	(*pbentity.Pagination)(nil),       // 10: pbentity.Pagination
-	(*pbentity.BaseSysUser)(nil),      // 11: pbentity.BaseSysUser
 }
 var file_system_v1_system_proto_depIdxs = []int32{
-	6,  // 0: v1.base.system.DepartmentListRpcRes.Items:type_name -> v1.base.system.DepartmentResultItem
-	9,  // 1: v1.base.system.UserPageRpcInvoke.PageReq:type_name -> pbentity.PageRpcInvoke
-	10, // 2: v1.base.system.UserPageRpcRes.Pagination:type_name -> pbentity.Pagination
-	11, // 3: v1.base.system.UserPageRpcRes.List:type_name -> pbentity.BaseSysUser
-	0,  // 4: v1.base.system.BaseSys.SystemLogPage:input_type -> v1.base.system.SystemLogPageRpcInvoke
-	2,  // 5: v1.base.system.BaseSys.SystemLogGateway:input_type -> v1.base.system.SystemLogGatewayRpcInvoke
-	4,  // 6: v1.base.system.BaseSys.DepartmentList:input_type -> v1.base.system.DepartmentListRpcInvoke
-	7,  // 7: v1.base.system.BaseSys.UserPage:input_type -> v1.base.system.UserPageRpcInvoke
-	1,  // 8: v1.base.system.BaseSys.SystemLogPage:output_type -> v1.base.system.SystemLogPageRpcRes
-	3,  // 9: v1.base.system.BaseSys.SystemLogGateway:output_type -> v1.base.system.SystemLogGatewayRpcRes
-	5,  // 10: v1.base.system.BaseSys.DepartmentList:output_type -> v1.base.system.DepartmentListRpcRes
-	8,  // 11: v1.base.system.BaseSys.UserPage:output_type -> v1.base.system.UserPageRpcRes
-	8,  // [8:12] is the sub-list for method output_type
-	4,  // [4:8] is the sub-list for method input_type
-	4,  // [4:4] is the sub-list for extension type_name
-	4,  // [4:4] is the sub-list for extension extendee
-	0,  // [0:4] is the sub-list for field type_name
+	6, // 0: v1.base.system.DepartmentListRpcRes.Items:type_name -> v1.base.system.DepartmentResultItem
+	0, // 1: v1.base.system.BaseSys.SystemLogPage:input_type -> v1.base.system.SystemLogPageRpcInvoke
+	2, // 2: v1.base.system.BaseSys.SystemLogGateway:input_type -> v1.base.system.SystemLogGatewayRpcInvoke
+	4, // 3: v1.base.system.BaseSys.DepartmentList:input_type -> v1.base.system.DepartmentListRpcInvoke
+	7, // 4: v1.base.system.BaseSys.UserPage:input_type -> v1.base.system.UserPageRpcInvoke
+	1, // 5: v1.base.system.BaseSys.SystemLogPage:output_type -> v1.base.system.SystemLogPageRpcRes
+	3, // 6: v1.base.system.BaseSys.SystemLogGateway:output_type -> v1.base.system.SystemLogGatewayRpcRes
+	5, // 7: v1.base.system.BaseSys.DepartmentList:output_type -> v1.base.system.DepartmentListRpcRes
+	8, // 8: v1.base.system.BaseSys.UserPage:output_type -> v1.base.system.UserPageRpcRes
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_system_v1_system_proto_init() }

@@ -17,6 +17,7 @@ import (
 
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -28,12 +29,13 @@ const (
 
 type BaseSysConf struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                  // ID
-	CreateTime    string                 `protobuf:"bytes,2,opt,name=CreateTime,proto3" json:"CreateTime,omitempty" dc:"创建时间"` // 创建时间
-	UpdateTime    string                 `protobuf:"bytes,3,opt,name=UpdateTime,proto3" json:"UpdateTime,omitempty" dc:"更新时间"` // 更新时间
-	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`    // 租户ID
-	CKey          string                 `protobuf:"bytes,5,opt,name=CKey,proto3" json:"CKey,omitempty" dc:"配置键"`              // 配置键
-	CValue        string                 `protobuf:"bytes,6,opt,name=CValue,proto3" json:"CValue,omitempty" dc:"配置值"`          // 配置值
+	Id            int32                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty" dc:"ID"`                 // ID
+	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=CreatedAt,proto3" json:"CreatedAt,omitempty" dc:"创建时间"`  // 创建时间
+	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=UpdatedAt,proto3" json:"UpdatedAt,omitempty" dc:"更新时间"`  // 更新时间
+	TenantId      int32                  `protobuf:"varint,4,opt,name=TenantId,proto3" json:"TenantId,omitempty" dc:"租户ID"`   // 租户ID
+	CKey          string                 `protobuf:"bytes,5,opt,name=CKey,proto3" json:"CKey,omitempty" dc:"配置键"`             // 配置键
+	CValue        string                 `protobuf:"bytes,6,opt,name=CValue,proto3" json:"CValue,omitempty" dc:"配置值"`         // 配置值
+	DeletedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=DeletedAt,proto3" json:"DeletedAt,omitempty" dc:"软删除时间"` // 软删除时间
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -75,18 +77,18 @@ func (x *BaseSysConf) GetId() int32 {
 	return 0
 }
 
-func (x *BaseSysConf) GetCreateTime() string {
+func (x *BaseSysConf) GetCreatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.CreateTime
+		return x.CreatedAt
 	}
-	return ""
+	return nil
 }
 
-func (x *BaseSysConf) GetUpdateTime() string {
+func (x *BaseSysConf) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
-		return x.UpdateTime
+		return x.UpdatedAt
 	}
-	return ""
+	return nil
 }
 
 func (x *BaseSysConf) GetTenantId() int32 {
@@ -110,22 +112,26 @@ func (x *BaseSysConf) GetCValue() string {
 	return ""
 }
 
+func (x *BaseSysConf) GetDeletedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeletedAt
+	}
+	return nil
+}
+
 var File_pbentity_base_sys_conf_proto protoreflect.FileDescriptor
 
 const file_pbentity_base_sys_conf_proto_rawDesc = "" +
 	"\n" +
-	"\x1cpbentity/base_sys_conf.proto\x12\bpbentity\"\xa5\x01\n" +
+	"\x1cpbentity/base_sys_conf.proto\x12\bpbentity\x1a\x1fgoogle/protobuf/timestamp.proto\"\x93\x02\n" +
 	"\vBaseSysConf\x12\x0e\n" +
-	"\x02Id\x18\x01 \x01(\x05R\x02Id\x12\x1e\n" +
-	"\n" +
-	"CreateTime\x18\x02 \x01(\tR\n" +
-	"CreateTime\x12\x1e\n" +
-	"\n" +
-	"UpdateTime\x18\x03 \x01(\tR\n" +
-	"UpdateTime\x12\x1a\n" +
+	"\x02Id\x18\x01 \x01(\x05R\x02Id\x128\n" +
+	"\tCreatedAt\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tCreatedAt\x128\n" +
+	"\tUpdatedAt\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\tUpdatedAt\x12\x1a\n" +
 	"\bTenantId\x18\x04 \x01(\x05R\bTenantId\x12\x12\n" +
 	"\x04CKey\x18\x05 \x01(\tR\x04CKey\x12\x16\n" +
-	"\x06CValue\x18\x06 \x01(\tR\x06CValueB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
+	"\x06CValue\x18\x06 \x01(\tR\x06CValue\x128\n" +
+	"\tDeletedAt\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tDeletedAtB1Z/github.com/vera-byte/vgo/app/admin/api/pbentityb\x06proto3"
 
 var (
 	file_pbentity_base_sys_conf_proto_rawDescOnce sync.Once
@@ -141,14 +147,18 @@ func file_pbentity_base_sys_conf_proto_rawDescGZIP() []byte {
 
 var file_pbentity_base_sys_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_pbentity_base_sys_conf_proto_goTypes = []any{
-	(*BaseSysConf)(nil), // 0: pbentity.BaseSysConf
+	(*BaseSysConf)(nil),           // 0: pbentity.BaseSysConf
+	(*timestamppb.Timestamp)(nil), // 1: google.protobuf.Timestamp
 }
 var file_pbentity_base_sys_conf_proto_depIdxs = []int32{
-	0, // [0:0] is the sub-list for method output_type
-	0, // [0:0] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	1, // 0: pbentity.BaseSysConf.CreatedAt:type_name -> google.protobuf.Timestamp
+	1, // 1: pbentity.BaseSysConf.UpdatedAt:type_name -> google.protobuf.Timestamp
+	1, // 2: pbentity.BaseSysConf.DeletedAt:type_name -> google.protobuf.Timestamp
+	3, // [3:3] is the sub-list for method output_type
+	3, // [3:3] is the sub-list for method input_type
+	3, // [3:3] is the sub-list for extension type_name
+	3, // [3:3] is the sub-list for extension extendee
+	0, // [0:3] is the sub-list for field type_name
 }
 
 func init() { file_pbentity_base_sys_conf_proto_init() }

@@ -7,7 +7,7 @@ package admin_sys
 import (
 	v1 "github.com/vera-byte/vgo/app/admin/api/system/v1"
 
-	"vgo/utility"
+	"github.com/vera-byte/vgo/utility"
 
 	"github.com/gogf/gf/contrib/rpc/grpcx/v2"
 )
