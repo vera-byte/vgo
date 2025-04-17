@@ -38,7 +38,7 @@ type QueryOp struct {
 	KeyWordField []string                                      // 模糊搜索匹配的数据库字段
 	AddOrderby   g.MapStrStr                                   // 添加排序
 	Where        func(ctx context.Context) []g.Array           // 自定义条件
-	Select       string                                        // 查询字段,多个字段用逗号隔开 如: id,name  或  a.id,a.name,b.name AS bname
+	Select       any                                           // 查询字段,多个字段用逗号隔开 如: id,name  或  a.id,a.name,b.name AS bname
 	Join         []*JoinOp                                     // 关联查询
 	Extend       func(ctx g.Ctx, m *gdb.Model) *gdb.Model      // 追加其他条件
 	ModifyResult func(ctx g.Ctx, data interface{}) interface{} // 修改结果
