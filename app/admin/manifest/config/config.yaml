@@ -1,0 +1,40 @@
+# https://goframe.org/docs/web/server-config-file-template
+
+grpc:
+  name: "admin"
+  address: ":8002"
+
+logger:
+  level: "all"
+  stdout: true
+
+database:
+  logger:
+    path: "./gdb.log"
+    level: "all"
+    stdout: true
+  default:
+    host: "127.0.0.1" # 地址
+    port: "5432" # 端口
+    user: "vgo" # 账号
+    pass: "vgo" # 密码
+    name: "vgo" # 数据库名称
+    type: "pgsql"
+    debug: true # 开启调试模式
+    charset: "utf8" # 数据库编码
+    createdAt: "created_at" # 自动创建时间字段名称
+    updatedAt: "updated_at" # 自动更新时间字段名称
+    deletedAt: "deleted_at" # 软删除时间字段名称
+
+admin:
+  jwt:
+    sso: false
+    secret: "v-base88776655"
+    token:
+      expire: 7200 # 2*3600
+      refreshExpire: 1296000 # 24*3600*15
+  middleware:
+    authority:
+      enable: true
+    log:
+      enable: true
