@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/aliyun/aliyun-oss-go-sdk v3.0.2+incompatible
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/v v1.0.13
+	github.com/vera-byte/vgo/v v1.0.15
 )
 
 require (

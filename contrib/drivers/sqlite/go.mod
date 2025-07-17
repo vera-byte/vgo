@@ -5,7 +5,7 @@ go 1.24
 require (
 	github.com/glebarez/sqlite v1.11.0
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/v v1.0.13
+	github.com/vera-byte/vgo/v v1.0.15
 	gorm.io/gorm v1.30.0
 )
 
