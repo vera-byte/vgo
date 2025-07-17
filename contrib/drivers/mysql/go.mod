@@ -1,11 +1,11 @@
 module github.com/vera-byte/vgo/contrib/drivers/mysql
 
-go 1.23.0
+go 1.24
 
 require (
 	github.com/gogf/gf/contrib/drivers/mysql/v2 v2.9.0
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/v v1.10.9
+	github.com/vera-byte/vgo/v v1.0.13
 	gorm.io/driver/mysql v1.6.0
 	gorm.io/gorm v1.30.0
 )

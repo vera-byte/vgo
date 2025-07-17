@@ -1,11 +1,11 @@
 module github.com/vera-byte/vgo/contrib/drivers/pgsql
 
-go 1.23.0
+go 1.24
 
 require (
 	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.9.0
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/v v1.10.9
+	github.com/vera-byte/vgo/v v1.0.13
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.30.0
 )
@@ -27,7 +27,6 @@ require (
 	github.com/jackc/puddle/v2 v2.2.2 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/lib/pq v1.10.9 // indirect
 	github.com/magiconair/properties v1.8.10 // indirect
 	github.com/mattn/go-colorable v0.1.14 // indirect
