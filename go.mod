@@ -4,14 +4,14 @@ go 1.24
 
 require (
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.14
-	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.14
-	github.com/vera-byte/vgo/contrib/files/local v1.0.14
-	github.com/vera-byte/vgo/modules/base v1.0.14
-	github.com/vera-byte/vgo/modules/dict v1.0.14
-	github.com/vera-byte/vgo/modules/space v1.0.14
-	github.com/vera-byte/vgo/modules/task v1.0.14
-	github.com/vera-byte/vgo/v v1.0.13
+	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.15
+	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.15
+	github.com/vera-byte/vgo/contrib/files/local v1.0.15
+	github.com/vera-byte/vgo/modules/base v1.0.15
+	github.com/vera-byte/vgo/modules/dict v1.0.15
+	github.com/vera-byte/vgo/modules/space v1.0.15
+	github.com/vera-byte/vgo/modules/task v1.0.15
+	github.com/vera-byte/vgo/v v1.0.15
 )
 
 require (
@@ -45,9 +45,7 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/olekukonko/errors v1.1.0 // indirect
-	github.com/olekukonko/ll v0.0.9 // indirect
-	github.com/olekukonko/tablewriter v1.0.8 // indirect
+	github.com/olekukonko/tablewriter v0.0.5 // indirect
 	github.com/redis/go-redis/v9 v9.11.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/robfig/cron v1.2.0 // indirect; indirec
