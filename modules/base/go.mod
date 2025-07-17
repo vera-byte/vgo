@@ -2,8 +2,6 @@ module github.com/vera-byte/vgo/modules/base
 
 go 1.24
 
-toolchain go1.24.5
-
 require (
 	github.com/gogf/gf/v2 v2.9.0
 	github.com/golang-jwt/jwt/v4 v4.5.2
