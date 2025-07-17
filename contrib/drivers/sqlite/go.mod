@@ -1,11 +1,11 @@
 module github.com/vera-byte/vgo/contrib/drivers/sqlite
 
-go 1.23.0
+go 1.24
 
 require (
 	github.com/glebarez/sqlite v1.11.0
 	github.com/gogf/gf/v2 v2.9.0
-	github.com/vera-byte/vgo/v v1.10.9
+	github.com/vera-byte/vgo/v v1.0.13
 	gorm.io/gorm v1.30.0
 )
 
@@ -24,7 +24,6 @@ require (
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
-	github.com/kr/text v0.2.0 // indirect
 	github.com/magiconair/properties v1.8.9 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
@@ -38,7 +37,7 @@ require (
 	go.opentelemetry.io/otel/sdk v1.32.0 // indirect
 	go.opentelemetry.io/otel/trace v1.32.0 // indirect
 	golang.org/x/exp v0.0.0-20250711185948-6ae5c78190dc // indirect
-	golang.org/x/net v0.32.0 // indirect
+	golang.org/x/net v0.42.0 // indirect
 	golang.org/x/sys v0.34.0 // indirect
 	golang.org/x/text v0.27.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
