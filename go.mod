@@ -3,7 +3,7 @@ module github.com/vera-byte/vgo
 go 1.24
 
 require (
-	github.com/gogf/gf/v2 v2.9.0
+	github.com/gogf/gf/v2 v2.9.3
 	github.com/vera-byte/vgo/contrib/drivers/mysql v1.0.15
 	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.15
 	github.com/vera-byte/vgo/contrib/files/local v1.0.15
@@ -12,6 +12,11 @@ require (
 	github.com/vera-byte/vgo/modules/space v1.0.15
 	github.com/vera-byte/vgo/modules/task v1.0.15
 	github.com/vera-byte/vgo/v v1.0.15
+)
+
+require (
+	github.com/olekukonko/errors v1.1.0 // indirect
+	github.com/olekukonko/ll v0.0.9 // indirect
 )
 
 require (
@@ -45,7 +50,7 @@ require (
 	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mattn/go-runewidth v0.0.16 // indirect
-	github.com/olekukonko/tablewriter v0.0.5 // indirect
+	github.com/olekukonko/tablewriter v1.0.9 // indirect
 	github.com/redis/go-redis/v9 v9.11.0 // indirect
 	github.com/rivo/uniseg v0.4.7 // indirect
 	github.com/robfig/cron v1.2.0 // indirect; indirec
@@ -54,11 +59,11 @@ require (
 	go.opentelemetry.io/otel/metric v1.37.0 // indirect
 	go.opentelemetry.io/otel/sdk v1.37.0 // indirect
 	go.opentelemetry.io/otel/trace v1.37.0 // indirect
-	golang.org/x/crypto v0.40.0 // indirect
-	golang.org/x/net v0.42.0 // indirect
+	golang.org/x/crypto v0.41.0 // indirect
+	golang.org/x/net v0.43.0 // indirect
 	golang.org/x/sync v0.16.0 // indirect
-	golang.org/x/sys v0.34.0 // indirect
-	golang.org/x/text v0.27.0 // indirect
+	golang.org/x/sys v0.35.0 // indirect
+	golang.org/x/text v0.28.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/driver/mysql v1.6.0 // indirect
 	gorm.io/driver/postgres v1.6.0 // indirect

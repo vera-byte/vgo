@@ -3,7 +3,7 @@ module github.com/vera-byte/vgo/contrib/files/minio
 go 1.24
 
 require (
-	github.com/gogf/gf/v2 v2.9.0
+	github.com/gogf/gf/v2 v2.9.3
 	github.com/minio/minio-go/v7 v7.0.52
 	github.com/vera-byte/vgo/v v1.0.15
 )

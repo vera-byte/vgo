@@ -3,7 +3,7 @@ module github.com/vera-byte/vgo/modules/task
 go 1.24
 
 require (
-	github.com/gogf/gf/v2 v2.9.0
+	github.com/gogf/gf/v2 v2.9.3
 	github.com/robfig/cron v1.2.0
 	github.com/vera-byte/vgo/v v1.0.15
 )
