@@ -9,29 +9,29 @@ logger:
   stdout: true
 
 database:
-  # default:
-  #   type: "pgsql"
-  #   host: "127.0.0.1"
-  #   port: "5432"
-  #   user: "vtest"
-  #   pass: "123456"
-  #   name: "vtest"
-  #   debug: true
-  #   createdAt: "createTime"
-  #   updatedAt: "updateTime"
   default:
-    type: "mysql"
-    host: "127.0.0.1"
-    port: "3307"
-    user: "root"
-    pass: "123456"
-    name: "vtest"
-    charset: "utf8mb4"
-    timezone: "Asia/Shanghai"
+    type: "pgsql"
+    host: "10.0.0.200"
+    port: "5432"
+    user: "vgov2"
+    pass: "BYwHLKaxXsHXTNmD"
+    name: "vgov2"
     debug: true
     createdAt: "createTime"
     updatedAt: "updateTime"
-    deletedAt: "deleteTime"
+  # default:
+  #   type: "mysql"
+  #   host: "127.0.0.1"
+  #   port: "3307"
+  #   user: "root"
+  #   pass: "123456"
+  #   name: "vtest"
+  #   charset: "utf8mb4"
+  #   timezone: "Asia/Shanghai"
+  #   debug: true
+  #   createdAt: "createTime"
+  #   updatedAt: "updateTime"
+  #   deletedAt: "deleteTime"
   # baseConfig:
   #   type: "sqlite"
   #   link: "base-config.sqlite"
