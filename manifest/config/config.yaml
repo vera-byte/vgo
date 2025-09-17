@@ -1,5 +1,5 @@
 server:
-  address: ":8001"
+  address: ":8002"
   openapiPath: "/api.json"
   swaggerPath: "/swagger"
   clientMaxBodySize: 104857600 # 100MB in bytes 100*1024*1024
@@ -43,8 +43,9 @@ database:
 # Redis 配置示例
 redis:
   v:
-    address: "127.0.0.1:6379"
+    address: "10.0.0.200:6379"
     db: 0
+    password: "123456"
 
 v:
   autoMigrate: true

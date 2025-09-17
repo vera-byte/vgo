@@ -67,7 +67,7 @@ func (d *DriverPgsql) GetConn(config *gdb.ConfigNode) (db *gorm.DB, err error) {
 	db, err = gorm.Open(postgres.Open(source), &gorm.Config{
 		NamingStrategy: schema.NamingStrategy{
 			// 禁止自动将驼峰命名转换为下划线
-			NoLowerCase: true,
+			NoLowerCase: false,
 		},
 	})
 	return

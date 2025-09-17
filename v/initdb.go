@@ -60,6 +60,9 @@ func CreateTable(model IModel) error {
 }
 
 // FillInitData 数据库填充初始数据
+// 功能：为指定模块的数据表填充初始数据
+// 参数：ctx - 上下文对象，moduleName - 模块名称，model - 数据模型接口
+// 返回值：error - 错误信息，nil表示成功
 func FillInitData(ctx g.Ctx, moduleName string, model IModel) error {
 	mInit := g.DB("default").Model("base_sys_init")
 	n, err := mInit.Clone().Where("group", model.GroupName()).Where("table", model.TableName()).Count()
