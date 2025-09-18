@@ -3,10 +3,9 @@ package admin
 import (
 	"context"
 
+	v1 "github.com/vera-byte/vgo/modules/dict/api/v1"
 	"github.com/vera-byte/vgo/modules/dict/service"
 	"github.com/vera-byte/vgo/v"
-
-	"github.com/gogf/gf/v2/frame/g"
 )
 
 type DictInfoController struct {
@@ -25,14 +24,8 @@ func init() {
 	v.RegisterController(dict_info_controller)
 }
 
-// Data 方法请求
-type DictInfoDataReq struct {
-	g.Meta `path:"/data" method:"POST"`
-	Types  []string `json:"types"`
-}
-
 // Data 方法 获得字典数据
-func (c *DictInfoController) Data(ctx context.Context, req *DictInfoDataReq) (res *v.BaseRes, err error) {
+func (c *DictInfoController) Data(ctx context.Context, req *v1.DictInfoDataReq) (res *v.BaseRes, err error) {
 	service := service.NewDictInfoService()
 	data, err := service.Data(ctx, req.Types)
 	res = v.Ok(data)

@@ -41,7 +41,11 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 		baseSysUser = model.NewBaseSysUser()
 	)
 
-	vcode, _ := v.CacheManager.Get(ctx, captchaId)
+	vcode, err := v.CacheManager.Get(ctx, captchaId)
+	if err != nil {
+		err = gerror.Wrap(err, "系统错误")
+		return
+	}
 	if vcode.String() != verifyCode {
 		err = gerror.New("验证码错误")
 		return
@@ -108,20 +112,20 @@ func (s *BaseSysLoginService) RefreshToken(ctx context.Context, token string) (r
 	}
 	claims, ok := tokenClaims.Claims.(*v.Claims)
 	if !ok {
-		err = gerror.New("tokenClaims.Claims.(*Claims) error")
+		err = gerror.New("刷新Token失败")
 		return
 	}
 	if !tokenClaims.Valid {
-		err = gerror.New("tokenClaims.Valid error")
+		err = gerror.New("刷新Token失败")
 		return
 	}
 	if !claims.IsRefresh {
-		err = gerror.New("claims.IsRefresh error")
+		err = gerror.New("刷新Token失败")
 		return
 	}
 
 	if !(claims.UserId > 0) {
-		err = gerror.New("claims.UserId error")
+		err = gerror.New("刷新Token失败")
 		return
 	}
 

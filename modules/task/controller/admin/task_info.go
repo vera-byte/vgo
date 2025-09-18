@@ -4,6 +4,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/util/gconv"
+	v1 "github.com/vera-byte/vgo/modules/task/api/v1"
 	"github.com/vera-byte/vgo/modules/task/service"
 	"github.com/vera-byte/vgo/v"
 )
@@ -24,14 +25,11 @@ func init() {
 	v.RegisterController(task_info_controller)
 }
 
-// TaskInfoStopReq 请求参数
-type TaskInfoStopReq struct {
-	g.Meta `path:"/stop" method:"GET"`
-	ID     int64 `json:"id" v:"required#请输入id"`
-}
-
 // Stop 停止任务
-func (c *TaskInfoController) Stop(ctx g.Ctx, req *TaskInfoStopReq) (res *v.BaseRes, err error) {
+// 功能: 停止指定的定时任务
+// 参数: ctx - 上下文, req - 停止任务请求
+// 返回值: res - 响应结果, err - 错误信息
+func (c *TaskInfoController) Stop(ctx g.Ctx, req *v1.TaskInfoStopReq) (res *v.BaseRes, err error) {
 
 	err = v.ClusterRunFunc(ctx, "TaskStopFunc("+gconv.String(req.ID)+")")
 	if err != nil {
@@ -41,14 +39,11 @@ func (c *TaskInfoController) Stop(ctx g.Ctx, req *TaskInfoStopReq) (res *v.BaseR
 	return
 }
 
-// TaskInfoStartReq 请求参数
-type TaskInfoStartReq struct {
-	g.Meta `path:"/start" method:"GET"`
-	ID     int64 `json:"id" v:"required#请输入id"`
-}
-
 // Start 启动任务
-func (c *TaskInfoController) Start(ctx g.Ctx, req *TaskInfoStartReq) (res *v.BaseRes, err error) {
+// 功能: 启动指定的定时任务
+// 参数: ctx - 上下文, req - 启动任务请求
+// 返回值: res - 响应结果, err - 错误信息
+func (c *TaskInfoController) Start(ctx g.Ctx, req *v1.TaskInfoStartReq) (res *v.BaseRes, err error) {
 
 	err = v.ClusterRunFunc(ctx, "TaskStartFunc("+gconv.String(req.ID)+")")
 	if err != nil {
@@ -58,14 +53,11 @@ func (c *TaskInfoController) Start(ctx g.Ctx, req *TaskInfoStartReq) (res *v.Bas
 	return
 }
 
-// TaskInfoOnceReq 请求参数
-type TaskInfoOnceReq struct {
-	g.Meta `path:"/once" method:"POST"`
-	ID     int64 `json:"id" v:"required#请输入id"`
-}
-
 // Once 执行一次
-func (c *TaskInfoController) Once(ctx g.Ctx, req *TaskInfoOnceReq) (res *v.BaseRes, err error) {
+// 功能: 立即执行一次指定的定时任务
+// 参数: ctx - 上下文, req - 执行一次任务请求
+// 返回值: res - 响应结果, err - 错误信息
+func (c *TaskInfoController) Once(ctx g.Ctx, req *v1.TaskInfoOnceReq) (res *v.BaseRes, err error) {
 	err = c.Service.(*service.TaskInfoService).Once(ctx, req.ID)
 	if err != nil {
 		return v.Fail(err.Error()), err
@@ -74,15 +66,11 @@ func (c *TaskInfoController) Once(ctx g.Ctx, req *TaskInfoOnceReq) (res *v.BaseR
 	return
 }
 
-// TaskInfoLogReq 请求参数
-type TaskInfoLogReq struct {
-	g.Meta `path:"/log" method:"GET"`
-	ID     int64 `json:"id"`
-	Status int   `json:"status"`
-}
-
 // Log 任务日志
-func (c *TaskInfoController) Log(ctx g.Ctx, req *TaskInfoLogReq) (res *v.BaseRes, err error) {
+// 功能: 获取指定任务的执行日志
+// 参数: ctx - 上下文, req - 任务日志请求
+// 返回值: res - 响应结果包含日志数据, err - 错误信息
+func (c *TaskInfoController) Log(ctx g.Ctx, req *v1.TaskInfoLogReq) (res *v.BaseRes, err error) {
 	r := ghttp.RequestFromCtx(ctx)
 	param := r.GetQueryMapStrStr()
 	data, err := c.Service.(*service.TaskInfoService).Log(ctx, param)

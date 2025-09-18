@@ -3,6 +3,7 @@ package admin
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
+	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/service"
 	"github.com/vera-byte/vgo/v"
 )
@@ -23,14 +24,11 @@ func init() {
 	v.RegisterController(base_sys_log_controller)
 }
 
-// SetKeepReq
-type SetKeepReq struct {
-	g.Meta `method:"POST" path:"/setKeep" summary:"设置保留天数" tags:"系统日志"`
-	Value  int `json:"value" v:"required#请输入保留天数"`
-}
-
 // SetKeep 设置保留天数
-func (c *BaseSysLogController) SetKeep(ctx g.Ctx, req *SetKeepReq) (res *v.BaseRes, err error) {
+// 功能: 设置系统日志的保留天数
+// 参数: ctx - 上下文, req - 设置保留天数请求
+// 返回值: res - 响应结果, err - 错误信息
+func (c *BaseSysLogController) SetKeep(ctx g.Ctx, req *v1.SetKeepReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysConfService = service.NewBaseSysConfService()
 	)
@@ -38,13 +36,11 @@ func (c *BaseSysLogController) SetKeep(ctx g.Ctx, req *SetKeepReq) (res *v.BaseR
 	return
 }
 
-// GetKeepReq
-type GetKeepReq struct {
-	g.Meta `method:"GET" path:"/getKeep" summary:"获取保留天数" tags:"系统日志"`
-}
-
 // GetKeep 获取保留天数
-func (c *BaseSysLogController) GetKeep(ctx g.Ctx, req *GetKeepReq) (res *v.BaseRes, err error) {
+// 功能: 获取系统日志的保留天数配置
+// 参数: ctx - 上下文, req - 获取保留天数请求
+// 返回值: res - 响应结果包含保留天数, err - 错误信息
+func (c *BaseSysLogController) GetKeep(ctx g.Ctx, req *v1.GetKeepReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysConfService = service.NewBaseSysConfService()
 	)
@@ -53,13 +49,11 @@ func (c *BaseSysLogController) GetKeep(ctx g.Ctx, req *GetKeepReq) (res *v.BaseR
 	return
 }
 
-// ClearReq
-type ClearReq struct {
-	g.Meta `method:"POST" path:"/clear" summary:"清空日志" tags:"系统日志"`
-}
-
 // Clear 清空日志
-func (c *BaseSysLogController) Clear(ctx g.Ctx, req *ClearReq) (res *v.BaseRes, err error) {
+// 功能: 清空所有系统日志记录
+// 参数: ctx - 上下文, req - 清空日志请求
+// 返回值: res - 响应结果, err - 错误信息
+func (c *BaseSysLogController) Clear(ctx g.Ctx, req *v1.ClearReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysLogService = service.NewBaseSysLogService()
 	)

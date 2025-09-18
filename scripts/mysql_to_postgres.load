@@ -1,0 +1,44 @@
+/*
+ * MySQL到PostgreSQL数据迁移配置文件
+ * 使用pgloader工具进行数据库迁移
+ * 
+ * 使用方法:
+ * pgloader mysql_to_postgres.load
+ * 
+ * 或者使用环境变量:
+ * MYSQL_HOST=localhost MYSQL_USER=root MYSQL_PASS=password MYSQL_DB=source_db \
+ * POSTGRES_HOST=localhost POSTGRES_USER=postgres POSTGRES_PASS=password POSTGRES_DB=target_db \
+ * pgloader mysql_to_postgres.load
+ */
+
+LOAD DATABASE
+    FROM mysql://$(MYSQL_USER):$(MYSQL_PASS)@$(MYSQL_HOST):$(MYSQL_PORT)/$(MYSQL_DB)
+    INTO postgresql://$(POSTGRES_USER):$(POSTGRES_PASS)@$(POSTGRES_HOST):$(POSTGRES_PORT)/$(POSTGRES_DB)
+
+WITH 
+    include drop,           -- 删除目标表（如果存在）
+    create tables,          -- 创建表结构
+    create indexes,         -- 创建索引
+    reset sequences,        -- 重置序列
+    foreign keys,           -- 创建外键
+    downcase identifiers,   -- 标识符转小写
+    data only               -- 可选：仅迁移数据，不创建表结构
+
+SET 
+    work_mem to '256MB',                    -- 工作内存
+    maintenance_work_mem to '512MB',        -- 维护内存
+    search_path to 'public',                -- 搜索路径
+    timezone to 'UTC'                       -- 时区设置
+
+CAST 
+    type datetime to timestamptz drop default drop not null using zero-dates-to-null,
+    type date drop not null drop default using zero-dates-to-null,
+    type tinyint to boolean using tinyint-to-boolean,
+    type year to integer
+
+BEFORE LOAD DO
+    $$ DROP SCHEMA IF EXISTS public CASCADE; $$,
+    $$ CREATE SCHEMA public; $$
+
+AFTER LOAD DO
+    $$ ALTER SCHEMA public OWNER TO $(POSTGRES_USER); $$;

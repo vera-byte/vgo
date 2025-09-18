@@ -28,20 +28,20 @@ type Controller struct {
 }
 
 type AddReq struct {
-	g.Meta `path:"/add" method:"POST"`
+	g.Meta `path:"/add" method:"POST" summary:"新增" tags:"通用CRUD"`
 }
 
 type DeleteReq struct {
-	g.Meta `path:"/delete" method:"POST"`
+	g.Meta `path:"/delete" method:"POST" summary:"删除" tags:"通用CRUD"`
 	Ids    []int `json:"ids" v:"required#请选择要删除的数据"`
 }
 
 type UpdateReq struct {
-	g.Meta `path:"/update" method:"POST"`
+	g.Meta `path:"/update" method:"POST" summary:"更新" tags:"通用CRUD"`
 }
 
 type InfoReq struct {
-	g.Meta `path:"/info" method:"GET"`
+	g.Meta `path:"/info" method:"GET" summary:"详情" tags:"通用CRUD"`
 	Id     int `json:"id" v:"integer|required#请选择要查询的数据"`
 }
 
@@ -51,13 +51,13 @@ type InfoReq struct {
 // }
 
 type ListReq struct {
-	g.Meta `path:"/list" method:"POST"`
+	g.Meta `path:"/list" method:"POST" summary:"列表" tags:"通用CRUD"`
 	Order  string `json:"order"`
 	Sort   string `json:"sort"`
 }
 
 type PageReq struct {
-	g.Meta         `path:"/page" method:"POST"`
+	g.Meta         `path:"/page" method:"POST" summary:"分页" tags:"通用CRUD"`
 	Page           int    `d:"1" json:"page"`     // 页码
 	Size           int    `d:"15" json:"size"`    //每页条数
 	Order          string `json:"order"`          // 排序字段

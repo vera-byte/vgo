@@ -46,7 +46,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		return []byte(config.Config.Jwt.Secret), nil
 	})
 	if err != nil {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", err)
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
@@ -54,7 +53,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 		})
 	}
 	if !token.Valid {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
@@ -70,7 +68,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	// 超管拥有所有权限
 	if admin.UserId == 1 && !admin.IsRefresh {
 		if tokenString != rtoken && config.Config.Jwt.Sso {
-			g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 			statusCode = 401
 			r.Response.WriteStatusExit(statusCode, g.Map{
 				"code":    1001,
@@ -89,7 +86,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	}
 	// 如果传的token是refreshToken则校验失败
 	if admin.IsRefresh {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
@@ -99,7 +95,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	// 判断密码版本是否正确
 	passwordV, _ := v.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(admin.UserId))
 	if passwordV.Int32() != *admin.PasswordVersion {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "passwordV invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
@@ -108,7 +103,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	}
 	// 如果rtoken为空
 	if rtoken == "" {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "rtoken invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,
@@ -117,7 +111,6 @@ func BaseAuthorityMiddleware(r *ghttp.Request) {
 	}
 	// 如果rtoken不等于token 且 sso 未开启
 	if tokenString != rtoken && !config.Config.Jwt.Sso {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "token invalid")
 		statusCode = 401
 		r.Response.WriteStatusExit(statusCode, g.Map{
 			"code":    1001,

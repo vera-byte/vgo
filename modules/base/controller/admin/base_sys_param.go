@@ -3,6 +3,7 @@ package admin
 import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
+	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/service"
 	"github.com/vera-byte/vgo/v"
 )
@@ -23,14 +24,8 @@ func init() {
 	v.RegisterController(base_sys_param_controller)
 }
 
-// BaseSysParamHtmlReq 请求参数
-type BaseSysParamHtmlReq struct {
-	g.Meta `path:"/html" method:"GET"`
-	Key    string `v:"required#请输入key"`
-}
-
 // Html 根据配置参数key获取网页内容(富文本)
-func (c *BaseSysParamController) Html(ctx g.Ctx, req *BaseSysParamHtmlReq) (res *v.BaseRes, err error) {
+func (c *BaseSysParamController) Html(ctx g.Ctx, req *v1.BaseSysParamHtmlReq) (res *v.BaseRes, err error) {
 	var (
 		BaseSysParamService = service.NewBaseSysParamService()
 		r                   = ghttp.RequestFromCtx(ctx)

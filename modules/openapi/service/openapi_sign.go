@@ -37,7 +37,6 @@ type SignResponse struct {
 type CreateAppRequest struct {
 	AppName     string `json:"appName" v:"required#应用名称不能为空"`
 	Description string `json:"description"`
-	KeyBits     int    `json:"keyBits" v:"min:2048#密钥位数不能小于2048"`
 }
 
 // CreateAppResponse 创建应用响应结构
@@ -68,17 +67,12 @@ func (s *OpenapiSignService) CreateApp(ctx context.Context, req *CreateAppReques
 		return nil, gerror.Wrap(err, "参数验证失败")
 	}
 
-	// 设置默认密钥位数
-	if req.KeyBits == 0 {
-		req.KeyBits = 2048
-	}
-
 	// 生成应用ID和密钥
 	appId := "app_" + grand.S(16)
 	appSecret := grand.S(32)
 
 	// 生成RSA密钥对
-	privateKey, publicKey, err := s.rsaUtil.GenerateRSAKeyPair(req.KeyBits)
+	privateKey, publicKey, err := s.rsaUtil.GenerateRSAKeyPair(2048)
 	if err != nil {
 		return nil, gerror.Wrap(err, "生成RSA密钥对失败")
 	}

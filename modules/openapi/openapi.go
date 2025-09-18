@@ -4,7 +4,8 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
 	_ "github.com/vera-byte/vgo/modules/openapi/controller/admin"
-	_ "github.com/vera-byte/vgo/modules/openapi/controller/app"
+	_ "github.com/vera-byte/vgo/modules/openapi/controller/open"
+	_ "github.com/vera-byte/vgo/modules/openapi/middleware"
 	"github.com/vera-byte/vgo/modules/openapi/model"
 	"github.com/vera-byte/vgo/v"
 )

@@ -32,13 +32,8 @@ func (c *BaseOpen) BaseOpenCaptcha(ctx context.Context, req *v1.BaseOpenCaptchaR
 	return
 }
 
-// eps 接口请求
-type BaseOpenEpsReq struct {
-	g.Meta `path:"/eps" method:"GET"`
-}
-
 // eps 接口
-func (c *BaseOpen) Eps(ctx context.Context, req *BaseOpenEpsReq) (res *v.BaseRes, err error) {
+func (c *BaseOpen) Eps(ctx context.Context, req *v1.BaseOpenEpsReq) (res *v.BaseRes, err error) {
 	if !v.Config.Eps {
 		g.Log().Error(ctx, "eps is not open")
 		res = v.Ok(nil)
@@ -63,14 +58,8 @@ func (c *BaseOpen) Login(ctx context.Context, req *v1.BaseOpenLoginReq) (res *v.
 	return
 }
 
-// RefreshTokenReq 刷新token请求
-type RefreshTokenReq struct {
-	g.Meta       `path:"/refreshToken" method:"GET"`
-	RefreshToken string `json:"refreshToken" v:"required#refreshToken不能为空"`
-}
-
 // RefreshToken 刷新token
-func (c *BaseOpen) RefreshToken(ctx context.Context, req *RefreshTokenReq) (res *v.BaseRes, err error) {
+func (c *BaseOpen) RefreshToken(ctx context.Context, req *v1.RefreshTokenReq) (res *v.BaseRes, err error) {
 	data, err := c.baseSysLoginService.RefreshToken(ctx, req.RefreshToken)
 	if err != nil {
 		return
