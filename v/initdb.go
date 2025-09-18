@@ -52,10 +52,10 @@ func getDBbyModel(model IModel) *gorm.DB {
 
 // 根据entity结构体创建表
 func CreateTable(model IModel) error {
-	if Config.AutoMigrate {
-		db := getDBbyModel(model)
-		return db.AutoMigrate(model)
-	}
+	// if Config.AutoMigrate {
+	// 	db := getDBbyModel(model)
+	// 	return db.AutoMigrate(model)
+	// }
 	return nil
 }
 

@@ -5,6 +5,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gctx"
+	_ "github.com/vera-byte/vgo/modules/task/cmd"
 	_ "github.com/vera-byte/vgo/modules/task/controller"
 	_ "github.com/vera-byte/vgo/modules/task/funcs"
 	_ "github.com/vera-byte/vgo/modules/task/middleware"
@@ -18,7 +19,7 @@ func init() {
 		ctx      = gctx.GetInitCtx()
 	)
 	g.Log().Debug(ctx, "module task init start ...")
-	v.FillInitData(ctx, "task", taskInfo)
+	// v.FillInitData(ctx, "task", taskInfo)
 
 	result, err := v.DBM(taskInfo).Where("status = ?", 1).All()
 	if err != nil {

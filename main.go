@@ -2,8 +2,10 @@ package main
 
 import (
 	_ "github.com/vera-byte/vgo/internal/packed"
+	"github.com/vera-byte/vgo/v/cmd"
 
 	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
+	"github.com/gogf/gf/v2/os/gctx"
 
 	_ "github.com/vera-byte/vgo/contrib/files/local"
 
@@ -20,13 +22,8 @@ import (
 	_ "github.com/vera-byte/vgo/contrib/drivers/pgsql"
 
 	_ "github.com/vera-byte/vgo/modules"
-
-	"github.com/gogf/gf/v2/os/gctx"
-
-	"github.com/vera-byte/vgo/internal/cmd"
 )
 
 func main() {
-	// gres.Dump()
-	cmd.Main.Run(gctx.New())
+	cmd.Root.Run(gctx.New())
 }

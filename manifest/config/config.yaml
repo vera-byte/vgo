@@ -48,7 +48,7 @@ redis:
     pass: "123456"
 
 v:
-  autoMigrate: true
+  autoMigrate: false
   eps: true
   file:
     mode: "local" # local | minio | oss
