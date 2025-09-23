@@ -9,14 +9,14 @@ const TableNameOpenapiApp = "openapi_app"
 // OpenapiApp 开放平台应用模型，用于存储应用信息和RSA密钥对
 type OpenapiApp struct {
 	*v.Model
-	AppId       string `gorm:"column:app_id;type:varchar(64);not null;uniqueIndex;comment:应用ID" json:"appId"`
-	AppName     string `gorm:"column:app_name;type:varchar(255);not null;comment:应用名称" json:"appName"`
-	AppSecret   string `gorm:"column:app_secret;type:varchar(255);not null;comment:应用密钥" json:"appSecret"`
-	PublicKey   string `gorm:"column:public_key;type:text;not null;comment:RSA公钥" json:"publicKey"`
-	PrivateKey  string `gorm:"column:private_key;type:text;not null;comment:RSA私钥" json:"privateKey"`
-	Status      *int32 `gorm:"column:status;type:int;not null;default:1;comment:状态 0:禁用 1:启用" json:"status"`
-	Description string `gorm:"column:description;type:varchar(500);comment:应用描述" json:"description"`
-	Remark      string `gorm:"column:remark;type:varchar(255);comment:备注" json:"remark"`
+	AppId       string `json:"appId"`
+	AppName     string `json:"appName"`
+	AppSecret   string `json:"appSecret"`
+	PublicKey   string `json:"publicKey"`
+	PrivateKey  string `json:"privateKey"`
+	Status      *int32 `json:"status"`
+	Description string `json:"description"`
+	Remark      string `json:"remark"`
 }
 
 // TableName OpenapiApp's table name
@@ -40,10 +40,4 @@ func NewOpenapiApp() *OpenapiApp {
 	return &OpenapiApp{
 		Model: v.NewModel(),
 	}
-}
-
-// init 创建表
-// 功能: 模块初始化时自动创建OpenapiApp数据库表
-func init() {
-	v.CreateTable(&OpenapiApp{})
 }

@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/gogf/gf/v2/os/gtime"
+	"time"
 	"github.com/vera-byte/vgo/v"
 )
 
@@ -10,21 +10,21 @@ const TableNameTaskInfo = "task_info"
 // TaskInfo mapped from table <task_info>
 type TaskInfo struct {
 	*v.Model
-	JobId       string     `json:"jobId" gorm:"column:jobId;type:varchar(255);comment:任务ID"`
-	RepeatConf  string     `json:"repeatConf" gorm:"column:repeatConf;comment:重复配置"`
-	Name        string     `json:"name" gorm:"column:name;type:varchar(255);comment:任务名称"`
-	Cron        string     `json:"cron" gorm:"column:cron;type:varchar(255);comment:cron表达式"`
-	Limit       int        `json:"limit" gorm:"column:limit;comment:限制次数 不传为不限制"`
-	Every       int        `json:"every" gorm:"column:every;comment:间隔时间 单位秒"`
-	Remark      string     `json:"remark" gorm:"column:remark;type:varchar(255);comment:备注"`
-	Status      int        `json:"status" gorm:"column:status;comment:状态 0:关闭 1:开启"`
-	StartDate   gtime.Time `json:"startDate" gorm:"column:startDate;comment:开始时间"`
-	EndDate     gtime.Time `json:"endDate" gorm:"column:endDate;comment:结束时间"`
-	Data        string     `json:"data" gorm:"column:data;type:varchar(255);comment:数据"`
-	Service     string     `json:"service" gorm:"column:service;type:varchar(255);comment:执行的服务"`
-	Type        int        `json:"type" gorm:"column:type;comment:类型 0:系统 1:用户"`
-	NextRunTime gtime.Time `json:"nextRunTime" gorm:"column:nextRunTime;comment:下次执行时间"`
-	TaskType    int        `json:"taskType" gorm:"column:taskType;comment:任务类型 0:cron 1:时间间隔"`
+	JobId       string     `json:"jobId"`
+	RepeatConf  string     `json:"repeatConf"`
+	Name        string     `json:"name"`
+	Cron        string     `json:"cron"`
+	Limit       int        `json:"limit"`
+	Every       int        `json:"every"`
+	Remark      string     `json:"remark"`
+	Status      int        `json:"status"`
+	StartDate   time.Time `json:"startDate"`
+	EndDate     time.Time `json:"endDate"`
+	Data        string     `json:"data"`
+	Service     string     `json:"service"`
+	Type        int        `json:"type"`
+	NextRunTime time.Time `json:"nextRunTime"`
+	TaskType    int        `json:"taskType"`
 }
 
 // TableName TaskInfo's table name
@@ -42,9 +42,4 @@ func NewTaskInfo() *TaskInfo {
 	return &TaskInfo{
 		Model: v.NewModel(),
 	}
-}
-
-// init 创建表
-func init() {
-	v.CreateTable(&TaskInfo{})
 }

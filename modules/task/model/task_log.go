@@ -9,9 +9,9 @@ const TableNameTaskLog = "task_log"
 // TaskLog mapped from table <task_log>
 type TaskLog struct {
 	*v.Model
-	TaskId uint64 `gorm:"column:taskId;comment:任务ID" json:"taskId"`
-	Status uint8  `gorm:"column:status;not null;comment:状态 0:失败 1:成功" json:"status"`
-	Detail string `gorm:"column:detail;comment:详情" json:"detail"`
+	TaskId uint64 `json:"taskId"`
+	Status uint8  `json:"status"`
+	Detail string `json:"detail"`
 }
 
 // TableName TaskLog's table name

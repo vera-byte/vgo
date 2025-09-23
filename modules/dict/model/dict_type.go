@@ -9,8 +9,8 @@ const TableNameDictType = "dict_type"
 // DictType mapped from table <dict_type>
 type DictType struct {
 	*v.Model
-	Name string `gorm:"column:name;type:varchar(255);not null" json:"name"` // 名称
-	Key  string `gorm:"column:key;type:varchar(255);not null" json:"key"`   // 标识
+	Name string `json:"name"` // 名称
+	Key  string `json:"key"`  // 标识
 }
 
 // TableName DictType's table name

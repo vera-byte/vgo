@@ -9,10 +9,10 @@ type IModel interface {
 	GroupName() string
 }
 type Model struct {
-	ID         uint      `gorm:"primaryKey" json:"id"`
-	CreateTime time.Time `gorm:"column:createTime;not null;index,priority:1;autoCreateTime:nano;comment:创建时间" json:"createTime"` // 创建时间
-	UpdateTime time.Time `gorm:"column:updateTime;not null;index,priority:1;autoUpdateTime:nano;comment:更新时间" json:"updateTime"` // 更新时间
-	DeletedAt  time.Time `gorm:"index" json:"deletedAt"`
+	ID         uint      `json:"id"`
+	CreateTime time.Time `json:"createTime"` // 创建时间
+	UpdateTime time.Time `json:"updateTime"` // 更新时间
+	DeletedAt  time.Time `json:"deletedAt"`
 }
 
 // 返回表名

@@ -7,8 +7,8 @@ const TableNameBaseSysRoleMenu = "base_sys_role_menu"
 // BaseSysRoleMenu mapped from table <base_sys_role_menu>
 type BaseSysRoleMenu struct {
 	*v.Model
-	RoleID uint `gorm:"column:roleId;type:bigint;not null" json:"roleId"` // 角色ID
-	MenuID uint `gorm:"column:menuId;type:bigint;not null" json:"menuId"` // 菜单ID
+	RoleID uint `json:"roleId"` // 角色ID
+	MenuID uint `json:"menuId"` // 菜单ID
 }
 
 // TableName BaseSysRoleMenu's table name

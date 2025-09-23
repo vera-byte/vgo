@@ -49,12 +49,12 @@
       "       return &${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{",
       "               Model: v.NewModel(),",
       "       }",
-      "}",
-      "",
-      "// init 创建表",
-      "func init() {",
-      "       v.CreateTable(&${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{})",
       "}"
+      // "",
+      // "// init 创建表",
+      // "func init() {",
+      // "       v.CreateTable(&${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}{})",
+      // "}"
     ]
   }
 }

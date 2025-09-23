@@ -43,9 +43,3 @@ func NewOpenapiSignLog() *OpenapiSignLog {
 		Model: v.NewModel(),
 	}
 }
-
-// init 创建表
-// 功能: 模块初始化时自动创建OpenapiSignLog数据库表
-func init() {
-	v.CreateTable(&OpenapiSignLog{})
-}

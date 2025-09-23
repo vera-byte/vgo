@@ -7,7 +7,9 @@
       "request": "launch",
       "mode": "debug",
       "program": "${workspaceFolder}/main.go",
-      "args": [],
+      "args": [
+        "server"
+      ],
       "env": {},
       "showLog": true
     }
