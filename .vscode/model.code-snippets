@@ -31,7 +31,7 @@
       "// ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} mapped from table <${TM_FILENAME_BASE/(.*)/${1:/downcase}/}>",
       "type ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/} struct {",
       "       *v.Model",
-      "       // Name string `gorm:\"column:name;not null;comment:名称\" json:\"name\"`",
+      "       // Name string `json:\"name\"`",
       "}",
       "",
       "// TableName ${TM_FILENAME_BASE/(.*)/${1:/pascalcase}/}'s table name",

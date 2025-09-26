@@ -7,10 +7,12 @@
       "request": "launch",
       "mode": "debug",
       "program": "${workspaceFolder}/main.go",
-      "args": [
-        "server"
-      ],
-      "env": {},
+      // "args": [
+      //   "server"
+      // ],
+      "env": {
+        "GF_DEBUG": "true",
+      },
       "showLog": true
     }
   ]

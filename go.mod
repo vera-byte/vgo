@@ -7,14 +7,37 @@ toolchain go1.24.1
 require (
 	github.com/gogf/gf/v2 v2.9.3
 	github.com/golang-migrate/migrate/v4 v4.19.0
+	github.com/vera-byte/vgo/contrib/drivers/pgsql v1.0.16
+	github.com/vera-byte/vgo/contrib/files/local v1.10.9
+	github.com/vera-byte/vgo/modules/base v1.10.9
+	github.com/vera-byte/vgo/modules/dict v1.0.16
+	github.com/vera-byte/vgo/modules/space v1.10.9
+	github.com/vera-byte/vgo/modules/task v1.0.16
+	github.com/vera-byte/vgo/v v1.10.9
 )
 
 require (
+	github.com/clbanning/mxj v1.8.5-0.20200714211355-ff02cfb8ea28 // indirect
+	github.com/go-sql-driver/mysql v1.9.3 // indirect
+	github.com/gogf/gf v1.16.9 // indirect
+	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.9.0 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
+	github.com/jackc/pgpassfile v1.0.0 // indirect
+	github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761 // indirect
+	github.com/jackc/pgx/v5 v5.7.5 // indirect
+	github.com/jackc/puddle/v2 v2.2.2 // indirect
+	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/olekukonko/cat v0.0.0-20250911104152-50322a0618f6 // indirect
 	github.com/olekukonko/errors v1.1.0 // indirect
 	github.com/olekukonko/ll v0.1.1 // indirect
+	github.com/robfig/cron v1.2.0 // indirect
+	golang.org/x/crypto v0.42.0 // indirect
+	golang.org/x/sync v0.17.0 // indirect
+	gorm.io/driver/postgres v1.6.0 // indirect
+	gorm.io/gorm v1.30.0 // indirect
 )
 
 require (

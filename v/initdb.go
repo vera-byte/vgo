@@ -32,7 +32,7 @@ func InitDB(group string) (*gorm.DB, error) {
 }
 
 // 根据entity结构体获取 *gorm.DB
-func getDBbyModel(model IModel) *gorm.DB {
+func GetDBbyModel(model IModel) *gorm.DB {
 
 	group := model.GroupName()
 	// 判断是否存在 GormDBS[group] 字段，如果存在，则使用该字段的值作为DB，否则初始化DB

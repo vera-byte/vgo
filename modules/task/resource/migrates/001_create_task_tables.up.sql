@@ -5,9 +5,9 @@
 -- 1. 任务信息表
 CREATE TABLE IF NOT EXISTS task_info (
     id BIGSERIAL PRIMARY KEY,
-    "createTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updateTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deletedAt" TIMESTAMP WITH TIME ZONE,
+    "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deletedAt" TIMESTAMP DEFAULT NULL,
     "jobId" VARCHAR(255) COMMENT '任务ID',
     "repeatConf" TEXT COMMENT '重复配置',
     name VARCHAR(255) COMMENT '任务名称',
@@ -16,12 +16,12 @@ CREATE TABLE IF NOT EXISTS task_info (
     every INTEGER COMMENT '间隔时间 单位秒',
     remark VARCHAR(255) COMMENT '备注',
     status INTEGER COMMENT '状态 0:关闭 1:开启',
-    "startDate" TIMESTAMP WITH TIME ZONE COMMENT '开始时间',
-    "endDate" TIMESTAMP WITH TIME ZONE COMMENT '结束时间',
+    "startDate" TIMESTAMP COMMENT '开始时间',
+    "endDate" TIMESTAMP COMMENT '结束时间',
     data VARCHAR(255) COMMENT '数据',
     service VARCHAR(255) COMMENT '执行的服务',
     type INTEGER COMMENT '类型 0:系统 1:用户',
-    "nextRunTime" TIMESTAMP WITH TIME ZONE COMMENT '下次执行时间',
+    "nextRunTime" TIMESTAMP COMMENT '下次执行时间',
     "taskType" INTEGER COMMENT '任务类型 0:cron 1:时间间隔'
 );
 
@@ -41,9 +41,9 @@ CREATE INDEX IF NOT EXISTS idx_task_info_service ON task_info(service);
 -- 2. 任务日志表
 CREATE TABLE IF NOT EXISTS task_log (
     id BIGSERIAL PRIMARY KEY,
-    "createTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updateTime" TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deletedAt" TIMESTAMP WITH TIME ZONE,
+    "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deletedAt" TIMESTAMP DEFAULT NULL,
     "taskId" BIGINT COMMENT '任务ID',
     status SMALLINT NOT NULL COMMENT '状态 0:失败 1:成功',
     detail TEXT COMMENT '详情'

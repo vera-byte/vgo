@@ -23,7 +23,7 @@ var (
 	I18n         = gi18n.New()               // 定义全局国际化对象
 )
 
-func init() {
+func NewVgo() {
 	var (
 		ctx         = gctx.GetInitCtx()
 		redisConfig = &gredis.Config{}

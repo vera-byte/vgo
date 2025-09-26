@@ -177,8 +177,8 @@ EOF
         -e 's/FALSE/0/g' \
         -e 's/BYTEA/LONGBLOB/g' \
         -e 's/TEXT/LONGTEXT/g' \
-        -e 's/TIMESTAMP WITH TIME ZONE/DATETIME/g' \
-        -e 's/TIMESTAMP WITHOUT TIME ZONE/DATETIME/g' \
+        -e 's/TIMESTAMP /DATETIME/g' \
+        -e 's/TIMESTAMP /DATETIME/g' \
         -e 's/TIMESTAMPTZ/DATETIME/g' \
         -e 's/UUID/VARCHAR(36)/g' \
         -e 's/JSONB/JSON/g' \

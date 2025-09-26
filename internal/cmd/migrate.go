@@ -4,24 +4,41 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"os"
 	"path/filepath"
 	"strings"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/gogf/gf/v2/os/gres"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	_ "github.com/lib/pq"
 )
 
+func init() {
+
+	migrateCmd := &gcmd.Command{
+		Name:  "migrate",
+		Usage: "migrate",
+		Brief: "数据库迁移",
+		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
+			return MigrateFunc(ctx, parser)
+		},
+	}
+	Root.AddCommand(migrateCmd)
+
+}
+
 // MigrateFunc 数据库迁移命令处理函数
 // 参数: ctx - 上下文对象, parser - 命令行解析器
 // 返回值: error - 错误信息
 func MigrateFunc(ctx context.Context, parser *gcmd.Parser) error {
 	// 获取命令行参数
-	path := parser.GetOpt("path", "/Users/mac/workspace/vgo-v2/modules/*/resource/migrates").String()
+	path := parser.GetOpt("path", "resource/migrates").String()
+
 	database := parser.GetOpt("database", "postgres://postgres:123456@localhost:5432/vgo?sslmode=disable").String()
 	operation := parser.GetOpt("operation", "up").String()
 	steps := parser.GetOpt("steps", "0").Int()
@@ -31,6 +48,27 @@ func MigrateFunc(ctx context.Context, parser *gcmd.Parser) error {
 	g.Log().Infof(ctx, "数据库连接: %s", maskPassword(database))
 	g.Log().Infof(ctx, "操作类型: %s", operation)
 
+	// 如果路径在gres资源中，则从gres中读取
+	// 检查更通用的路径模式
+	resourcePath := path
+	if !gfile.Exists(path) && (gres.Contains(path) || gres.Contains("resource/"+path) || gres.Contains("resources/"+path)) {
+		// 尝试不同的路径格式
+		if gres.Contains(path) {
+			resourcePath = path
+		} else if gres.Contains("resource/" + path) {
+			resourcePath = "resource/" + path
+		} else if gres.Contains("resources/" + path) {
+			resourcePath = "resources/" + path
+		}
+
+		tempPath, err := extractMigrationsFromGres(resourcePath)
+		if err != nil {
+			return fmt.Errorf("从gres中提取迁移文件失败: %v", err)
+		}
+		defer gfile.Remove(tempPath)
+		path = tempPath
+	}
+
 	// 如果路径包含通配符，处理多个模块
 	if strings.Contains(path, "*") {
 		return runMigrateForModules(ctx, path, database, operation, steps)
@@ -38,6 +76,52 @@ func MigrateFunc(ctx context.Context, parser *gcmd.Parser) error {
 
 	// 单个路径迁移
 	return runMigrate(ctx, path, database, operation, steps)
+}
+
+// extractMigrationsFromGres 从gres资源中提取迁移文件到临时目录
+// 参数: path - gres中的路径
+// 返回值: string - 临时目录路径, error - 错误信息
+func extractMigrationsFromGres(path string) (string, error) {
+	// 创建临时目录
+	tempDir, err := os.MkdirTemp("", "migrations")
+	if err != nil {
+		return "", fmt.Errorf("创建临时目录失败: %v", err)
+	}
+
+	// 从gres中获取文件列表
+	files := gres.ScanDirFile(path, "*", false)
+	if len(files) == 0 {
+		// 尝试添加前缀再次查找
+		pathsToTry := []string{path, "resource/" + path, "resources/" + path}
+		for _, tryPath := range pathsToTry {
+			files = gres.ScanDirFile(tryPath, "*", false)
+			if len(files) > 0 {
+				break
+			}
+		}
+
+		if len(files) == 0 {
+			return "", fmt.Errorf("在gres中未找到迁移文件: %s", path)
+		}
+	}
+
+	// 提取文件到临时目录
+	for _, file := range files {
+		// 获取文件名（去掉路径前缀）
+		fileName := filepath.Base(file.Name())
+		filePath := filepath.Join(tempDir, fileName)
+		if err := gfile.PutBytes(filePath, file.Content()); err != nil {
+			return "", fmt.Errorf("写入文件失败 %s: %v", filePath, err)
+		}
+	}
+
+	g.Log().Infof(context.Background(), "从gres中提取了 %d 个文件到临时目录: %s", len(files), tempDir)
+
+	// 记录提取的文件名
+	fileList, _ := gfile.ScanDir(tempDir, "*", false)
+	g.Log().Infof(context.Background(), "临时目录中的文件: %v", fileList)
+
+	return tempDir, nil
 }
 
 // runMigrateForModules 为多个模块运行迁移
@@ -102,7 +186,7 @@ func runMigrate(ctx context.Context, migratePath, database, operation string, st
 	defer db.Close()
 
 	// 测试数据库连接
-	if err := db.Ping(); err != nil {
+	if pingErr := db.Ping(); pingErr != nil {
 		return fmt.Errorf("数据库连接测试失败: %v", err)
 	}
 
