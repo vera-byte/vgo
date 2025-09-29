@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Excel 文件解析</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        #controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+        #controls input {
+            margin-right: 8px;
+        }
+        #controls .control-item {
+            margin-bottom: 5px;
+        }
+        #gear-btn {
+            position: fixed;
+            top: 10px;
+            right: 20px;
+            cursor: pointer;
+            background: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        #filters {
+            margin-bottom: 10px;
+        }
+        #filters select {
+            margin-right: 15px;
+            padding: 5px;
+        }
+        #stats {
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Excel 文件解析</h1>
+<input type="file" id="uploadExcel">
+
+<div id="filters">
+    <label for="filter-name">姓名：</label>
+    <select id="filter-name" data-column="姓名">
+        <option value="all">全部</option>
+    </select>
+</div>
+
+<div id="stats"></div> <!-- 用于统计月打卡时间 -->
+<button id="gear-btn">⚙ 字段控制</button>
+<div id="controls"></div>
+<div id="table-container"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script>
+    const defaultFields = ["时间", "姓名", "部门", "职务", "班次", "最早", "最晚", "假勤申请", "校准状态"];
+    let visibleHeaders = [...defaultFields]; // 默认显示的字段
+    let allData = []; // 保存完整解析数据
+
+    document.getElementById("uploadExcel").addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: "array" });
+
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+
+            // 生成表头
+            let headers = generateHeaders(worksheet, 4, 3);
+
+            // 处理重复字段
+            headers = normalizeDuplicateHeaders(headers);
+
+            // 从第5行开始解析数据
+            allData = XLSX.utils.sheet_to_json(worksheet, {
+                header: headers,
+                range: 4,
+            });
+
+            // 初始化过滤器
+            initFilters(headers, allData);
+
+            // 渲染默认表格
+            renderTable(visibleHeaders, allData);
+
+            // 渲染字段控制面板
+            renderControls(headers);
+        };
+
+        reader.readAsArrayBuffer(file);
+        this.value = ""; // 允许重新上传相同文件
+    });
+
+    /**
+     * 生成表头
+     */
+    function generateHeaders(worksheet, priorityRow, fallbackRow) {
+        const headers = [];
+        const columnCount = XLSX.utils.decode_range(worksheet["!ref"]).e.c;
+
+        for (let col = 0; col <= columnCount; col++) {
+            const priorityCellAddress = XLSX.utils.encode_cell({ r: priorityRow - 1, c: col });
+            const fallbackCellAddress = XLSX.utils.encode_cell({ r: fallbackRow - 1, c: col });
+
+            const priorityCell = worksheet[priorityCellAddress];
+            const fallbackCell = worksheet[fallbackCellAddress];
+
+            const headerValue = priorityCell ? priorityCell.v : fallbackCell?.v;
+            if (headerValue !== undefined) headers.push(headerValue);
+        }
+        return headers;
+    }
+
+    /**
+     * 处理重复字段：为重复表头添加区分后缀
+     */
+    function normalizeDuplicateHeaders(headers) {
+        const headerCount = {};
+        return headers.map(header => {
+            if (!headerCount[header]) {
+                headerCount[header] = 0;
+            }
+            headerCount[header]++;
+            return headerCount[header] > 1 ? `${header}${headerCount[header] - 1}` : header;
+        });
+    }
+
+    /**
+     * 初始化过滤器
+     */
+    function initFilters(headers, data) {
+        const filterElement = document.getElementById("filter-name");
+        const uniqueNames = [...new Set(data.map(row => row["姓名"]).filter(name => name !== undefined))];
+        filterElement.innerHTML = '<option value="all">全部</option>';
+        uniqueNames.forEach(name => {
+            const option = document.createElement("option");
+            option.value = name;
+            option.innerText = name;
+            filterElement.appendChild(option);
+        });
+
+        filterElement.addEventListener("change", function () {
+            const selectedName = filterElement.value;
+            if (selectedName === "all") {
+                document.getElementById("stats").innerText = "";
+                renderTable(visibleHeaders, allData);
+            } else {
+                const filteredData = allData.filter(row => row["姓名"] === selectedName);
+                const totalHours = calculateTotalHours(filteredData);
+                document.getElementById("stats").innerText = `${selectedName} 的月打卡时间为：${totalHours.toFixed(2)} 小时`;
+                renderTable(visibleHeaders, filteredData);
+            }
+        });
+    }
+
+    /**
+     * 计算总工时
+     */
+    function calculateTotalHours(data) {
+        let totalHours = 0;
+
+        data.forEach(entry => {
+            if (entry["班次"] === "休息") return; // 如果是休息日，直接忽略
+            let { "最早": earliest, "最晚": latest } = entry;
+
+            if (earliest === "未打卡" || latest === "未打卡") return; // 未打卡，不计入工时
+
+            earliest = parseTime(earliest);
+            latest = parseTime(latest);
+
+            if (earliest < 8) earliest = 8; // 最早时间早于 8:00 时，按 8:00 计算
+            if (latest < earliest) latest += 24; // 如果最晚时间跨越到次日，加上 24 小时
+
+            const hours = latest - earliest;
+            if (hours > 0) totalHours += Math.max(0, hours - 1.5); // 减去中午 1.5 小时
+        });
+
+        return totalHours;
+    }
+
+    /**
+     * 解析时间为浮点数（小时）
+     */
+    function parseTime(time) {
+        if (typeof time === "string" && time.startsWith("次日")) {
+            const parts = time.replace("次日", "").split(":");
+            return parseInt(parts[0]) + parseInt(parts[1]) / 60 + 24;
+        } else {
+            const parts = time.split(":");
+            return parseInt(parts[0]) + parseInt(parts[1]) / 60;
+        }
+    }
+
+    /**
+     * 渲染表格
+     */
+    function renderTable(headers, rows) {
+        const container = document.getElementById("table-container");
+        const table = document.createElement("table");
+
+        // 表头
+        const thead = document.createElement("thead");
+        const tr = document.createElement("tr");
+        headers.forEach(header => {
+            const th = document.createElement("th");
+            th.textContent = header;
+            tr.appendChild(th);
+        });
+        thead.appendChild(tr);
+        table.appendChild(thead);
+
+        // 数据行
+        const tbody = document.createElement("tbody");
+        rows.forEach(row => {
+            const tr = document.createElement("tr");
+            headers.forEach(header => {
+                const td = document.createElement("td");
+                td.textContent = row[header] || "";
+                tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+        });
+        table.appendChild(tbody);
+
+        container.innerHTML = "";
+        container.appendChild(table);
+    }
+
+    /**
+     * 渲染字段控制面板
+     */
+    function renderControls(headers) {
+        const controlsContainer = document.getElementById("controls");
+        controlsContainer.innerHTML = headers.map(header => {
+            return `
+                    <div class="control-item">
+                        <input type="checkbox" data-column="${header}" ${visibleHeaders.includes(header) ? "checked" : ""}>
+                        <label>${header}</label>
+                    </div>`;
+        }).join("");
+
+        // 切换字段显示状态
+        controlsContainer.querySelectorAll("input[type='checkbox']").forEach(checkbox => {
+            checkbox.addEventListener("change", () => {
+                visibleHeaders = Array.from(
+                    controlsContainer.querySelectorAll("input:checked")
+                ).map(cb => cb.dataset.column);
+                renderTable(visibleHeaders, allData);
+            });
+        });
+
+        // 控制面板切换显示
+        document.getElementById("gear-btn").addEventListener("click", () => {
+            controlsContainer.style.display = controlsContainer.style.display === "block" ? "none" : "block";
+        });
+    }
+</script>
+</body>
+</html>
