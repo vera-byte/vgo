@@ -30,8 +30,3 @@ func NewBaseSysMenu() *BaseSysMenu {
 		Model: v.NewModel(),
 	}
 }
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysMenu{})
-}

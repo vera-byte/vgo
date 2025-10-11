@@ -23,7 +23,7 @@ var Main = &gcmd.Command{
 func init() {
 	// 将Root设置为Main的别名，保持向后兼容
 	Main = Root
-	
+
 	// 启动命令注册流程
 	initializeCommands()
 }
@@ -32,10 +32,10 @@ func init() {
 // 自动发现并注册所有模块的命令
 func initializeCommands() {
 	registry := GetRegistry()
-	
+
 	// 自动发现模块（可选，主要用于调试）
 	registry.AutoDiscoverModules("modules")
-	
+
 	// 注册所有已发现的命令
 	registry.RegisterCommands()
 }

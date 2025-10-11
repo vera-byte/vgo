@@ -19,7 +19,7 @@ type CommandProvider interface {
 	// GetCommands 获取模块提供的命令列表
 	// 返回: 命令列表
 	GetCommands() []*gcmd.Command
-	
+
 	// GetModuleName 获取模块名称
 	// 返回: 模块名称
 	GetModuleName() string
@@ -58,9 +58,9 @@ func GetRegistry() *CommandRegistry {
 func (r *CommandRegistry) RegisterProvider(provider CommandProvider) {
 	r.mutex.Lock()
 	defer r.mutex.Unlock()
-	
+
 	r.providers = append(r.providers, provider)
-	g.Log().Infof(context.Background(), "Registered command provider: %s", provider.GetModuleName())
+	g.Log().Debugf(context.Background(), "Registered command provider: %s", provider.GetModuleName())
 }
 
 // RegisterCommands 注册所有提供者的命令到根命令
@@ -68,29 +68,39 @@ func (r *CommandRegistry) RegisterProvider(provider CommandProvider) {
 func (r *CommandRegistry) RegisterCommands() {
 	r.mutex.Lock()
 	defer r.mutex.Unlock()
-	
+
+	g.Log().Debugf(context.Background(), "Starting to register commands from %d providers", len(r.providers))
+
 	for _, provider := range r.providers {
 		commands := provider.GetCommands()
+		g.Log().Debugf(context.Background(), "Provider '%s' has %d commands", provider.GetModuleName(), len(commands))
+
 		for _, cmd := range commands {
 			if cmd != nil {
+				g.Log().Debugf(context.Background(), "Processing command: %s", cmd.Name)
+
 				// 检查命令名称是否已存在
 				if existingCmd, exists := r.commands[cmd.Name]; exists {
-					g.Log().Warningf(context.Background(), 
-						"Command '%s' already exists (from %s), skipping registration from %s", 
+					g.Log().Warningf(context.Background(),
+						"Command '%s' already exists (from %s), skipping registration from %s",
 						cmd.Name, r.getCommandSource(existingCmd), provider.GetModuleName())
 					continue
 				}
-				
+
 				// 注册命令到根命令
 				Root.AddCommand(cmd)
 				r.commands[cmd.Name] = cmd
-				
-				g.Log().Infof(context.Background(), 
-					"Registered command '%s' from module '%s'", 
+
+				g.Log().Debugf(context.Background(),
+					"Successfully registered command '%s' from module '%s'",
 					cmd.Name, provider.GetModuleName())
+			} else {
+				g.Log().Warningf(context.Background(), "Nil command found in provider '%s'", provider.GetModuleName())
 			}
 		}
 	}
+
+	g.Log().Debugf(context.Background(), "Command registration completed. Total registered commands: %d", len(r.commands))
 }
 
 // getCommandSource 获取命令来源信息
@@ -113,7 +123,7 @@ func (r *CommandRegistry) getCommandSource(cmd *gcmd.Command) string {
 func (r *CommandRegistry) GetRegisteredCommands() map[string]*gcmd.Command {
 	r.mutex.RLock()
 	defer r.mutex.RUnlock()
-	
+
 	result := make(map[string]*gcmd.Command)
 	for name, cmd := range r.commands {
 		result[name] = cmd
@@ -129,14 +139,14 @@ func (r *CommandRegistry) AutoDiscoverModules(modulesPath string) {
 		g.Log().Warningf(context.Background(), "Modules path does not exist: %s", modulesPath)
 		return
 	}
-	
+
 	// 获取所有模块目录
 	dirs, err := gfile.ScanDir(modulesPath, "*", false)
 	if err != nil {
 		g.Log().Errorf(context.Background(), "Failed to scan modules directory: %v", err)
 		return
 	}
-	
+
 	for _, dir := range dirs {
 		if gfile.IsDir(dir) {
 			moduleName := filepath.Base(dir)
@@ -144,8 +154,8 @@ func (r *CommandRegistry) AutoDiscoverModules(modulesPath string) {
 			if strings.HasPrefix(moduleName, ".") || moduleName == "cmd.go" {
 				continue
 			}
-			
-			g.Log().Infof(context.Background(), "Discovered module: %s", moduleName)
+
+			g.Log().Debugf(context.Background(), "Discovered module: %s", moduleName)
 		}
 	}
 }
@@ -155,7 +165,7 @@ func (r *CommandRegistry) AutoDiscoverModules(modulesPath string) {
 func (r *CommandRegistry) ListProviders() []CommandProvider {
 	r.mutex.RLock()
 	defer r.mutex.RUnlock()
-	
+
 	result := make([]CommandProvider, len(r.providers))
 	copy(result, r.providers)
 	return result
@@ -167,7 +177,7 @@ func (r *CommandRegistry) ListProviders() []CommandProvider {
 func (r *CommandRegistry) GetProviderByName(name string) CommandProvider {
 	r.mutex.RLock()
 	defer r.mutex.RUnlock()
-	
+
 	for _, provider := range r.providers {
 		if provider.GetModuleName() == name {
 			return provider
@@ -181,21 +191,21 @@ func (r *CommandRegistry) GetProviderByName(name string) CommandProvider {
 func (r *CommandRegistry) PrintRegistryStatus() {
 	r.mutex.RLock()
 	defer r.mutex.RUnlock()
-	
+
 	ctx := context.Background()
-	g.Log().Infof(ctx, "=== Command Registry Status ===")
-	g.Log().Infof(ctx, "Total providers: %d", len(r.providers))
-	g.Log().Infof(ctx, "Total commands: %d", len(r.commands))
-	
-	g.Log().Infof(ctx, "Registered providers:")
+	g.Log().Debugf(ctx, "=== Command Registry Status ===")
+	g.Log().Debugf(ctx, "Total providers: %d", len(r.providers))
+	g.Log().Debugf(ctx, "Total commands: %d", len(r.commands))
+
+	g.Log().Debugf(ctx, "Registered providers:")
 	for i, provider := range r.providers {
 		commands := provider.GetCommands()
-		g.Log().Infof(ctx, "  %d. %s (%d commands)", i+1, provider.GetModuleName(), len(commands))
+		g.Log().Debugf(ctx, "  %d. %s (%d commands)", i+1, provider.GetModuleName(), len(commands))
 	}
-	
-	g.Log().Infof(ctx, "Registered commands:")
+
+	g.Log().Debugf(ctx, "Registered commands:")
 	for name := range r.commands {
-		g.Log().Infof(ctx, "  - %s", name)
+		g.Log().Debugf(ctx, "  - %s", name)
 	}
-	g.Log().Infof(ctx, "===============================")
+	g.Log().Debugf(ctx, "===============================")
 }

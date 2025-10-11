@@ -1,9 +1,5 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/v"
-)
-
 const TableNameBaseEpsApp = "base_eps_app"
 
 // BaseEpsApp mapped from table <base_eps_app>
@@ -31,9 +27,4 @@ func (*BaseEpsApp) GroupName() string {
 // NewBaseEpsApp create a new BaseEpsApp
 func NewBaseEpsApp() *BaseEpsApp {
 	return &BaseEpsApp{}
-}
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseEpsApp{})
 }

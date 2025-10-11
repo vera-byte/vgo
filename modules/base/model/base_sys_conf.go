@@ -16,11 +16,6 @@ func (*BaseSysConf) TableName() string {
 	return TableNameBaseSysConf
 }
 
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysConf{})
-}
-
 // NewBaseSysConf 创建实例
 func NewBaseSysConf() *BaseSysConf {
 	return &BaseSysConf{

@@ -1,6 +1,7 @@
 package openapi
 
 import (
+	_ "github.com/vera-byte/vgo/modules/openapi/cmd"
 	_ "github.com/vera-byte/vgo/modules/openapi/controller/admin"
 	_ "github.com/vera-byte/vgo/modules/openapi/controller/open"
 	_ "github.com/vera-byte/vgo/modules/openapi/middleware"

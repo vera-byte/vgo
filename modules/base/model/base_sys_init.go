@@ -1,9 +1,5 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/v"
-)
-
 const TableNameBaseSysInit = "base_sys_init"
 
 // BaseSysInit mapped from table <base_sys_init>
@@ -26,9 +22,4 @@ func (*BaseSysInit) GroupName() string {
 // GetStruct BaseSysInit's struct
 func (m *BaseSysInit) GetStruct() interface{} {
 	return m
-}
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysInit{})
 }

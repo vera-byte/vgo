@@ -25,8 +25,3 @@ func NewBaseSysRole() *BaseSysRole {
 		Model: v.NewModel(),
 	}
 }
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysRole{})
-}

@@ -19,11 +19,6 @@ func (*BaseSysLog) TableName() string {
 	return TableNameBaseSysLog
 }
 
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysLog{})
-}
-
 // NewBaseSysLog 创建实例
 func NewBaseSysLog() *BaseSysLog {
 	return &BaseSysLog{

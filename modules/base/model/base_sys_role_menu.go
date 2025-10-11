@@ -22,8 +22,3 @@ func NewBaseSysRoleMenu() *BaseSysRoleMenu {
 		Model: &v.Model{},
 	}
 }
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseSysRoleMenu{})
-}

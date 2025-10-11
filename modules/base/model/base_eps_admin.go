@@ -1,9 +1,5 @@
 package model
 
-import (
-	"github.com/vera-byte/vgo/v"
-)
-
 const TableNameBaseEpsAdmin = "base_eps_admin"
 
 // BaseEpsAdmin mapped from table <base_eps_admin>
@@ -31,9 +27,4 @@ func (*BaseEpsAdmin) GroupName() string {
 // NewBaseEpsAdmin create a new BaseEpsAdmin
 func NewBaseEpsAdmin() *BaseEpsAdmin {
 	return &BaseEpsAdmin{}
-}
-
-// init 创建表
-func init() {
-	v.CreateTable(&BaseEpsAdmin{})
 }
