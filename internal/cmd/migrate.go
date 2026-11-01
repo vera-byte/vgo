@@ -156,6 +156,17 @@ func runMigrateForModules(ctx context.Context, pathPattern, database, operation 
 	return nil
 }
 
+// moduleNameFromMigratePath 从迁移目录路径（如 modules/base/resource/migrates）中提取模块名（base）。
+func moduleNameFromMigratePath(migratePath string) string {
+	parts := strings.Split(filepath.ToSlash(migratePath), "/")
+	for i, part := range parts {
+		if part == "resource" && i > 0 {
+			return parts[i-1]
+		}
+	}
+	return ""
+}
+
 // runMigrate 执行数据库迁移
 // 参数: ctx - 上下文, migratePath - 迁移文件路径, database - 数据库连接, operation - 操作类型, steps - 步数
 // 返回值: error - 错误信息
@@ -187,11 +198,17 @@ func runMigrate(ctx context.Context, migratePath, database, operation string, st
 
 	// 测试数据库连接
 	if pingErr := db.Ping(); pingErr != nil {
-		return fmt.Errorf("数据库连接测试失败: %v", err)
+		return fmt.Errorf("数据库连接测试失败: %v", pingErr)
+	}
+
+	// 每个模块使用独立的迁移版本表，避免多模块迁移版本号冲突
+	migrationsTable := "schema_migrations"
+	if mod := moduleNameFromMigratePath(migratePath); mod != "" {
+		migrationsTable = "schema_migrations_" + mod
 	}
 
 	// 创建postgres驱动实例
-	driver, err := postgres.WithInstance(db, &postgres.Config{})
+	driver, err := postgres.WithInstance(db, &postgres.Config{MigrationsTable: migrationsTable})
 	if err != nil {
 		return fmt.Errorf("创建数据库驱动失败: %v", err)
 	}
@@ -262,8 +279,8 @@ func getModules(basePath string) ([]string, error) {
 
 	var modules []string
 	for _, dir := range dirs {
-		if gfile.IsDir(filepath.Join(basePath, dir)) {
-			modules = append(modules, dir)
+		if gfile.IsDir(dir) {
+			modules = append(modules, filepath.Base(dir))
 		}
 	}
 

@@ -1,0 +1,47 @@
+---
+title: "项目介绍"
+description: "Vgo —— 基于 GoFrame 的企业级后台服务端，提供通用 CRUD、RBAC 鉴权、定时任务与开放平台能力"
+---
+
+Vgo 是基于 [GoFrame](https://goframe.org) v2 构建的后台服务端框架，作为 [vAdmin](https://v-js.com) 系列的 Go 版本后端，
+与 Node 版本后端保持接口一致，可无缝切换前端项目。
+
+<CardGroup cols={2}>
+  <Card title="快速开始" icon="rocket" href="/quickstart">
+    环境准备、初始化数据库、启动服务，10 分钟跑通登录
+  </Card>
+  <Card title="认证鉴权" icon="shield-halved" href="/guides/authentication">
+    基于 sa-token 的登录/会话/权限体系
+  </Card>
+  <Card title="通用 CRUD" icon="table" href="/guides/crud-framework">
+    一行代码接入列表/分页/增删改查与 EPS 元数据
+  </Card>
+  <Card title="开放平台签名" icon="signature" href="/guides/openapi-signing">
+    RSA 签名、防重放与应用管理
+  </Card>
+</CardGroup>
+
+## 技术栈
+
+| 组件 | 选型 | 说明 |
+|------|------|------|
+| 语言 | Go 1.27.3 | 全模块统一 |
+| Web 框架 | GoFrame v2.10.4 | 路由、ORM、配置、日志 |
+| 数据库 | PostgreSQL 15+ | 主存储（迁移文件为 PG 方言） |
+| 缓存/会话 | Redis 7 | 会话存储、验证码、集群函数分发 |
+| 认证 | sa-token-go 0.2.3 | 服务端会话（Random64 Token） |
+| 密码 | bcrypt | 兼容存量 MD5 自动升级 |
+| 迁移 | golang-migrate | 多模块独立版本表 |
+
+## 核心能力
+
+- **通用 CRUD 框架**：`v.Service` + `v.Controller` 提供增删改查、分页、关键字搜索、排序（白名单）、唯一键校验、修改钩子，并自动生成 EPS 接口元数据供前端渲染
+- **RBAC 鉴权**：菜单 `perms` 与 URL 派生权限串（`base:sys:user:page` 形式）匹配；超管为角色 `label=admin` + 权限 `*` 通配
+- **会话管理**：单会话顶号、强制下线、刷新令牌轮换、敏感接口限流、认证事件审计
+- **定时任务**：cron 任务持久化、集群函数分发（Redis Pub/Sub）、执行日志
+- **开放平台**：应用注册、RSA 签名验签（防重放）、公钥分发
+- **多模块工作区**：`v` 核心、`modules/*` 业务模块、`contrib/*` 驱动与存储插件，均可独立发版
+
+<Note>
+开源免费（MIT），可自由用于商业产品；但禁止用于赌博、暴力等非法领域，由此产生的法律问题与本项目无关。
+</Note>

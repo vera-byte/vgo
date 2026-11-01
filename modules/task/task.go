@@ -1,4 +1,4 @@
-package demo
+package task
 
 import (
 	_ "github.com/vera-byte/vgo/modules/task/packed"

@@ -1,0 +1,107 @@
+---
+title: "快速开始"
+description: "从零启动 Vgo：环境要求、配置、建库、启动与登录验证"
+---
+
+<Steps>
+  <Step title="环境准备">
+    - Go **1.27.3+**
+    - PostgreSQL **15+**
+    - Redis **7+**（验证码、会话、集群函数依赖）
+
+    ```bash
+    go version   # go1.27.3 darwin/arm64
+    make redis-up pgsql-up   # 或使用自备实例
+    ```
+  </Step>
+
+  <Step title="获取代码并配置">
+    ```bash
+    git clone https://github.com/vera-byte/vgo.git
+    cd vgo
+    cp .env.example .env          # 填入数据库/Redis 凭证
+    cp manifest/config/config.example.yaml manifest/config/config.yaml
+    ```
+
+    <Warning>
+    所有密钥（数据库密码、Redis 密码、OSS AK/SK）一律通过 `VGO_*` 环境变量注入，
+    **严禁写入 config.yaml 提交仓库**。生产环境务必轮换示例中曾泄露过的凭证。
+    </Warning>
+
+    <Note>
+    应用启动时会**自动加载工作目录下的 `.env`**（只补未设置的变量，不覆盖显式 export），
+    因此 `go run . server`、IDE 直接启动均可，无需手动 source。
+    </Note>
+  </Step>
+
+  <Step title="初始化数据库">
+    一条命令迁移全部业务模块（每个模块使用独立的迁移版本表）：
+
+    ```bash
+    export $(grep -v '^#' .env | xargs)
+
+    go run . migrate \
+      --path 'modules/*/resource/migrates' \
+      --database 'postgres://postgres:your_pass@127.0.0.1:5432/vgov2?sslmode=disable' \
+      --operation up
+    ```
+
+    成功输出 5 个 `模块 xxx 迁移完成`（base / dict / openapi / space / task）。
+  </Step>
+
+  <Step title="启动服务">
+    ```bash
+    make dev          # 开发模式（自动加载 .env）
+    # 或
+    go run . server
+    ```
+
+    看到 `http server started listening on [:8001]` 即启动成功。
+
+    | 入口 | 地址 |
+    |------|------|
+    | API 服务 | `http://127.0.0.1:8001` |
+    | OpenAPI 规范 | `http://127.0.0.1:8001/api.json` |
+    | Swagger UI | `http://127.0.0.1:8001/swagger/` |
+  </Step>
+
+  <Step title="验证登录链路">
+    ```bash
+    # 1. 获取验证码（captchaId 与图片）
+    curl -s http://127.0.0.1:8001/admin/base/open/captcha
+
+    # 2. 携带 captchaId + 图片中的验证码登录
+    curl -s -X POST http://127.0.0.1:8001/admin/base/open/login \
+      -H 'Content-Type: application/json' \
+      -d '{"username":"admin","password":"...","captchaId":"...","verifyCode":"..."}'
+
+    # 3. 使用返回的 token 访问需要登录的接口
+    curl -s http://127.0.0.1:8001/admin/base/comm/permmenu \
+      -H "Authorization: <token>"
+    ```
+  </Step>
+</Steps>
+
+## 种子数据
+
+全新数据库中用户表为空，可插入最小可用管理员（密码 `123456` 的 bcrypt 哈希仅用于本地开发）：
+
+```sql
+INSERT INTO base_sys_user (id, name, username, password, "passwordV", status)
+VALUES (1, '超级管理员', 'admin', '$2a$10$rGc2iXrW//fZMB4htgVHDuJ/DkMBPdLAIP44PuFoEOkHjrxqCUC52', 1, 1);
+INSERT INTO base_sys_role (id, "userId", name, label, relevance) VALUES (1, '1', '超级管理员', 'admin', 1);
+INSERT INTO base_sys_user_role ("userId", "roleId") VALUES (1, 1);
+```
+
+<Note>
+`base_sys_role.label = 'admin'` 是超管的唯一标识（数据驱动），登录后自动获得 `*` 权限。
+</Note>
+
+## 常用命令
+
+```bash
+make test    # 全模块单元测试
+make vet     # 全模块静态检查
+make dev     # 开发运行
+go run . migrate --path 'modules/*/resource/migrates' --database '<dsn>' --operation up
+```

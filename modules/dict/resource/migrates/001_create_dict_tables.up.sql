@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS dict_type (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    name VARCHAR(255) NOT NULL COMMENT '名称',
-    key VARCHAR(255) NOT NULL COMMENT '标识'
+    name VARCHAR(255) NOT NULL,
+    key VARCHAR(255) NOT NULL
 );
 
 -- 字典类型表索引
@@ -24,11 +24,11 @@ CREATE TABLE IF NOT EXISTS dict_info (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "typeId" INTEGER NOT NULL COMMENT '类型ID',
-    name VARCHAR(255) NOT NULL COMMENT '名称',
-    "orderNum" INTEGER NOT NULL DEFAULT 0 COMMENT '排序',
-    remark VARCHAR(255) COMMENT '备注',
-    "parentId" INTEGER COMMENT '父ID'
+    "typeId" INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    "orderNum" INTEGER NOT NULL DEFAULT 0,
+    remark VARCHAR(255),
+    "parentId" INTEGER
 );
 
 -- 字典信息表索引
@@ -55,3 +55,12 @@ $$ language 'plpgsql';
 -- 为所有表创建更新时间触发器
 CREATE TRIGGER update_dict_type_updated_time BEFORE UPDATE ON dict_type FOR EACH ROW EXECUTE FUNCTION update_dict_updated_time_column();
 CREATE TRIGGER update_dict_info_updated_time BEFORE UPDATE ON dict_info FOR EACH ROW EXECUTE FUNCTION update_dict_updated_time_column();
+
+-- 字段注释
+COMMENT ON COLUMN dict_type."name" IS '名称';
+COMMENT ON COLUMN dict_type."key" IS '标识';
+COMMENT ON COLUMN dict_info."typeId" IS '类型ID';
+COMMENT ON COLUMN dict_info."name" IS '名称';
+COMMENT ON COLUMN dict_info."orderNum" IS '排序';
+COMMENT ON COLUMN dict_info."remark" IS '备注';
+COMMENT ON COLUMN dict_info."parentId" IS '父ID';

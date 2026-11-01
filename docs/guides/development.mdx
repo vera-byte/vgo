@@ -1,0 +1,74 @@
+---
+title: "开发与协作"
+description: "本地开发流程、模块发布、测试门禁与代码规范"
+---
+
+## 本地开发
+
+```bash
+# 1. 环境：Go 1.27.3+、PostgreSQL、Redis
+cp .env.example .env                     # 填凭证
+cp manifest/config/config.example.yaml manifest/config/config.yaml
+
+# 2. 建库
+go run . migrate --path 'modules/*/resource/migrates' --database '<dsn>' --operation up
+
+# 3. 开发运行
+make dev                                 # gf run main.go
+# 或直接：go run . server                  # 同样自动加载 .env（vconfig 启动时读取）
+```
+
+## 多模块与依赖
+
+- 根模块与各子模块 `go.mod` 均已 `replace` 指向工作区本地源码，**克隆即可构建**
+- `bash gowork.sh` 可生成 `go.work` 便于跨模块联调（已被 gitignore）
+- 发布按模块打 tag：
+
+```bash
+git tag v/v1.10.10 && git push origin v/v1.10.10          # 核心框架
+git tag modules/base/v1.10.10 && git push origin modules/base/v1.10.10
+```
+
+`replace` 指令不传递给下游消费方，发布后需同步更新依赖版本号。
+
+## 质量门禁
+
+```bash
+make test    # 全模块单元测试（含子模块循环）
+make vet     # 全模块 go vet
+```
+
+CI：`.github/workflows/ci.yml` 在 push/PR 时执行 build（GOWORK=off）+ vet + test。
+
+已有单测覆盖安全核心：bcrypt/MD5 密码迁移、环境变量展开、排序白名单、上传白名单、RSA 签名规范。
+
+<Note>
+`v/vconfig` 中 consul/kubecm 适配器的部分历史测试当前为 Skip 状态（实现与 mock 契约不一致），
+待专项修复，不影响主链路。
+</Note>
+
+## 代码规范
+
+- **命名**：控制器字段用 `Prefix`（非 Perfix）；文件名用完整单词（`task_start_func.go`）
+- **错误**：业务错误用 `gerror.New("中文提示")`；不要 `Fail(err.Error())` 透传内部错误
+- **SQL**：camelCase 列名必须引用（见数据库篇）；优先 gf 两参条件形式
+- **配置**：任何密钥走 `VGO_*` 环境变量，config 里只写 `${VGO_*}` 占位符
+- **调试输出**：严禁 `g.Dump` / `g.DumpWithType` 留在生产路径
+
+## 新模块开发
+
+1. `modules/<name>/` 建模块（go.mod、model、service、controller、resource/migrates）
+2. `cmd/provider.go` 注册命令到 `internal/cmd` 注册表
+3. 根 `modules/modules.go` blank-import 该模块
+4. 根 `go.mod` 增加 `require` + `replace`
+5. 控制器用 `v.RegisterController` 接入 CRUD/EPS
+
+## vgo-tools
+
+`vgo-tools` 是脚手架/辅助工具集（独立模块 `vgo-tools/`）：
+
+| 命令 | 说明 |
+|------|------|
+| `vgo-tools init <dir>` | 初始化后端项目骨架 |
+| `vgo-tools docs` | 本地静态托管 docs/ 目录 |
+| `vgo-tools pack` / `build` | gres 资源打包（生成 `internal/packed/build_pack_data.go`） |

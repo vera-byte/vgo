@@ -16,7 +16,7 @@ type BaseCommController struct {
 func init() {
 	var base_comm_controller = &BaseCommController{
 		ControllerSimple: &v.ControllerSimple{
-			Perfix: "/admin/base/comm",
+			Prefix: "/admin/base/comm",
 		},
 	}
 	// 注册路由
@@ -43,7 +43,11 @@ func (c *BaseCommController) Permmenu(ctx context.Context, req *v1.BaseCommPermm
 		baseSysPermsService = service.NewBaseSysPermsService()
 		admin               = v.GetAdmin(ctx)
 	)
-	res = v.Ok(baseSysPermsService.Permmenu(ctx, admin.RoleIds))
+	data, err := baseSysPermsService.Permmenu(ctx, admin.RoleIds)
+	if err != nil {
+		return nil, err
+	}
+	res = v.Ok(data)
 	return
 }
 
@@ -71,17 +75,12 @@ func (c *BaseCommController) Upload(ctx context.Context, req *v1.BaseCommUploadR
 	return
 }
 
-// PersonUpdate 方法
+// PersonUpdate 方法 仅更新本人资料（防越权：禁止携带他人 id/角色等字段）
 func (c *BaseCommController) PersonUpdate(ctx g.Ctx, req *v1.PersonUpdateReq) (res *v.BaseRes, err error) {
-	var (
-		baseSysUserService = service.NewBaseSysUserService()
-	)
-
-	_, err = baseSysUserService.ServiceUpdate(ctx, &v.UpdateReq{})
+	err = service.NewBaseSysUserService().UpdateProfile(ctx, v.GetAdmin(ctx).UserId)
 	if err != nil {
 		return
 	}
-
 	res = v.Ok(nil)
 	return
 }

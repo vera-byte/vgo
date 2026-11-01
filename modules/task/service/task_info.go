@@ -67,7 +67,7 @@ func (s *TaskInfoService) Record(ctx g.Ctx, id string, status int, detail string
 		return err
 	}
 	if status == 1 {
-		record, err := v.DBM(taskLog).Where("taskId = ?", id).Where("status", 1).Order("id", "desc").Offset(19).One()
+		record, err := v.DBM(taskLog).Where("taskId", id).Where("status", 1).Order("id", "desc").Offset(19).One()
 		if err != nil {
 			return err
 		}
@@ -78,7 +78,7 @@ func (s *TaskInfoService) Record(ctx g.Ctx, id string, status int, detail string
 		if err != nil {
 			return err
 		}
-		_, err = v.DBM(taskLog).Where("taskId = ?", id).Where("status", 1).Where("id < ?", minId).Delete()
+		_, err = v.DBM(taskLog).Where("taskId", id).Where("status", 1).Where("id < ?", minId).Delete()
 		if err != nil {
 			return err
 		}
@@ -107,10 +107,10 @@ func (s *TaskInfoService) Log(ctx g.Ctx, param g.MapStrStr) (data interface{}, e
 		Size  = 10
 	)
 	taskLog := model.NewTaskLog()
-	m := v.DBM(taskLog).LeftJoin("task_info", "task_info.id = task_log.taskId")
+	m := v.DBM(taskLog).LeftJoin("task_info", v.QuoteIdent(taskLog.GroupName(), "task_info.id")+" = "+v.QuoteIdent(taskLog.GroupName(), "task_log.taskId"))
 
 	if id, ok := param["id"]; ok {
-		m = m.Where("taskId = ?", id)
+		m = m.Where("taskId", id)
 	}
 	if status, ok := param["status"]; ok {
 		m = m.Where("status = ?", status)

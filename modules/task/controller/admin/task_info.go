@@ -16,7 +16,7 @@ type TaskInfoController struct {
 func init() {
 	var task_info_controller = &TaskInfoController{
 		&v.Controller{
-			Perfix:  "/admin/task/info",
+			Prefix:  "/admin/task/info",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page", "Start", "Stop"},
 			Service: service.NewTaskInfoService(),
 		},
@@ -33,7 +33,7 @@ func (c *TaskInfoController) Stop(ctx g.Ctx, req *v1.TaskInfoStopReq) (res *v.Ba
 
 	err = v.ClusterRunFunc(ctx, "TaskStopFunc("+gconv.String(req.ID)+")")
 	if err != nil {
-		return v.Fail(err.Error()), err
+		return nil, err
 	}
 	res = v.Ok("停止成功")
 	return
@@ -47,7 +47,7 @@ func (c *TaskInfoController) Start(ctx g.Ctx, req *v1.TaskInfoStartReq) (res *v.
 
 	err = v.ClusterRunFunc(ctx, "TaskStartFunc("+gconv.String(req.ID)+")")
 	if err != nil {
-		return v.Fail(err.Error()), err
+		return nil, err
 	}
 	res = v.Ok("启动成功")
 	return
@@ -60,7 +60,7 @@ func (c *TaskInfoController) Start(ctx g.Ctx, req *v1.TaskInfoStartReq) (res *v.
 func (c *TaskInfoController) Once(ctx g.Ctx, req *v1.TaskInfoOnceReq) (res *v.BaseRes, err error) {
 	err = c.Service.(*service.TaskInfoService).Once(ctx, req.ID)
 	if err != nil {
-		return v.Fail(err.Error()), err
+		return nil, err
 	}
 	res = v.Ok("执行成功")
 	return
@@ -75,7 +75,7 @@ func (c *TaskInfoController) Log(ctx g.Ctx, req *v1.TaskInfoLogReq) (res *v.Base
 	param := r.GetQueryMapStrStr()
 	data, err := c.Service.(*service.TaskInfoService).Log(ctx, param)
 	if err != nil {
-		return v.Fail(err.Error()), err
+		return nil, err
 	}
 	res = v.Ok(data)
 	return

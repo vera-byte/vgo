@@ -15,7 +15,7 @@ type BaseSysLogController struct {
 func init() {
 	var base_sys_log_controller = &BaseSysLogController{
 		&v.Controller{
-			Perfix:  "/admin/base/sys/log",
+			Prefix:  "/admin/base/sys/log",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			Service: service.NewBaseSysLogService(),
 		},

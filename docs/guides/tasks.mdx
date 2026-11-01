@@ -1,0 +1,65 @@
+---
+title: "定时任务"
+description: "cron 任务持久化、集群函数分发与执行日志"
+---
+
+## 概念
+
+| 概念 | 说明 |
+|------|------|
+| 任务（task_info） | cron 表达式 + 函数串 + 启用时间，持久化于数据库 |
+| 函数串 | 形如 `TaskAddTask(12)`，在 `v.FuncMap` 中注册的函数 |
+| 集群分发 | Redis Pub/Sub 频道 `v:func`，主从进程间派发执行 |
+| 执行日志（task_log） | 每次执行的成败与详情，自动滚动保留 |
+
+## 内置函数
+
+| 函数 | 作用 |
+|------|------|
+| `TaskAddTask(id)` | 按任务配置注册 cron |
+| `TaskStartFunc(id)` | 启用任务（status=1） |
+| `TaskStopFunc(id)` | 停用任务并移除 cron |
+| `TaskTest(...)` | 测试用 |
+
+注册自定义函数：
+
+```go
+v.RegisterFunc("MyJob", v.Func{
+    IsAllWorker: false, // false=仅主进程执行（防多实例重复）
+    Func: func(ctx g.Ctx, param string) error {
+        // 业务逻辑
+        return nil
+    },
+})
+```
+
+## 任务生命周期
+
+`v.Service.ModifyAfter` 挂钩子自动驱动：
+
+| 操作 | 行为 |
+|------|------|
+| 新增且 status=1 | 按 name 查 id，调用 `TaskAddTask(id)` |
+| 更新且 status=1 | `TaskStartFunc(id)` |
+| 更新且 status≠1 | `TaskStopFunc(id)` |
+| 删除 | `TaskStopFunc(id)` |
+
+启用时间（`startDate`，`Y-m-d H:i:s`）未到时 cron 触发但跳过执行；空值表示立即生效。
+
+## 集群语义
+
+- **多实例部署**：`ClusterRunFunc` 经 Redis 发布，由主进程消费执行（主进程标识 `v:masterflag`）
+- **订阅可靠性**：连接断开后自动重连并重新订阅（订阅态不跨连接保留）
+- **非 Redis 模式**：`ClusterRunFunc` 退化为本地直接执行
+
+## 执行日志查询
+
+```bash
+GET /admin/task/info/log?id=<任务ID>   # 执行日志
+# 其余任务接口：
+# GET  /admin/task/info/start?id=   启用
+# GET  /admin/task/info/stop?id=    停用
+# POST /admin/task/info/once        立即执行一次
+```
+
+返回最近执行记录（成功/失败详情），失败详情保留完整错误文本。

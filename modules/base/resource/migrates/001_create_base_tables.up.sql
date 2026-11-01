@@ -8,9 +8,9 @@ CREATE TABLE IF NOT EXISTS base_sys_department (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    name VARCHAR(255) NOT NULL COMMENT '部门名称',
-    "parentId" BIGINT COMMENT '上级部门ID',
-    "orderNum" INTEGER NOT NULL DEFAULT 0 COMMENT '排序'
+    name VARCHAR(255) NOT NULL,
+    "parentId" BIGINT,
+    "orderNum" INTEGER NOT NULL DEFAULT 0
 );
 
 -- 部门表索引
@@ -25,18 +25,18 @@ CREATE TABLE IF NOT EXISTS base_sys_user (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "departmentId" BIGINT COMMENT '部门ID',
-    name VARCHAR(255) COMMENT '姓名',
-    username VARCHAR(100) NOT NULL COMMENT '用户名',
-    password VARCHAR(255) NOT NULL COMMENT '密码',
-    "passwordV" INTEGER NOT NULL DEFAULT 1 COMMENT '密码版本',
-    "nickName" VARCHAR(255) COMMENT '昵称',
-    "headImg" VARCHAR(255) COMMENT '头像',
-    phone VARCHAR(20) COMMENT '手机',
-    email VARCHAR(255) COMMENT '邮箱',
-    status INTEGER NOT NULL DEFAULT 1 COMMENT '状态 0:禁用 1:启用',
-    remark VARCHAR(255) COMMENT '备注',
-    "socketId" VARCHAR(255) COMMENT 'socketId'
+    "departmentId" BIGINT,
+    name VARCHAR(255),
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    "passwordV" INTEGER NOT NULL DEFAULT 1,
+    "nickName" VARCHAR(255),
+    "headImg" VARCHAR(255),
+    phone VARCHAR(20),
+    email VARCHAR(255),
+    status INTEGER NOT NULL DEFAULT 1,
+    remark VARCHAR(255),
+    "socketId" VARCHAR(255)
 );
 
 -- 用户表索引
@@ -57,11 +57,11 @@ CREATE TABLE IF NOT EXISTS base_sys_role (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "userId" VARCHAR(255) NOT NULL COMMENT '用户ID',
-    name VARCHAR(255) NOT NULL COMMENT '名称',
-    label VARCHAR(50) COMMENT '角色标签',
-    remark VARCHAR(255) COMMENT '备注',
-    relevance INTEGER NOT NULL DEFAULT 1 COMMENT '数据权限是否关联上下级'
+    "userId" VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    label VARCHAR(50),
+    remark VARCHAR(255),
+    relevance INTEGER NOT NULL DEFAULT 1
 );
 
 -- 角色表索引
@@ -77,16 +77,16 @@ CREATE TABLE IF NOT EXISTS base_sys_menu (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "parentId" BIGINT COMMENT '父菜单ID',
-    name VARCHAR(255) NOT NULL COMMENT '菜单名称',
-    router VARCHAR(255) COMMENT '菜单地址',
-    perms VARCHAR(255) COMMENT '权限标识',
-    type INTEGER NOT NULL COMMENT '类型 0:目录 1:菜单 2:按钮',
-    icon VARCHAR(255) COMMENT '图标',
-    "orderNum" INTEGER NOT NULL DEFAULT 0 COMMENT '排序',
-    "viewPath" VARCHAR(255) COMMENT '视图地址',
-    "keepAlive" INTEGER NOT NULL DEFAULT 1 COMMENT '路由缓存',
-    "isShow" INTEGER NOT NULL DEFAULT 1 COMMENT '是否显示'
+    "parentId" BIGINT,
+    name VARCHAR(255) NOT NULL,
+    router VARCHAR(255),
+    perms VARCHAR(255),
+    type INTEGER NOT NULL,
+    icon VARCHAR(255),
+    "orderNum" INTEGER NOT NULL DEFAULT 0,
+    "viewPath" VARCHAR(255),
+    "keepAlive" INTEGER NOT NULL DEFAULT 1,
+    "isShow" INTEGER NOT NULL DEFAULT 1
 );
 
 -- 菜单表索引
@@ -102,8 +102,8 @@ CREATE TABLE IF NOT EXISTS base_sys_user_role (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "userId" BIGINT NOT NULL COMMENT '用户ID',
-    "roleId" BIGINT NOT NULL COMMENT '角色ID'
+    "userId" BIGINT NOT NULL,
+    "roleId" BIGINT NOT NULL
 );
 
 -- 用户角色关联表索引
@@ -126,8 +126,8 @@ CREATE TABLE IF NOT EXISTS base_sys_role_menu (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "roleId" BIGINT NOT NULL COMMENT '角色ID',
-    "menuId" BIGINT NOT NULL COMMENT '菜单ID'
+    "roleId" BIGINT NOT NULL,
+    "menuId" BIGINT NOT NULL
 );
 
 -- 角色菜单关联表索引
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS base_sys_role_department (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "roleId" BIGINT NOT NULL COMMENT '角色ID',
-    "departmentId" BIGINT NOT NULL COMMENT '部门ID'
+    "roleId" BIGINT NOT NULL,
+    "departmentId" BIGINT NOT NULL
 );
 
 -- 角色部门关联表索引
@@ -174,8 +174,8 @@ CREATE TABLE IF NOT EXISTS base_sys_conf (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "cKey" VARCHAR(255) NOT NULL COMMENT '配置键',
-    "cValue" TEXT COMMENT '配置值'
+    "cKey" VARCHAR(255) NOT NULL,
+    "cValue" TEXT
 );
 
 -- 系统配置表索引
@@ -190,11 +190,11 @@ CREATE TABLE IF NOT EXISTS base_sys_param (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "keyName" VARCHAR(255) NOT NULL COMMENT '参数键名',
-    name VARCHAR(255) NOT NULL COMMENT '参数名称',
-    data TEXT COMMENT '参数数据',
-    "dataType" INTEGER NOT NULL DEFAULT 0 COMMENT '数据类型 0:字符串 1:数字 2:布尔 3:JSON',
-    remark VARCHAR(255) COMMENT '备注'
+    "keyName" VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    data TEXT,
+    "dataType" INTEGER NOT NULL DEFAULT 0,
+    remark VARCHAR(255)
 );
 
 -- 系统参数表索引
@@ -209,11 +209,11 @@ CREATE TABLE IF NOT EXISTS base_sys_log (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "userId" BIGINT COMMENT '用户ID',
-    action VARCHAR(255) NOT NULL COMMENT '操作',
-    ip VARCHAR(50) COMMENT 'IP地址',
-    "ipAddr" VARCHAR(255) COMMENT 'IP归属地',
-    params TEXT COMMENT '请求参数'
+    "userId" BIGINT,
+    action VARCHAR(255) NOT NULL,
+    ip VARCHAR(50),
+    "ipAddr" VARCHAR(255),
+    params TEXT
 );
 
 -- 系统日志表索引
@@ -230,8 +230,8 @@ CREATE TABLE IF NOT EXISTS base_sys_init (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "group" VARCHAR(255) NOT NULL COMMENT '分组',
-    "table" VARCHAR(255) NOT NULL COMMENT '表名'
+    "group" VARCHAR(255) NOT NULL,
+    "table" VARCHAR(255) NOT NULL
 );
 
 -- 系统初始化表索引
@@ -246,21 +246,20 @@ CREATE TABLE IF NOT EXISTS base_eps_admin (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    username VARCHAR(100) NOT NULL COMMENT '用户名',
-    password VARCHAR(255) NOT NULL COMMENT '密码',
-    "nickName" VARCHAR(255) COMMENT '昵称',
-    "headImg" VARCHAR(255) COMMENT '头像',
-    phone VARCHAR(20) COMMENT '手机',
-    email VARCHAR(255) COMMENT '邮箱',
-    status INTEGER NOT NULL DEFAULT 1 COMMENT '状态 0:禁用 1:启用',
-    remark VARCHAR(255) COMMENT '备注'
+    module VARCHAR(100) NOT NULL,
+    method VARCHAR(16) NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    prefix VARCHAR(255) NOT NULL,
+    summary VARCHAR(255),
+    tag VARCHAR(100),
+    dts TEXT
 );
 
 -- EPS管理员表索引
 CREATE INDEX IF NOT EXISTS idx_base_eps_admin_create_time ON base_eps_admin("createTime");
 CREATE INDEX IF NOT EXISTS idx_base_eps_admin_update_time ON base_eps_admin("updateTime");
 CREATE INDEX IF NOT EXISTS idx_base_eps_admin_deleted_at ON base_eps_admin("deletedAt");
-CREATE UNIQUE INDEX IF NOT EXISTS uk_base_eps_admin_username ON base_eps_admin(username);
+CREATE UNIQUE INDEX IF NOT EXISTS uk_base_eps_admin_route ON base_eps_admin(module, prefix, path, method);
 
 -- 13. EPS应用表
 CREATE TABLE IF NOT EXISTS base_eps_app (
@@ -268,17 +267,20 @@ CREATE TABLE IF NOT EXISTS base_eps_app (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    name VARCHAR(255) NOT NULL COMMENT '应用名称',
-    "nameSpace" VARCHAR(255) NOT NULL COMMENT '命名空间',
-    description TEXT COMMENT '应用描述',
-    status INTEGER NOT NULL DEFAULT 1 COMMENT '状态 0:禁用 1:启用'
+    module VARCHAR(100) NOT NULL,
+    method VARCHAR(16) NOT NULL,
+    path VARCHAR(255) NOT NULL,
+    prefix VARCHAR(255) NOT NULL,
+    summary VARCHAR(255),
+    tag VARCHAR(100),
+    dts TEXT
 );
 
 -- EPS应用表索引
 CREATE INDEX IF NOT EXISTS idx_base_eps_app_create_time ON base_eps_app("createTime");
 CREATE INDEX IF NOT EXISTS idx_base_eps_app_update_time ON base_eps_app("updateTime");
 CREATE INDEX IF NOT EXISTS idx_base_eps_app_deleted_at ON base_eps_app("deletedAt");
-CREATE UNIQUE INDEX IF NOT EXISTS uk_base_eps_app_namespace ON base_eps_app("nameSpace");
+CREATE UNIQUE INDEX IF NOT EXISTS uk_base_eps_app_route ON base_eps_app(module, prefix, path, method);
 
 -- 创建触发器函数用于自动更新updateTime字段
 CREATE OR REPLACE FUNCTION update_updated_time_column()
@@ -303,3 +305,69 @@ CREATE TRIGGER update_base_sys_log_updated_time BEFORE UPDATE ON base_sys_log FO
 CREATE TRIGGER update_base_sys_init_updated_time BEFORE UPDATE ON base_sys_init FOR EACH ROW EXECUTE FUNCTION update_updated_time_column();
 CREATE TRIGGER update_base_eps_admin_updated_time BEFORE UPDATE ON base_eps_admin FOR EACH ROW EXECUTE FUNCTION update_updated_time_column();
 CREATE TRIGGER update_base_eps_app_updated_time BEFORE UPDATE ON base_eps_app FOR EACH ROW EXECUTE FUNCTION update_updated_time_column();
+
+-- 字段注释
+COMMENT ON COLUMN base_sys_department."name" IS '部门名称';
+COMMENT ON COLUMN base_sys_department."parentId" IS '上级部门ID';
+COMMENT ON COLUMN base_sys_department."orderNum" IS '排序';
+COMMENT ON COLUMN base_sys_user."departmentId" IS '部门ID';
+COMMENT ON COLUMN base_sys_user."name" IS '姓名';
+COMMENT ON COLUMN base_sys_user."username" IS '用户名';
+COMMENT ON COLUMN base_sys_user."password" IS '密码';
+COMMENT ON COLUMN base_sys_user."passwordV" IS '密码版本';
+COMMENT ON COLUMN base_sys_user."nickName" IS '昵称';
+COMMENT ON COLUMN base_sys_user."headImg" IS '头像';
+COMMENT ON COLUMN base_sys_user."phone" IS '手机';
+COMMENT ON COLUMN base_sys_user."email" IS '邮箱';
+COMMENT ON COLUMN base_sys_user."status" IS '状态 0:禁用 1:启用';
+COMMENT ON COLUMN base_sys_user."remark" IS '备注';
+COMMENT ON COLUMN base_sys_user."socketId" IS 'socketId';
+COMMENT ON COLUMN base_sys_role."userId" IS '用户ID';
+COMMENT ON COLUMN base_sys_role."name" IS '名称';
+COMMENT ON COLUMN base_sys_role."label" IS '角色标签';
+COMMENT ON COLUMN base_sys_role."remark" IS '备注';
+COMMENT ON COLUMN base_sys_role."relevance" IS '数据权限是否关联上下级';
+COMMENT ON COLUMN base_sys_menu."parentId" IS '父菜单ID';
+COMMENT ON COLUMN base_sys_menu."name" IS '菜单名称';
+COMMENT ON COLUMN base_sys_menu."router" IS '菜单地址';
+COMMENT ON COLUMN base_sys_menu."perms" IS '权限标识';
+COMMENT ON COLUMN base_sys_menu."type" IS '类型 0:目录 1:菜单 2:按钮';
+COMMENT ON COLUMN base_sys_menu."icon" IS '图标';
+COMMENT ON COLUMN base_sys_menu."orderNum" IS '排序';
+COMMENT ON COLUMN base_sys_menu."viewPath" IS '视图地址';
+COMMENT ON COLUMN base_sys_menu."keepAlive" IS '路由缓存';
+COMMENT ON COLUMN base_sys_menu."isShow" IS '是否显示';
+COMMENT ON COLUMN base_sys_user_role."userId" IS '用户ID';
+COMMENT ON COLUMN base_sys_user_role."roleId" IS '角色ID';
+COMMENT ON COLUMN base_sys_role_menu."roleId" IS '角色ID';
+COMMENT ON COLUMN base_sys_role_menu."menuId" IS '菜单ID';
+COMMENT ON COLUMN base_sys_role_department."roleId" IS '角色ID';
+COMMENT ON COLUMN base_sys_role_department."departmentId" IS '部门ID';
+COMMENT ON COLUMN base_sys_conf."cKey" IS '配置键';
+COMMENT ON COLUMN base_sys_conf."cValue" IS '配置值';
+COMMENT ON COLUMN base_sys_param."keyName" IS '参数键名';
+COMMENT ON COLUMN base_sys_param."name" IS '参数名称';
+COMMENT ON COLUMN base_sys_param."data" IS '参数数据';
+COMMENT ON COLUMN base_sys_param."dataType" IS '数据类型 0:字符串 1:数字 2:布尔 3:JSON';
+COMMENT ON COLUMN base_sys_param."remark" IS '备注';
+COMMENT ON COLUMN base_sys_log."userId" IS '用户ID';
+COMMENT ON COLUMN base_sys_log."action" IS '操作';
+COMMENT ON COLUMN base_sys_log."ip" IS 'IP地址';
+COMMENT ON COLUMN base_sys_log."ipAddr" IS 'IP归属地';
+COMMENT ON COLUMN base_sys_log."params" IS '请求参数';
+COMMENT ON COLUMN base_sys_init."group" IS '分组';
+COMMENT ON COLUMN base_sys_init."table" IS '表名';
+COMMENT ON COLUMN base_eps_admin.module IS '所属模块名称';
+COMMENT ON COLUMN base_eps_admin.method IS '请求方法';
+COMMENT ON COLUMN base_eps_admin.path IS '请求路径';
+COMMENT ON COLUMN base_eps_admin.prefix IS '路由前缀';
+COMMENT ON COLUMN base_eps_admin.summary IS '描述';
+COMMENT ON COLUMN base_eps_admin.tag IS '标签';
+COMMENT ON COLUMN base_eps_admin.dts IS '附加数据';
+COMMENT ON COLUMN base_eps_app.module IS '所属模块名称';
+COMMENT ON COLUMN base_eps_app.method IS '请求方法';
+COMMENT ON COLUMN base_eps_app.path IS '请求路径';
+COMMENT ON COLUMN base_eps_app.prefix IS '路由前缀';
+COMMENT ON COLUMN base_eps_app.summary IS '描述';
+COMMENT ON COLUMN base_eps_app.tag IS '标签';
+COMMENT ON COLUMN base_eps_app.dts IS '附加数据';

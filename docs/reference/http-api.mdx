@@ -1,0 +1,77 @@
+---
+title: "HTTP 接口参考"
+description: "按模块汇总的接口清单（自 EPS 元数据生成的稳定面）"
+---
+
+<Note>
+运行时可通过 `GET /admin/base/open/eps`（登录后）或各控制器 `/eps` 获取完整动态元数据
+（含字段类型/注释），本文仅列常用稳定接口。所有 `/admin/*` 接口需携带 `Authorization` 头。
+</Note>
+
+## 认证与通用（modules/base）
+
+| 方法 | 路径 | 鉴权 | 说明 |
+|------|------|------|------|
+| GET | `/admin/base/open/captcha` | 公开 | 获取验证码（captchaId + 图片） |
+| POST | `/admin/base/open/login` | 公开 | 登录，返回 token 对 |
+| GET | `/admin/base/open/refreshToken?refreshToken=` | 公开 | 刷新（RT 轮换） |
+| POST | `/admin/base/comm/logout` | 登录 | 登出 |
+| GET | `/admin/base/comm/person` | 登录 | 个人信息 |
+| POST | `/admin/base/comm/personUpdate` | 登录 | 本人资料/密码（白名单字段） |
+| GET | `/admin/base/comm/permmenu` | 登录 | 权限与菜单 |
+| POST | `/admin/base/comm/upload` | 登录 | 文件上传 |
+| GET | `/admin/base/comm/eps` | 登录 | EPS 元数据 |
+
+## 用户/角色/菜单/部门
+
+标准 CRUD（`v.Controller` 生成，`add/delete/update/info/list/page`）：
+
+| 前缀 | 权限串示例 |
+|------|-----------|
+| `/admin/base/sys/user` | `base:sys:user:page` |
+| `/admin/base/sys/role` | `base:sys:role:page` |
+| `/admin/base/sys/menu` | `base:sys:menu:page` |
+| `/admin/base/sys/department` | `base:sys:department:page` |
+| `/admin/base/sys/log` | `base:sys:log:page` |
+| `/admin/base/sys/param` | `base:sys:param:page` |
+| `/admin/base/sys/conf` | `base:sys:conf:page` |
+
+附加接口：`POST /admin/base/sys/user/move`（移动部门）、`GET /admin/base/open/eps`。
+
+## 定时任务（modules/task）
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| CRUD | `/admin/task/info/*` | 任务管理 |
+| GET | `/admin/task/info/start?id=` | 启用任务 |
+| GET | `/admin/task/info/stop?id=` | 停用任务 |
+| POST | `/admin/task/info/once` | 立即执行一次 |
+| GET | `/admin/task/info/log?id=` | 执行日志 |
+
+## 字典 / 空间（modules/dict、modules/space）
+
+标准 CRUD：`/admin/dict/type`、`/admin/dict/info`、`/admin/space/type`、`/admin/space/info`。
+
+## 开放平台（modules/openapi）
+
+| 方法 | 路径 | 鉴权 | 说明 |
+|------|------|------|------|
+| GET | `/openapi/sign/publicKey` | 免签（白名单） | 获取应用公钥 |
+| POST | `/openapi/sign/verify` | 签名 | 验签 |
+| POST | `/openapi/sign/generate` | 签名 | 请求服务端代签 |
+| CRUD | `/admin/openapi/sign/*` | 管理员 | 应用管理 |
+| POST | `/admin/openapi/sign/testSign` | 管理员 | 联调代签 |
+| POST | `/admin/openapi/sign/verifySign` | 管理员 | 联调验签 |
+
+## 分页请求/响应
+
+```json
+// POST .../page
+{ "page": 1, "size": 10, "keyWord": "搜索词", "order": "createTime", "sort": "desc" }
+
+// 响应
+{ "code": 1000, "data": {
+    "list": [ … ],
+    "pagination": { "page": 1, "size": 10, "total": 42 }
+}}
+```

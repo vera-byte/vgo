@@ -32,8 +32,13 @@ func GetFunc(name string) vFunc {
 
 // RunFunc 运行函数
 func RunFunc(ctx g.Ctx, funcstring string) (err error) {
-	funcName := gstr.SubStr(funcstring, 0, gstr.Pos(funcstring, "("))
-	funcParam := gstr.SubStr(funcstring, gstr.Pos(funcstring, "(")+1, gstr.Pos(funcstring, ")")-gstr.Pos(funcstring, "(")-1)
+	l := gstr.Pos(funcstring, "(")
+	r := gstr.Pos(funcstring, ")")
+	if l < 0 || r < l {
+		return gerror.New("函数格式错误:" + funcstring)
+	}
+	funcName := gstr.SubStr(funcstring, 0, l)
+	funcParam := gstr.SubStr(funcstring, l+1, r-l-1)
 	if _, ok := FuncMap[funcName]; !ok {
 		err = gerror.New("函数不存在:" + funcName)
 		return
@@ -64,40 +69,46 @@ func ClusterRunFunc(ctx g.Ctx, funcstring string) (err error) {
 	}
 }
 
-// ListenFunc 监听函数
+// ListenFunc 监听函数：订阅 v:func 频道执行集群分发的函数调用。
+// 订阅态不跨连接保留，连接失效后必须重连并重新订阅。
 func ListenFunc(ctx g.Ctx) {
-	if IsRedisMode {
-		conn, err := g.Redis("v").Conn(ctx)
-		if err != nil {
-			panic(err)
+	if !IsRedisMode {
+		panic(gerror.New("集群模式下, 请使用Redis作为缓存"))
+	}
+	for {
+		if err := listenFuncOnce(ctx); err != nil {
+			g.Log().Error(ctx, "Redis 订阅连接中断，10秒后重连:", err)
+			time.Sleep(10 * time.Second)
 		}
-		defer conn.Close(ctx)
-		_, err = conn.Do(ctx, "subscribe", "v:func")
+	}
+}
+
+// listenFuncOnce 建立订阅连接并持续消费，返回错误即代表连接失效
+func listenFuncOnce(ctx g.Ctx) error {
+	conn, err := g.Redis("v").Conn(ctx)
+	if err != nil {
+		return err
+	}
+	defer conn.Close(ctx)
+	if _, err = conn.Do(ctx, "subscribe", "v:func"); err != nil {
+		return err
+	}
+	for {
+		data, err := conn.Receive(ctx)
 		if err != nil {
-			panic(err)
+			return err
 		}
-		for {
-			data, err := conn.Receive(ctx)
-			if err != nil {
-				g.Log().Error(ctx, err)
-				time.Sleep(10 * time.Second)
+		if data != nil {
+			dataMap := data.MapStrStr()
+			if dataMap["Kind"] == "subscribe" {
 				continue
 			}
-			if data != nil {
-				dataMap := data.MapStrStr()
-				if dataMap["Kind"] == "subscribe" {
-					continue
-				}
-				if dataMap["Channel"] == "v:func" {
-					g.Log().Debug(ctx, "执行函数", dataMap["Payload"])
-					err := RunFunc(ctx, dataMap["Payload"])
-					if err != nil {
-						g.Log().Error(ctx, "执行函数失败", err)
-					}
+			if dataMap["Channel"] == "v:func" {
+				g.Log().Debug(ctx, "执行函数", dataMap["Payload"])
+				if e := RunFunc(ctx, dataMap["Payload"]); e != nil {
+					g.Log().Error(ctx, "执行函数失败", e)
 				}
 			}
 		}
-	} else {
-		panic(gerror.New("集群模式下, 请使用Redis作为缓存"))
 	}
 }

@@ -30,9 +30,8 @@ type Token struct {
 }
 
 type Jwt struct {
-	Sso    bool   `json:"sso"`
-	Secret string `json:"secret"`
-	Token  *Token `json:"token"`
+	Sso   bool   `json:"sso"`
+	Token *Token `json:"token"`
 }
 
 // NewConfig new config
@@ -42,8 +41,7 @@ func NewConfig() *sConfig {
 	)
 	config := &sConfig{
 		Jwt: &Jwt{
-			Sso:    v.GetCfgWithDefault(ctx, "modules.base.jwt.sso", g.NewVar(false)).Bool(),
-			Secret: v.GetCfgWithDefault(ctx, "modules.base.jwt.secret", g.NewVar(v.ProcessFlag)).String(),
+			Sso: v.GetCfgWithDefault(ctx, "modules.base.jwt.sso", g.NewVar(false)).Bool(),
 			Token: &Token{
 				Expire:        v.GetCfgWithDefault(ctx, "modules.base.jwt.token.expire", g.NewVar(2*3600)).Uint(),
 				RefreshExpire: v.GetCfgWithDefault(ctx, "modules.base.jwt.token.refreshExpire", g.NewVar(15*24*3600)).Uint(),

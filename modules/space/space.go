@@ -1,4 +1,4 @@
-package demo
+package space
 
 import (
 	_ "github.com/vera-byte/vgo/modules/space/cmd"

@@ -1,0 +1,114 @@
+---
+title: "通用 CRUD 框架"
+description: "v.Service / v.Controller 一键接入增删改查、分页与 EPS 元数据"
+---
+
+## 上手示例
+
+定义模型与服务后，控制器即可获得完整 REST 能力：
+
+```go
+// model/dict_type.go
+type DictType struct {
+    *v.Model
+    Name  string `json:"name"`
+    Value string `json:"value"`
+}
+func (*DictType) TableName() string { return "dict_type" }
+
+// service —— 组合 v.Service
+func NewDictTypeService() *DictTypeService {
+    return &DictTypeService{
+        Service: &v.Service{
+            Model: model.NewDictType(),
+            UniqueKey: map[string]string{"value": "标识不能重复"},
+            PageQueryOp: &v.QueryOp{
+                KeyWordField: []string{"name", "value"},
+                AddOrderby:   map[string]string{"createTime": "DESC"},
+            },
+        },
+    }
+}
+
+// controller —— 声明前缀与开放的 API
+c := &v.Controller{
+    Service: NewDictTypeService(),
+    Prefix:  "/admin/dict/type",
+    Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
+}
+v.RegisterController(c)
+```
+
+获得的接口（自动注册 + 写入 EPS）：
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | `/admin/dict/type/add` | 新增 |
+| POST | `/admin/dict/type/delete` | 删除（ids 数组） |
+| POST | `/admin/dict/type/update` | 修改 |
+| GET | `/admin/dict/type/info?id=` | 详情 |
+| GET | `/admin/dict/type/list` | 全量列表 |
+| POST | `/admin/dict/type/page` | 分页（page/size/keyWord/order/sort） |
+
+## QueryOp 定制
+
+```go
+&v.QueryOp{
+    Select:       "dict_type.*",                  // 自定义列（PG 方言注意引号）
+    FieldEQ:      []string{"typeId"},             // 等值过滤（请求参数同名时生效）
+    KeyWordField: []string{"name", "value"},      // keyWord 模糊匹配字段
+    AddOrderby:   map[string]string{"createTime": "DESC"}, // 默认排序
+    Join: []*v.JoinOp{                            // 联表
+        {Model: model.NewXxx(), Alias: "x", Type: "LeftJoin",
+         Condition: `"dict_type"."id" = "x"."typeId"`},
+    },
+    Where: func(ctx context.Context) []g.Array {  // 自定义条件（3 元组带启用开关）
+        ids := gconv.SliceStr(g.RequestFromCtx(ctx).GetMap()["ids"])
+        return []g.Array{{`("deptId" IN (?))`, ids, len(ids) > 0}}
+    },
+    Extend: func(ctx g.Ctx, m *gdb.Model) *gdb.Model {
+        return m.Group(`"dict_type"."id"`)        // 分组/聚合
+    },
+}
+```
+
+<Warning>
+PostgreSQL 会将未加引号的标识符折叠为小写。**手工拼接的 SQL 片段（Join ON、Where 字面量、Select/Group）
+中的 camelCase 列名必须显式加双引号**，或使用 `v.QuoteIdent(group, "table.column")` 辅助函数；
+`Where("col", value)` / `WhereIn` 等两参形式会自动引用，优先使用。
+</Warning>
+
+## 修改钩子
+
+```go
+Service: &v.Service{
+    Before: func(ctx context.Context) error { … },   // CRUD 前置校验
+}
+// 或在 Service 上实现
+func (s *XxxService) ModifyBefore(ctx, method string, param g.MapStrAny) error
+func (s *XxxService) ModifyAfter(ctx, method string, param g.MapStrAny) error
+// method: Add | Update | Delete
+```
+
+钩子返回错误会中止请求（ModifyAfter 失败同样报错返回）。
+
+## 其他能力
+
+- **唯一键校验**：`UniqueKey: map[string]string{"username": "用户名不能重复"}`
+- **敏感字段**：`InfoIgnoreProperty: "password"`（详情接口剔除）
+- **软删除**：表含 `deletedAt` 列时自动过滤已删行，`Delete` 走软删
+- **插入参数注入**：`InsertParam: func(ctx) g.MapStrAny`（如自动填创建人）
+- **导出**：`Page` 请求 `isExport: true` + `maxExportLimit` 控制导出条数
+
+## 安全的排序参数
+
+列表/分页的 `order`、`sort` 参数经白名单校验（`v.safeOrderBy`）：
+
+- `order` 仅允许标识符（可带表前缀，如 `a.createTime`）
+- `sort` 仅允许 `asc` / `desc`
+- 其他任何输入直接拒绝（防排序注入）
+
+## EPS 元数据
+
+`v.eps: true` 时启动后可通过 `/admin/*/open/eps` 获取路由、字段（类型/长度/注释）信息，
+供前端动态渲染表单与表格。表未就绪时仅告警跳过，不阻断启动。

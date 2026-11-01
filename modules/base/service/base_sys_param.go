@@ -29,7 +29,7 @@ func (s *BaseSysParamService) HtmlByKey(key string) string {
 		html = "<html><body>@content</body></html>"
 	)
 	m := v.DBM(s.Model)
-	record, err := m.Where("keyName = ?", key).One()
+	record, err := m.Where("keyName", key).One()
 	if err != nil {
 		html = gstr.Replace(html, "@content", err.Error())
 		return html
@@ -77,7 +77,7 @@ func (s *BaseSysParamService) DataByKey(ctx context.Context, key string) (data s
 		data = dataCache.String()
 		return
 	}
-	record, err := m.Where("keyName = ?", key).One()
+	record, err := m.Where("keyName", key).One()
 	if err != nil {
 		return
 	}

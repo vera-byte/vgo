@@ -15,7 +15,7 @@ type DictInfoController struct {
 func init() {
 	var dict_info_controller = &DictInfoController{
 		&v.Controller{
-			Perfix:  "/admin/dict/info",
+			Prefix:  "/admin/dict/info",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			Service: service.NewDictInfoService(),
 		},

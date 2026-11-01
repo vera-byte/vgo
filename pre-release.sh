@@ -23,20 +23,15 @@ fi
 
 # 进入脚本所在目录
 cd "$(dirname "$0")"
-# yarn install
-# # 发布文档
-# yarn docs:deploy
 
 # 进入vgo-tools目录
 cd vgo-tools
 
 # 如果当前环境为github codespace, 则使用https方式拉取, 否则使用ssh方式拉取
 if [ -n "$CODESPACES" ]; then
-    echo "github codespace detected, using https to pull"
+    echo "github codeSpace detected, using https to pull"
     make pack.template-simple
-    # make pack.docs
 else
-    echo "github codespace not detected, use ssh"
+    echo "github codeSpace not detected, use ssh"
     make pack.template-simple.ssh
-    # make pack.docs.ssh
 fi

@@ -8,21 +8,21 @@ CREATE TABLE IF NOT EXISTS task_info (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "jobId" VARCHAR(255) COMMENT '任务ID',
-    "repeatConf" TEXT COMMENT '重复配置',
-    name VARCHAR(255) COMMENT '任务名称',
-    cron VARCHAR(255) COMMENT 'cron表达式',
-    "limit" INTEGER COMMENT '限制次数 不传为不限制',
-    every INTEGER COMMENT '间隔时间 单位秒',
-    remark VARCHAR(255) COMMENT '备注',
-    status INTEGER COMMENT '状态 0:关闭 1:开启',
-    "startDate" TIMESTAMP COMMENT '开始时间',
-    "endDate" TIMESTAMP COMMENT '结束时间',
-    data VARCHAR(255) COMMENT '数据',
-    service VARCHAR(255) COMMENT '执行的服务',
-    type INTEGER COMMENT '类型 0:系统 1:用户',
-    "nextRunTime" TIMESTAMP COMMENT '下次执行时间',
-    "taskType" INTEGER COMMENT '任务类型 0:cron 1:时间间隔'
+    "jobId" VARCHAR(255),
+    "repeatConf" TEXT,
+    name VARCHAR(255),
+    cron VARCHAR(255),
+    "limit" INTEGER,
+    every INTEGER,
+    remark VARCHAR(255),
+    status INTEGER,
+    "startDate" TIMESTAMP,
+    "endDate" TIMESTAMP,
+    data VARCHAR(255),
+    service VARCHAR(255),
+    type INTEGER,
+    "nextRunTime" TIMESTAMP,
+    "taskType" INTEGER
 );
 
 -- 任务信息表索引
@@ -44,9 +44,9 @@ CREATE TABLE IF NOT EXISTS task_log (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    "taskId" BIGINT COMMENT '任务ID',
-    status SMALLINT NOT NULL COMMENT '状态 0:失败 1:成功',
-    detail TEXT COMMENT '详情'
+    "taskId" BIGINT,
+    status SMALLINT NOT NULL,
+    detail TEXT
 );
 
 -- 任务日志表索引
@@ -72,3 +72,23 @@ $$ language 'plpgsql';
 -- 为所有表创建更新时间触发器
 CREATE TRIGGER update_task_info_updated_time BEFORE UPDATE ON task_info FOR EACH ROW EXECUTE FUNCTION update_task_updated_time_column();
 CREATE TRIGGER update_task_log_updated_time BEFORE UPDATE ON task_log FOR EACH ROW EXECUTE FUNCTION update_task_updated_time_column();
+
+-- 字段注释
+COMMENT ON COLUMN task_info."jobId" IS '任务ID';
+COMMENT ON COLUMN task_info."repeatConf" IS '重复配置';
+COMMENT ON COLUMN task_info."name" IS '任务名称';
+COMMENT ON COLUMN task_info."cron" IS 'cron表达式';
+COMMENT ON COLUMN task_info."limit" IS '限制次数 不传为不限制';
+COMMENT ON COLUMN task_info."every" IS '间隔时间 单位秒';
+COMMENT ON COLUMN task_info."remark" IS '备注';
+COMMENT ON COLUMN task_info."status" IS '状态 0:关闭 1:开启';
+COMMENT ON COLUMN task_info."startDate" IS '开始时间';
+COMMENT ON COLUMN task_info."endDate" IS '结束时间';
+COMMENT ON COLUMN task_info."data" IS '数据';
+COMMENT ON COLUMN task_info."service" IS '执行的服务';
+COMMENT ON COLUMN task_info."type" IS '类型 0:系统 1:用户';
+COMMENT ON COLUMN task_info."nextRunTime" IS '下次执行时间';
+COMMENT ON COLUMN task_info."taskType" IS '任务类型 0:cron 1:时间间隔';
+COMMENT ON COLUMN task_log."taskId" IS '任务ID';
+COMMENT ON COLUMN task_log."status" IS '状态 0:失败 1:成功';
+COMMENT ON COLUMN task_log."detail" IS '详情';

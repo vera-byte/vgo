@@ -1,0 +1,40 @@
+---
+title: "已知问题"
+description: "当前版本的遗留问题与限制"
+---
+
+## 功能限制
+
+| 问题 | 说明 | 规避 |
+|------|------|------|
+| refreshToken 有效期语义 | 配置 `refreshExpire`（默认 15 天）为前端调度提示值，sa-token 侧 refresh 存储 TTL 固定 30 天 | 前端按 `refreshExpire` 提前刷新即可；后续版本提供可配置 TTL |
+| gorm 驱动层未使用 | `v/vdb`、`contrib/drivers/*` 的 gorm `GetConn` 为历史遗留（无调用方），软删除等均走 gf gdb | 不影响运行；后续版本清理 |
+| 操作日志含请求参数 | `base_sys_log` 记录请求参数（含 password 字段明文） | 避免在可审计场景传明文密码；后续版本脱敏 |
+| JWT 配置命名残留 | `modules.base.jwt.*` 配置键名保留（现供 sa-token 的 timeout 使用） | 无需处理 |
+
+## 测试与质量
+
+| 问题 | 说明 |
+|------|------|
+| consul/kubecm 适配器历史测试 | `v/vconfig` 中 8 个第三方配置源测试为 Skip（实现与 mock KV 契约不一致），待专项修复 |
+| fsnotify watch 测试 | `TestFileAdapter_Watch` 在部分环境 fsnotify 事件不触发，已 Skip |
+
+## 部署注意
+
+<Warning>
+**凭证轮换**：仓库历史中曾包含数据库/OSS 明文凭证（已在代码中移除）。
+任何公开或共享过的部署必须轮换全部凭证，并评估清理 Git 历史。
+</Warning>
+
+| 问题 | 说明 |
+|------|------|
+| 反代下限流 IP | 限流按 `GetClientIp()` 计算，需正确透传真实 IP（见部署篇） |
+| 标识符引用 | PostgreSQL 下所有手写 SQL 的 camelCase 列名必须加双引号（见数据库篇） |
+
+## 后续规划
+
+- [ ] refreshToken TTL 可配置
+- [ ] gorm 驱动层移除（vdb/GetConn 系列）
+- [ ] base_sys_log 参数脱敏
+- [ ] consul/kubecm 配置源测试修复
+- [ ] 账号封禁（sa-token Disable）管理端 API

@@ -21,7 +21,6 @@ data/db.sqlite
 public/uploads/
 v.sqlite
 node_modules
-docs/.vuepress/dist/
 vgo-tools/vgo-tools
 go.work
 data/mysql/
@@ -30,3 +29,4 @@ go.work.sum
 data/
 gf
 __debug_*
+.env

@@ -15,7 +15,7 @@ type BaseSysUserController struct {
 func init() {
 	var base_sys_user_controller = &BaseSysUserController{
 		&v.Controller{
-			Perfix:  "/admin/base/sys/user",
+			Prefix:  "/admin/base/sys/user",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page", "Move"},
 			Service: service.NewBaseSysUserService(),
 		},

@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS space_type (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    name VARCHAR(255) NOT NULL COMMENT '类别名称',
-    "parentId" INTEGER COMMENT '父分类ID'
+    name VARCHAR(255) NOT NULL,
+    "parentId" INTEGER
 );
 
 -- 空间类型表索引
@@ -25,9 +25,9 @@ CREATE TABLE IF NOT EXISTS space_info (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    url VARCHAR(255) NOT NULL COMMENT '地址',
-    type VARCHAR(255) NOT NULL COMMENT '类型',
-    "classifyId" BIGINT COMMENT '分类ID'
+    url VARCHAR(255) NOT NULL,
+    type VARCHAR(255) NOT NULL,
+    "classifyId" BIGINT
 );
 
 -- 空间信息表索引
@@ -54,3 +54,10 @@ $$ language 'plpgsql';
 -- 为所有表创建更新时间触发器
 CREATE TRIGGER update_space_type_updated_time BEFORE UPDATE ON space_type FOR EACH ROW EXECUTE FUNCTION update_space_updated_time_column();
 CREATE TRIGGER update_space_info_updated_time BEFORE UPDATE ON space_info FOR EACH ROW EXECUTE FUNCTION update_space_updated_time_column();
+
+-- 字段注释
+COMMENT ON COLUMN space_type."name" IS '类别名称';
+COMMENT ON COLUMN space_type."parentId" IS '父分类ID';
+COMMENT ON COLUMN space_info."url" IS '地址';
+COMMENT ON COLUMN space_info."type" IS '类型';
+COMMENT ON COLUMN space_info."classifyId" IS '分类ID';

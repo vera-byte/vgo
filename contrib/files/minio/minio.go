@@ -50,15 +50,20 @@ func (m *Minio) Upload(ctx g.Ctx) (string, error) {
 		return "", gerror.New("上传文件为空")
 	}
 
+	ext, err := vfile.ValidateUploadExt(file.Filename)
+	if err != nil {
+		return "", err
+	}
+
 	src, err := file.Open()
 	if err != nil {
-		g.Log().Error(ctx, "文件打开失败")
+		return "", gerror.Wrap(err, "文件打开失败")
 	}
 	defer src.Close()
 
-	// 以当前年月日为目录
+	// 以当前年月日为目录，文件随机重命名防止覆盖与伪造
 	dir := gtime.Now().Format("Ymd")
-	fileName := Request.Get("key", grand.S(16, false)).String()
+	fileName := grand.S(16, false) + ext
 	fullPath := fmt.Sprintf("uploads/%s/%s", dir, fileName)
 
 	g.Log().Debug(ctx, fullPath)

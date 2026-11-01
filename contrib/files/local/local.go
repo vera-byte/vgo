@@ -23,6 +23,9 @@ func (l *Local) Upload(ctx g.Ctx) (string, error) {
 	if file == nil {
 		return "", gerror.New("上传文件为空")
 	}
+	if _, e := vfile.ValidateUploadExt(file.Filename); e != nil {
+		return "", e
+	}
 	// 以当前年月日为目录
 	dir := gtime.Now().Format("Ymd")
 

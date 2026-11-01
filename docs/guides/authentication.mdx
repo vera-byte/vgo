@@ -1,0 +1,112 @@
+---
+title: "认证与鉴权"
+description: "基于 sa-token 的登录、会话、权限体系与安全语义"
+---
+
+Vgo 使用 [sa-token-go](https://github.com/sa-tokens/sa-token-go) 作为会话认证框架（Random64 服务端会话），
+已完全取代旧版 JWT 自研鉴权。
+
+## 核心语义
+
+| 项 | 取值 | 说明 |
+|----|------|------|
+| Token 传递 | `Authorization: <token>` 头 | 兼容 Bearer 前缀 |
+| Token 风格 | Random64 | 服务端会话，支持踢人/封禁/续期 |
+| 会话存储 | Redis（开发可降级内存） | key 前缀 `satoken:` |
+| 设备标识 | `web` | 登录/登出必须一致 |
+| 并发策略 | 单会话 | 新登录挤掉旧登录（顶号） |
+| 密码哈希 | bcrypt | 存量 MD5 登录成功后自动升级 |
+
+## 登录
+
+`POST /admin/base/open/login`
+
+```json
+{
+  "username": "admin",
+  "password": "…",
+  "captchaId": "…",
+  "verifyCode": "…"
+}
+```
+
+响应（`data` 结构与旧版一致，前端无感）：
+
+```json
+{
+  "code": 1000,
+  "data": {
+    "expire": 7200,
+    "token": "…",
+    "refreshExpire": 1296000,
+    "refreshToken": "…"
+  }
+}
+```
+
+登录流程：验证码校验 → bcrypt 密码校验 → 签发 access/refresh token 对 → 写入角色/权限/会话数据。
+若账号无任何角色，拒绝登录（"该用户未设置任何角色"）。
+
+## 刷新与登出
+
+| 接口 | 方法 | 说明 |
+|------|------|------|
+| `/admin/base/open/refreshToken` | **GET**（query 传 `refreshToken`） | 校验旧 RT 后**作废重签**（轮换） |
+| `/admin/base/comm/logout` | POST | 撤销 refresh token 并清除该账号全部会话 |
+
+<Warning>
+refresh token **不能**当 access token 使用（`GetLoginID` 会拒绝）；
+反之 access token 也无法通过刷新接口（RT 仅存于独立的 refresh 存储）。
+被踢下线/登出后，其 refresh token 无法再换出可用会话。
+</Warning>
+
+## 权限模型
+
+- **角色**：`base_sys_role`，其中 `label = 'admin'` 为超级管理员（唯一判定，**不看用户 ID**）
+- **权限**：菜单 `perms` 字段（逗号分隔），登录时写入 sa-token
+- **匹配**：请求 URL 派生权限串后用 `stputil.HasPermission` 校验
+
+```text
+GET /admin/base/sys/user/page
+        ↓ 去掉 /admin 前缀
+base:sys:user:page
+        ↓ 匹配用户 perms（支持 *、base:* 通配）
+```
+
+超管权限为 `*`（通配一切）。权限或角色变更后调用 `BaseSysPermsService.RefreshPerms` 实时同步。
+
+## 强制下线语义
+
+| 场景 | 行为 |
+|------|------|
+| 顶号 | 同账号再次登录，旧 token 立即失效 |
+| 改密 | 本人或管理员改密后，该账号全部会话立即失效（含本人当前会话） |
+| 角色变更 | 实时刷新其 sa-token 权限 |
+| 登出 | 撤销 RT + 清除账号会话 |
+
+## 敏感接口限流
+
+基于客户端 IP 的时间窗计数（`modules/base/middleware/ratelimit.go`）：
+
+| 路径 | 限制 |
+|------|------|
+| `/admin/*/open/login`、`refreshToken`、`captcha` | 20 次/分钟 |
+| `/openapi/*` | 60 次/分钟 |
+
+超限返回 `429 {"code":1001,"message":"请求过于频繁，请稍后再试"}`。
+
+## 认证事件审计
+
+登录 / 登出 / 踢出 / 顶号 事件写入服务端日志（`认证事件[...] userId:... device:...`），供安全审计与问题追溯。
+
+## 上下文用户
+
+鉴权通过后中间件向 ctx 注入 `v.Admin`：
+
+```go
+admin := v.GetAdmin(ctx)
+admin.UserId    // uint
+admin.Username  // string
+admin.RoleIds   // []string（角色 ID）
+admin.IsAdmin   // bool（label=admin）
+```

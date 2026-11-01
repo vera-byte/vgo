@@ -28,8 +28,8 @@ func (m *Model) GroupName() string {
 func NewModel() *Model {
 	return &Model{
 		ID:         0,
-		CreateTime: time.Time{},
-		UpdateTime: time.Time{},
+		CreateTime: time.Now(), // 避免结构体插入空时间违反 NOT NULL 约束
+		UpdateTime: time.Now(),
 		DeletedAt:  time.Time{},
 	}
 }

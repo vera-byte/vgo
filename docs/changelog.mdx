@@ -1,0 +1,45 @@
+---
+title: "更新日志"
+description: "Vgo 重要版本与架构演进记录"
+---
+
+## v1.1.0（2026-11）—— 现代化改造（当前）
+
+### 平台升级
+- **Go 1.24 → 1.27.3**，全模块 go 声明同步
+- **GoFrame v2.9.3 → v2.10.4**（容器组件泛型化、gcfg/gdb/ghttp 兼容回归通过）
+
+### 认证体系（破坏性变更）
+- **JWT 退役，全面切换 sa-token-go**（Random64 服务端会话）
+  - 强制重新登录（旧 JWT 失效）；前端登录响应结构保持不变
+  - 顶号挤下线、刷新令牌轮换（旧 RT 作废重签）、改密强制下线
+  - 超管改为**角色 `label=admin`**（移除 `UserId==1` 硬编码）
+- 密码存储 **MD5 → bcrypt**（存量哈希登录成功后自动升级）
+
+### 安全加固（高危修复）
+- 真实凭证移出仓库，全部改 `VGO_*` 环境变量注入
+- **SQL 注入**：列表排序参数白名单化（原 order/sort 直接拼接）
+- **越权（高危）**：`personUpdate` 可携带任意 `id` 改他人密码/角色 → 强制本人 + 字段白名单
+- 上传扩展名白名单（拦截 html/svg/js 等）+ 随机文件名存储
+- 对外错误统一脱敏；验证码明文移出日志
+- OpenAPI：nonce 防重放（Redis 一次性）、待签串分隔符规范（兼容旧格式验签）
+- 敏感接口限流（登录/刷新 20rpm，开放平台 60rpm/每 IP）
+
+### PostgreSQL 支持修复
+- 迁移文件方言修正（MySQL `COMMENT` → PG `COMMENT ON COLUMN`，110 处）
+- **camelCase 列名引用修复**（原始 Where/Join 裸串折叠导致登录/列表全挂）
+- migrate 命令支持 `modules/*/resource/migrates` 多模块 + 独立版本表
+- 用户/日志列表 PG 适配（`string_agg`、JOIN 别名、GROUP BY）
+
+### 工程化
+- 多模块 `replace` 本地化：克隆即可构建（`GOWORK=off` 实证），发布走模块 tag
+- 清理 gf v1.16.9 死依赖、initdb 死代码、`Perfix`/`package demo`/`tast_start_func.go` 等命名问题
+- **测试门禁**：安全核心单测 ×5、`make test`/`make vet`、GitHub Actions CI
+- 文档体系 VuePress → **Mintlify**
+
+## 早期版本
+
+- GoFrame v2 基础框架、多模块拆分（base/dict/openapi/space/task）
+- 通用 CRUD + EPS 元数据体系
+- 开放平台 RSA 签名体系
+- 定时任务与集群函数分发

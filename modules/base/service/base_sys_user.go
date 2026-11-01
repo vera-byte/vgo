@@ -2,11 +2,9 @@ package service
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/container/gset"
-	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
@@ -62,9 +60,13 @@ func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *v.AddReq) (dat
 		r      = g.RequestFromCtx(ctx)
 		reqmap = r.GetMap()
 	)
-	// 如果reqmap["password"]不为空，则对密码进行md5加密
+	// 如果reqmap["password"]不为空，则对密码进行bcrypt加密
 	if !r.Get("password").IsNil() {
-		reqmap["password"] = gmd5.MustEncryptString(r.Get("password").String())
+		hashed, e := hashPassword(r.Get("password").String())
+		if e != nil {
+			return nil, e
+		}
+		reqmap["password"] = hashed
 	}
 	lastInsertId, err := m.Data(reqmap).InsertAndGetId()
 	if err != nil {
@@ -87,7 +89,7 @@ func (s *BaseSysUserService) ServiceInfo(ctx g.Ctx, req *v.InfoReq) (data interf
 	resultMap := result.(gdb.Record).Map()
 
 	// 获取角色
-	roleIds, err := v.DBM(model.NewBaseSysUserRole()).Where("userId = ?", resultMap["id"]).Fields("roleId").Array()
+	roleIds, err := v.DBM(model.NewBaseSysUserRole()).Where("userId", resultMap["id"]).Fields("roleId").Array()
 	if err != nil {
 		return nil, err
 	}
@@ -119,24 +121,31 @@ func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *v.UpdateReq
 		return
 	}
 
-	// 禁止禁用超级管理员
-	if userId == 1 && (!r.Get("status").IsNil() && r.Get("status").Int() == 0) {
-		err = gerror.New("禁止禁用超级管理员")
-		return
+	// 禁止禁用管理员账号（按角色 label=admin 判定）
+	if !r.Get("status").IsNil() && r.Get("status").Int() == 0 {
+		if roleIds, e := NewBaseSysRoleService().GetByUser(userId); e == nil && satokenIsAdmin(roleIds) {
+			err = gerror.New("禁止禁用管理员账号")
+			return
+		}
 	}
 
 	// 如果请求的password不为空并且密码加密后的值有变动，说明要修改密码
 	var rPassword = r.Get("password", "").String()
+	passwordChanged := false
 	if rPassword != "" && rPassword != userInfo["password"].String() {
-		rMap["password"], _ = gmd5.Encrypt(rPassword)
+		hashed, e := hashPassword(rPassword)
+		if e != nil {
+			return nil, e
+		}
+		rMap["password"] = hashed
 		rMap["passwordV"] = userInfo["passwordV"].Int() + 1
-		v.CacheManager.Set(ctx, fmt.Sprintf("admin:passwordVersion:%d", userId), rMap["passwordV"], 0)
+		passwordChanged = true
 	} else {
 		delete(rMap, "password")
 	}
 
 	err = g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
-		roleModel := v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId = ?", userId)
+		roleModel := v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId", userId)
 		roleIds, err := roleModel.Fields("roleId").Array()
 		if err != nil {
 			return
@@ -177,6 +186,58 @@ func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *v.UpdateReq
 		}
 		return
 	})
+	if err != nil {
+		return
+	}
+	// 密码变更后强制下线该用户全部会话
+	if passwordChanged {
+		logoutSatoken(userId)
+	}
+	// 角色变更后刷新该用户的权限
+	if !r.Get("roleIdList").IsNil() {
+		if e := NewBaseSysPermsService().RefreshPerms(ctx, userId); e != nil {
+			g.Log().Warningf(ctx, "刷新用户权限失败: %v", e)
+		}
+	}
+	return
+}
+
+// UpdateProfile 更新本人基础资料与密码（仅白名单字段，强制本人，防越权）
+func (s *BaseSysUserService) UpdateProfile(ctx context.Context, userId uint) (err error) {
+	r := g.RequestFromCtx(ctx)
+	row, err := v.DBM(s.Model).Where("id", userId).One()
+	if err != nil {
+		return
+	}
+	if row.IsEmpty() {
+		return gerror.New("用户不存在")
+	}
+	rMap := g.MapStrAny{}
+	for _, field := range []string{"nickName", "headImg", "phone", "email", "remark"} {
+		if val := r.Get(field); !val.IsNil() {
+			rMap[field] = val.Val()
+		}
+	}
+	passwordChanged := false
+	if password := r.Get("password").String(); password != "" {
+		hashed, e := hashPassword(password)
+		if e != nil {
+			return e
+		}
+		rMap["password"] = hashed
+		rMap["passwordV"] = row["passwordV"].Int() + 1
+		passwordChanged = true
+	}
+	if len(rMap) == 0 {
+		return nil
+	}
+	if _, err = v.DBM(s.Model).Where("id", userId).Data(rMap).Update(); err != nil {
+		return
+	}
+	// 密码变更后强制重新登录
+	if passwordChanged {
+		logoutSatoken(userId)
+	}
 	return
 }
 
@@ -186,7 +247,7 @@ func (s *BaseSysUserService) Move(ctx g.Ctx) (err error) {
 	departmentId := request.Get("departmentId").Int()
 	userIds := request.Get("userIds").Slice()
 
-	_, err = v.DBM(s.Model).Where("`id` IN(?)", userIds).Data(g.Map{"departmentId": departmentId}).Update()
+	_, err = v.DBM(s.Model).WhereIn("id", userIds).Data(g.Map{"departmentId": departmentId}).Update()
 
 	return
 }
@@ -201,35 +262,36 @@ func NewBaseSysUserService() *BaseSysUserService {
 				"username": "用户名不能重复",
 			},
 			PageQueryOp: &v.QueryOp{
-				Select: "base_sys_user.*,dept.`name` as departmentName,GROUP_CONCAT( role.`name` ) AS `roleName`",
+				Select: `base_sys_user.*,"dept"."name" as "departmentName",string_agg("role"."name", ',') AS "roleName"`,
 				Join: []*v.JoinOp{
 					{
 						Model:     model.NewBaseSysDepartment(),
 						Alias:     "dept",
 						Type:      "LeftJoin",
-						Condition: "`base_sys_user`.`departmentId` = `dept`.`id`",
+						Condition: `"base_sys_user"."departmentId" = "dept"."id"`,
 					},
 					{
 						Model:     model.NewBaseSysUserRole(),
 						Alias:     "user_role",
 						Type:      "LeftJoin",
-						Condition: "`base_sys_user`.`id` = `user_role`.`userId`",
+						Condition: `"base_sys_user"."id" = "user_role"."userId"`,
 					},
 					{
 						Model:     model.NewBaseSysRole(),
-						Alias:     "`role`",
+						Alias:     `"role"`,
 						Type:      "LeftJoin",
-						Condition: "`role`.`id` = `user_role`.`roleId`",
+						Condition: `"role"."id" = "user_role"."roleId"`,
 					},
 				},
 				Where: func(ctx context.Context) []g.Array {
 					r := g.RequestFromCtx(ctx).GetMap()
+					ids := gconv.SliceStr(r["departmentIds"])
 					return []g.Array{
-						{"(departmentId IN (?))", gconv.SliceStr(r["departmentIds"])},
+						{`("departmentId" IN (?))`, ids, len(ids) > 0},
 					}
 				},
 				Extend: func(ctx g.Ctx, m *gdb.Model) *gdb.Model {
-					return m.Group("`base_sys_user`.`id`")
+					return m.Group(`"base_sys_user"."id", "dept"."name"`)
 				},
 				KeyWordField: []string{"name", "username", "nickName"},
 			},

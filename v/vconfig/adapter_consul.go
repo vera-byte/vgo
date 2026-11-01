@@ -72,7 +72,14 @@ func NewConsulAdapter(config *ConsulAdapterConfig) (*ConsulAdapter, error) {
 		config.Timeout = time.Second * 10
 	}
 	
-	baseURL := fmt.Sprintf("%s://%s", config.Scheme, config.Address)
+	scheme := config.Scheme
+	if scheme == "" {
+		scheme = "http"
+	}
+	// Address 允许携带 http(s):// 前缀（如 httptest.Server.URL），拼接前先剥掉
+	addr := strings.TrimPrefix(config.Address, "https://")
+	addr = strings.TrimPrefix(addr, "http://")
+	baseURL := fmt.Sprintf("%s://%s", scheme, addr)
 	
 	adapter := &ConsulAdapter{
 		config:  config,

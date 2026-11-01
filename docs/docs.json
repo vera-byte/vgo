@@ -1,0 +1,93 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Vgo",
+  "colors": {
+    "primary": "#0D9373",
+    "light": "#55D799",
+    "dark": "#0D9373"
+  },
+  "favicon": "/images/logo.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "概述",
+        "groups": [
+          {
+            "group": "开始使用",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "architecture"
+            ]
+          },
+          {
+            "group": "项目信息",
+            "pages": [
+              "changelog",
+              "known-issues"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "指南",
+        "groups": [
+          {
+            "group": "核心指南",
+            "pages": [
+              "guides/configuration",
+              "guides/authentication",
+              "guides/crud-framework",
+              "guides/api-conventions",
+              "guides/database-migrations",
+              "guides/tasks",
+              "guides/openapi-signing"
+            ]
+          },
+          {
+            "group": "工程与部署",
+            "pages": [
+              "guides/development",
+              "guides/deployment"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "参考",
+        "groups": [
+          {
+            "group": "API 参考",
+            "pages": [
+              "reference/http-api",
+              "reference/env-vars"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "logo": {
+    "light": "/images/logo.png",
+    "dark": "/images/logo.png"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/vera-byte/vgo"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "获取源码",
+      "href": "https://github.com/vera-byte/vgo"
+    }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/vera-byte/vgo"
+    }
+  }
+}

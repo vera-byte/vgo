@@ -16,14 +16,18 @@ import (
 // 功能: 验证openapi请求的数字签名，确保请求的安全性和完整性
 // 参数: r - HTTP请求对象
 // 返回值: 无返回值，验证失败时直接返回错误响应
+// signOpenPaths 无需签名验证的开放路径白名单（默认拒绝，其余 /openapi/* 一律验签）
+var signOpenPaths = map[string]bool{
+	"/openapi/sign/publicKey": true,
+}
+
 func OpenapiSignVerifyMiddleware(r *ghttp.Request) {
 	var (
 		ctx = r.GetCtx()
 	)
 
-	// 检查是否为开放接口（无需签名验证）
-	signOpen := r.GetCtxVar("SignOpen", false)
-	if signOpen.Bool() {
+	// 开放白名单路径无需签名验证
+	if signOpenPaths[r.URL.Path] {
 		r.Middleware.Next()
 		return
 	}
@@ -126,7 +130,7 @@ func OpenapiSignVerifyMiddleware(r *ghttp.Request) {
 		g.Log().Error(ctx, "签名验证失败:", err)
 		r.Response.WriteStatusExit(401, g.Map{
 			"code":    4008,
-			"message": "签名验证失败: " + err.Error(),
+			"message": "签名验证失败",
 		})
 		return
 	}
@@ -143,15 +147,6 @@ func OpenapiSignVerifyMiddleware(r *ghttp.Request) {
 	r.SetCtxVar("appId", appId)
 
 	// 继续处理请求
-	r.Middleware.Next()
-}
-
-// OpenapiSignVerifyMiddlewareOpen 开放接口中间件
-// 功能: 标记接口为开放接口，无需签名验证
-// 参数: r - HTTP请求对象
-// 返回值: 无返回值
-func OpenapiSignVerifyMiddlewareOpen(r *ghttp.Request) {
-	r.SetCtxVar("SignOpen", true)
 	r.Middleware.Next()
 }
 

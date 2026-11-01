@@ -8,14 +8,14 @@ CREATE TABLE IF NOT EXISTS openapi_app (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    app_id VARCHAR(64) NOT NULL COMMENT '应用ID',
-    app_name VARCHAR(255) NOT NULL COMMENT '应用名称',
-    app_secret VARCHAR(255) NOT NULL COMMENT '应用密钥',
-    public_key TEXT NOT NULL COMMENT 'RSA公钥',
-    private_key TEXT NOT NULL COMMENT 'RSA私钥',
-    status INTEGER NOT NULL DEFAULT 1 COMMENT '状态 0:禁用 1:启用',
-    description VARCHAR(500) COMMENT '应用描述',
-    remark VARCHAR(255) COMMENT '备注'
+    app_id VARCHAR(64) NOT NULL,
+    app_name VARCHAR(255) NOT NULL,
+    app_secret VARCHAR(255) NOT NULL,
+    public_key TEXT NOT NULL,
+    private_key TEXT NOT NULL,
+    status INTEGER NOT NULL DEFAULT 1,
+    description VARCHAR(500),
+    remark VARCHAR(255)
 );
 
 -- 开放平台应用表索引
@@ -31,16 +31,16 @@ CREATE TABLE IF NOT EXISTS openapi_sign_log (
     "createTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateTime" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deletedAt" TIMESTAMP DEFAULT NULL,
-    app_id VARCHAR(64) NOT NULL COMMENT '应用ID',
-    request_id VARCHAR(64) NOT NULL COMMENT '请求ID',
-    timestamp BIGINT NOT NULL COMMENT '时间戳',
-    nonce VARCHAR(64) NOT NULL COMMENT '随机数',
-    request_body TEXT COMMENT '请求体',
-    signature TEXT NOT NULL COMMENT '生成的签名',
-    client_ip VARCHAR(45) COMMENT '客户端IP',
-    user_agent VARCHAR(500) COMMENT '用户代理',
-    status INTEGER NOT NULL DEFAULT 1 COMMENT '状态 0:失败 1:成功',
-    error_msg VARCHAR(500) COMMENT '错误信息'
+    app_id VARCHAR(64) NOT NULL,
+    request_id VARCHAR(64) NOT NULL,
+    timestamp BIGINT NOT NULL,
+    nonce VARCHAR(64) NOT NULL,
+    request_body TEXT,
+    signature TEXT NOT NULL,
+    client_ip VARCHAR(45),
+    user_agent VARCHAR(500),
+    status INTEGER NOT NULL DEFAULT 1,
+    error_msg VARCHAR(500)
 );
 
 -- 开放平台签名日志表索引
@@ -69,3 +69,23 @@ $$ language 'plpgsql';
 -- 为所有表创建更新时间触发器
 CREATE TRIGGER update_openapi_app_updated_time BEFORE UPDATE ON openapi_app FOR EACH ROW EXECUTE FUNCTION update_openapi_updated_time_column();
 CREATE TRIGGER update_openapi_sign_log_updated_time BEFORE UPDATE ON openapi_sign_log FOR EACH ROW EXECUTE FUNCTION update_openapi_updated_time_column();
+
+-- 字段注释
+COMMENT ON COLUMN openapi_app."app_id" IS '应用ID';
+COMMENT ON COLUMN openapi_app."app_name" IS '应用名称';
+COMMENT ON COLUMN openapi_app."app_secret" IS '应用密钥';
+COMMENT ON COLUMN openapi_app."public_key" IS 'RSA公钥';
+COMMENT ON COLUMN openapi_app."private_key" IS 'RSA私钥';
+COMMENT ON COLUMN openapi_app."status" IS '状态 0:禁用 1:启用';
+COMMENT ON COLUMN openapi_app."description" IS '应用描述';
+COMMENT ON COLUMN openapi_app."remark" IS '备注';
+COMMENT ON COLUMN openapi_sign_log."app_id" IS '应用ID';
+COMMENT ON COLUMN openapi_sign_log."request_id" IS '请求ID';
+COMMENT ON COLUMN openapi_sign_log."timestamp" IS '时间戳';
+COMMENT ON COLUMN openapi_sign_log."nonce" IS '随机数';
+COMMENT ON COLUMN openapi_sign_log."request_body" IS '请求体';
+COMMENT ON COLUMN openapi_sign_log."signature" IS '生成的签名';
+COMMENT ON COLUMN openapi_sign_log."client_ip" IS '客户端IP';
+COMMENT ON COLUMN openapi_sign_log."user_agent" IS '用户代理';
+COMMENT ON COLUMN openapi_sign_log."status" IS '状态 0:失败 1:成功';
+COMMENT ON COLUMN openapi_sign_log."error_msg" IS '错误信息';

@@ -34,9 +34,19 @@ func NewRSASignUtil() *RSASignUtil {
 // 返回值:
 //   - string: base64编码的签名结果
 //   - error: 错误信息
+// signDataCanonical 规范待签串：字段以换行分隔，消除直接拼接的边界歧义
+func signDataCanonical(jsonBody, appId string, timestamp int64, nonce string) string {
+	return jsonBody + "\n" + appId + "\n" + strconv.FormatInt(timestamp, 10) + "\n" + nonce
+}
+
+// signDataLegacy 旧版无分隔符拼接，仅用于兼容存量客户端验签，新签名禁止使用
+func signDataLegacy(jsonBody, appId string, timestamp int64, nonce string) string {
+	return jsonBody + appId + strconv.FormatInt(timestamp, 10) + nonce
+}
+
 func (r *RSASignUtil) GenerateSignature(jsonBody, appId string, timestamp int64, nonce, privateKeyPEM string) (string, error) {
 	// 1. 构建待签名字符串: json-body + Appid + Timestamp + Nonce
-	signData := jsonBody + appId + strconv.FormatInt(timestamp, 10) + nonce
+	signData := signDataCanonical(jsonBody, appId, timestamp, nonce)
 
 	// 2. 解析RSA私钥
 	privateKey, err := r.parsePrivateKey(privateKeyPEM)
@@ -72,31 +82,29 @@ func (r *RSASignUtil) GenerateSignature(jsonBody, appId string, timestamp int64,
 //   - bool: 验证结果，true表示验证成功
 //   - error: 错误信息
 func (r *RSASignUtil) VerifySignature(jsonBody, appId string, timestamp int64, nonce, signature, publicKeyPEM string) (bool, error) {
-	// 1. 构建待验证字符串
-	signData := jsonBody + appId + strconv.FormatInt(timestamp, 10) + nonce
-
-	// 2. 解析RSA公钥
+	// 1. 解析RSA公钥
 	publicKey, err := r.parsePublicKey(publicKeyPEM)
 	if err != nil {
 		return false, gerror.Wrap(err, "解析RSA公钥失败")
 	}
 
-	// 3. 解码base64签名
+	// 2. 解码base64签名
 	signatureBytes, err := base64.StdEncoding.DecodeString(signature)
 	if err != nil {
 		return false, gerror.Wrap(err, "base64解码签名失败")
 	}
 
-	// 4. 计算SHA256哈希
-	hash := sha256.Sum256([]byte(signData))
-
-	// 5. 验证签名
-	err = rsa.VerifyPKCS1v15(publicKey, crypto.SHA256, hash[:], signatureBytes)
-	if err != nil {
-		return false, nil // 验证失败，但不是错误
+	// 3. 优先按规范待签串验证，失败后回退旧版拼接（兼容存量客户端）
+	for _, signData := range []string{
+		signDataCanonical(jsonBody, appId, timestamp, nonce),
+		signDataLegacy(jsonBody, appId, timestamp, nonce),
+	} {
+		hash := sha256.Sum256([]byte(signData))
+		if rsa.VerifyPKCS1v15(publicKey, crypto.SHA256, hash[:], signatureBytes) == nil {
+			return true, nil
+		}
 	}
-
-	return true, nil
+	return false, nil // 验证失败，但不是错误
 }
 
 // GenerateRSAKeyPair 生成RSA密钥对

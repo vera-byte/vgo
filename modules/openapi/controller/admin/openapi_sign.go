@@ -17,7 +17,7 @@ type OpenapiSignController struct {
 func init() {
 	var openapi_sign_controller = &OpenapiSignController{
 		&v.Controller{
-			Perfix:  "/admin/openapi/sign",
+			Prefix:  "/admin/openapi/sign",
 			Api:     []string{"CreateApp", "GetAppInfo", "TestSign", "VerifySign"},
 			Service: service.NewOpenapiSignService(),
 		},
@@ -45,7 +45,7 @@ func (c *OpenapiSignController) CreateApp(ctx context.Context, req *v1.CreateApp
 
 	result, err := signService.CreateApp(ctx, createReq)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	return v.Ok(result), nil
@@ -60,7 +60,7 @@ func (c *OpenapiSignController) GetAppInfo(ctx context.Context, req *v1.GetAppIn
 
 	result, err := signService.GetAppInfo(ctx, req.AppId)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	return v.Ok(result), nil
@@ -87,7 +87,7 @@ func (c *OpenapiSignController) TestSign(ctx context.Context, req *v1.TestSignRe
 
 	result, err := signService.GenerateSign(ctx, signReq, clientIp, userAgent)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	return v.Ok(result), nil
@@ -110,7 +110,7 @@ func (c *OpenapiSignController) VerifySign(ctx context.Context, req *v1.VerifySi
 
 	isValid, err := signService.VerifySign(ctx, signReq, req.Signature)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	result := g.Map{

@@ -10,7 +10,9 @@ import (
 	"net/http"
 
 	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
+	"github.com/gogf/gf/v2/text/gstr"
 )
 
 // DefaultHandlerResponse is the default implementation of HandlerResponse.
@@ -45,6 +47,12 @@ func MiddlewareHandlerResponse(r *ghttp.Request) {
 			code = 1001
 		}
 		msg = err.Error()
+		// 内部错误（SQL/网络等）不向客户端透出细节，完整错误仅记录到服务端日志
+		internal := len(msg) > 120 || gstr.Contains(msg, "\n") || gstr.Contains(msg, "pq:") || gstr.Contains(msg, "SQLSTATE") || gstr.Contains(msg, "dial ")
+		if internal {
+			g.Log().Error(r.GetCtx(), "接口内部错误: ", err)
+			msg = "系统繁忙，请稍后再试"
+		}
 	} else if r.Response.Status > 0 && r.Response.Status != http.StatusOK {
 		msg = http.StatusText(r.Response.Status)
 		switch r.Response.Status {

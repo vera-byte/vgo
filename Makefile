@@ -30,6 +30,7 @@ init: ## 初始化环境变量
 
 .PHONY: dev
 dev: ## 启动开发环境
+	@if [ -f .env ]; then set -a; . ./.env; set +a; fi; \
 	gf run main.go
 
 .PHONY: clean
@@ -79,3 +80,20 @@ pgsql-up: ## 启动pgsql
 pgsql-down: ## 停止pgsql
 	@echo "停止pgsql"
 	@docker-compose -f ./docker-compose.yml stop pgsql
+.PHONY: test
+test: ## 运行全部单元测试（含子模块）
+	@set -e; go test ./...
+	@for d in modules/* contrib/*/* v; do \
+		[ -f "$$d/go.mod" ] || continue; \
+		echo "== test $$d"; \
+		(cd "$$d" && go test ./...); \
+	done
+
+.PHONY: vet
+vet: ## 静态检查（含子模块）
+	@set -e; go vet ./...
+	@for d in modules/* contrib/*/* v; do \
+		[ -f "$$d/go.mod" ] || continue; \
+		echo "== vet $$d"; \
+		(cd "$$d" && go vet ./...); \
+	done

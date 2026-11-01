@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"time"
 
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -89,7 +90,8 @@ func (s *OpenapiSignService) CreateApp(ctx context.Context, req *CreateAppReques
 	}
 
 	m := v.DBM(s.Model)
-	_, err = m.Insert(app)
+	// OmitEmptyData：省略零值 id/deletedAt，交由序列与默认值处理
+	_, err = m.OmitEmptyData().Insert(app)
 	if err != nil {
 		return nil, gerror.Wrap(err, "创建应用失败")
 	}
@@ -127,7 +129,10 @@ func (s *OpenapiSignService) GenerateSign(ctx context.Context, req *SignRequest,
 
 	// 检查随机数是否已使用（防止重放攻击）
 	logM := v.DBM(&model.OpenapiSignLog{})
-	existRecord, _ := logM.Where("app_id = ? AND nonce = ? AND timestamp = ?", req.AppId, req.Nonce, req.Timestamp).One()
+	existRecord, err := logM.Where("app_id = ? AND nonce = ? AND timestamp = ?", req.AppId, req.Nonce, req.Timestamp).One()
+	if err != nil {
+		return nil, err
+	}
 	if !existRecord.IsEmpty() {
 		return nil, gerror.New("随机数已使用，请使用新的随机数")
 	}
@@ -171,6 +176,16 @@ func (s *OpenapiSignService) VerifySign(ctx context.Context, req *SignRequest, s
 
 	if signature == "" {
 		return false, gerror.New("签名不能为空")
+	}
+
+	// 防重放：同 appId+nonce+timestamp 在时间窗口内仅允许验证一次（一次性校验）
+	replayKey := fmt.Sprintf("openapi:verify:%s:%s:%d", req.AppId, req.Nonce, req.Timestamp)
+	notUsed, err := v.CacheManager.SetIfNotExist(ctx, replayKey, 1, 10*time.Minute)
+	if err != nil {
+		return false, err
+	}
+	if !notUsed {
+		return false, gerror.New("请勿重复请求")
 	}
 
 	// 查询应用信息
@@ -236,7 +251,7 @@ func (s *OpenapiSignService) logSignRequest(ctx context.Context, req *SignReques
 	// 异步记录日志，不影响主流程
 	go func() {
 		logM := v.DBM(&model.OpenapiSignLog{})
-		if _, err := logM.Insert(log); err != nil {
+		if _, err := logM.OmitEmptyData().Insert(log); err != nil {
 			g.Log().Error(ctx, "记录签名日志失败:", err)
 		}
 	}()

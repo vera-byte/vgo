@@ -12,7 +12,7 @@ type BaseSysRoleController struct {
 func init() {
 	var base_sys_role_controller = &BaseSysRoleController{
 		&v.Controller{
-			Perfix:  "/admin/base/sys/role",
+			Prefix:  "/admin/base/sys/role",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			Service: service.NewBaseSysRoleService(),
 		},

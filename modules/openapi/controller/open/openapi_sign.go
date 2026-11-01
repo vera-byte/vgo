@@ -17,7 +17,7 @@ type OpenapiSignController struct {
 func init() {
 	var openapi_sign_controller = &OpenapiSignController{
 		&v.ControllerSimple{
-			Perfix: "/openapi/sign",
+			Prefix: "/openapi/sign",
 		},
 	}
 	v.RegisterControllerSimple(openapi_sign_controller)
@@ -43,7 +43,7 @@ func (c *OpenapiSignController) GenerateSign(ctx context.Context, req *v1.Genera
 
 	result, err := signService.GenerateSign(ctx, signReq, clientIp, userAgent)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	return v.Ok(result), nil
@@ -65,7 +65,7 @@ func (c *OpenapiSignController) VerifySign(ctx context.Context, req *v1.AppVerif
 
 	isValid, err := signService.VerifySign(ctx, signReq, req.Signature)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	result := g.Map{
@@ -84,7 +84,7 @@ func (c *OpenapiSignController) GetPublicKey(ctx context.Context, req *v1.GetPub
 
 	appInfo, err := signService.GetAppInfo(ctx, req.AppId)
 	if err != nil {
-		return v.Fail(err.Error()), nil
+		return nil, err
 	}
 
 	result := g.Map{

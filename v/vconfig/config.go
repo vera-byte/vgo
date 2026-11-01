@@ -103,7 +103,7 @@ func GetCfgWithDefault(ctx context.Context, key string, defaultValue *gvar.Var) 
 	// 尝试从配置管理器获取配置
 	if configManager != nil {
 		if value, err := configManager.Get(ctx, key); err == nil && value != nil && !value.IsEmpty() {
-			return value
+			return expandVar(value)
 		}
 	}
 
@@ -115,5 +115,5 @@ func GetCfgWithDefault(ctx context.Context, key string, defaultValue *gvar.Var) 
 	if value.IsEmpty() || value.IsNil() {
 		return defaultValue
 	}
-	return value
+	return expandVar(value)
 }

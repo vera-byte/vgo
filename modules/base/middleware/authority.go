@@ -1,14 +1,11 @@
 package middleware
 
 import (
-	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gstr"
-	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/golang-jwt/jwt/v5"
-	"github.com/vera-byte/vgo/modules/base/config"
-	"github.com/vera-byte/vgo/v"
+	"github.com/sa-tokens/sa-token-go/stputil"
+	"github.com/vera-byte/vgo/modules/base/service"
 )
 
 // 本类接口无需权限验证
@@ -25,134 +22,45 @@ func BaseAuthorityMiddlewareComm(r *ghttp.Request) {
 
 // 其余接口需登录验证同时需要权限验证
 func BaseAuthorityMiddleware(r *ghttp.Request) {
-	// g.Dump(r)
-	// g.Dump(r.GetHeader("Authorization"))
-	var (
-		statusCode = 200
-		ctx        = r.GetCtx()
-	)
-	url := r.URL.String()
-
 	// 无需登录验证
-	AuthOpen := r.GetCtxVar("AuthOpen", false)
-	if AuthOpen.Bool() {
+	if r.GetCtxVar("AuthOpen", false).Bool() {
 		r.Middleware.Next()
 		return
 	}
 
-	tokenString := r.GetHeader("Authorization")
-	token, err := jwt.ParseWithClaims(tokenString, &v.Claims{}, func(token *jwt.Token) (interface{}, error) {
-
-		return []byte(config.Config.Jwt.Secret), nil
-	})
+	// 校验登录态（refresh token 不是登录 token，无法通过校验）
+	token := r.GetHeader("Authorization")
+	admin, err := service.AdminFromToken(token)
 	if err != nil {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
+		r.Response.WriteStatusExit(401, g.Map{
 			"code":    1001,
 			"message": "登陆失效～",
 		})
 	}
-	if !token.Valid {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	admin := token.Claims.(*v.Claims)
 	// 将用户信息放入上下文
 	r.SetCtxVar("admin", admin)
 
-	cachetoken, _ := v.CacheManager.Get(ctx, "admin:token:"+gconv.String(admin.UserId))
-	rtoken := cachetoken.String()
-	// 超管拥有所有权限
-	if admin.UserId == 1 && !admin.IsRefresh {
-		if tokenString != rtoken && config.Config.Jwt.Sso {
-			statusCode = 401
-			r.Response.WriteStatusExit(statusCode, g.Map{
-				"code":    1001,
-				"message": "登陆失效～",
-			})
-		} else {
-			r.Middleware.Next()
-			return
-		}
-	}
 	// 只验证登录不验证权限的接口
-	AuthComm := r.GetCtxVar("AuthComm", false)
-	if AuthComm.Bool() {
+	if r.GetCtxVar("AuthComm", false).Bool() {
 		r.Middleware.Next()
 		return
 	}
-	// 如果传的token是refreshToken则校验失败
-	if admin.IsRefresh {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	// 判断密码版本是否正确
-	passwordV, _ := v.CacheManager.Get(ctx, "admin:passwordVersion:"+gconv.String(admin.UserId))
-	if passwordV.Int32() != *admin.PasswordVersion {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	// 如果rtoken为空
-	if rtoken == "" {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	// 如果rtoken不等于token 且 sso 未开启
-	if tokenString != rtoken && !config.Config.Jwt.Sso {
-		statusCode = 401
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登陆失效～",
-		})
-	}
-	// 从缓存获取perms
-	permsCache, _ := v.CacheManager.Get(ctx, "admin:perms:"+gconv.String(admin.UserId))
-	// 转换为数组
-	permsVar := permsCache.Strings()
-	// 转换为garray
-	perms := garray.NewStrArrayFrom(permsVar)
-	// 如果perms为空
-	if perms.Len() == 0 {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "perms invalid")
-		statusCode = 403
-		r.Response.WriteStatusExit(statusCode, g.Map{
-			"code":    1001,
-			"message": "登录失效或无权限访问~",
-		})
-	}
-	// 去除url后面的参数，使用字符串分割方法，若长度等于2，则说明有参数，则我们将改写url值进行权限比对
-	parts := gstr.Split(url, "?")
-	if len(parts) == 2 {
+
+	// 权限校验：请求 URL 转为 "base:comm:person" 形式与权限标识比对
+	url := r.URL.String()
+	if parts := gstr.Split(url, "?"); len(parts) == 2 {
 		url = parts[0]
 	}
-	//url 转换为数组
 	urls := gstr.Split(url, "/")
 	// 去除第一个空字符串和admin
 	urls = urls[2:]
-	// 以冒号连接成新字符串url
 	url = gstr.Join(urls, ":")
-	// 如果perms中不包含url 则无权限
-	if !perms.ContainsI(url) {
-		g.Log().Error(ctx, "BaseAuthorityMiddleware", "perms invalid")
-		statusCode = 403
-		r.Response.WriteStatusExit(statusCode, g.Map{
+	if !stputil.HasPermission(admin.UserId, url) {
+		g.Log().Errorf(r.GetCtx(), "BaseAuthorityMiddleware perms invalid userId:%d url:%s", admin.UserId, url)
+		r.Response.WriteStatusExit(403, g.Map{
 			"code":    1001,
 			"message": "登录失效或无权限访问~",
 		})
 	}
-	// 上面写逻辑
 	r.Middleware.Next()
-
 }

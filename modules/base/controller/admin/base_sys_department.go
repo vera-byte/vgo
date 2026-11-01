@@ -15,7 +15,7 @@ type BaseSysDepartmentController struct {
 func init() {
 	var base_sys_department_controller = &BaseSysDepartmentController{
 		&v.Controller{
-			Perfix:  "/admin/base/sys/department",
+			Prefix:  "/admin/base/sys/department",
 			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page"},
 			Service: service.NewBaseSysDepartmentService(),
 		},

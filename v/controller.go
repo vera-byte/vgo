@@ -22,7 +22,7 @@ type IController interface {
 	Page(ctx context.Context, req *PageReq) (res *BaseRes, err error)
 }
 type Controller struct {
-	Perfix  string     `json:"perfix"`
+	Prefix  string     `json:"perfix"`
 	Api     g.ArrayStr `json:"api"`
 	Service IService   `json:"service"`
 }
@@ -97,7 +97,9 @@ func (c *Controller) Delete(ctx context.Context, req *DeleteReq) (res *BaseRes, 
 		if err != nil {
 			return Fail(err.Error()), err
 		}
-		c.Service.ModifyAfter(ctx, "Delete", g.RequestFromCtx(ctx).GetMap())
+		if err = c.Service.ModifyAfter(ctx, "Delete", g.RequestFromCtx(ctx).GetMap()); err != nil {
+			return nil, err
+		}
 		return Ok(data), err
 	}
 	g.RequestFromCtx(ctx).Response.Status = 404
@@ -114,7 +116,9 @@ func (c *Controller) Update(ctx context.Context, req *UpdateReq) (res *BaseRes, 
 		if err != nil {
 			return Fail(err.Error()), err
 		}
-		c.Service.ModifyAfter(ctx, "Update", g.RequestFromCtx(ctx).GetMap())
+		if err = c.Service.ModifyAfter(ctx, "Update", g.RequestFromCtx(ctx).GetMap()); err != nil {
+			return nil, err
+		}
 		return Ok(data), err
 	}
 	g.RequestFromCtx(ctx).Response.Status = 404
@@ -152,11 +156,11 @@ func RegisterController(c IController) {
 	gconv.Struct(c, &sController)
 	if vconfig.Config.Eps {
 		model := sController.Service.GetModel()
-		columns := getModelInfo(ctx, sController.Perfix, model)
-		ModelInfo[sController.Perfix] = columns
+		columns := getModelInfo(ctx, sController.Prefix, model)
+		ModelInfo[sController.Prefix] = columns
 	}
 	g.Server().Group(
-		sController.Perfix, func(group *ghttp.RouterGroup) {
+		sController.Prefix, func(group *ghttp.RouterGroup) {
 			group.Middleware(MiddlewareHandlerResponse)
 			group.Bind(
 				c,
@@ -180,7 +184,9 @@ var ModelInfo = make(map[string][]*ColumnInfo)
 func getModelInfo(ctx g.Ctx, perfix string, model IModel) (columns []*ColumnInfo) {
 	fields, err := g.DB(model.GroupName()).TableFields(ctx, model.TableName())
 	if err != nil {
-		panic(err)
+		// 表不存在或数据库暂不可用时（如全新环境先执行迁移）跳过EPS字段信息，不阻断启动
+		g.Log().Warningf(ctx, "获取表 %s 字段信息失败: %v", model.TableName(), err)
+		return nil
 	}
 	// g.Log().Info(ctx, "fields", fields)
 	sortedFields := garray.NewArraySize(len(fields), len(fields))

@@ -33,7 +33,7 @@ func (s *DictInfoService) Data(ctx context.Context, types []string) (data interf
 	data = g.Map{}
 	for _, item := range typeData {
 		m := v.DBM(dictInfoModel)
-		result, err := m.Where("typeId=?", item["id"]).Fields("id", "name", "parentId", "typeId", "value").Order("orderNum asc").All()
+		result, err := m.Where("typeId", item["id"]).Fields("id", "name", "parentId", "typeId", "value").Order("orderNum asc").All()
 		if err != nil {
 			return nil, err
 		}
@@ -69,7 +69,7 @@ func delChildDict(id int64) error {
 		dictInfoModel = model.NewDictInfo()
 	)
 	m := v.DBM(dictInfoModel)
-	result, err := m.Where("parentId=?", id).Fields("id").All()
+	result, err := m.Where("parentId", id).Fields("id").All()
 	if err != nil {
 		return err
 	}
@@ -79,7 +79,7 @@ func delChildDict(id int64) error {
 	for _, v := range result {
 		delChildDict(v["id"].Int64())
 	}
-	_, err = m.Where("parentId=?", id).Delete()
+	_, err = m.Where("parentId", id).Delete()
 	return err
 }
 

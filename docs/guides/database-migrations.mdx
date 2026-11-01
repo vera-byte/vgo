@@ -1,0 +1,73 @@
+---
+title: "数据库与迁移"
+description: "PostgreSQL 方言约定、多模块迁移命令与软删除机制"
+---
+
+## 数据库约定
+
+- 主数据库为 **PostgreSQL 15+**（迁移文件为 PG 方言）
+- 时间字段：`createTime` / `updateTime` / `deletedAt`（camelCase，**引用时必须加双引号**）
+- 建表使用 `BIGSERIAL` 主键，列注释使用 `COMMENT ON COLUMN` 语法
+
+<Warning>
+PostgreSQL 将未加引号的标识符折叠为小写：`WHERE userId = 1` 会报 `column "userid" does not exist`。
+原始 SQL 中的 camelCase 列名必须写成 `"userId"`，或使用 `v.QuoteIdent()`。
+`Where("userId", v)` / `WhereIn("roleId", vs)` 等 gf 两参形式会自动引用，优先使用。
+</Warning>
+
+## 迁移命令
+
+基于 golang-migrate，**每个模块使用独立的迁移版本表**（`schema_migrations_<模块名>`），
+支持一条命令迁移全部模块：
+
+```bash
+go run . migrate \
+  --path 'modules/*/resource/migrates' \
+  --database 'postgres://user:pass@host:5432/db?sslmode=disable' \
+  --operation up
+```
+
+| 参数 | 说明 | 默认 |
+|------|------|------|
+| `--path` | 迁移目录（支持 `*` 通配多模块） | `resource/migrates` |
+| `--database` | DSN | 本地 PG 连接串 |
+| `--operation` | `up` / `down` / `version` / `force` | `up` |
+| `--steps` | 步数（0 = 全部） | `0` |
+
+单模块执行：
+
+```bash
+go run . migrate --path modules/base/resource/migrates --database '<dsn>' --operation up
+```
+
+迁移文件位于各模块 `resource/migrates/`，命名 `NNN_描述.up.sql` / `.down.sql`。
+
+<Note>
+空库可直接迁移：EPS 元数据生成遇到未就绪的表仅告警跳过，不阻断启动或迁移流程。
+</Note>
+
+## 软删除
+
+表含 `deletedAt` 列时，gf SoftTime 自动生效：
+
+- 查询自动追加 `"deletedAt" IS NULL`
+- `Delete()` 实际执行 `UPDATE ... SET "deletedAt" = now()`（行保留）
+
+手工 SQL 时注意自行过滤已删行。
+
+## 驱动加载
+
+`internal/loader/contrib.go` 通过 blank-import 注册数据库驱动与文件驱动：
+
+```go
+_ "github.com/vera-byte/vgo/contrib/drivers/pgsql"   // 按需启用 mysql/sqlite
+_ "github.com/vera-byte/vgo/contrib/files/local"     // 按需启用 minio/oss
+```
+
+## 备份与运维
+
+```bash
+make mysql-backup      # MySQL 备份脚本（scripts/mysql-backup.sh）
+```
+
+生产环境建议：定期 `pg_dump`、开启慢查询日志、连接池监控（gf gdb 默认连接池，可配 `MaxIdleConnTime`）。

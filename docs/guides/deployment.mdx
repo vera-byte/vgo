@@ -1,0 +1,98 @@
+---
+title: "部署"
+description: "生产部署清单、Docker Compose 与安全加固"
+---
+
+## 部署清单
+
+<Steps>
+  <Step title="准备基础设施">
+    PostgreSQL 15+（业务库）、Redis 7+（会话/验证码/集群函数）、对象存储（可选 minio/oss）
+  </Step>
+  <Step title="注入环境变量">
+    通过 systemd `EnvironmentFile`、K8s Secret 或容器 env 注入全部 `VGO_*` 变量。
+    **生产凭证必须全部轮换**（仓库历史中曾存在示例凭证，不得复用）。
+  </Step>
+  <Step title="执行迁移">
+    ```bash
+    ./vgo migrate --path 'modules/*/resource/migrates' \
+      --database 'postgres://…' --operation up
+    ```
+  </Step>
+  <Step title="启动服务">
+    ```bash
+    ./vgo server
+    # systemd: ExecStart=/opt/vgo/vgo server
+    ```
+  </Step>
+  <Step title="验收">
+    - `/api.json` 返回 OpenAPI 规范
+    - 登录 → 带 token 访问 `/admin/base/comm/permmenu` 成功
+    - 错误密码/验证码被拒绝；连续登录触发限流（429）
+  </Step>
+</Steps>
+
+## Docker Compose
+
+`docker-compose.yml` 提供本地开发用 PostgreSQL / MySQL / Redis（凭证来自 `.env`）：
+
+```bash
+cp .env.example .env   # 设置 POSTGRES_PASSWORD / MYSQL_* / VGO_*
+make pgsql-up redis-up # 或 make mysql-up
+```
+
+<Note>
+compose 中 PostgreSQL 钉定 `postgres:18`，数据卷挂载 `/var/lib/postgresql`（**父目录**）——
+PG 18+ 镜像不再接受旧式 `…/postgresql/data` 直接挂载，启动报 "unused mount/volume" 即此原因。
+`POSTGRES_DB=vtest`、`POSTGRES_USER=vtest`，与 `config.yaml` 的 database 配置对应。
+</Note>
+
+生产容器化建议：多阶段构建（`CGO_ENABLED=0 go build`）、只读根文件系统、
+Secret 注入环境变量、健康检查指向 `/api.json`。
+
+## 安全基线
+
+| 项 | 要求 |
+|----|------|
+| 凭证 | 全部外置环境变量；**轮换所有历史泄露凭证** |
+| JWT/会话密钥 | sa-token 使用随机 Token，无静态签发密钥 |
+| 传输 | 生产强制 HTTPS（反代终止 TLS） |
+| 上传 | 扩展名白名单 + 随机文件名；静态目录勿直接暴露用户内容 |
+| 限流 | 登录/刷新/验证码 20 rpm/每 IP；开放平台 60 rpm |
+| 日志 | 验证码/密码明文不落日志；对外错误统一脱敏 |
+| 数据库 | 最小权限账号；开启审计；定期备份 |
+| 超管 | 仅通过角色 `label=admin` 授权，禁止手工插入越权角色 |
+
+## 反向代理示例（Nginx）
+
+```nginx
+server {
+    listen 443 ssl;
+    server_name api.example.com;
+
+    client_max_body_size 100m;   # 与 server.clientMaxBodySize 一致
+
+    location / {
+        proxy_pass http://127.0.0.1:8001;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+<Warning>
+限流按 `r.GetClientIp()` 计算，反代后需正确透传 `X-Real-IP`/`X-Forwarded-For`，
+否则所有请求共享代理 IP 的配额。
+</Warning>
+
+## 升级
+
+```bash
+git pull
+go build -o vgo .
+./vgo migrate --path 'modules/*/resource/migrates' --database '<dsn>' --operation up
+systemctl restart vgo
+```
+
+迁移前备份数据库；`down` 迁移按模块版本表回滚。

@@ -2,13 +2,30 @@ package v
 
 import (
 	"context"
+	"regexp"
 
 	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
+	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
 )
+
+// orderFieldPattern 排序字段仅允许标识符（可带表名前缀），防止拼接注入。
+var orderFieldPattern = regexp.MustCompile(`^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)?$`)
+
+// safeOrderBy 校验排序参数并返回合法的字段与方向。
+func safeOrderBy(order, sort string) (field string, direction string, err error) {
+	if !orderFieldPattern.MatchString(order) {
+		return "", "", gerror.New("非法的排序字段")
+	}
+	direction = gstr.ToLower(sort)
+	if direction != "asc" && direction != "desc" {
+		return "", "", gerror.New("非法的排序方向")
+	}
+	return order, direction, nil
+}
 
 type IService interface {
 	ServiceAdd(ctx context.Context, req *AddReq) (data interface{}, err error)       // 新增
@@ -168,7 +185,11 @@ func (s *Service) ServiceList(ctx context.Context, req *ListReq) (data interface
 
 	// 如果 req.Order 和 req.Sort 均不为空 则添加排序
 	if !r.Get("order").IsEmpty() && !r.Get("sort").IsEmpty() {
-		m.Order(r.Get("order").String() + " " + r.Get("sort").String())
+		field, direction, e := safeOrderBy(r.Get("order").String(), r.Get("sort").String())
+		if e != nil {
+			return nil, e
+		}
+		m.Order(field, direction)
 		// m.OrderDesc("orderNum")
 	}
 	// 如果 ListQueryOp 不为空 则使用 ListQueryOp 进行查询
@@ -203,7 +224,6 @@ func (s *Service) ServiceList(ctx context.Context, req *ListReq) (data interface
 			if len(s.ListQueryOp.KeyWordField) > 0 {
 				builder := m.Builder()
 				for _, field := range s.ListQueryOp.KeyWordField {
-					g.DumpWithType(field)
 					// builder.WhereLike(field, "%"+r.Get("keyWord").String()+"%")
 					builder = builder.WhereOrLike(field, "%"+r.Get("keyWord").String()+"%")
 				}
@@ -305,7 +325,6 @@ func (s *Service) ServicePage(ctx context.Context, req *PageReq) (data interface
 			if len(s.PageQueryOp.KeyWordField) > 0 {
 				builder := m.Builder()
 				for _, field := range s.PageQueryOp.KeyWordField {
-					g.DumpWithType(field)
 					// builder.WhereLike(field, "%"+r.Get("keyWord").String()+"%")
 					builder = builder.WhereOrLike(field, "%"+r.Get("keyWord").String()+"%")
 				}
@@ -354,7 +373,11 @@ func (s *Service) ServicePage(ctx context.Context, req *PageReq) (data interface
 	}
 	// 如果 req.Order 和 req.Sort 均不为空 则添加排序
 	if !r.Get("order").IsEmpty() && !r.Get("sort").IsEmpty() {
-		m.Order(r.Get("order").String() + " " + r.Get("sort").String())
+		field, direction, e := safeOrderBy(r.Get("order").String(), r.Get("sort").String())
+		if e != nil {
+			return nil, e
+		}
+		m.Order(field, direction)
 	}
 
 	// 如果req.IsExport为true 则导出数据

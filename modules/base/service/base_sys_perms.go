@@ -4,7 +4,6 @@ import (
 	"context"
 
 	"github.com/gogf/gf/v2/database/gdb"
-	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/vera-byte/vgo/v"
 )
 
@@ -16,7 +15,7 @@ func NewBaseSysPermsService() *BaseSysPermsService {
 }
 
 // permmenu 方法
-func (c *BaseSysPermsService) Permmenu(ctx context.Context, roleIds []string) (res interface{}) {
+func (c *BaseSysPermsService) Permmenu(ctx context.Context, roleIds []string) (res interface{}, err error) {
 	type permmenu struct {
 		Perms []string   `json:"perms"`
 		Menus gdb.Result `json:"menus"`
@@ -25,29 +24,29 @@ func (c *BaseSysPermsService) Permmenu(ctx context.Context, roleIds []string) (r
 		baseSysMenuService = NewBaseSysMenuService()
 		admin              = v.GetAdmin(ctx)
 	)
-
+	perms, err := baseSysMenuService.GetPerms(roleIds, admin.IsAdmin)
+	if err != nil {
+		return nil, err
+	}
+	menus, err := baseSysMenuService.GetMenus(admin.RoleIds, admin.IsAdmin)
+	if err != nil {
+		return nil, err
+	}
 	res = &permmenu{
-		Perms: baseSysMenuService.GetPerms(roleIds),
-		Menus: baseSysMenuService.GetMenus(admin.RoleIds, admin.UserId == 1),
+		Perms: perms,
+		Menus: menus,
 	}
 
 	return
 
 }
 
-// refreshPerms(userId)
+// refreshPerms(userId) 刷新指定用户的 sa-token 角色与权限
 func (c *BaseSysPermsService) RefreshPerms(ctx context.Context, userId uint) (err error) {
-	var (
-		baseSysUserRoleService   = NewBaseSysRoleService()
-		baseSysMenuService       = NewBaseSysMenuService()
-		baseSysDepartmentService = NewBaseSysDepartmentService()
-		roleIds                  = baseSysUserRoleService.GetByUser(userId)
-		perms                    = baseSysMenuService.GetPerms(roleIds)
-	)
-	v.CacheManager.Set(ctx, "admin:perms:"+gconv.String(userId), perms, 0)
-	// 更新部门权限
-	departments := baseSysDepartmentService.GetByRoleIds(roleIds, userId == 1)
-	v.CacheManager.Set(ctx, "admin:department:"+gconv.String(userId), departments, 0)
-
+	roleIds, err := NewBaseSysRoleService().GetByUser(userId)
+	if err != nil {
+		return err
+	}
+	_, err = satokenSetupUserAuth(userId, roleIds)
 	return
 }

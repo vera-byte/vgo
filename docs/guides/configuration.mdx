@@ -1,0 +1,112 @@
+---
+title: "配置管理"
+description: "config.yaml 配置结构、VGO_* 环境变量与多配置源"
+---
+
+## 配置文件
+
+主配置位于 `manifest/config/config.yaml`（模板：`config.example.yaml`）。
+**所有密钥必须使用 `${VGO_*}` 环境变量占位符**，进程启动时自动展开：
+
+```yaml
+database:
+  default:
+    type: "pgsql"
+    host: "10.0.0.200"
+    port: "5432"
+    user: "vgov2"
+    pass: "${VGO_DB_PASS}"      # 环境变量注入
+    name: "vgov2"
+    createdAt: "createTime"
+    updatedAt: "updateTime"
+
+redis:
+  v:
+    address: "10.0.0.200:6379"
+    db: 0
+    pass: "${VGO_REDIS_PASS}"
+```
+
+展开机制实现在 `v/vconfig/envexpand.go`，同时覆盖：
+
+- `v.GetCfgWithDefault` 读取路径（JWT/OSS/业务配置）
+- `g.Cfg()` 全局适配器（`database.*` / `redis.*` 由 gdb、gredis 直接消费）
+
+<Note>
+占位符仅支持 `${VAR}` 形式；未设置的变量展开为空字符串。开发环境用 `make dev`（自动加载 `.env`）。
+</Note>
+
+## 环境变量一览
+
+| 变量 | 用途 | 示例 |
+|------|------|------|
+| `VGO_DB_PASS` | 业务库密码 | `your_db_password` |
+| `VGO_REDIS_PASS` | Redis 密码 | `your_redis_password` |
+| `VGO_OSS_ACCESS_KEY_ID` | minio/oss AccessKey | — |
+| `VGO_OSS_SECRET_ACCESS_KEY` | minio/oss SecretKey | — |
+| `MYSQL_ROOT_PASSWORD` | docker-compose MySQL root 密码 | — |
+| `MYSQL_PASSWORD` | docker-compose MySQL 业务库密码 | — |
+
+完整模板见仓库根目录 `.env.example`。
+
+## 服务配置
+
+```yaml
+server:
+  address: ":8001"
+  openapiPath: "/api.json"        # OpenAPI 规范输出
+  swaggerPath: "/swagger"         # Swagger UI
+  clientMaxBodySize: 104857600    # 上传上限 100MB
+
+logger:
+  level: "info"
+  stdout: true
+```
+
+## 模块配置
+
+```yaml
+modules:
+  base:
+    jwt:
+      sso: false                  # 预留：单点登录
+      token:
+        expire: 7200              # access token 有效期（秒）
+        refreshExpire: 1296000    # refresh token 有效期（秒，默认 15 天）
+    middleware:
+      authority:
+        enable: true              # 鉴权中间件开关
+      log:
+        enable: true              # 操作日志开关
+```
+
+<Note>
+sa-token 会话体系实际使用的有效期为 `expire`（Timeout）；`refreshExpire` 为前端刷新调度的提示值。
+当前 refresh token 的服务端 TTL 为 sa-token 默认 30 天，见 [已知问题](/known-issues)。
+</Note>
+
+## 文件存储
+
+```yaml
+v:
+  autoMigrate: false
+  eps: true                       # 启动时生成接口元数据（表未就绪时仅告警不阻断）
+  file:
+    mode: "local"                 # local | minio | oss
+    domain: "http://127.0.0.1:8002"
+    oss:
+      endpoint: "127.0.0.1:9000"
+      accessKeyID: "${VGO_OSS_ACCESS_KEY_ID}"
+      secretAccessKey: "${VGO_OSS_SECRET_ACCESS_KEY}"
+      bucketName: "vgo"
+      useSSL: false
+      location: "us-east-1"
+```
+
+上传文件统一校验扩展名白名单（jpg/png/pdf/office/压缩包/音视频等），
+**禁止** html/svg/js/php 等可执行或可内嵌脚本的类型；存储文件名随机生成，防止覆盖与伪造。
+
+## 多配置源
+
+`v/vconfig` 支持文件之外的配置适配器（consul、kubecm），可在 `initConfigManager` 中注册。
+配置值读取统一走 `v.GetCfgWithDefault(ctx, key, defaultValue)`，支持默认值与环境变量回退（`GetWithEnv`）。

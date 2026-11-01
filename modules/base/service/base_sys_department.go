@@ -13,7 +13,7 @@ type BaseSysDepartmentService struct {
 }
 
 // GetByRoleIds 获取部门
-func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) (res []uint) {
+func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) (res []uint, err error) {
 	var (
 		result                gdb.Result
 		BaseSysRoleDepartment = model.NewBaseSysRoleDepartment()
@@ -22,7 +22,10 @@ func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) 
 	if len(roleIds) > 0 {
 		// 如果是超级管理员，则返回所有部门
 		if isAdmin {
-			result, _ = v.DBM(s.Model).Fields("id").All()
+			result, err = v.DBM(s.Model).Fields("id").All()
+			if err != nil {
+				return nil, err
+			}
 			for _, v := range result {
 				vmap := v.Map()
 				if vmap["id"] != nil {
@@ -31,7 +34,10 @@ func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) 
 			}
 		} else {
 			// 如果不是超级管理员，则返回角色所在部门
-			result, _ = v.DBM(BaseSysRoleDepartment).Where("roleId IN (?)", roleIds).Fields("departmentId").All()
+			result, err = v.DBM(BaseSysRoleDepartment).WhereIn("roleId", roleIds).Fields("departmentId").All()
+			if err != nil {
+				return nil, err
+			}
 			for _, v := range result {
 				vmap := v.Map()
 				if vmap["departmentId"] != nil {

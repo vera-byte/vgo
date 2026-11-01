@@ -18,13 +18,13 @@ func NewBaseSysLogService() *BaseSysLogService {
 			Model: model.NewBaseSysLog(),
 			PageQueryOp: &v.QueryOp{
 				KeyWordField: []string{"name", "params", "ipAddr"},
-				Select:       "base_sys_log.*,user.name ",
+				Select:       `base_sys_log.*,"u"."name" `,
 				Join: []*v.JoinOp{
 					{
 						Model:     model.NewBaseSysUser(),
-						Alias:     "user",
+						Alias:     "u",
 						Type:      "LeftJoin",
-						Condition: "user.id = base_sys_log.userID",
+						Condition: `"u"."id" = "base_sys_log"."userId"`,
 					},
 				},
 			},
