@@ -1,0 +1,132 @@
+---
+title: "插件系统"
+description: "插件包安装/启停/卸载，插件为独立可执行程序，Hook 插件接管内建行为（如上传）"
+---
+
+## 概述
+
+插件模块（参照 [cool-admin-midway](https://github.com/cool-team-official/cool-admin-midway) 的 plugin 模块）支持上传 **ZIP 插件包**安装插件。插件本体是**独立可执行程序**（如 Go 编译的二进制，用 [`pluginsdk`](/guides/plugin-dev) 开发），宿主拉起进程并通过 **stdio JSON-RPC** 调用其方法；支持 **Hook 插件接管内建行为**（如 upload 上传）。
+
+<Note>
+插件**开发与打包**见 [插件开发指南](/guides/plugin-dev)（SDK 用法、plugin.json、平台二进制打包）。
+本页说明宿主侧机制。
+</Note>
+
+```mermaid
+flowchart LR
+    A[ZIP 插件包<br/>plugin.json + bin/平台/plugin] -->|install| B[(plugin_info<br/>+ 安装目录)]
+    B -->|启用/启动| C[spawn 可执行进程<br/>ready 握手]
+    C -->|hook: upload| D[接管文件上传]
+    C -->|普通插件| E[JSON-RPC invoke]
+    B -->|停用/卸载| F[终止进程<br/>upload 回退默认实现]
+```
+
+## 插件包规范
+
+ZIP 结构：
+
+```text
+plugin.zip
+├── plugin.json                 # 插件清单
+├── README.md                   # 使用说明（plugin.json.readme 指定）
+├── assets/logo.png             # Logo（plugin.json.logo 指定）
+└── bin/<goos>-<goarch>/plugin  # 可执行程序（按宿主平台匹配；bin/plugin 通用兜底）
+```
+
+`plugin.json` 示例：
+
+```json
+{
+  "key": "upload-marker",        // 唯一标识（不能为 plugin）
+  "name": "上传标记插件",
+  "version": "1.0.0",
+  "author": "tester",
+  "description": "说明",
+  "hook": "upload",              // Hook 名；同名 Hook 同时只能启用一个
+  "singleton": true,             // 单例：复用实例；false 每次调用新建
+  "readme": "readme.md",
+  "logo": "logo.png",
+  "config": {"domain": "http://127.0.0.1:8002"}
+}
+```
+
+插件代码契约（Go，用 `pluginsdk`）：
+
+```go
+type HelloPlugin struct{ pluginsdk.Base }
+
+func (p *HelloPlugin) Ready() { ... }                       // 可选：就绪回调
+func (p *HelloPlugin) Upload(ctx map[string]interface{}) (interface{}, error) {
+    return "result/" + ..., nil                            // Hook 方法
+}
+func main() { pluginsdk.Run(&HelloPlugin{}) }
+```
+
+## 接口（/admin/plugin/info）
+
+| 方法 | 路径 | 说明 |
+|------|------|------|
+| POST | `/install` | 安装插件（multipart `file` = ZIP，`force` 跳过检查） |
+| POST | `/page` / GET `/info` / `/list` | 查询（含 readme/logo/pluginJson/config） |
+| POST | `/add` `/update` `/delete` | 管理；**启用/停用/删除即时热生效** |
+| POST | `/reload` | 按 key 热重载插件 |
+
+安装检查语义（与参考一致）：`type 0` 信息不完整 / `1` 已存在将覆盖 / `2` 同名 Hook 插件已启用（互斥）/ `3` 通过。
+
+## 机制对照
+
+| 参考实现（cool-admin） | 本实现 |
+|----------------------|--------|
+| `eval(content)` 执行 `src/index.js` | **可执行程序 + stdio JSON-RPC**（`pluginsdk`） |
+| `new Plugin()` + `init(...)` | 进程启动 + `ready` 握手 |
+| `invoke(key, method, ...)` | `Invoke`/`InvokeHook` → RPC `invoke` |
+| `BasePlugin.cache` | RPC `cacheGet/cacheSet`（宿主 Redis/内存） |
+| `BasePlugin.pluginService` | RPC `pluginInvoke`（宿主路由到其他插件进程） |
+| `@baseDir` 配置占位 | 同样支持（SDK 解析为插件安装目录） |
+| `@Event` 事件总线 | 直接函数调用（单进程语义）；多进程部署需自行广播 |
+| Hook 插件替换默认上传 | `v.RegisterUploadHook`：有启用的 `upload` 插件时接管上传，否则回退 vfile |
+| 删除不走回收站 | 同样（`ServiceDelete` 覆写，清理安装目录） |
+
+## 生命周期语义
+
+| 操作 | 行为 |
+|------|------|
+| 安装 | 解析 ZIP → 写 `plugin_info`（同 key 覆盖、合并保留用户配置）→ 启用则即时加载 |
+| 启用（status=1） | 拉起进程 + `ready` 握手；**Hook 插件启用时自动禁用同 Hook 的其他插件** |
+| 停用（status=0） | 终止进程；Hook 插件停用后 `upload` 回退默认实现 |
+| 删除 | 终止进程 + 删除记录 + 清理安装目录（不进回收站） |
+| 启动 | 自动拉起全部启用插件（`InitAll`） |
+
+## 运行时契约
+
+- **`singleton: true`**：常驻进程；**`false`**：每次调用拉起独立进程（实例状态不保留）
+- **upload Hook 的 ctx**：`{files: [{data: 临时文件路径, filename}], fields: {...}}`
+- **配置解析**：`config` 支持 `@env` 多环境节点与 `@baseDir/` 路径占位
+- **调用超时**：单次方法调用 30s（`ready` 握手 10s）
+
+## 安全提示
+
+<Warning>
+安装插件 = **执行上传的 JavaScript 代码**，具备调用注入 API 的能力。仅限管理员安装可信来源插件；
+`/admin/plugin/info/*` 的权限点（`plugin:info:install` 等）应严格收口。
+</Warning>
+
+## 代码结构
+
+```text
+pluginsdk/                          # 插件开发 SDK（插件作者引用）
+├── plugin.go                       # Base / PluginInfo / Cache / PluginService
+└── server.go                       # stdio JSON-RPC 运行时 + 方法派发
+
+modules/plugin/                     # 宿主
+├── model/plugin_info.go            # plugin_info 表模型
+├── service/
+│   ├── plugin.go                   # 安装（解包可执行文件）/启停/卸载/热重载
+│   ├── center.go                   # 插件中心（进程注册表 + Hook 派发）
+│   ├── rpc.go                      # 进程管理 + JSON-RPC 客户端（含反向调用）
+│   └── upload_hook.go              # upload Hook 桥接
+├── controller/admin/plugin_info.go
+└── resource/migrates/              # 建表迁移
+```
+
+与参考实现的差异：插件由 JS 脚本改为**可执行程序**（Go 原生运行）；TS d.ts 工具不适用已移除；多进程事件总线简化为宿主内直调。

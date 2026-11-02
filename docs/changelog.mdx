@@ -31,6 +31,10 @@ description: "Vgo 重要版本与架构演进记录"
 - migrate 命令支持 `modules/*/resource/migrates` 多模块 + 独立版本表
 - 用户/日志列表 PG 适配（`string_agg`、JOIN 别名、GROUP BY）
 
+### 功能
+- **插件系统**：ZIP 插件包安装/启停/卸载；插件为**独立可执行程序**（pluginsdk + stdio JSON-RPC），Hook 插件可接管上传等内建行为；`vgo-tools plugin` 一键生成插件项目脚手架、`vgo-tools plugin-pack` 一键交叉编译多平台并打包安装 ZIP
+- **数据回收**：删除自动快照入回收站（），支持查询/恢复/按保留期清理（每日 cron），参照 cool-admin-midway recycle 模块
+
 ### 工程化
 - 多模块 `replace` 本地化：克隆即可构建（`GOWORK=off` 实证），发布走模块 tag
 - 清理 gf v1.16.9 死依赖、initdb 死代码、`Perfix`/`package demo`/`tast_start_func.go` 等命名问题

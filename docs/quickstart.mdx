@@ -84,24 +84,22 @@ description: "从零启动 Vgo：环境要求、配置、建库、启动与登�
 
 ## 种子数据
 
-全新数据库中用户表为空，可插入最小可用管理员（密码 `123456` 的 bcrypt 哈希仅用于本地开发）：
+**无需手工初始化**：每个模块的 `resource/migrates/*_init_data.up.sql` 会随 `migrate` 自动执行，
+建表后立即写入种子数据（管理员、菜单、角色、部门、字典等，共 103 行，带 `ON CONFLICT DO NOTHING` 幂等保护）。
 
-```sql
-INSERT INTO base_sys_user (id, name, username, password, "passwordV", status)
-VALUES (1, '超级管理员', 'admin', '$2a$10$rGc2iXrW//fZMB4htgVHDuJ/DkMBPdLAIP44PuFoEOkHjrxqCUC52', 1, 1);
-INSERT INTO base_sys_role (id, "userId", name, label, relevance) VALUES (1, '1', '超级管理员', 'admin', 1);
-INSERT INTO base_sys_user_role ("userId", "roleId") VALUES (1, 1);
-```
+- 管理员账号：`admin` / `123456`（本地开发默认值，密码会在首次登录自动升级为 bcrypt）
+- `base_sys_role.label = 'admin'` 是超管的唯一标识（数据驱动），登录后自动获得 `*` 权限
 
 <Note>
-`base_sys_role.label = 'admin'` 是超管的唯一标识（数据驱动），登录后自动获得 `*` 权限。
+种子数据以 **迁移 SQL 为准**（`*_init_data.up.sql`）。需要调整初始数据时直接改这些 SQL 文件，
+不要引入其他数据源，避免多份数据不一致。
 </Note>
 
 ## 常用命令
 
 ```bash
-make test    # 全模块单元测试
-make vet     # 全模块静态检查
-make dev     # 开发运行
-go run . migrate --path 'modules/*/resource/migrates' --database '<dsn>' --operation up
+make test          # 全模块单元测试
+make vet           # 全模块静态检查
+make dev           # 开发运行
+go run main.go migrate   # 迁移 + 种子（DSN 默认取 config.yaml，密钥走 .env）
 ```

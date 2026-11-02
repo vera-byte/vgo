@@ -42,6 +42,9 @@
               "guides/api-conventions",
               "guides/database-migrations",
               "guides/tasks",
+              "guides/data-recycle",
+              "guides/plugin-system",
+              "guides/plugin-dev",
               "guides/openapi-signing"
             ]
           },
