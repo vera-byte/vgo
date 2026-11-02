@@ -61,10 +61,11 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 	}
 	if legacy {
 		// 旧 MD5 哈希登录成功后升级为 bcrypt 存储
-		if hashed, e := hashPassword(password); e == nil {
-			_, _ = v.DBM(baseSysUser).Where("id=?", user.ID).Update(g.Map{"password": hashed})
-		} else {
+		hashed, e := hashPassword(password)
+		if e != nil {
 			g.Log().Warning(ctx, "密码哈希升级失败:", e)
+		} else if _, e = v.DBM(baseSysUser).Where("id", user.ID).Data(g.Map{"password": hashed}).Update(); e != nil {
+			g.Log().Warning(ctx, "密码哈希升级落库失败:", e)
 		}
 	}
 

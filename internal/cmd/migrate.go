@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -12,6 +13,7 @@ import (
 	"github.com/gogf/gf/v2/os/gcmd"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/os/gres"
+	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
@@ -37,9 +39,9 @@ func init() {
 // 返回值: error - 错误信息
 func MigrateFunc(ctx context.Context, parser *gcmd.Parser) error {
 	// 获取命令行参数
-	path := parser.GetOpt("path", "resource/migrates").String()
+	path := parser.GetOpt("path", "modules/*/resource/migrates").String()
 
-	database := parser.GetOpt("database", "postgres://postgres:123456@localhost:5432/vgo?sslmode=disable").String()
+	database := parser.GetOpt("database", defaultMigrateDSN(ctx)).String()
 	operation := parser.GetOpt("operation", "up").String()
 	steps := parser.GetOpt("steps", "0").Int()
 
@@ -154,6 +156,29 @@ func runMigrateForModules(ctx context.Context, pathPattern, database, operation 
 	}
 
 	return nil
+}
+
+// defaultMigrateDSN 从 config.yaml 的 database.default 生成默认 PostgreSQL DSN，
+// 使 `go run main.go migrate` 无需显式传参即可运行。
+func defaultMigrateDSN(ctx context.Context) string {
+	node, err := g.Cfg().Get(ctx, "database.default")
+	if err != nil || node.IsEmpty() {
+		return ""
+	}
+	cfg := node.Map()
+	host := gconv.String(cfg["host"])
+	port := gconv.String(cfg["port"])
+	user := gconv.String(cfg["user"])
+	pass := gconv.String(cfg["pass"])
+	name := gconv.String(cfg["name"])
+	if host == "" || name == "" {
+		return ""
+	}
+	if port == "" {
+		port = "5432"
+	}
+	return fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable",
+		url.QueryEscape(user), url.QueryEscape(pass), host, port, name)
 }
 
 // moduleNameFromMigratePath 从迁移目录路径（如 modules/base/resource/migrates）中提取模块名（base）。
