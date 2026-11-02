@@ -13,7 +13,6 @@ require (
 	github.com/vera-byte/vgo/modules/dict v1.1.0
 	github.com/vera-byte/vgo/modules/openapi v1.1.0
 	github.com/vera-byte/vgo/modules/plugin v1.1.0
-	github.com/vera-byte/vgo/pluginsdk v1.1.0
 	github.com/vera-byte/vgo/modules/recycle v1.1.0
 	github.com/vera-byte/vgo/modules/space v1.1.0
 	github.com/vera-byte/vgo/modules/task v1.1.0
@@ -88,7 +87,6 @@ replace (
 	github.com/vera-byte/vgo/modules/dict => ./modules/dict
 	github.com/vera-byte/vgo/modules/openapi => ./modules/openapi
 	github.com/vera-byte/vgo/modules/plugin => ./modules/plugin
-	github.com/vera-byte/vgo/pluginsdk => ./pluginsdk
 	github.com/vera-byte/vgo/modules/recycle => ./modules/recycle
 	github.com/vera-byte/vgo/modules/space => ./modules/space
 	github.com/vera-byte/vgo/modules/task => ./modules/task

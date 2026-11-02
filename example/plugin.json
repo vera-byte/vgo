@@ -1,0 +1,16 @@
+{
+    "key": "demo",
+    "name": "演示插件",
+    "hook": "",
+    "singleton": true,
+    "version": "1.0.0",
+    "description": "vgo 插件开发示例：展示 SDK 的 pluginInfo/cache/pluginService 与 Hook 方法",
+    "author": "vgo",
+    "logo": "assets/logo.svg",
+    "readme": "README.md",
+    "config": {
+        "greeting": "hello from plugin",
+        "greetingFile": "@baseDir/README.md",
+        "domain": "https://api.example.com"
+    }
+}

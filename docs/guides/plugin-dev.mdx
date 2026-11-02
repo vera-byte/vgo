@@ -28,6 +28,10 @@ vgo-tools plugin my-plugin --key hello --name "Hello插件"
 生成完整项目模板（`plugin.json` / `main.go` / `go.mod` / `README.md`），
 直接进入第 2/3 步即可。
 
+仓库内置完整可运行示例 [`example/`](https://github.com/vera-byte/vgo/tree/master/example)：
+演示 `pluginInfo` / `cache` / `pluginService` 与配置 `@baseDir/` 路径解析，
+打包安装后即可调用（见下文 invoke）。
+
 | 选项 | 说明 | 默认 |
 |------|------|------|
 | `dst` | 目标目录 | 当前目录 |
@@ -35,8 +39,8 @@ vgo-tools plugin my-plugin --key hello --name "Hello插件"
 | `--name` | 插件名称 | 同 key |
 
 <Note>
-生成的 `go.mod` 依赖 `github.com/vera-byte/vgo/pluginsdk`；若尚未发版或本地调试，
-在 go.mod 追加 `replace github.com/vera-byte/vgo/pluginsdk => <vgo工作区>/pluginsdk`。
+生成的 `go.mod` 依赖 `github.com/vera-byte/vgo/v` 的 pluginsdk 包；若尚未发版或本地调试，
+在 go.mod 追加 `replace github.com/vera-byte/vgo/v => <vgo工作区>/v`。
 </Note>
 
 ### 1. 编写插件
@@ -47,7 +51,7 @@ package main
 import (
     "fmt"
 
-    "github.com/vera-byte/vgo/pluginsdk"
+    "github.com/vera-byte/vgo/v/pluginsdk"
 )
 
 // HelloPlugin 插件结构体：嵌入 pluginsdk.Base 获得 pluginInfo/cache/pluginService
@@ -159,6 +163,14 @@ curl -X POST http://host:8001/admin/plugin/info/install \
 
 安装即启用（status=1，进程拉起 + Ready 握手）。启停/卸载/热重载通过
 `/admin/plugin/info/update|delete|reload` 即时生效。
+
+调用插件方法（演示/联调用；生产调用建议服务端 `service.Invoke`）：
+
+```bash
+curl -X POST http://host:8001/admin/plugin/info/invoke \
+  -H "Authorization: <token>" -H "Content-Type: application/json" \
+  -d '{"key":"demo","method":"Greet","params":["vgo"]}'
+```
 
 ## SDK API
 

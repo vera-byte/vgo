@@ -148,7 +148,8 @@ func packPlugin(dir, output, platforms, mainPkg string) (err error) {
 		fmt.Printf("   构建 %s ... ", platform)
 		cmdBuild := exec.Command("go", "build", "-trimpath", "-ldflags", "-s -w", "-o", outBin, mainPkg)
 		cmdBuild.Dir = absDir
-		cmdBuild.Env = append(os.Environ(), "CGO_ENABLED=0", "GOOS="+goos, "GOARCH="+goarch)
+		// 插件项目按自身 go.mod 独立构建，不受宿主仓库 go.work 影响
+		cmdBuild.Env = append(os.Environ(), "CGO_ENABLED=0", "GOWORK=off", "GOOS="+goos, "GOARCH="+goarch)
 		cmdBuild.Stdout = os.Stdout
 		cmdBuild.Stderr = os.Stderr
 		if err = cmdBuild.Run(); err != nil {

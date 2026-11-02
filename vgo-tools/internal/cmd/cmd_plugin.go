@@ -104,7 +104,7 @@ func pluginTemplateFiles(key, name string) map[string]string {
 import (
 	"fmt"
 
-	"github.com/vera-byte/vgo/pluginsdk"
+	"github.com/vera-byte/vgo/v/pluginsdk"
 )
 
 // MyPlugin 插件：嵌入 pluginsdk.Base 获得 pluginInfo/cache/pluginService
@@ -147,7 +147,7 @@ func main() {
 
 go 1.27.3
 
-require github.com/vera-byte/vgo/pluginsdk v1.1.0
+require github.com/vera-byte/vgo/v v1.1.0
 `, key),
 
 		"README.md": fmt.Sprintf(`# %s
@@ -188,7 +188,7 @@ go mod tidy    # 获取 pluginsdk
 若 pluginsdk 尚未发版或需要本地调试，在 go.mod 中追加：
 
 `+"```"+`
-replace github.com/vera-byte/vgo/pluginsdk => ../vgo/pluginsdk
+replace github.com/vera-byte/vgo/v => ../vgo/v
 `+"```"+`
 
 ## 打包
