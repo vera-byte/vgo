@@ -38,6 +38,7 @@
             "pages": [
               "guides/configuration",
               "guides/authentication",
+              "guides/user-module",
               "guides/crud-framework",
               "guides/api-conventions",
               "guides/database-migrations",

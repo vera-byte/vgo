@@ -9,4 +9,5 @@ import (
 	_ "github.com/vera-byte/vgo/modules/recycle"
 	_ "github.com/vera-byte/vgo/modules/space"
 	_ "github.com/vera-byte/vgo/modules/task"
+	_ "github.com/vera-byte/vgo/modules/user"
 )

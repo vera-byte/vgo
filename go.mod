@@ -16,6 +16,7 @@ require (
 	github.com/vera-byte/vgo/modules/recycle v1.1.0
 	github.com/vera-byte/vgo/modules/space v1.1.0
 	github.com/vera-byte/vgo/modules/task v1.1.0
+	github.com/vera-byte/vgo/modules/user v1.1.0
 	github.com/vera-byte/vgo/v v1.1.0
 )
 
@@ -90,5 +91,6 @@ replace (
 	github.com/vera-byte/vgo/modules/recycle => ./modules/recycle
 	github.com/vera-byte/vgo/modules/space => ./modules/space
 	github.com/vera-byte/vgo/modules/task => ./modules/task
+	github.com/vera-byte/vgo/modules/user => ./modules/user
 	github.com/vera-byte/vgo/v => ./v
 )

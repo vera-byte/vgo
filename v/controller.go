@@ -77,7 +77,12 @@ func (c *Controller) Add(ctx context.Context, req *AddReq) (res *BaseRes, err er
 		if err != nil {
 			return Fail(err.Error()), err
 		}
-		err = c.Service.ModifyAfter(ctx, "Add", g.RequestFromCtx(ctx).GetMap())
+		// 将新建记录 id 带入修改后钩子（钩子常需按新 id 联动处理）
+		param := g.RequestFromCtx(ctx).GetMap()
+		if m, ok := data.(g.Map); ok && m["id"] != nil {
+			param["id"] = m["id"]
+		}
+		err = c.Service.ModifyAfter(ctx, "Add", param)
 		if err != nil {
 			return Fail(err.Error()), err
 		}
