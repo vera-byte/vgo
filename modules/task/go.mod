@@ -5,8 +5,8 @@ go 1.27.3
 require (
 	github.com/gogf/gf/v2 v2.10.4
 	github.com/robfig/cron v1.2.0
-	github.com/vera-byte/vgo v1.1.0
-	github.com/vera-byte/vgo/v v1.1.0
+	github.com/vera-byte/vgo v1.2.0
+	github.com/vera-byte/vgo/v v1.2.0
 )
 
 require (

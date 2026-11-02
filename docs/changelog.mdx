@@ -3,7 +3,24 @@ title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
 
-## v1.1.0（2026-11）—— 现代化改造（当前）
+## v1.2.0（2026-11）—— 用户模块与插件工具链（当前）
+
+### 新增
+- **用户模块（C 端）**：手机验证码登录（自动注册）、密码登录（bcrypt）、微信小程序登录（code2session + 手机号解密）、个人资料、收货地址（归属过滤防 IDOR、默认地址互斥）
+  - 会话用 sa-token-go `integrations/gf`（独立 StpLogic，与管理端会话隔离），登录响应 `{expire,token,refreshExpire,refreshToken}` 契约不变；改密强制下线
+  - 短信验证码经插件分发（`pluginService.Invoke`）
+- **插件调用接口**：`POST /admin/plugin/info/invoke` 直接调用插件导出方法（演示/联调用）
+- **`example/` 插件 demo**：完整可运行示例，覆盖 pluginInfo/cache/pluginService 与 `@baseDir/` 配置路径解析
+
+### 变更（破坏性）
+- **pluginsdk 并入 v 模块**：import 路径 `github.com/vera-byte/vgo/pluginsdk` → `github.com/vera-byte/vgo/v/pluginsdk`，旧独立模块不再单独发版；脚手架模板与文档同步更新
+
+### 修复
+- 日志中间件 multipart 二进制请求体入库崩溃（PNG 魔数 0x89 破坏 UTF-8）；日志参数脱敏/截断（已知问题 #31）
+- 通用 CRUD Add 钩子把新建 id 传入 ModifyAfter（修复默认地址被后置钩子误清）
+- `vgo-tools plugin-pack` 构建隔离 `GOWORK=off`（插件项目独立于宿主 go.work）
+
+## v1.1.0（2026-11）—— 现代化改造
 
 ### 平台升级
 - **Go 1.24 → 1.27.3**，全模块 go 声明同步

@@ -5,7 +5,7 @@ go 1.27.3
 require (
 	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.10.4
 	github.com/gogf/gf/v2 v2.10.4
-	github.com/vera-byte/vgo/v v1.1.0
+	github.com/vera-byte/vgo/v v1.2.0
 	gorm.io/driver/postgres v1.6.0
 	gorm.io/gorm v1.31.0
 )
