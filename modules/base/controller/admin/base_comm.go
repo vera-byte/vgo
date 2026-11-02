@@ -3,6 +3,8 @@ package admin
 import (
 	"context"
 
+	"github.com/gogf/gf/v2/errors/gerror"
+
 	"github.com/gogf/gf/v2/frame/g"
 	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/service"
@@ -70,6 +72,17 @@ func (c *BaseCommController) UploadMode(ctx context.Context, req *v1.BaseCommUpl
 
 // Upload 方法
 func (c *BaseCommController) Upload(ctx context.Context, req *v1.BaseCommUploadReq) (res *v.BaseRes, err error) {
+	// 存在启用中的 upload Hook 插件时由插件接管上传
+	if v.UploadHook != nil {
+		data, e := v.UploadHook(ctx)
+		if e == nil {
+			res = v.Ok(data)
+			return
+		}
+		if !gerror.Is(e, v.ErrNoUploadHook) {
+			return nil, e
+		}
+	}
 	data, err := v.File().Upload(ctx)
 	res = v.Ok(data)
 	return

@@ -12,6 +12,9 @@ require (
 	github.com/vera-byte/vgo/modules/base v1.1.0
 	github.com/vera-byte/vgo/modules/dict v1.1.0
 	github.com/vera-byte/vgo/modules/openapi v1.1.0
+	github.com/vera-byte/vgo/modules/plugin v1.1.0
+	github.com/vera-byte/vgo/pluginsdk v1.1.0
+	github.com/vera-byte/vgo/modules/recycle v1.1.0
 	github.com/vera-byte/vgo/modules/space v1.1.0
 	github.com/vera-byte/vgo/modules/task v1.1.0
 	github.com/vera-byte/vgo/v v1.1.0
@@ -23,14 +26,18 @@ require (
 	github.com/clbanning/mxj/v2 v2.7.0 // indirect
 	github.com/clipperhouse/displaywidth v0.11.0 // indirect
 	github.com/clipperhouse/uax29/v2 v2.7.0 // indirect
+	github.com/dlclark/regexp2/v2 v2.11.0 // indirect
+	github.com/dop251/goja v0.0.0-20261102140139-622d10077b6c // indirect
 	github.com/emirpasic/gods/v2 v2.0.0-alpha // indirect
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/fsnotify/fsnotify v1.10.1 // indirect
 	github.com/go-logr/logr v1.4.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
+	github.com/go-sourcemap/sourcemap v2.1.3+incompatible // indirect
 	github.com/goccy/go-json v0.10.6 // indirect
 	github.com/gogf/gf/contrib/drivers/pgsql/v2 v2.10.4 // indirect
 	github.com/golang-jwt/jwt/v5 v5.3.1 // indirect
+	github.com/google/pprof v0.0.0-20230207041349-798e818bf904 // indirect
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/grokify/html-strip-tags-go v0.1.0 // indirect
@@ -80,6 +87,9 @@ replace (
 	github.com/vera-byte/vgo/modules/base => ./modules/base
 	github.com/vera-byte/vgo/modules/dict => ./modules/dict
 	github.com/vera-byte/vgo/modules/openapi => ./modules/openapi
+	github.com/vera-byte/vgo/modules/plugin => ./modules/plugin
+	github.com/vera-byte/vgo/pluginsdk => ./pluginsdk
+	github.com/vera-byte/vgo/modules/recycle => ./modules/recycle
 	github.com/vera-byte/vgo/modules/space => ./modules/space
 	github.com/vera-byte/vgo/modules/task => ./modules/task
 	github.com/vera-byte/vgo/v => ./v

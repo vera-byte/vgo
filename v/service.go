@@ -123,6 +123,19 @@ func (s *Service) ServiceAdd(ctx context.Context, req *AddReq) (data interface{}
 func (s *Service) ServiceDelete(ctx context.Context, req *DeleteReq) (data interface{}, err error) {
 	ids := g.RequestFromCtx(ctx).Get("ids").Slice()
 	m := g.DB(s.Model.GroupName()).Model(s.Model.TableName())
+	// 删除前先做回收站快照（由 modules/recycle 注册）；快照失败则中止删除，防止数据不可恢复
+	if deleteRecorder != nil {
+		var rows gdb.Result
+		rows, err = m.Clone().WhereIn("id", ids).All()
+		if err != nil {
+			return
+		}
+		if len(rows) > 0 {
+			if err = deleteRecorder(ctx, s.Model.GroupName(), s.Model.TableName(), rows); err != nil {
+				return
+			}
+		}
+	}
 	data, err = m.WhereIn("id", ids).Delete()
 
 	return

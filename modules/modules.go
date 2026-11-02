@@ -5,6 +5,8 @@ import (
 	_ "github.com/vera-byte/vgo/modules/base"
 	_ "github.com/vera-byte/vgo/modules/dict"
 	_ "github.com/vera-byte/vgo/modules/openapi"
+	_ "github.com/vera-byte/vgo/modules/plugin"
+	_ "github.com/vera-byte/vgo/modules/recycle"
 	_ "github.com/vera-byte/vgo/modules/space"
 	_ "github.com/vera-byte/vgo/modules/task"
 )
