@@ -22,7 +22,7 @@ type IController interface {
 	Page(ctx context.Context, req *PageReq) (res *BaseRes, err error)
 }
 type Controller struct {
-	Prefix  string     `json:"perfix"`
+	Prefix  string     `json:"prefix"`
 	Api     g.ArrayStr `json:"api"`
 	Service IService   `json:"service"`
 }
@@ -182,11 +182,11 @@ type ColumnInfo struct {
 	Type         string `json:"type"`
 }
 
-// ModelInfo 路由perfix	对应的model信息
+// ModelInfo 路由prefix	对应的model信息
 var ModelInfo = make(map[string][]*ColumnInfo)
 
 // getModelInfo 获取模型信息
-func getModelInfo(ctx g.Ctx, perfix string, model IModel) (columns []*ColumnInfo) {
+func getModelInfo(ctx g.Ctx, prefix string, model IModel) (columns []*ColumnInfo) {
 	fields, err := g.DB(model.GroupName()).TableFields(ctx, model.TableName())
 	if err != nil {
 		// 表不存在或数据库暂不可用时（如全新环境先执行迁移）跳过EPS字段信息，不阻断启动
