@@ -3,7 +3,14 @@ title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
 
-## v1.2.0（2026-11）—— 用户模块与插件工具链（当前）
+## v1.2.1（2026-11）—— vgo-tools init 模板修复（当前）
+
+- **init 模板对齐当前框架**（模板源 `simple` 分支）：模块清单补 `openapi/plugin/recycle/user`（8 模块）、移除模板内 `vgo-tools/` 目录、`go 1.18 → 1.27.3`
+- 模板配置切 PG + `${VGO_*}` 占位符（附 `.env.example`，`.gitignore` 忽略 `.env`）
+- **模板 go.mod 钉 v1.2.0 依赖集**：历史 tag v1.10.x 在 Go proxy 残留且语义版本高于 v1.2.0，裸 `go mod tidy` 会解析到旧版混搭（`v.NewVgo`/`v.QuoteIdent` 缺失）编译失败；生成项目实测 `tidy + GOWORK=off build` 通过
+- （附）`Perfix` → `Prefix` 命名收尾：**json tag 契约改为 `prefix`**（此前为兼容保留 `perfix`，已确认接受；前端如有依赖需同步）
+
+## v1.2.0（2026-11）—— 用户模块与插件工具链
 
 ### 新增
 - **用户模块（C 端）**：手机验证码登录（自动注册）、密码登录（bcrypt）、微信小程序登录（code2session + 手机号解密）、个人资料、收货地址（归属过滤防 IDOR、默认地址互斥）
