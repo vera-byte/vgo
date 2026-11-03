@@ -19,7 +19,7 @@ import (
 
 	_ "github.com/vera-byte/vgo/contrib/drivers/pgsql"
 
-	_ "github.com/vera-byte/vgo/modules"
+	_ "vgo-simple/modules"
 
 	"github.com/gogf/gf/v2/os/gctx"
 
