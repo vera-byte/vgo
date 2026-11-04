@@ -3,7 +3,13 @@ title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
 
-## v1.2.1（2026-11）—— vgo-tools init 模板修复（当前）
+## v1.2.2（2026-11）—— 命令体系共享与 init 模板对齐（当前）
+
+- **命令体系迁移 `v/vcmd` 公开包（破坏性）**：`internal/cmd`（registry/server/migrate/pack）迁至 `github.com/vera-byte/vgo/v/vcmd`——生成项目与 vgo 主仓共享同一套命令树（`server`/`migrate`/`pack`/`utils` + 各模块 CommandProvider 命令），根因是 Go internal 规则禁止生成项目 import 原包，模块命令此前在 init 项目里无人消费、migrate 缺失、`v.NewVgo()` 从不执行
+- **init 模板对齐现行入口**：main.go/internal 改为 vcmd 形态 + `internal/loader`；删除模板内 2024 年旧 `internal/cmd`；配置/依赖钉 v1.2.2
+- **`vgo-tools module` 修复**：模板脚手架 `modules/demo` 缺失致 nil panic（P0）、错误 exit=0（P1）、描述不符（P2）、go.mod 解析误匹配（P3）——脚手架按现行范式补回（model/service/controller/api/migrates），新增包名合法化与 `modules/modules.go` 自动接线
+
+## v1.2.1（2026-11）—— vgo-tools init 模板修复
 
 - **init 模板对齐当前框架**（模板源 `simple` 分支）：模块清单补 `openapi/plugin/recycle/user`（8 模块）、移除模板内 `vgo-tools/` 目录、`go 1.18 → 1.27.3`
 - 模板配置切 PG + `${VGO_*}` 占位符（附 `.env.example`，`.gitignore` 忽略 `.env`）
