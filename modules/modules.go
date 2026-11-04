@@ -10,4 +10,7 @@ import (
 	_ "github.com/vera-byte/vgo/modules/space"
 	_ "github.com/vera-byte/vgo/modules/task"
 	_ "github.com/vera-byte/vgo/modules/user"
+
+	// 示例模块（随脚手架生成，可删除）
+	_ "vgo-simple/modules/demo"
 )

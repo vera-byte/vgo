@@ -1,32 +1,17 @@
 package main
 
 import (
-	_ "vgo-simple/internal/packed"
-
-	_ "github.com/gogf/gf/contrib/nosql/redis/v2"
-
-	_ "github.com/vera-byte/vgo/contrib/files/local"
-
-	// Minio，按需启用
-	// _ "github.com/vera-byte/vgo/contrib/files/minio"
-
-	// 阿里云OSS，按需启用
-	// _ "github.com/vera-byte/vgo/contrib/files/oss"
-
-	// _ "github.com/vera-byte/vgo/contrib/drivers/sqlite"
-
-	_ "github.com/vera-byte/vgo/contrib/drivers/mysql"
-
-	_ "github.com/vera-byte/vgo/contrib/drivers/pgsql"
-
-	_ "vgo-simple/modules"
-
 	"github.com/gogf/gf/v2/os/gctx"
+	"github.com/vera-byte/vgo/v/vcmd"
 
-	"vgo-simple/internal/cmd"
+	_ "vgo-simple/internal/loader"
+	_ "vgo-simple/modules"
 )
 
 func main() {
 	// gres.Dump()
-	cmd.Main.Run(gctx.New())
+	// 注册模块中的命令
+	vcmd.GetRegistry().RegisterCommands()
+	vcmd.Root.Name = "vgo-simple"
+	vcmd.Root.Run(gctx.New())
 }
