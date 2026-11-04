@@ -1,0 +1,98 @@
+---
+title: "发布流程"
+description: "手动发布新版本的完整清单：模板打包、lockstep 版本、tag 与流水线、发布验证"
+---
+
+本项目的版本发布由人工触发、流水线自动收尾。照本清单从上到下执行即可。
+
+## 0. 前置检查
+
+```bash
+git checkout master && git status        # 工作区必须干净
+make vet && make test                    # 门禁全绿
+cd vgo-tools && go test ./...            # 工具链测试
+```
+
+<Warning>
+`release.sh` 会检查 master 分支与干净工作区，有未提交改动会直接拒绝。
+</Warning>
+
+## 1. 更新模板（仅当模板有改动）
+
+`simple` 分支是 `vgo-tools init` 内嵌模板的源。模板改动（入口、`modules/`、`manifest/` 等）先在该分支完成：
+
+```bash
+git checkout simple        # 建议用独立 worktree，避免切分支搅动工作区
+# ...修改模板内容...
+git add -A && git commit -m "模板：..." && git push origin simple
+```
+
+<Note>
+模板 `go.mod` 钉的是**最低要求版本**（MVS 下限，可被依赖抬升，不随发版漂移）。发版前核对钉版本 ≥ 模板代码所需 API 的引入版本——钉低了 init 产物会缺符号（v1.2.4 热修的教训）。
+</Note>
+
+## 2. 版本号与打包
+
+```bash
+./pre-release.sh vX.Y.Z
+```
+
+自动完成两件事：
+
+1. 重写 `vgo-tools/internal/cmd/version.go` 的 `binVersion`
+2. 从远端 `simple` 分支 clone 并 `gf pack` 重新生成 `vgo-tools/internal/packed/vgo-simple.go`
+
+## 3. master 提交
+
+- 功能/修复改动按逻辑分组单独提交（中文标题 + 要点体）
+- 发布提交 `发布 vX.Y.Z：<主题>`，包含：
+  - 打包产物 `vgo-tools/internal/packed/vgo-simple.go` 与 `version.go`
+  - `docs/changelog.mdx`：新增版本条目、把上一版的"（当前）"标记挪过来
+  - `任务清单.md`：变更记录追加一行
+- **涉及框架变更时**做 lockstep 版本 bump：把全部 `github.com/vera-byte/vgo/...` 的 require 换成新版本（根 `go.mod`、`modules/*`、`contrib/*/*`、`v/`、`vgo-tools`、`example`、模板 `go.mod`）。纯工具链热修可省略
+
+## 4. 发布与打 tag
+
+```bash
+./release.sh vX.Y.Z          # 推 master + 打 root tag vX.Y.Z
+git tag v/vX.Y.Z             # 手动补 v 模块 tag（autotag 不覆盖 v/）
+git push origin v/vX.Y.Z
+```
+
+## 5. 自动流水线
+
+root tag 推送后 GitHub Actions 自动执行：
+
+| 流水线 | 作用 |
+|--------|------|
+| autotag.yml | 给每个含 `go.mod` 的模块打 `<dir>/vX.Y.Z`（contrib×6、modules×8、vgo-tools，lockstep） |
+| release.yml | 构建 vgo-tools 多平台二进制 → Release 产物 |
+| ci.yml | build（GOWORK=off）+ vet + test |
+
+## 6. 发布验证
+
+```bash
+git fetch --tags && git tag | grep vX.Y.Z   # 应为 17 个（root + v/v + 15 子模块）
+```
+
+- Actions 三条流水线全绿
+- 真源抽查：从 Releases 下载 vgo-tools → `init` 测试项目 → `go mod tidy && GOWORK=off go build` → `go run main.go migrate` → 跑几个模块命令
+
+## 版本号约定
+
+| 场景 | 版本 |
+|------|------|
+| 新功能 / 破坏性变更 | minor（如 v1.3.0），破坏性写进 changelog |
+| 修复 / 工具链 | patch（如 v1.2.5） |
+
+## 红线
+
+<Warning>
+- **不能发 v2.x**：模块路径无 `/v2` 后缀，Go SIV 会拒绝（要发 v2 需全部模块路径改 `/v2` 并重写 import，属独立工程）。
+- **tag 不可移动**：Go proxy 不可变，发错只能热修下一版，不要 force 改 tag。
+- **历史 tag v1.10.x 坑**：proxy 残留的 v1.10.x 语义版本高于 v1.2.x，裸 `go mod tidy` 会解析到旧版混搭导致缺符号——显式 require 钉版本是防线。
+</Warning>
+
+<Note>
+sumdb 对新 tag 的索引有几分钟传播延迟：发布后立刻 `go mod tidy` 报 404 属正常，稍候重试或临时 `GOSUMDB=off`。
+</Note>

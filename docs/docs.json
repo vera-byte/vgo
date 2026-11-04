@@ -53,6 +53,7 @@
             "group": "工程与部署",
             "pages": [
               "guides/development",
+              "guides/release",
               "guides/deployment"
             ]
           }

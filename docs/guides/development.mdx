@@ -22,12 +22,7 @@ make dev                                 # gf run main.go
 
 - 根模块与各子模块 `go.mod` 均已 `replace` 指向工作区本地源码，**克隆即可构建**
 - `bash gowork.sh` 可生成 `go.work` 便于跨模块联调（已被 gitignore）
-- 发布按模块打 tag：
-
-```bash
-git tag v/v1.10.10 && git push origin v/v1.10.10          # 核心框架
-git tag modules/base/v1.10.10 && git push origin modules/base/v1.10.10
-```
+- 发布不手工逐模块打 tag：`release.sh` 打 root tag 后由 autotag 流水线 lockstep 补齐子模块 tag，完整清单见 [发布流程](/guides/release)
 
 `replace` 指令不传递给下游消费方，发布后需同步更新依赖版本号。
 
