@@ -3,7 +3,12 @@ title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
 
-## v1.2.2（2026-11）—— 命令体系共享与 init 模板对齐（当前）
+## v1.2.3（2026-11）—— 迁移注册表与模块脚手架派生（当前）
+
+- **迁移注册表**：各模块根文件 `//go:embed resource/migrates` 内嵌迁移并 `v.RegisterMigrationFS` 注册；migrate 命令双源（本地目录 ∪ 内嵌 FS）按模块名排序执行——修复生成项目 migrate 只能看到本地模块、框架 9 模块迁移无法执行的问题（demo 触发器次序一并修复）
+- **`vgo-tools module` 派生改写**：表名/类型/路由/文件名/包名随模块名生成（`demotest_sample`/`DemotestSample`/`/admin/demotest/`），修复复制模块与 demo 撞表撞路由；内嵌迁移注册名同步防多模块覆盖
+
+## v1.2.2（2026-11）—— 命令体系共享与 init 模板对齐
 
 - **命令体系迁移 `v/vcmd` 公开包（破坏性）**：`internal/cmd`（registry/server/migrate/pack）迁至 `github.com/vera-byte/vgo/v/vcmd`——生成项目与 vgo 主仓共享同一套命令树（`server`/`migrate`/`pack`/`utils` + 各模块 CommandProvider 命令），根因是 Go internal 规则禁止生成项目 import 原包，模块命令此前在 init 项目里无人消费、migrate 缺失、`v.NewVgo()` 从不执行
 - **init 模板对齐现行入口**：main.go/internal 改为 vcmd 形态 + `internal/loader`；删除模板内 2024 年旧 `internal/cmd`；配置/依赖钉 v1.2.2

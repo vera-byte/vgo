@@ -9,9 +9,9 @@ require (
 	github.com/sa-tokens/sa-token-go/integrations/gf v0.2.3
 	github.com/sa-tokens/sa-token-go/storage/memory v0.2.3
 	github.com/sa-tokens/sa-token-go/storage/redis v0.2.3
-	github.com/vera-byte/vgo/modules/base v1.2.2
-	github.com/vera-byte/vgo/modules/plugin v1.2.2
-	github.com/vera-byte/vgo/v v1.2.2
+	github.com/vera-byte/vgo/modules/base v1.2.3
+	github.com/vera-byte/vgo/modules/plugin v1.2.3
+	github.com/vera-byte/vgo/v v1.2.3
 	golang.org/x/crypto v0.58.0
 )
 
