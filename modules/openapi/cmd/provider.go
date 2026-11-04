@@ -6,7 +6,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/vera-byte/vgo/internal/cmd"
+	"github.com/vera-byte/vgo/v/vcmd"
 )
 
 // cOpenapi openapi模块主命令结构体
@@ -135,5 +135,5 @@ func (p *OpenapiCommandProvider) GetModuleName() string {
 
 func init() {
 	// 注册openapi模块的命令提供者
-	cmd.GetRegistry().RegisterProvider(&OpenapiCommandProvider{})
+	vcmd.GetRegistry().RegisterProvider(&OpenapiCommandProvider{})
 }

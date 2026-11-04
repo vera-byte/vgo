@@ -6,7 +6,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/vera-byte/vgo/internal/cmd"
+	"github.com/vera-byte/vgo/v/vcmd"
 )
 
 // cTask task模块主命令结构体
@@ -108,5 +108,5 @@ func (p *TaskCommandProvider) GetModuleName() string {
 
 func init() {
 	// 注册task模块的命令提供者
-	cmd.GetRegistry().RegisterProvider(&TaskCommandProvider{})
+	vcmd.GetRegistry().RegisterProvider(&TaskCommandProvider{})
 }

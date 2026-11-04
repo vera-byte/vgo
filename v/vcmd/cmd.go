@@ -1,4 +1,4 @@
-package cmd
+package vcmd
 
 import (
 	"github.com/gogf/gf/v2/os/gcmd"

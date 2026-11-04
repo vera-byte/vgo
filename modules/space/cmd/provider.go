@@ -6,7 +6,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/vera-byte/vgo/internal/cmd"
+	"github.com/vera-byte/vgo/v/vcmd"
 )
 
 // cSpace space模块主命令结构体
@@ -109,5 +109,5 @@ func (p *SpaceCommandProvider) GetModuleName() string {
 
 func init() {
 	// 注册space模块的命令提供者
-	cmd.GetRegistry().RegisterProvider(&SpaceCommandProvider{})
+	vcmd.GetRegistry().RegisterProvider(&SpaceCommandProvider{})
 }

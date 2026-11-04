@@ -6,7 +6,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/vera-byte/vgo/internal/cmd"
+	"github.com/vera-byte/vgo/v/vcmd"
 )
 
 // cDict dict模块主命令结构体
@@ -83,5 +83,5 @@ func (p *DictCommandProvider) GetModuleName() string {
 
 func init() {
 	// 注册dict模块的命令提供者
-	cmd.GetRegistry().RegisterProvider(&DictCommandProvider{})
+	vcmd.GetRegistry().RegisterProvider(&DictCommandProvider{})
 }

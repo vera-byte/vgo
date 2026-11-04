@@ -6,7 +6,7 @@ import (
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcmd"
-	"github.com/vera-byte/vgo/internal/cmd"
+	"github.com/vera-byte/vgo/v/vcmd"
 )
 
 // cBase base模块主命令结构体
@@ -84,5 +84,5 @@ func (p *BaseCommandProvider) GetModuleName() string {
 func init() {
 	// 注册base模块的命令提供者
 	g.Log().Debugf(context.Background(), "Registering base module commands...")
-	cmd.GetRegistry().RegisterProvider(&BaseCommandProvider{})
+	vcmd.GetRegistry().RegisterProvider(&BaseCommandProvider{})
 }
