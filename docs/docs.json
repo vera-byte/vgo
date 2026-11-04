@@ -34,18 +34,33 @@
         "tab": "指南",
         "groups": [
           {
-            "group": "核心指南",
+            "group": "核心机制",
             "pages": [
               "guides/configuration",
               "guides/authentication",
-              "guides/user-module",
               "guides/crud-framework",
-              "guides/api-conventions",
               "guides/database-migrations",
+              "guides/api-conventions"
+            ]
+          },
+          {
+            "group": "业务模块",
+            "pages": [
+              "guides/user-module",
               "guides/tasks",
-              "guides/data-recycle",
+              "guides/data-recycle"
+            ]
+          },
+          {
+            "group": "插件体系",
+            "pages": [
               "guides/plugin-system",
-              "guides/plugin-dev",
+              "guides/plugin-dev"
+            ]
+          },
+          {
+            "group": "开放平台",
+            "pages": [
               "guides/openapi-signing"
             ]
           },

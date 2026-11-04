@@ -21,6 +21,39 @@ flowchart LR
     B -->|停用/卸载| F[终止进程<br/>upload 回退默认实现]
 ```
 
+## 原理与运转
+
+插件**不共享宿主内存**：宿主把插件当子进程拉起，经 **stdin/stdout 上的单行 JSON 双向 RPC** 调遣。插件崩溃不拖垮主服务，语言不限于 Go——任何能说这套协议的可执行文件都可以。
+
+两个角色分工：
+
+| | 职责 | 代码 |
+|----|------|------|
+| **管理面** | ZIP 安装/启停/卸载、预检、Hook 互斥、热重载 | `modules/plugin`（对所有插件通用） |
+| **执行层** | 进程拉起 + RPC + 方法派发 | 宿主侧 `modules/plugin/service/rpc.go`；插件侧 SDK `v/pluginsdk` |
+
+通信协议（消息形如 `{id, method | result | error}`，双方各自递增 id、用 pending map 配对响应）：
+
+```text
+宿主 ──ready──▶  插件                           启动握手（10s 超时）；singleton 只握一次
+宿主 ──invoke{method, params[]}──▶  插件        调用导出方法（30s 超时）
+宿主 ◀──cacheGet / cacheSet / pluginInvoke / log──  插件    反向请求
+```
+
+- 正向 `ready` / `invoke`：`invoke` 的 `method` 即插件结构体的**导出方法名**（反射派发、大小写不敏感、参数 JSON 反解、返回值归一 `(T, error)` / `(error)` / `(T)` / `()`）
+- 反向请求由宿主兑现：`cacheGet/cacheSet` 走宿主缓存（Redis/内存）、`pluginInvoke` 转发给其他插件进程（跨插件协作）、`log` 进宿主日志
+- 进程启动时环境变量注入上下文：`VGO_PLUGIN_INFO`（插件信息 JSON）、`VGO_PLUGIN_BASE_DIR`（安装目录，`@baseDir/` 占位由 SDK 解析）
+
+一次调用的完整时序：
+
+```text
+install(ZIP) → 落盘 data/plugins/<key>/plugin →（启用）spawn 进程
+   → ready 握手 → invoke{method,params} → 插件反射执行导出方法 → result 返回
+   →（可选反向 RPC：cache / pluginInvoke / log）
+singleton=true  常驻复用；singleton=false 每次 invoke 独立进程、用完即毁
+update/delete → ReloadKey 热重载（停旧起新；delete 不走回收站）
+```
+
 ## 插件包规范
 
 ZIP 结构：
@@ -107,14 +140,14 @@ func main() { pluginsdk.Run(&HelloPlugin{}) }
 ## 安全提示
 
 <Warning>
-安装插件 = **执行上传的 JavaScript 代码**，具备调用注入 API 的能力。仅限管理员安装可信来源插件；
+安装插件 = **执行上传的可执行程序**（独立进程，经 RPC 暴露其导出方法）。仅限管理员安装可信来源插件；
 `/admin/plugin/info/*` 的权限点（`plugin:info:install` 等）应严格收口。
 </Warning>
 
 ## 代码结构
 
 ```text
-pluginsdk/                          # 插件开发 SDK（插件作者引用）
+v/pluginsdk/                        # 插件开发 SDK（随 v 模块发布，import github.com/vera-byte/vgo/v/pluginsdk）
 ├── plugin.go                       # Base / PluginInfo / Cache / PluginService
 └── server.go                       # stdio JSON-RPC 运行时 + 方法派发
 
