@@ -1,12 +1,14 @@
 package task
 
 import (
+	"embed"
 	_ "github.com/vera-byte/vgo/modules/task/packed"
 
 	_ "github.com/vera-byte/vgo/modules/task/cmd"
 	_ "github.com/vera-byte/vgo/modules/task/controller"
 	_ "github.com/vera-byte/vgo/modules/task/funcs"
 	_ "github.com/vera-byte/vgo/modules/task/middleware"
+	"github.com/vera-byte/vgo/v"
 )
 
 // func init() {
@@ -31,3 +33,10 @@ import (
 // 	g.Log().Debug(ctx, "module task init finished ...")
 
 // }
+
+//go:embed resource/migrates
+var migrationFS embed.FS
+
+func init() {
+	v.RegisterMigrationFS("task", migrationFS)
+}

@@ -3,6 +3,15 @@
 package plugin
 
 import (
+	"embed"
 	_ "github.com/vera-byte/vgo/modules/plugin/controller"
 	_ "github.com/vera-byte/vgo/modules/plugin/service"
+	"github.com/vera-byte/vgo/v"
 )
+
+//go:embed resource/migrates
+var migrationFS embed.FS
+
+func init() {
+	v.RegisterMigrationFS("plugin", migrationFS)
+}

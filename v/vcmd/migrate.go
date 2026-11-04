@@ -4,9 +4,11 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
+	"io/fs"
 	"net/url"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 
 	"github.com/gogf/gf/v2/frame/g"
@@ -15,9 +17,13 @@ import (
 	"github.com/gogf/gf/v2/os/gres"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/golang-migrate/migrate/v4"
+	"github.com/golang-migrate/migrate/v4/database"
 	"github.com/golang-migrate/migrate/v4/database/postgres"
+	"github.com/golang-migrate/migrate/v4/source"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
+	"github.com/golang-migrate/migrate/v4/source/iofs"
 	_ "github.com/lib/pq"
+	"github.com/vera-byte/vgo/v"
 )
 
 func init() {
@@ -126,37 +132,62 @@ func extractMigrationsFromGres(path string) (string, error) {
 	return tempDir, nil
 }
 
-// runMigrateForModules 为多个模块运行迁移
-// 参数: ctx - 上下文, pathPattern - 路径模式, database - 数据库连接, operation - 操作类型, steps - 步数
-// 返回值: error - 错误信息
+// runMigrateForModules 为多个模块运行迁移。
+// 迁移源 = 本地 modules/*/resource/migrates 目录 ∪ 各模块内嵌迁移（v.RegisterMigrationFS），
+// 按模块名排序执行（base < demo < dict < ...，保证 update_updated_time_column 等公共对象先建）。
 func runMigrateForModules(ctx context.Context, pathPattern, database, operation string, steps int) error {
-	// 获取模块目录
+	type migSrc struct {
+		name string
+		dir  string // 本地目录，空则用 fs
+		fs   fs.FS
+	}
+	srcs := map[string]migSrc{}
+
+	// 本地模块目录
 	basePath := strings.Replace(pathPattern, "/*/resource/migrates", "", 1)
-	modules, err := getModules(basePath)
-	if err != nil {
-		return fmt.Errorf("获取模块列表失败: %v", err)
+	if modules, err := getModules(basePath); err == nil {
+		for _, module := range modules {
+			migratePath := filepath.Join(basePath, module, "resource", "migrates")
+			if gfile.Exists(migratePath) {
+				srcs[module] = migSrc{name: module, dir: migratePath}
+			}
+		}
 	}
 
-	g.Log().Infof(ctx, "找到 %d 个模块", len(modules))
-
-	// 为每个模块运行迁移
-	for _, module := range modules {
-		migratePath := filepath.Join(basePath, module, "resource", "migrates")
-		if !gfile.Exists(migratePath) {
-			g.Log().Warningf(ctx, "模块 %s 的迁移目录不存在: %s", module, migratePath)
-			continue
+	// 模块内嵌迁移（生成项目中框架模块以依赖形式引入，本地无目录）
+	for _, ms := range v.MigrationFS() {
+		if _, ok := srcs[ms.Name]; !ok {
+			srcs[ms.Name] = migSrc{name: ms.Name, fs: ms.FS}
 		}
+	}
 
-		g.Log().Infof(ctx, "正在迁移模块: %s", module)
-		if err := runMigrate(ctx, migratePath, database, operation, steps); err != nil {
-			g.Log().Errorf(ctx, "模块 %s 迁移失败: %v", module, err)
+	names := make([]string, 0, len(srcs))
+	for name := range srcs {
+		names = append(names, name)
+	}
+	sort.Strings(names)
+
+	g.Log().Infof(ctx, "找到 %d 个模块: %v", len(names), names)
+
+	for _, name := range names {
+		src := srcs[name]
+		g.Log().Infof(ctx, "正在迁移模块: %s", name)
+		var err error
+		if src.dir != "" {
+			err = runMigrate(ctx, src.dir, database, operation, steps)
+		} else {
+			err = runMigrateEmbedded(ctx, src.fs, name, database, operation, steps)
+		}
+		if err != nil {
+			g.Log().Errorf(ctx, "模块 %s 迁移失败: %v", name, err)
 			return err
 		}
-		g.Log().Infof(ctx, "模块 %s 迁移完成", module)
+		g.Log().Infof(ctx, "模块 %s 迁移完成", name)
 	}
 
 	return nil
 }
+
 
 // defaultMigrateDSN 从 config.yaml 的 database.default 生成默认 PostgreSQL DSN，
 // 使 `go run main.go migrate` 无需显式传参即可运行。
@@ -192,61 +223,97 @@ func moduleNameFromMigratePath(migratePath string) string {
 	return ""
 }
 
-// runMigrate 执行数据库迁移
+// runMigrate 执行数据库迁移（本地文件目录源）
 // 参数: ctx - 上下文, migratePath - 迁移文件路径, database - 数据库连接, operation - 操作类型, steps - 步数
 // 返回值: error - 错误信息
 func runMigrate(ctx context.Context, migratePath, database, operation string, steps int) error {
-	// 检查迁移目录是否存在
 	if !gfile.Exists(migratePath) {
 		return fmt.Errorf("迁移目录不存在: %s", migratePath)
 	}
-
-	// 获取迁移文件
 	files, err := gfile.ScanDir(migratePath, "*.sql", false)
 	if err != nil {
 		return fmt.Errorf("扫描迁移文件失败: %v", err)
 	}
-
 	if len(files) == 0 {
 		g.Log().Warningf(ctx, "迁移目录中没有找到SQL文件: %s", migratePath)
 		return nil
 	}
-
 	g.Log().Infof(ctx, "找到 %d 个迁移文件", len(files))
 
-	// 创建数据库连接
-	db, err := sql.Open("postgres", database)
+	m, err := newMigrateFromSourceURL(fmt.Sprintf("file://%s", migratePath), database, moduleNameFromMigratePath(migratePath))
 	if err != nil {
-		return fmt.Errorf("连接数据库失败: %v", err)
-	}
-	defer db.Close()
-
-	// 测试数据库连接
-	if pingErr := db.Ping(); pingErr != nil {
-		return fmt.Errorf("数据库连接测试失败: %v", pingErr)
-	}
-
-	// 每个模块使用独立的迁移版本表，避免多模块迁移版本号冲突
-	migrationsTable := "schema_migrations"
-	if mod := moduleNameFromMigratePath(migratePath); mod != "" {
-		migrationsTable = "schema_migrations_" + mod
-	}
-
-	// 创建postgres驱动实例
-	driver, err := postgres.WithInstance(db, &postgres.Config{MigrationsTable: migrationsTable})
-	if err != nil {
-		return fmt.Errorf("创建数据库驱动失败: %v", err)
-	}
-
-	// 创建migrate实例
-	sourceURL := fmt.Sprintf("file://%s", migratePath)
-	m, err := migrate.NewWithDatabaseInstance(sourceURL, "postgres", driver)
-	if err != nil {
-		return fmt.Errorf("创建迁移实例失败: %v", err)
+		return err
 	}
 	defer m.Close()
+	return execMigrateOp(m, operation, steps)
+}
 
-	// 执行迁移操作
+// runMigrateEmbedded 执行模块内嵌迁移（go:embed 资源源）
+func runMigrateEmbedded(ctx context.Context, fsys fs.FS, moduleName, database, operation string, steps int) error {
+	src, err := iofs.New(fsys, "resource/migrates")
+	if err != nil {
+		return fmt.Errorf("创建内嵌迁移源失败: %v", err)
+	}
+	g.Log().Infof(ctx, "使用模块 %s 的内嵌迁移", moduleName)
+	m, err := newMigrateFromSourceDriver(src, "iofs", database, moduleName)
+	if err != nil {
+		return err
+	}
+	defer m.Close()
+	return execMigrateOp(m, operation, steps)
+}
+
+// newMigrateFromSourceDriver 创建 migrate 实例（每模块独立版本表，避免版本号冲突）
+func newMigrateFromSourceDriver(src source.Driver, sourceName, database, moduleName string) (*migrate.Migrate, error) {
+	driver, err := newPGDriver(database, moduleName)
+	if err != nil {
+		return nil, err
+	}
+	m, err := migrate.NewWithInstance(sourceName, src, "postgres", driver)
+	if err != nil {
+		return nil, fmt.Errorf("创建迁移实例失败: %v", err)
+	}
+	return m, nil
+}
+
+// newMigrateFromSourceURL 经 source registry（file:// 等）创建 migrate 实例
+func newMigrateFromSourceURL(sourceURL, database, moduleName string) (*migrate.Migrate, error) {
+	driver, err := newPGDriver(database, moduleName)
+	if err != nil {
+		return nil, err
+	}
+	m, err := migrate.NewWithDatabaseInstance(sourceURL, "postgres", driver)
+	if err != nil {
+		return nil, fmt.Errorf("创建迁移实例失败: %v", err)
+	}
+	return m, nil
+}
+
+// newPGDriver 创建 PostgreSQL 迁移驱动（每模块独立版本表）
+func newPGDriver(dsn, moduleName string) (database.Driver, error) {
+	db, err := sql.Open("postgres", dsn)
+	if err != nil {
+		return nil, fmt.Errorf("连接数据库失败: %v", err)
+	}
+	if pingErr := db.Ping(); pingErr != nil {
+		db.Close()
+		return nil, fmt.Errorf("数据库连接测试失败: %v", pingErr)
+	}
+	migrationsTable := "schema_migrations"
+	if moduleName != "" {
+		migrationsTable = "schema_migrations_" + moduleName
+	}
+	driver, err := postgres.WithInstance(db, &postgres.Config{MigrationsTable: migrationsTable})
+	if err != nil {
+		db.Close()
+		return nil, fmt.Errorf("创建数据库驱动失败: %v", err)
+	}
+	return driver, nil
+}
+
+// execMigrateOp 执行迁移操作
+func execMigrateOp(m *migrate.Migrate, operation string, steps int) error {
+	var err error
 	switch operation {
 	case "up":
 		if steps > 0 {
@@ -265,7 +332,7 @@ func runMigrate(ctx context.Context, migratePath, database, operation string, st
 		if verr != nil {
 			return fmt.Errorf("获取版本信息失败: %v", verr)
 		}
-		g.Log().Infof(ctx, "当前版本: %d, 状态: %v", version, dirty)
+		g.Log().Infof(context.Background(), "当前版本: %d, 状态: %v", version, dirty)
 		return nil
 	case "force":
 		if steps == 0 {
@@ -275,23 +342,17 @@ func runMigrate(ctx context.Context, migratePath, database, operation string, st
 	default:
 		return fmt.Errorf("不支持的操作类型: %s", operation)
 	}
-
-	// 处理迁移结果
 	if err != nil {
 		if err == migrate.ErrNoChange {
-			g.Log().Infof(ctx, "没有需要执行的迁移")
+			g.Log().Infof(context.Background(), "没有需要执行的迁移")
 			return nil
 		}
 		return fmt.Errorf("执行迁移失败: %v", err)
 	}
-
-	g.Log().Infof(ctx, "迁移执行成功")
+	g.Log().Infof(context.Background(), "迁移执行成功")
 	return nil
 }
 
-// getModules 获取模块列表
-// 参数: basePath - 基础路径
-// 返回值: []string - 模块名列表, error - 错误信息
 func getModules(basePath string) ([]string, error) {
 	if !gfile.Exists(basePath) {
 		return nil, fmt.Errorf("模块目录不存在: %s", basePath)

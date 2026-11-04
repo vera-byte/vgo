@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"path/filepath"
 	"regexp"
 	"strings"
 
@@ -14,6 +15,37 @@ import (
 const demoModulePrefix = "vgo-simple/modules/demo"
 
 var pkgRe = regexp.MustCompile(`^[a-z][a-z0-9]*$`)
+
+// pascalName 将模块名转帕斯卡（my-mod -> MyMod）
+func pascalName(moduleName string) string {
+	parts := strings.FieldsFunc(moduleName, func(r rune) bool { return r == '-' || r == '_' })
+	var b strings.Builder
+	for _, p := range parts {
+		if p == "" {
+			continue
+		}
+		b.WriteString(strings.ToUpper(p[:1]) + p[1:])
+	}
+	return b.String()
+}
+
+// renameDemoFiles 把脚手架文件名中的 demo_sample 换成 <module>_sample
+func renameDemoFiles(moduleDir, moduleName string) error {
+	files, err := gfile.ScanDirFile(moduleDir, "*", true)
+	if err != nil {
+		return err
+	}
+	for _, f := range files {
+		dir, base := filepath.Split(f)
+		if strings.Contains(base, "demo_sample") {
+			nb := strings.ReplaceAll(base, "demo_sample", moduleName+"_sample")
+			if err = gfile.Rename(f, filepath.Join(dir, nb)); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
 
 // CreatModule 在项目 modules/ 下创建新模块（复制内嵌脚手架 modules/demo）。
 func CreatModule(ctx context.Context, moduleName string) (err error) {
@@ -56,7 +88,21 @@ func CreatModule(ctx context.Context, moduleName string) (err error) {
 	if !pkgRe.MatchString(pkg) {
 		return gerror.Newf("模块名 %q 无法派生合法 Go 包名（需小写字母/数字，可含 -）", moduleName)
 	}
-	if err = gfile.ReplaceDir("package demo", "package "+pkg, moduleDir, "*.go", true); err != nil {
+	pascal := pascalName(moduleName)
+	repl := [][2]string{
+		{`RegisterMigrationFS("demo"`, fmt.Sprintf(`RegisterMigrationFS("%s"`, moduleName)},
+		{"/admin/demo/", "/admin/" + moduleName + "/"},
+		{"DemoSample", pascal + "Sample"},
+		{"demo_sample", moduleName + "_sample"},
+		{"package demo", "package " + pkg},
+	}
+	for _, r := range repl {
+		if err = gfile.ReplaceDir(r[0], r[1], moduleDir, "*", true); err != nil {
+			return
+		}
+	}
+	// 文件名中的 demo_sample 同步改名
+	if err = renameDemoFiles(moduleDir, moduleName); err != nil {
 		return
 	}
 	// 重命名 demo.go 为 moduleName.go
