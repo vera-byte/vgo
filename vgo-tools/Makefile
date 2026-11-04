@@ -23,21 +23,12 @@ pack.template-simple.ssh:
 	@rm -fr temp
 
 .PHONY: pack.docs
-pack.docs:
-	@rm -fr temp
-	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages https://github.com/vera-byte/vgo.git docs/vgo
-	@rm -fr temp/docs/vgo/.git
+pack.docs: ## 导出 Mintlify 静态站并打入 vgo-tools（发布期执行；需 Mintlify CLI：npm i -g mint）
+	@set -e; rm -fr temp; mkdir temp
+	@cd ../docs && mint export --output ../vgo-tools/temp/export.zip
+	@cd temp && mkdir docs && cd docs && unzip -q ../export.zip && cd .. && rm -f export.zip
 	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
-	@rm -fr temp/docs
-.PHONY: pack.docs.ssh
-pack.docs.ssh:
 	@rm -fr temp
-	@mkdir temp || exit 0
-	@cd temp && git clone --depth=1 -b gh-pages git@github.com:vera-byte/vgo.git docs/vgo
-	@rm -fr temp/docs/vgo/.git
-	@cd temp && gf pack docs ../internal/packed/docs.go -n=packed -y
-	@rm -fr temp/docs
 
 # Install/Update to the latest CLI tool.
 .PHONY: cli

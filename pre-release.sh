@@ -35,3 +35,6 @@ else
     echo "github codeSpace not detected, use ssh"
     make pack.template-simple.ssh
 fi
+
+# 导出 Mintlify 静态文档并打入 vgo-tools（vgo-tools docs 内嵌托管，运行时不依赖 npm）
+make pack.docs

@@ -3,78 +3,99 @@ package cmd
 import (
 	"context"
 	"net"
+	"os"
+	"os/exec"
 
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/gcmd"
+	"github.com/gogf/gf/v2/os/gfile"
+	"github.com/gogf/gf/v2/os/gres"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/vera-byte/vgo/vgo-tools/internal/utility/mlog"
 )
 
 var (
 	Docs = gcmd.Command{
-		Name:        "docs",
-		Usage:       "vgo-tools docs",
-		Brief:       "查看帮助文档",
-		Description: "查看帮助文档",
+		Name:  "docs",
+		Usage: "vgo-tools docs [--dev] [--dir docs]",
+		Brief: "查看帮助文档",
+		Description: "内置文档服务器：托管随 vgo-tools 发布的 Mintlify 静态文档（无需安装任何依赖）。\n" +
+			"--dev 则在本地 docs 目录启动 Mintlify 开发预览（需要 Mintlify CLI 与 docs.json，文档作者用）。",
+		Arguments: []gcmd.Argument{
+			{
+				Name:  "dev",
+				Brief: "以 Mintlify 开发模式预览本地 docs 目录（需要 npm i -g mint）",
+			},
+			{
+				Name:  "dir",
+				Brief: "开发模式的文档目录（默认 docs）",
+			},
+		},
 		Func: func(ctx context.Context, parser *gcmd.Parser) error {
-			s := g.Server("docs")
-			// 获取本机未占用的端口
-			port, err := getfreeport()
-			if err != nil {
-				mlog.Fatal(err)
-				return err
+			if parser.GetOpt("dev", false).Bool() {
+				return runMintDev(parser.GetOpt("dir", "docs").String())
 			}
-			// 获取本机ip
-			// ip, err := getlocalip()
-			// if err != nil {
-			// 	mlog.Fatal(err)
-			// 	return err
-			// }
+			if !gres.Contains("docs/index.html") {
+				mlog.Fatalf("内置文档缺失：请使用完整发布的 vgo-tools 二进制，或用 --dev 预览本地 docs 目录")
+				return nil
+			}
+			port := freePort()
+			s := g.Server("docs")
 			s.SetServerRoot("docs")
-			s.BindHandler("/", func(r *ghttp.Request) {
-				r.Response.RedirectTo("/vgo/")
-			})
-			// 设置端口
-			s.SetPort(gconv.Int(port))
-			mlog.Printf("Vgo docs server is running at %s", "http://"+"127.0.0.1"+":"+gconv.String(port)+"/vgo/")
+			s.SetPort(port)
+			mlog.Printf("Vgo docs server is running at %s", "http://127.0.0.1:"+gconv.String(port))
 			s.Run()
 			return nil
 		},
 	}
 )
 
-func init() {
-	Main.AddCommand(&Docs)
+// runMintDev 以 Mintlify 开发模式预览本地文档（可选路径，需要 Mintlify CLI）
+func runMintDev(dir string) error {
+	if !gfile.Exists(gfile.Join(dir, "docs.json")) {
+		mlog.Fatalf("未找到 %s/docs.json：请在包含 Mintlify 文档的项目根目录执行（或用 --dir 指定）", dir)
+		return nil
+	}
+	bin, args := mintCommand()
+	if bin == "" {
+		mlog.Fatalf("未找到 Mintlify CLI（npm i -g mint）；不安装也可以直接运行 vgo-tools docs 查看内置文档")
+		return nil
+	}
+	mlog.Printf("启动 Mintlify 开发预览（%s）...", dir)
+	cmd := exec.Command(bin, args...)
+	cmd.Dir = dir
+	cmd.Stdin = os.Stdin
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
 
-// getfreeport 获取本机未占用的端口
-func getfreeport() (int, error) {
+// mintCommand 查找 Mintlify CLI（mint 优先，回退 npx mint）
+func mintCommand() (string, []string) {
+	if path, err := exec.LookPath("mint"); err == nil {
+		return path, []string{"dev"}
+	}
+	if path, err := exec.LookPath("npx"); err == nil {
+		return path, []string{"--yes", "mint", "dev"}
+	}
+	return "", nil
+}
+
+// freePort 获取本机未占用的端口
+func freePort() int {
 	addr, err := net.ResolveTCPAddr("tcp", "localhost:0")
 	if err != nil {
-		return 0, err
+		return 3210
 	}
 	l, err := net.ListenTCP("tcp", addr)
 	if err != nil {
-		return 0, err
+		return 3210
 	}
-	defer l.Close()
-	return l.Addr().(*net.TCPAddr).Port, nil
+	port := l.Addr().(*net.TCPAddr).Port
+	_ = l.Close()
+	return port
 }
 
-// getlocalip 获取本机ip
-// func getlocalip() (string, error) {
-// 	addrs, err := net.InterfaceAddrs()
-// 	if err != nil {
-// 		return "", err
-// 	}
-// 	for _, address := range addrs {
-// 		// 检查ip地址判断是否回环地址
-// 		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
-// 			if ipnet.IP.To4() != nil {
-// 				return ipnet.IP.String(), nil
-// 			}
-// 		}
-// 	}
-// 	return "", nil
-// }
+func init() {
+	Main.AddCommand(&Docs)
+}
