@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gcfg"
 	"github.com/gogf/gf/v2/os/gctx"
@@ -31,5 +33,6 @@ func main() {
 	err := cmd.Main.RunWithError(gctx.New())
 	if err != nil {
 		println(err.Error())
+		os.Exit(1)
 	}
 }

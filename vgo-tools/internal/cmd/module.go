@@ -13,7 +13,7 @@ var (
 		Name:        "module",
 		Usage:       "vgo-tools module moduleName",
 		Brief:       "在modules目录下创建模块",
-		Description: "在modules目录下创建模块, 并且创建相应的目录结构,注意: 如果模块已经存在, 则会覆盖原有的模块,本命令需在项目根目录下执行.",
+		Description: "在modules目录下创建模块, 并且创建相应的目录结构,注意: 如果模块已存在则报错退出; 会同步改写包名/导入路径并接线 modules/modules.go; 本命令需在项目根目录下执行.",
 		Arguments: []gcmd.Argument{
 			{
 				Name:   "moduleName",
@@ -35,7 +35,7 @@ var (
 		Name:        "m",
 		Usage:       "vgo-tools module moduleName",
 		Brief:       "在modules目录下创建模块,为module的简写模式",
-		Description: "在modules目录下创建模块, 并且创建相应的目录结构,注意: 如果模块已经存在, 则会覆盖原有的模块,本命令需在项目根目录下执行.",
+		Description: "在modules目录下创建模块, 并且创建相应的目录结构,注意: 如果模块已存在则报错退出; 会同步改写包名/导入路径并接线 modules/modules.go; 本命令需在项目根目录下执行.",
 		Arguments: []gcmd.Argument{
 			{
 				Name:   "moduleName",
