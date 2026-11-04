@@ -3,7 +3,11 @@ title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
 
-## v1.2.3（2026-11）—— 迁移注册表与模块脚手架派生（当前）
+## v1.2.4（2026-11）—— init 模板依赖版本热修（当前）
+
+- **修复 v1.2.3 init 模板编译失败**：模板 go.mod 误钉 `v1.2.2`（无 `RegisterMigrationFS`），生成项目缺符号；改为钉 **v1.2.3 最低要求集**（MVS 下限、可被依赖抬升，不随发版漂移）
+
+## v1.2.3（2026-11）—— 迁移注册表与模块脚手架派生
 
 - **迁移注册表**：各模块根文件 `//go:embed resource/migrates` 内嵌迁移并 `v.RegisterMigrationFS` 注册；migrate 命令双源（本地目录 ∪ 内嵌 FS）按模块名排序执行——修复生成项目 migrate 只能看到本地模块、框架 9 模块迁移无法执行的问题（demo 触发器次序一并修复）
 - **`vgo-tools module` 派生改写**：表名/类型/路由/文件名/包名随模块名生成（`demotest_sample`/`DemotestSample`/`/admin/demotest/`），修复复制模块与 demo 撞表撞路由；内嵌迁移注册名同步防多模块覆盖
