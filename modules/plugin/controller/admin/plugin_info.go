@@ -25,8 +25,10 @@ func init() {
 		},
 	}
 	v.RegisterController(c)
-	// 启动时加载全部启用插件
-	svc.InitAll()
+	// 启动时加载全部启用插件（延后到 server 启动，避免任意子命令在 init 阶段触库）
+	v.RegisterStartupHook("plugin-init-all", func(ctx g.Ctx) {
+		svc.InitAll()
+	})
 }
 
 // Install 安装插件（ZIP 包）

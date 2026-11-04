@@ -2,12 +2,13 @@ package service
 
 import (
 	"context"
+	"github.com/vera-byte/vgo/v"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
 	goredis "github.com/redis/go-redis/v9"
-	sagf "github.com/sa-tokens/sa-token-go/integrations/gf"
 	"github.com/sa-tokens/sa-token-go/core/adapter"
+	sagf "github.com/sa-tokens/sa-token-go/integrations/gf"
 	samemory "github.com/sa-tokens/sa-token-go/storage/memory"
 	saredis "github.com/sa-tokens/sa-token-go/storage/redis"
 	"github.com/vera-byte/vgo/modules/user/config"
@@ -16,8 +17,15 @@ import (
 // userDevice C端会话设备标识
 const userDevice = "app"
 
-// init 初始化 C端用户会话（sa-token gf 集成，独立 KeyPrefix 与管理端会话隔离）
+// init 注册 C端用户会话初始化（含 Redis Ping 探测，延后到 server 启动执行）
 func init() {
+	v.RegisterStartupHook("satoken-user", func(ctx context.Context) {
+		initUserSatoken()
+	})
+}
+
+// initUserSatoken 初始化 C端用户会话（sa-token gf 集成，独立 KeyPrefix 与管理端会话隔离）
+func initUserSatoken() {
 	cfg := sagf.DefaultConfig()
 	cfg.TokenName = "Authorization"
 	cfg.Timeout = int64(config.Config.Token.Expire)

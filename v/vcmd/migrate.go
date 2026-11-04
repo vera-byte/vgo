@@ -188,7 +188,6 @@ func runMigrateForModules(ctx context.Context, pathPattern, database, operation 
 	return nil
 }
 
-
 // defaultMigrateDSN 从 config.yaml 的 database.default 生成默认 PostgreSQL DSN，
 // 使 `go run main.go migrate` 无需显式传参即可运行。
 func defaultMigrateDSN(ctx context.Context) string {

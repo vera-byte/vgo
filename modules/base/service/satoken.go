@@ -26,6 +26,13 @@ const adminRoleLabel = "admin"
 // Token 风格为 Random64 服务端会话（支持踢人/封禁/续期），
 // 会话存储优先 Redis（生产），不可用时降级为内存（开发）。
 func init() {
+	// 会话管理器构建含 Redis Ping 探测，延后到 server 启动执行
+	v.RegisterStartupHook("satoken-admin", func(ctx context.Context) {
+		initAdminSatoken()
+	})
+}
+
+func initAdminSatoken() {
 	mgr := core.NewBuilder().
 		Storage(newSatokenStorage()).
 		TokenName("Authorization").

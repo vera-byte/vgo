@@ -156,13 +156,12 @@ func (c *Controller) Page(ctx context.Context, req *PageReq) (res *BaseRes, err 
 
 // 注册控制器到路由
 func RegisterController(c IController) {
-	var ctx = context.Background()
 	var sController = &Controller{}
 	gconv.Struct(c, &sController)
-	if vconfig.Config.Eps {
-		model := sController.Service.GetModel()
-		columns := getModelInfo(ctx, sController.Prefix, model)
-		ModelInfo[sController.Prefix] = columns
+	// EPS 字段探测延后到 LoadModelInfo（server 启动钩子）执行，
+	// 避免任意子命令在 init 阶段触库
+	if sController.Service != nil {
+		epsModels[sController.Prefix] = sController.Service.GetModel()
 	}
 	g.Server().Group(
 		sController.Prefix, func(group *ghttp.RouterGroup) {
@@ -184,6 +183,26 @@ type ColumnInfo struct {
 
 // ModelInfo 路由prefix	对应的model信息
 var ModelInfo = make(map[string][]*ColumnInfo)
+
+// epsModels 已注册路由 -> 模型（EPS 探测延后执行的登记表）
+var epsModels = make(map[string]IModel)
+
+func init() {
+	RegisterStartupHook("eps-model-info", LoadModelInfo)
+}
+
+// LoadModelInfo 探测并填充 ModelInfo（幂等；server 启动时经启动钩子调用）
+func LoadModelInfo(ctx context.Context) {
+	if !vconfig.Config.Eps {
+		return
+	}
+	for prefix, model := range epsModels {
+		if model == nil {
+			continue
+		}
+		ModelInfo[prefix] = getModelInfo(ctx, prefix, model)
+	}
+}
 
 // getModelInfo 获取模型信息
 func getModelInfo(ctx g.Ctx, prefix string, model IModel) (columns []*ColumnInfo) {

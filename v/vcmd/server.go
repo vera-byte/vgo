@@ -17,6 +17,8 @@ func init() {
 		Func: func(ctx context.Context, parser *gcmd.Parser) (err error) {
 			// 初始化vgo
 			v.NewVgo()
+			// 运行启动钩子（EPS 探测/插件加载/会话初始化等，均不在 init 期触库）
+			v.RunStartupHooks(ctx)
 			// g.Dump(g.DB("test").GetConfig())
 			if v.IsRedisMode {
 				go v.ListenFunc(ctx)
