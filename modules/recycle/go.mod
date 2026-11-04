@@ -4,8 +4,8 @@ go 1.27.3
 
 require (
 	github.com/gogf/gf/v2 v2.10.4
-	github.com/vera-byte/vgo/modules/base v1.20.0
-	github.com/vera-byte/vgo/v v1.20.0
+	github.com/vera-byte/vgo/modules/base v1.20.1
+	github.com/vera-byte/vgo/v v1.20.1
 )
 
 require (
