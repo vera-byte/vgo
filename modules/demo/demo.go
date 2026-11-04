@@ -2,7 +2,17 @@
 package demo
 
 import (
-	_ "vgo-simple/modules/demo/controller"
+	"embed"
 
+	_ "vgo-simple/modules/demo/controller"
 	_ "vgo-simple/modules/demo/service"
+
+	"github.com/vera-byte/vgo/v"
 )
+
+//go:embed resource/migrates
+var migrationFS embed.FS
+
+func init() {
+	v.RegisterMigrationFS("demo", migrationFS)
+}
