@@ -4,7 +4,7 @@ go 1.27.3
 
 require (
 	github.com/gogf/gf/v2 v2.10.4
-	github.com/vera-byte/vgo/modules/base v1.20.1
+	github.com/vera-byte/vgo/modules/base v1.20.2
 	github.com/vera-byte/vgo/v v1.20.1
 )
 
@@ -39,8 +39,8 @@ require (
 	go.opentelemetry.io/otel/sdk v1.44.0 // indirect
 	go.opentelemetry.io/otel/trace v1.44.0 // indirect
 	golang.org/x/net v0.60.0 // indirect
-	golang.org/x/sys v0.49.0 // indirect
-	golang.org/x/text v0.43.0 // indirect
+	golang.org/x/sys v0.50.0 // indirect
+	golang.org/x/text v0.44.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 	gorm.io/gorm v1.31.0 // indirect
 )

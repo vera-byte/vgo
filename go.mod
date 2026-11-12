@@ -11,7 +11,7 @@ require (
 	github.com/vera-byte/vgo/contrib/files/local v1.20.1
 	github.com/vera-byte/vgo/contrib/files/minio v1.20.1
 	github.com/vera-byte/vgo/contrib/files/oss v1.20.1
-	github.com/vera-byte/vgo/modules/base v1.20.1
+	github.com/vera-byte/vgo/modules/base v1.20.2
 	github.com/vera-byte/vgo/modules/dict v1.20.1
 	github.com/vera-byte/vgo/modules/openapi v1.20.1
 	github.com/vera-byte/vgo/modules/plugin v1.20.1
