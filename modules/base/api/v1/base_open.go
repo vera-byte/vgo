@@ -17,5 +17,4 @@ type BaseOpenCaptchaReq struct {
 	g.Meta `path:"/captcha" method:"GET" summary:"获取验证码" tags:"开放接口"`
 	Height int    `json:"height" in:"query" default:"40"`
 	Width  int    `json:"width"  in:"query" default:"150"`
-	Color  string `json:"color" in:"query" default:"#2c3142"`
 }

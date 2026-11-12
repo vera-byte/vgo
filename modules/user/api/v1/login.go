@@ -50,7 +50,6 @@ type UserLoginCaptchaReq struct {
 	g.Meta `path:"/captcha" method:"GET" summary:"图片验证码" tags:"用户登录"`
 	Width  int `json:"width" d:"150"`
 	Height int `json:"height" d:"40"`
-	Color  string `json:"color"`
 }
 
 // UserLoginSmsCodeReq 发送短信验证码

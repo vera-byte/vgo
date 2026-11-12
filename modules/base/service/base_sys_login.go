@@ -2,20 +2,20 @@ package service
 
 import (
 	"context"
+	"image/color"
+	"strings"
 	"time"
 
+	"github.com/golang-module/base64Captcha"
+	"github.com/golang-module/base64Captcha/driver"
 	"github.com/sa-tokens/sa-token-go/stputil"
-
 	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/model"
 	"github.com/vera-byte/vgo/v"
 
-	"github.com/gogf/gf/v2/encoding/gbase64"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	"github.com/gogf/gf/v2/util/grand"
-	"github.com/gogf/gf/v2/util/guid"
 )
 
 type BaseSysLoginService struct {
@@ -39,12 +39,7 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 		baseSysUser = model.NewBaseSysUser()
 	)
 
-	vcode, err := v.CacheManager.Get(ctx, captchaId)
-	if err != nil {
-		err = gerror.Wrap(err, "系统错误")
-		return
-	}
-	if vcode.String() != verifyCode {
+	if !s.VerifyCaptcha(ctx, captchaId, verifyCode) {
 		err = gerror.New("验证码错误")
 		return
 	}
@@ -78,28 +73,77 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 }
 
 // Captcha 图形验证码
-func (*BaseSysLoginService) Captcha(req *v1.BaseOpenCaptchaReq) (interface{}, error) {
+func (*BaseSysLoginService) Captcha(ctx context.Context, req *v1.BaseOpenCaptchaReq) (interface{}, error) {
 	type capchaInfo struct {
 		CaptchaId string `json:"captchaId"`
 		Data      string `json:"data"`
 	}
-	var (
-		ctx g.Ctx
-		err error
+	result := &capchaInfo{}
 
-		result = &capchaInfo{}
-	)
-	captchaText := grand.Digits(4)
-	svg := `<svg width="` + gconv.String(req.Width) + `" height="` + gconv.String(req.Height) + `" xmlns="http://www.w3.org/2000/svg"><text x="75" y="25" text-anchor="middle" font-size="25" fill="#` + gconv.String(req.Color) + `
-	">` + captchaText + `</text></svg>`
-	svgbase64 := gbase64.EncodeString(svg)
+	// 题目文字由库随机生成深色，必须用浅色背景保证对比度
+	bgColor := color.RGBA{R: 0xf5, G: 0xf5, B: 0xf5, A: 0xff}
+	base64Driver := driver.NewDriverMath(driver.DriverMath{
+		Width:      req.Width,
+		Height:     req.Height,
+		NoiseCount: 5,
+		// ShowLineOptions: driver.OptionShowSineLine | driver.OptionShowSlimeLine,
+		BgColor: &bgColor,
+	})
 
-	result.Data = `data:image/svg+xml;base64,` + svgbase64
-	result.CaptchaId = guid.S()
-	v.CacheManager.Set(ctx, result.CaptchaId, captchaText, 1800*time.Second)
-	// 注意：验证码明文严禁进入日志
-	g.Log().Debug(ctx, "生成验证码", result.CaptchaId)
-	return result, err
+	captcha := base64Captcha.NewCaptcha(base64Driver, newCacheStore(ctx))
+	// answer 由 cacheStore 持久化；验证码明文严禁进入日志
+	id, src, _, err := captcha.Generate()
+	if err != nil {
+		return nil, gerror.Wrap(err, "获取验证码失败")
+	}
+
+	result.CaptchaId = id
+	result.Data = src
+	return result, nil
+}
+
+// VerifyCaptcha 一次性校验验证码：无论成败验证码均失效，防止重放
+func (*BaseSysLoginService) VerifyCaptcha(ctx context.Context, captchaId, code string) bool {
+	return newCacheStore(ctx).Verify(captchaId, code, true)
+}
+
+const captchaTTL = 5 * time.Minute
+
+// cacheStore 基于 v.CacheManager 存储验证码（可切 Redis，多实例共享），
+// 同时满足 base64Captcha 的 store.Store 接口
+type cacheStore struct {
+	ctx context.Context
+}
+
+func newCacheStore(ctx context.Context) *cacheStore {
+	return &cacheStore{ctx: ctx}
+}
+
+func (s *cacheStore) Set(id string, value string) error {
+	return v.CacheManager.Set(s.ctx, id, value, captchaTTL)
+}
+
+func (s *cacheStore) Get(id string, clear bool) string {
+	val, err := v.CacheManager.Get(s.ctx, id)
+	if err != nil {
+		g.Log().Warning(s.ctx, "验证码缓存读取失败:", err)
+		return ""
+	}
+	if val == nil || val.IsNil() {
+		return ""
+	}
+	if clear {
+		v.CacheManager.Remove(s.ctx, id)
+	}
+	return val.String()
+}
+
+func (s *cacheStore) Verify(id, answer string, clear bool) bool {
+	stored := s.Get(id, clear)
+	if stored == "" {
+		return false
+	}
+	return strings.EqualFold(strings.TrimSpace(stored), strings.TrimSpace(answer))
 }
 
 // Logout 退出登录
@@ -147,7 +191,7 @@ func (s *BaseSysLoginService) RefreshToken(ctx context.Context, token string) (r
 }
 
 // 根据用户生成前端需要的Token信息
-func (s *BaseSysLoginService) generateTokenByUser(ctx context.Context, user *model.BaseSysUser) (result *TokenResult, err error) {
+func (s *BaseSysLoginService) generateTokenByUser(_ context.Context, user *model.BaseSysUser) (result *TokenResult, err error) {
 	// 获取用户角色
 	roleIds, err := NewBaseSysRoleService().GetByUser(user.ID)
 	if err != nil {

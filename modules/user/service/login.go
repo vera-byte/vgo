@@ -7,6 +7,7 @@ import (
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
+	baseService "github.com/vera-byte/vgo/modules/base/service"
 	pluginService "github.com/vera-byte/vgo/modules/plugin/service"
 	sagf "github.com/sa-tokens/sa-token-go/integrations/gf"
 	userModel "github.com/vera-byte/vgo/modules/user/model"
@@ -32,7 +33,7 @@ func NewUserLoginService() *UserLoginService {
 
 // SmsCode 发送手机验证码（先校验图片验证码）
 func (s *UserLoginService) SmsCode(ctx context.Context, phone, captchaId, code string) error {
-	if !checkCaptcha(ctx, captchaId, code) {
+	if !baseService.NewBaseSysLoginService().VerifyCaptcha(ctx, captchaId, code) {
 		return gerror.New("图片验证码错误")
 	}
 	return NewUserSmsService().SendSms(ctx, phone)
@@ -267,15 +268,6 @@ func UserLoginID(token string) (uint, error) {
 		return 0, gerror.New("登录失效~")
 	}
 	return gconv.Uint(id), nil
-}
-
-// checkCaptcha 校验图片验证码
-func checkCaptcha(ctx context.Context, captchaId, code string) bool {
-	val, err := v.CacheManager.Get(ctx, captchaId)
-	if err != nil || val.IsNil() {
-		return false
-	}
-	return val.String() == code
 }
 
 // maskPhone 手机号脱敏

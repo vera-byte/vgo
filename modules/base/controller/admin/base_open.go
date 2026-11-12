@@ -27,7 +27,7 @@ func init() {
 
 // 验证码接口
 func (c *BaseOpen) BaseOpenCaptcha(ctx context.Context, req *v1.BaseOpenCaptchaReq) (res *v.BaseRes, err error) {
-	data, err := c.baseSysLoginService.Captcha(req)
+	data, err := c.baseSysLoginService.Captcha(ctx, req)
 	res = v.Ok(data)
 	return
 }

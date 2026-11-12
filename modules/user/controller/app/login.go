@@ -87,10 +87,9 @@ func (c *UserLoginController) MiniPhone(ctx g.Ctx, req *v1.UserLoginMiniPhoneReq
 
 // Captcha 图片验证码（复用基础模块能力）
 func (c *UserLoginController) Captcha(ctx g.Ctx, req *v1.UserLoginCaptchaReq) (res *v.BaseRes, err error) {
-	data, err := baseService.NewBaseSysLoginService().Captcha(&baseApi.BaseOpenCaptchaReq{
+	data, err := baseService.NewBaseSysLoginService().Captcha(ctx, &baseApi.BaseOpenCaptchaReq{
 		Width:  req.Width,
 		Height: req.Height,
-		Color:  req.Color,
 	})
 	if err != nil {
 		return
