@@ -1,9 +1,12 @@
 package service
 
 import (
+	"context"
+
 	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
+	v1 "github.com/vera-byte/vgo/modules/base/api/v1"
 	"github.com/vera-byte/vgo/modules/base/model"
 	"github.com/vera-byte/vgo/v"
 )
@@ -50,27 +53,22 @@ func (s *BaseSysDepartmentService) GetByRoleIds(roleIds []string, isAdmin bool) 
 	return
 }
 
-// Order 排序部门
-func (s *BaseSysDepartmentService) Order(ctx g.Ctx) (err error) {
-	r := g.RequestFromCtx(ctx).GetMap()
-
-	type item struct {
-		Id       uint64  `json:"id"`
-		ParentId *uint64 `json:"parentId,omitempty"`
-		OrderNum int32   `json:"orderNum"`
-	}
-
-	var data *item
-
-	for _, item := range r {
-		err = gconv.Struct(item, &data)
-		if err != nil {
-			continue
+// Order 批量更新部门排序与层级（整体原子生效）
+func (s *BaseSysDepartmentService) Order(ctx context.Context, items []v1.OrderItem) (err error) {
+	return g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
+		for _, item := range items {
+			if item.Id == 0 {
+				continue
+			}
+			if _, err = v.DBM(s.Model).TX(tx).Where("id = ?", item.Id).Data(g.Map{
+				"parentId": item.ParentId,
+				"orderNum": item.OrderNum,
+			}).Update(); err != nil {
+				return err
+			}
 		}
-		v.DBM(s.Model).Where("id = ?", data.Id).Data(data).Update()
-	}
-
-	return
+		return
+	})
 }
 
 // NewBaseSysDepartmentService 创建一个BaseSysDepartmentService实例

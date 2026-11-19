@@ -93,7 +93,7 @@ func (s *BaseSysLogService) Clear(isAll bool) (err error) {
 		_, err = m.Delete("1=1")
 	} else {
 		keepDays := gconv.Int(BaseSysConfService.GetValue("logKeep"))
-		_, err = m.Delete("createTime < ?", gtime.Now().AddDate(0, 0, -keepDays).String())
+		_, err = m.Delete(`"createTime" < ?`, gtime.Now().AddDate(0, 0, -keepDays).String())
 	}
 	return
 }

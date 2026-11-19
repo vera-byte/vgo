@@ -28,18 +28,20 @@ func safeOrderBy(order, sort string) (field string, direction string, err error)
 }
 
 type IService interface {
-	ServiceAdd(ctx context.Context, req *AddReq) (data interface{}, err error)       // 新增
-	ServiceDelete(ctx context.Context, req *DeleteReq) (data interface{}, err error) // 删除
-	ServiceUpdate(ctx context.Context, req *UpdateReq) (data interface{}, err error) // 修改
-	ServiceInfo(ctx context.Context, req *InfoReq) (data interface{}, err error)     // 详情
-	ServiceList(ctx context.Context, req *ListReq) (data interface{}, err error)     // 列表
-	ServicePage(ctx context.Context, req *PageReq) (data interface{}, err error)     // 分页
-	ModifyBefore(ctx context.Context, method string, param g.MapStrAny) (err error)  // 新增|删除|修改前的操作
-	ModifyAfter(ctx context.Context, method string, param g.MapStrAny) (err error)   // 新增|删除|修改后的操作
-	GetModel() IModel                                                                // 获取model
+	ServiceAdd(ctx context.Context, req *AddReq) (data interface{}, err error)                      // 新增
+	ServiceDelete(ctx context.Context, req *DeleteReq) (data interface{}, err error)                // 删除
+	ServiceUpdate(ctx context.Context, req *UpdateReq) (data interface{}, err error)                // 修改
+	ServiceAddOrUpdate(ctx context.Context, method string, param g.MapStrAny) (data any, err error) // 新增|修改
+	ServiceInfo(ctx context.Context, req *InfoReq) (data interface{}, err error)                    // 详情
+	ServiceList(ctx context.Context, req *ListReq) (data interface{}, err error)                    // 列表
+	ServicePage(ctx context.Context, req *PageReq) (data interface{}, err error)                    // 分页
+	ModifyBefore(ctx context.Context, method string, param g.MapStrAny) (err error)                 // 新增|删除|修改前的操作
+	ModifyAfter(ctx context.Context, method string, param g.MapStrAny) (err error)                  // 新增|删除|修改后的操作
+	GetModel() IModel                                                                               // 获取model
 }
 type Service struct {
 	Model              IModel
+	owner              IService                           // 所属服务实例，注册控制器时回填；编排方法经它虚分派到子类覆写
 	ListQueryOp        *QueryOp
 	PageQueryOp        *QueryOp
 	InsertParam        func(ctx context.Context) g.MapStrAny // Add时插入参数
@@ -77,6 +79,8 @@ func (s *Service) ServiceAdd(ctx context.Context, req *AddReq) (data interface{}
 	r := g.RequestFromCtx(ctx)
 
 	rmap := r.GetMap()
+	// 新增不接受外部指定 id（与 TS add() 剥离 param.id 一致；请求合并可能把 id 再带进来）
+	delete(rmap, "id")
 	// 非空键
 	if s.NotNullKey != nil {
 		for k, v := range s.NotNullKey {
@@ -167,6 +171,51 @@ func (s *Service) ServiceUpdate(ctx context.Context, req *UpdateReq) (data inter
 	_, err = m.Data(rmap).Where("id", rmap["id"]).Update()
 
 	return
+}
+
+// SetOwner 回填所属服务实例（RegisterController 调用）。
+// 嵌入 *Service 的子类覆写（ModifyBefore/After、ServiceAdd/Update 等）依赖它虚分派生效。
+func (s *Service) SetOwner(owner IService) {
+	s.owner = owner
+}
+
+// ServiceAddOrUpdate 新增|修改：modifyBefore → 落库 → modifyAfter，生成的 id 回写 param。
+// 经所属服务实例接口调用 ServiceAdd/ServiceUpdate，子类覆写保持生效。
+func (s *Service) ServiceAddOrUpdate(ctx context.Context, method string, param g.MapStrAny) (data any, err error) {
+	svc := IService(s)
+	if s.owner != nil {
+		svc = s.owner
+	}
+	return DispatchAddOrUpdate(ctx, method, param, svc)
+}
+
+// DispatchAddOrUpdate 由 ServiceAddOrUpdate 转调，保证分派经接口进行、子类覆写生效
+func DispatchAddOrUpdate(ctx context.Context, method string, param g.MapStrAny, svc IService) (data any, err error) {
+	if method != "Add" && method != "Update" {
+		return nil, gerror.New("method 只能是 Add 或 Update")
+	}
+	if err = svc.ModifyBefore(ctx, method, param); err != nil {
+		return nil, err
+	}
+	// 低层 ServiceAdd/ServiceUpdate 从请求参数取数据，把 param 合并进去（自定义参数优先级最高）
+	g.RequestFromCtx(ctx).SetParamMap(param)
+	if method == "Add" {
+		data, err = svc.ServiceAdd(ctx, &AddReq{})
+	} else {
+		data, err = svc.ServiceUpdate(ctx, &UpdateReq{})
+	}
+	if err != nil {
+		return nil, err
+	}
+	// 生成的 id 回写 param（对应 TS 低层把 id 写回 param）
+	if m, ok := data.(g.Map); ok && m["id"] != nil {
+		param["id"] = m["id"]
+		g.RequestFromCtx(ctx).SetParam("id", m["id"])
+	}
+	if err = svc.ModifyAfter(ctx, method, param); err != nil {
+		return nil, err
+	}
+	return nil, nil
 }
 
 func (s *Service) ServiceInfo(ctx context.Context, req *InfoReq) (data interface{}, err error) {
@@ -443,7 +492,6 @@ func (s *Service) ServicePage(ctx context.Context, req *PageReq) (data interface
 
 // ModifyBefore 新增|删除|修改前的操作
 func (s *Service) ModifyBefore(ctx context.Context, method string, param g.MapStrAny) (err error) {
-	// g.Log().Debugf(ctx, "ModifyBefore: %s", method)
 	return
 }
 

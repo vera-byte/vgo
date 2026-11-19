@@ -19,8 +19,15 @@ type UserMoveReq struct {
 	Authorization string `json:"Authorization" in:"header"`
 }
 
-// OrderReq 排序请求参数
+// OrderItem 排序项
+type OrderItem struct {
+	Id       uint64  `json:"id"`
+	ParentId *uint64 `json:"parentId"`
+	OrderNum int32   `json:"orderNum"`
+}
+
+// OrderReq 排序请求参数（body 为 JSON 数组）
 type OrderReq struct {
-	g.Meta        `path:"/order" method:"POST" summary:"排序操作" tags:"管理员"`
-	Authorization string `json:"Authorization" in:"header"`
+	g.Meta `path:"/order" method:"POST" summary:"排序操作" tags:"管理员"`
+	Items  []OrderItem `json:"items" body:"*"`
 }

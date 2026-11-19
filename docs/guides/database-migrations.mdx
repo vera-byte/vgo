@@ -7,6 +7,9 @@ description: "PostgreSQL 方言约定、多模块迁移命令与软删除机制"
 
 - 主数据库为 **PostgreSQL 15+**（迁移文件为 PG 方言）
 - 时间字段：`createTime` / `updateTime` / `deletedAt`（camelCase，**引用时必须加双引号**）
+- 时间列格式统一 **`YYYY-MM-DD HH24:MI:SS`**（19 位）：列默认值与更新触发器均为
+  `to_char(now(), 'YYYY-MM-DD HH24:MI:SS')`，**禁止 `now()::text`**（输出带微秒与时区，
+  如 `2026-11-20 00:34:53.592877+08`）；存量脏格式的归一化见 `*_normalize_time_defaults` 迁移
 - 建表使用 `BIGSERIAL` 主键，列注释使用 `COMMENT ON COLUMN` 语法
 
 <Warning>

@@ -26,6 +26,9 @@ description: "按模块汇总的接口清单（自 EPS 元数据生成的稳定�
 
 标准 CRUD（`v.Controller` 生成，`add/delete/update/info/list/page`）：
 
+- `add` / `update` 请求体支持**单条对象或对象数组**；响应单条 `{"id": 1}`、批量 `{"idList": [1,2,3]}`
+- `add` 不接受外部指定 id（显式 id 被忽略）
+
 | 前缀 | 权限串示例 |
 |------|-----------|
 | `/admin/base/sys/user` | `base:sys:user:page` |

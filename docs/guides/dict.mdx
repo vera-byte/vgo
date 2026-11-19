@@ -1,0 +1,56 @@
+---
+title: "数据字典"
+description: "v.Dict 字典查询能力：值/名互查、下拉选项、完整数据，带缓存与写后失效"
+---
+
+## 概述
+
+字典数据存储在 `dict_type`（类型）/ `dict_info`（条目）表，由 **dict 模块**提供数据源并注册到内核
+（`v.RegisterDict`），业务代码统一通过 `v.Dict` 查询：
+
+```go
+v.Dict.GetLabel(ctx, "occupation", "3")        // 值 → 显示名："战士"
+v.Dict.GetValue(ctx, "occupation", "战士")      // 显示名 → 值：*gvar.Var（.Int() == 3）
+v.Dict.GetOptions(ctx, "occupation")           // 下拉选项：[{label, value}]（orderNum 升序）
+v.Dict.GetTypes(ctx)                           // 全部类型：[{id, name, key}]
+v.Dict.GetInfo(ctx, "admin_user_status", "正常") // 单条完整数据（含 id/排序/备注/父级）
+```
+
+未注册数据源（未引入 dict 模块）时查询安全返回空值；类型/条目不存在时 `GetLabel` 返回 `""`、
+`GetValue` 返回 `IsNil` 的 gvar、`GetInfo` 返回 `nil`、`GetOptions`/`GetTypes` 返回空数组。
+
+## API
+
+| 方法 | 参数 | 返回 | 说明 |
+|------|------|------|------|
+| `GetLabel` | `(ctx, typeKey, value)` | `string` | 值 → 显示名；不存在返回 `""` |
+| `GetValue` | `(ctx, typeKey, label)` | `*gvar.Var` | 显示名 → 条目值；不存在返回 `IsNil` gvar |
+| `GetOptions` | `(ctx, typeKey)` | `[]DictOption` | `{label, value}` 列表，供下拉框渲染 |
+| `GetTypes` | `(ctx)` | `[]DictTypeInfo` | `{id, name, key}` 列表，供管理页渲染 |
+| `GetInfo` | `(ctx, typeKey, label)` | `*DictEntry` | 单条完整数据（`id/name/value/orderNum/remark/parentId`）；不存在返回 `nil` |
+
+`DictEntry.Value` 为 gvar，可按需转数值（`.String()` / `.Int()` / `.Int32()`）。
+
+## 缓存与新鲜度
+
+- **单键缓存** `dict:data`：存全量字典（类型 + 条目完整字段），五个查询方法共用一份快照，命中零查库
+- **10 分钟 TTL**：兜底防止数据量大时长期占用内存（常量 `dictCacheTTL` 可调）
+- **写后失效**：dict 模块的增删改经 `ModifyAfter` 主动删除缓存，下次查询惰性重建
+
+## 业务常量与字典的关系
+
+业务判断**以代码常量为准**，字典仅作展示与文案——避免"运营改显示名把代码改挂"：
+
+```go
+// model：状态值收进代码常量（与字典条目 value 对应）
+const (
+    UserStatusBanned int32 = 0 // 禁用/封禁
+    UserStatusNormal int32 = 1 // 启用/正常
+)
+
+// 业务判断用常量，文案才走字典
+if *user.Status != model.UserStatusNormal { … }
+```
+
+对应字典（`admin_user_status`）条目值须与常量一致；条目 `remark` 可配置提示文案
+（如"该账号已被封禁"），代码侧做空备注兜底。

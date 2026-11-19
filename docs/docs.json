@@ -47,6 +47,7 @@
             "group": "业务模块",
             "pages": [
               "guides/user-module",
+              "guides/dict",
               "guides/tasks",
               "guides/data-recycle"
             ]

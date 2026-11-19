@@ -17,6 +17,7 @@ var allowedUploadExts = map[string]bool{
 	".ppt": true, ".pptx": true,
 	".zip": true, ".rar": true, ".7z": true,
 	".mp3": true, ".mp4": true, ".wav": true, ".avi": true, ".mov": true,
+	".sql": true,
 }
 
 // ValidateUploadExt 校验上传文件的扩展名是否在白名单内，返回规范化的小写扩展名（含点）。

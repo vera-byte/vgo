@@ -1,11 +1,14 @@
 package v
 
 import (
+	"bytes"
 	"context"
+	"io"
 	"strings"
 
 	"github.com/gogf/gf/v2/container/garray"
 	"github.com/gogf/gf/v2/database/gdb"
+	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/text/gstr"
@@ -29,6 +32,7 @@ type Controller struct {
 
 type AddReq struct {
 	g.Meta `path:"/add" method:"POST" summary:"新增" tags:"通用CRUD"`
+	Items  []g.Map `json:"items" body:"*"` // 请求体为单条对象或对象数组（对象自动包装为数组）
 }
 
 type DeleteReq struct {
@@ -38,6 +42,7 @@ type DeleteReq struct {
 
 type UpdateReq struct {
 	g.Meta `path:"/update" method:"POST" summary:"更新" tags:"通用CRUD"`
+	Items  []g.Map `json:"items" body:"*"` // 请求体为单条对象或对象数组（对象自动包装为数组）
 }
 
 type InfoReq struct {
@@ -67,29 +72,29 @@ type PageReq struct {
 }
 
 func (c *Controller) Add(ctx context.Context, req *AddReq) (res *BaseRes, err error) {
-	if garray.NewStrArrayFrom(c.Api).Contains("Add") {
-		err := c.Service.ModifyBefore(ctx, "Add", g.RequestFromCtx(ctx).GetMap())
-		if err != nil {
-			return nil, err
-		}
-
-		data, err := c.Service.ServiceAdd(ctx, req)
-		if err != nil {
-			return Fail(err.Error()), err
-		}
-		// 将新建记录 id 带入修改后钩子（钩子常需按新 id 联动处理）
-		param := g.RequestFromCtx(ctx).GetMap()
-		if m, ok := data.(g.Map); ok && m["id"] != nil {
-			param["id"] = m["id"]
-		}
-		err = c.Service.ModifyAfter(ctx, "Add", param)
-		if err != nil {
-			return Fail(err.Error()), err
-		}
-		return Ok(data), err
+	if !garray.NewStrArrayFrom(c.Api).Contains("Add") {
+		g.RequestFromCtx(ctx).Response.Status = 404
+		return nil, nil
 	}
-	g.RequestFromCtx(ctx).Response.Status = 404
-	return nil, nil
+	if len(req.Items) == 0 {
+		return nil, gerror.New("数据不能为空")
+	}
+	ids := make([]any, 0, len(req.Items))
+	for _, item := range req.Items {
+		// 与 TS add() 一致：新增剥掉 id，不允许外部指定
+		delete(item, "id")
+		param := g.MapStrAny(item)
+		if _, err = c.Service.ServiceAddOrUpdate(ctx, "Add", param); err != nil {
+			return Fail(err.Error()), err
+		}
+		// 与 TS add() 一致：id 回写进 param 后收集
+		ids = append(ids, param["id"])
+	}
+	// 单条返回 {id}，批量返回 {idList}（idList 批量回写）
+	if len(ids) == 1 {
+		return Ok(g.Map{"id": ids[0]}), nil
+	}
+	return Ok(g.Map{"idList": ids}), nil
 }
 func (c *Controller) Delete(ctx context.Context, req *DeleteReq) (res *BaseRes, err error) {
 	if garray.NewStrArrayFrom(c.Api).Contains("Delete") {
@@ -111,23 +116,26 @@ func (c *Controller) Delete(ctx context.Context, req *DeleteReq) (res *BaseRes, 
 	return nil, nil
 }
 func (c *Controller) Update(ctx context.Context, req *UpdateReq) (res *BaseRes, err error) {
-	if garray.NewStrArrayFrom(c.Api).Contains("Update") {
-		err := c.Service.ModifyBefore(ctx, "Update", g.RequestFromCtx(ctx).GetMap())
-		if err != nil {
-			return nil, err
-		}
-
-		data, err := c.Service.ServiceUpdate(ctx, req)
-		if err != nil {
+	if !garray.NewStrArrayFrom(c.Api).Contains("Update") {
+		g.RequestFromCtx(ctx).Response.Status = 404
+		return nil, nil
+	}
+	if len(req.Items) == 0 {
+		return nil, gerror.New("数据不能为空")
+	}
+	ids := make([]any, 0, len(req.Items))
+	for _, item := range req.Items {
+		param := g.MapStrAny(item)
+		if _, err = c.Service.ServiceAddOrUpdate(ctx, "Update", param); err != nil {
 			return Fail(err.Error()), err
 		}
-		if err = c.Service.ModifyAfter(ctx, "Update", g.RequestFromCtx(ctx).GetMap()); err != nil {
-			return nil, err
-		}
-		return Ok(data), err
+		ids = append(ids, param["id"])
 	}
-	g.RequestFromCtx(ctx).Response.Status = 404
-	return nil, nil
+	// 单条返回 {id}，批量返回 {idList}（idList 批量回写）
+	if len(ids) == 1 {
+		return Ok(g.Map{"id": ids[0]}), nil
+	}
+	return Ok(g.Map{"idList": ids}), nil
 }
 func (c *Controller) Info(ctx context.Context, req *InfoReq) (res *BaseRes, err error) {
 	if garray.NewStrArrayFrom(c.Api).Contains("Info") {
@@ -162,6 +170,10 @@ func RegisterController(c IController) {
 	// 避免任意子命令在 init 阶段触库
 	if sController.Service != nil {
 		epsModels[sController.Prefix] = sController.Service.GetModel()
+		// 回填所属服务实例，保证编排方法（ServiceAddOrUpdate）链上的子类覆写虚分派生效
+		if o, ok := sController.Service.(interface{ SetOwner(IService) }); ok {
+			o.SetOwner(sController.Service)
+		}
 	}
 	g.Server().Group(
 		sController.Prefix, func(group *ghttp.RouterGroup) {
@@ -170,6 +182,24 @@ func RegisterController(c IController) {
 				c,
 			)
 		})
+	// body:"*" 字段只接受 JSON 数组，单对象 body 在此包装为单元素数组（兼容 any | any[]）
+	g.Server().BindMiddleware(sController.Prefix+"/add", normalizeObjectBodyToArray)
+	g.Server().BindMiddleware(sController.Prefix+"/update", normalizeObjectBodyToArray)
+}
+
+// normalizeObjectBodyToArray 将单对象 JSON body 包装为数组，使 add/update 同时兼容
+// 单条对象与对象数组；数组 body 原样放行。
+func normalizeObjectBodyToArray(r *ghttp.Request) {
+	body := bytes.TrimSpace(r.GetBody())
+	if len(body) > 0 && body[0] == '{' {
+		wrapped := make([]byte, 0, len(body)+2)
+		wrapped = append(wrapped, '[')
+		wrapped = append(wrapped, body...)
+		wrapped = append(wrapped, ']')
+		r.Body = io.NopCloser(bytes.NewReader(wrapped))
+		r.ReloadParam()
+	}
+	r.Middleware.Next()
 }
 
 // ColumnInfo 表字段信息

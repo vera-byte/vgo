@@ -70,13 +70,12 @@ func (s *BaseSysMenuService) ModifyAfter(ctx context.Context, method string, par
 
 // ServiceAdd 添加
 func (s *BaseSysMenuService) ServiceAdd(ctx context.Context, req *v.AddReq) (data interface{}, err error) {
-	r := g.RequestFromCtx(ctx)
-	rjson, err := r.GetJson()
-	if err != nil {
-		return
-	}
+	// 经请求参数取数（编排层已把当前条目合并进来），原始 body 为数组形态不再直接解析
+	reqmap := g.RequestFromCtx(ctx).GetMap()
+	// 新增不接受外部指定 id（与 TS add() 一致）
+	delete(reqmap, "id")
 	m := v.DBM(s.Model)
-	lastInsertId, err := m.Data(rjson).InsertAndGetId()
+	lastInsertId, err := m.Data(reqmap).InsertAndGetId()
 	if err != nil {
 		return
 	}

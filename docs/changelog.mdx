@@ -2,6 +2,41 @@
 title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
+## v1.20.3（未发布）—— 字典能力与通用 CRUD 批量新增|修改
+
+### 新增
+- **`v.Dict` 字典能力**：`GetLabel`（值→显示名）/ `GetValue`（名→值，gvar）/ `GetOptions`（下拉选项）/ `GetTypes`（类型列表）/ `GetInfo`（单条完整数据）；数据源由 dict 模块注册（`v.RegisterDict`），全量单键缓存（10 分钟 TTL + 字典写后主动失效）
+- **通用 CRUD `ServiceAddOrUpdate`**（对齐 TS `addOrUpdate` 语义）：执行顺序 `ModifyBefore → 落库 → id 回写 param → ModifyAfter`；新增剥除外部 id，响应单条 `{id}`、批量 `{idList}`；`add`/`update` 支持 `any | any[]`（对象 body 自动包装、数组 body 逐条处理）
+- **登录账号状态白名单**：`model.UserStatusNormal/UserStatusBanned` 业务常量；仅"正常"可登录，未知/缺省状态默认拒绝；提示文案取状态字典条目备注，缺省兜底（`checkLoginStatus` 单测覆盖 5 场景）
+
+### 变更
+- **用户名唯一索引**（`UQ_base_sys_user_username`）+ Add/Update 覆写补齐唯一键校验（覆写不再绕开通用校验）
+- **用户角色同步**：`ServiceAdd` 支持 `roleIdList` 写入 `base_sys_user_role`（与 `ServiceUpdate` 共用 `syncUserRoles`，角色集无变化跳过写库）
+- **禁止删除自己**：Delete 前置钩子拦截当前登录用户
+- **时间列格式归一化**：`createTime/updateTime` 默认值由 `now()::text`（微秒+时区）改为 `to_char(now(),'YYYY-MM-DD HH24:MI:SS')`（与更新触发器一致），7 模块 23 张表存量脏格式一并回填
+- 上传扩展名白名单新增 `.sql`；配置 `file.domain` 与服务端口对齐（8001）
+
+### 修复
+- 部门排序 `/admin/base/sys/department/order` 数组 body 解析失败（`body:"*"` 绑定 + 事务化）
+- 系统参数 ServiceInfo 对纯文本/HTML `data` 错误返回 JSON 解析失败
+- 定时日志清理 SQL 驼峰列名未加引号（`"createTime"`，pgsql 折叠报错）
+
+## v1.20.2（2026-11）—— 验证码重构
+
+- 图形验证码改用 **base64Captcha 算术题驱动**，`cacheStore` 适配 `v.CacheManager`（多实例共享）
+- **验证码一次性校验防重放**（校验后即失效），TTL 收敛至 5 分钟；trim + 忽略大小写比较
+- 固定浅色背景保证可读性；`Captcha` 接收 ctx、生成失败保留底层错误
+
+## v1.20.1（2026-11）—— init 触库惰性化与内嵌文档
+
+- 子命令零触库（启动钩子化），任意子命令不再连接数据库/Redis
+- vgo-tools docs 内嵌 Mintlify 静态文档托管（运行时不依赖 npm）
+- 全模块依赖 lockstep v1.20.1（含脚手架模板），binVersion 同步
+
+## v1.20.0（2026-11）—— 版本线跳升
+
+- 版本线 1.2.x → 1.20.x：Go proxy 残留历史 tag v1.10.x 语义版本高于 v1.2.x，裸 `go mod tidy` 会解析到旧版混搭；跳线后最新版本解析永远命中
+
 ## v1.2.5（2026-11）—— init 模板代码清理
 
 ## v1.2.4（2026-11）—— init 模板依赖版本热修

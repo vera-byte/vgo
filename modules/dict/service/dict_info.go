@@ -60,6 +60,8 @@ func (s *DictInfoService) ModifyAfter(ctx context.Context, method string, param 
 			}
 		}
 	}
+	// 字典数据变更后失效查询缓存
+	invalidateDictCache(ctx)
 	return
 }
 

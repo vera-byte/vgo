@@ -78,6 +78,27 @@ PostgreSQL 会将未加引号的标识符折叠为小写。**手工拼接的 SQL
 `Where("col", value)` / `WhereIn` 等两参形式会自动引用，优先使用。
 </Warning>
 
+## 新增|修改（addOrUpdate）
+
+`add`/`update` 入口统一走 `ServiceAddOrUpdate`（对齐 TS `addOrUpdate` 语义）：
+
+```
+Controller.Add / Update               ← 壳（Add 剥除外部 id）
+ └─ ServiceAddOrUpdate(method, param)
+      ├─ ModifyBefore(method, param)
+      ├─ ServiceAdd / ServiceUpdate    ← 低层落库（子类覆写生效）
+      ├─ 生成的 id 回写 param           ← modifyAfter 可拿到新 id
+      └─ ModifyAfter(method, param)
+```
+
+- **请求体即数据**：支持单条对象或对象数组（`any | any[]`），数组逐条处理；
+  对象 body 由路由中间件自动包装为单元素数组，前端无需区分
+- **响应**：单条 `{"id": 1}`（取自回写进 param 的新 id），批量 `{"idList": [1,2,3]}`（idList 批量回写）
+- **新增剥 id**：`add` 不接受外部指定 id（与 TS 一致），显式 id 会被忽略
+- **覆写虚分派**：`RegisterController` 注册时回填服务实例（owner），
+  `ServiceAdd`/`ServiceUpdate`/钩子的覆写在编排链内自动生效——**通常无需覆写 `ServiceAddOrUpdate`**；
+  非控制器注册的自建服务如需同样分派，可转调 `v.DispatchAddOrUpdate(ctx, method, param, s)`
+
 ## 修改钩子
 
 ```go
@@ -91,6 +112,7 @@ func (s *XxxService) ModifyAfter(ctx, method string, param g.MapStrAny) error
 ```
 
 钩子返回错误会中止请求（ModifyAfter 失败同样报错返回）。
+`Add`/`Update` 的钩子在 `ServiceAddOrUpdate` 编排内执行，`ModifyAfter` 调用时新 id 已回写进 `param`。
 
 ## 其他能力
 

@@ -44,7 +44,7 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 		return
 	}
 	var user *model.BaseSysUser
-	v.DBM(baseSysUser).Where("username=?", username).Where("status=?", 1).Scan(&user)
+	v.DBM(baseSysUser).Where("username=?", username).Scan(&user)
 	if user == nil {
 		err = gerror.New("账户或密码不正确~")
 		return
@@ -52,6 +52,10 @@ func (s *BaseSysLoginService) Login(ctx context.Context, req *v1.BaseOpenLoginRe
 	ok, legacy := checkPassword(password, user.Password)
 	if !ok {
 		err = gerror.New("账户或密码不正确~")
+		return
+	}
+	// 账号状态白名单：仅"正常"可登录
+	if err = checkLoginStatus(ctx, user.Status); err != nil {
 		return
 	}
 	if legacy {
@@ -85,7 +89,7 @@ func (*BaseSysLoginService) Captcha(ctx context.Context, req *v1.BaseOpenCaptcha
 	base64Driver := driver.NewDriverMath(driver.DriverMath{
 		Width:      req.Width,
 		Height:     req.Height,
-		NoiseCount: 5,
+		NoiseCount: 0,
 		// ShowLineOptions: driver.OptionShowSineLine | driver.OptionShowSlimeLine,
 		BgColor: &bgColor,
 	})
@@ -212,6 +216,31 @@ func (s *BaseSysLoginService) generateTokenByUser(_ context.Context, user *model
 		return nil, err
 	}
 	return
+}
+
+// checkLoginStatus 账号状态白名单校验：仅"正常"放行，其余（封禁/未知/缺省）返回拒绝错误
+func checkLoginStatus(ctx context.Context, status *int32) error {
+	if status == nil || *status != model.UserStatusNormal {
+		return gerror.New(statusRefusedMessage(ctx, status))
+	}
+	return nil
+}
+
+// statusRefusedMessage 状态拒绝登录的提示文案：
+// 优先取该状态字典条目的备注（value → 显示名 → 条目），缺省返回默认文案
+func statusRefusedMessage(ctx context.Context, status *int32) string {
+	const defaultMsg = "当前账号状态不支持登录~"
+	if status == nil {
+		return defaultMsg
+	}
+	label := v.Dict.GetLabel(ctx, model.DictKeyUserStatus, gconv.String(*status))
+	if label == "" {
+		return defaultMsg
+	}
+	if e := v.Dict.GetInfo(ctx, model.DictKeyUserStatus, label); e != nil && e.Remark != "" {
+		return e.Remark
+	}
+	return defaultMsg
 }
 
 // NewBaseSysLoginService 创建一个新的BaseSysLoginService

@@ -47,6 +47,11 @@ Vgo 使用 [sa-token-go](https://github.com/sa-tokens/sa-token-go) 作为会话�
 登录流程：验证码校验 → bcrypt 密码校验 → 签发 access/refresh token 对 → 写入角色/权限/会话数据。
 若账号无任何角色，拒绝登录（"该用户未设置任何角色"）。
 
+**账号状态白名单**：仅 `model.UserStatusNormal`（正常）可登录，封禁/未知/缺省（NULL）状态一律拒绝
+（fail-closed）。状态值以代码常量为准（`model.UserStatus*`，字典仅作展示与文案，见 [数据字典](/guides/dict)）；
+拒绝提示取 `admin_user_status` 字典中该状态条目的 `remark`（如"该账号已被封禁"），备注为空时兜底
+"当前账号状态不支持登录~"。
+
 ## 刷新与登出
 
 | 接口 | 方法 | 说明 |

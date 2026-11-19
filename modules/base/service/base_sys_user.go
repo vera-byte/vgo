@@ -26,8 +26,15 @@ func (s *BaseSysUserService) Person(userId uint) (res gdb.Record, err error) {
 
 func (s *BaseSysUserService) ModifyBefore(ctx context.Context, method string, param g.MapStrAny) (err error) {
 	if method == "Delete" {
-		// 禁止删除超级管理员
 		userIds := garray.NewIntArrayFrom(gconv.Ints(param["ids"]))
+
+		// 不能删除自己
+		if userIds.Contains(int(v.GetAdmin(ctx).UserId)) {
+			err = gerror.New("不能删除自己")
+			return
+		}
+
+		// 禁止删除超级管理员
 		currentId, found := userIds.Get(0)
 		superAdminId := 1
 
@@ -53,6 +60,28 @@ func (s *BaseSysUserService) ModifyAfter(ctx context.Context, method string, par
 	return
 }
 
+// checkUnique 唯一键校验；覆写 ServiceAdd/ServiceUpdate 后不会走通用实现的校验，需在此补上。
+// excludeId 传入被更新记录 id 时排除自身（nil 表示新增场景）
+func (s *BaseSysUserService) checkUnique(param g.Map, excludeId interface{}) error {
+	for k, msg := range s.UniqueKey {
+		if param[k] == nil {
+			continue
+		}
+		m := v.DBM(s.Model).Where(k, param[k])
+		if excludeId != nil {
+			m = m.WhereNot("id", excludeId)
+		}
+		count, err := m.Count()
+		if err != nil {
+			return err
+		}
+		if count > 0 {
+			return gerror.New(msg)
+		}
+	}
+	return nil
+}
+
 // ServiceAdd 方法 添加用户
 func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *v.AddReq) (data interface{}, err error) {
 	var (
@@ -68,7 +97,28 @@ func (s *BaseSysUserService) ServiceAdd(ctx context.Context, req *v.AddReq) (dat
 		}
 		reqmap["password"] = hashed
 	}
-	lastInsertId, err := m.Data(reqmap).InsertAndGetId()
+	// 角色写入 user_role 表，不进用户表
+	roleIds := r.Get("roleIdList").Ints()
+	delete(reqmap, "roleIdList")
+	// 新增不接受外部指定 id（与 TS add() 一致）
+	delete(reqmap, "id")
+
+	if err = s.checkUnique(reqmap, nil); err != nil {
+		return
+	}
+
+	var lastInsertId int64
+	err = g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
+		lastInsertId, err = m.TX(tx).Data(reqmap).InsertAndGetId()
+		if err != nil {
+			return
+		}
+		// 如果请求参数中不包含roleIdList说明不设置角色
+		if r.Get("roleIdList").IsNil() {
+			return
+		}
+		return syncUserRoles(tx, gconv.Uint(lastInsertId), roleIds)
+	})
 	if err != nil {
 		return
 	}
@@ -121,6 +171,11 @@ func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *v.UpdateReq
 		return
 	}
 
+	// 唯一键校验（更新时排除自身）
+	if err = s.checkUnique(rMap, userId); err != nil {
+		return
+	}
+
 	// 禁止禁用管理员账号（按角色 label=admin 判定）
 	if !r.Get("status").IsNil() && r.Get("status").Int() == 0 {
 		if roleIds, e := NewBaseSysRoleService().GetByUser(userId); e == nil && satokenIsAdmin(roleIds) {
@@ -145,37 +200,10 @@ func (s *BaseSysUserService) ServiceUpdate(ctx context.Context, req *v.UpdateReq
 	}
 
 	err = g.DB().Transaction(ctx, func(ctx context.Context, tx gdb.TX) (err error) {
-		roleModel := v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId", userId)
-		roleIds, err := roleModel.Fields("roleId").Array()
-		if err != nil {
-			return
-		}
-
 		// 如果请求参数中不包含roleIdList说明不修改角色信息
 		if !r.Get("roleIdList").IsNil() {
-			inRoleIdSet := gset.NewFrom(r.Get("roleIdList").Ints())
-			roleIdsSet := gset.NewFrom(gconv.Ints(roleIds))
-
-			// 如果请求的角色信息未发生变化则跳过更新逻辑
-			if roleIdsSet.Diff(inRoleIdSet).Size() != 0 || inRoleIdSet.Diff(roleIdsSet).Size() != 0 {
-				roleArray := garray.NewArray()
-				inRoleIdSet.Iterator(func(v interface{}) bool {
-					roleArray.PushRight(g.Map{
-						"userId": gconv.Uint(userId),
-						"roleId": gconv.Uint(v),
-					})
-					return true
-				})
-
-				_, err = roleModel.Delete()
-
-				if err != nil {
-					return err
-				}
-				_, err = roleModel.Fields("userId,roleId").Insert(roleArray)
-				if err != nil {
-					return err
-				}
+			if err = syncUserRoles(tx, userId, r.Get("roleIdList").Ints()); err != nil {
+				return
 			}
 		}
 
@@ -250,6 +278,34 @@ func (s *BaseSysUserService) Move(ctx g.Ctx) (err error) {
 	_, err = v.DBM(s.Model).WhereIn("id", userIds).Data(g.Map{"departmentId": departmentId}).Update()
 
 	return
+}
+
+// syncUserRoles 全量覆盖用户的角色关联；与现有一致时跳过，减少无效写库
+func syncUserRoles(tx gdb.TX, userId uint, roleIds []int) error {
+	oldIds, err := v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId", userId).Fields("roleId").Array()
+	if err != nil {
+		return err
+	}
+	newSet := gset.NewFrom(roleIds)
+	if gset.NewFrom(gconv.Ints(oldIds)).Equal(newSet) {
+		return nil
+	}
+	if _, err = v.DBM(model.NewBaseSysUserRole()).TX(tx).Where("userId", userId).Delete(); err != nil {
+		return err
+	}
+	if newSet.Size() == 0 {
+		return nil
+	}
+	roleArray := garray.NewArray()
+	newSet.Iterator(func(v interface{}) bool {
+		roleArray.PushRight(g.Map{
+			"userId": userId,
+			"roleId": gconv.Uint(v),
+		})
+		return true
+	})
+	_, err = v.DBM(model.NewBaseSysUserRole()).TX(tx).Fields("userId,roleId").Insert(roleArray)
+	return err
 }
 
 // NewBaseSysUserService 创建一个新的BaseSysUserService实例

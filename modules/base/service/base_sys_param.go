@@ -2,11 +2,17 @@ package service
 
 import (
 	"context"
+	"encoding/json"
+	"errors"
+	"strings"
 
+	"github.com/gogf/gf/v2/database/gdb"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/text/gstr"
+	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/vera-byte/vgo/modules/base/model"
 	"github.com/vera-byte/vgo/v"
+	"gorm.io/gorm"
 )
 
 type BaseSysParamService struct {
@@ -18,8 +24,6 @@ func NewBaseSysParamService() *BaseSysParamService {
 		&v.Service{
 			Model: model.NewBaseSysParam(),
 		},
-
-		// Service: v.NewService(model.NewBaseSysParam()),
 	}
 }
 
@@ -87,4 +91,60 @@ func (s *BaseSysParamService) DataByKey(ctx context.Context, key string) (data s
 	data = record["data"].String()
 	err = v.CacheManager.Set(ctx, rKey, data, 0)
 	return
+}
+
+// ModifyBefore 新增|修改前校验 keyName 唯一（与 TS 在 modifyBefore 中定制校验一致）
+func (s *BaseSysParamService) ModifyBefore(ctx context.Context, method string, param g.MapStrAny) (err error) {
+	if method != "Add" && method != "Update" {
+		return
+	}
+	var entity *model.BaseSysParam
+	gconv.Scan(param, &entity)
+	if entity == nil {
+		return
+	}
+	query := v.DBM(s.Model).Where("keyName", entity.KeyName)
+
+	var check *model.BaseSysParam
+	err = query.Scan(&check)
+	if err != nil && !errors.Is(err, gorm.ErrRecordNotFound) {
+		return err
+	}
+	if check != nil && method == "Add" {
+		return errors.New("存在相同的keyName")
+	}
+	return
+}
+
+func (s *BaseSysParamService) ServiceInfo(ctx context.Context, req *v.InfoReq) (data interface{}, err error) {
+	result, err := s.Service.ServiceInfo(ctx, req)
+	if err != nil {
+		return nil, err
+	}
+	if result.(gdb.Record).IsEmpty() {
+		return nil, nil
+	}
+	resultMap := result.(gdb.Record).Map()
+
+	str, ok := resultMap["data"].(string)
+	if !ok {
+		return resultMap, nil
+	}
+
+	// 先尝试直接解析（原本就是合法 JSON 的情况）
+	var parsed interface{}
+	if json.Unmarshal([]byte(str), &parsed) == nil {
+		resultMap["data"] = parsed
+		return resultMap, nil
+	}
+
+	// 再尝试替换后解析（兼容自定义格式）
+	replaced := strings.ReplaceAll(str, "{", "[")
+	replaced = strings.ReplaceAll(replaced, "}", "]")
+	if json.Unmarshal([]byte(replaced), &parsed) == nil {
+		resultMap["data"] = parsed
+		return resultMap, nil
+	}
+	// 非 JSON 的纯文本/HTML 原样返回
+	return resultMap, nil
 }
