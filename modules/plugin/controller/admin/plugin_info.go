@@ -5,7 +5,7 @@ import (
 
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
-	"github.com/vera-byte/vgo/modules/plugin/api/v1"
+	v1 "github.com/vera-byte/vgo/modules/plugin/api/v1"
 	"github.com/vera-byte/vgo/modules/plugin/service"
 	"github.com/vera-byte/vgo/v"
 )
@@ -34,6 +34,9 @@ func init() {
 // Install 安装插件（ZIP 包）
 func (c *PluginInfoController) Install(ctx g.Ctx, req *v1.PluginInfoInstallReq) (res *v.BaseRes, err error) {
 	file := g.RequestFromCtx(ctx).GetUploadFile("file")
+	if file == nil {
+		file = g.RequestFromCtx(ctx).GetUploadFile("files")
+	}
 	if file == nil {
 		return nil, gerror.New("请上传插件包（file 字段）")
 	}
