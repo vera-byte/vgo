@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"strings"
+	"time"
 
 	"github.com/vera-byte/vgo/v/pluginsdk"
 )
@@ -46,9 +47,10 @@ func (p *DemoPlugin) Config(key string) (interface{}, error) {
 	return p.PluginInfo.Config[key], nil
 }
 
-// UseCache 读写宿主缓存（跨插件/持久共享，落宿主 Redis）
-func (p *DemoPlugin) UseCache(key, value string) (interface{}, error) {
-	if err := p.Cache.Set(key, value); err != nil {
+// UseCache 读写宿主缓存（跨插件/持久共享，落宿主 Redis；ttlSeconds<=0 不过期）。
+// 缓存键由宿主统一加前缀 plugin:<插件key>: 隔离插件间数据
+func (p *DemoPlugin) UseCache(key, value string, ttlSeconds int) (interface{}, error) {
+	if err := p.Cache.Set(key, value, time.Duration(ttlSeconds)*time.Second); err != nil {
 		return nil, err
 	}
 	return p.Cache.Get(key)

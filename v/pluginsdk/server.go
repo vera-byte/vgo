@@ -8,6 +8,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"time"
 	"strings"
 	"sync"
 	"sync/atomic"
@@ -85,8 +86,12 @@ func (c bridgeCache) Get(key string) (interface{}, error) {
 	return out, nil
 }
 
-func (c bridgeCache) Set(key string, value interface{}) error {
-	_, err := c.h.call("cacheSet", map[string]interface{}{"key": key, "value": value})
+func (c bridgeCache) Set(key string, value interface{}, expire ...time.Duration) error {
+	params := map[string]interface{}{"key": key, "value": value}
+	if len(expire) > 0 {
+		params["ttl"] = int64(expire[0] / time.Second)
+	}
+	_, err := c.h.call("cacheSet", params)
 	return err
 }
 

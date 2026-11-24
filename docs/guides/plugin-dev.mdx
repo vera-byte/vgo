@@ -92,9 +92,9 @@ func (p *HelloPlugin) Show(a, b int) (interface{}, error) {
     return map[string]any{"sum": a + b}, nil
 }
 
-// UseCache 读写宿主缓存（跨插件/持久共享，落宿主 Redis）
-func (p *HelloPlugin) UseCache(key, value string) (interface{}, error) {
-    if err := p.Cache.Set(key, value); err != nil {
+// UseCache 读写宿主缓存（跨插件/持久共享，落宿主 Redis；ttlSeconds<=0 不过期）
+func (p *HelloPlugin) UseCache(key, value string, ttlSeconds int) (interface{}, error) {
+    if err := p.Cache.Set(key, value, time.Duration(ttlSeconds)*time.Second); err != nil {
         return nil, err
     }
     return p.Cache.Get(key)
@@ -130,7 +130,7 @@ func main() {
 |------|------|
 | 插件信息 | `p.PluginInfo`（含 `Config`、`BaseDir`、`Key`、`Name`…） |
 | 读配置 | `p.PluginInfo.Config["greeting"]` / `p.PluginInfo.ConfigString("greeting")` |
-| 宿主缓存 | `p.Cache.Get(key)` / `p.Cache.Set(key, value)` |
+| 宿主缓存 | `p.Cache.Get(key)` / `p.Cache.Set(key, value, expire...)`（`expire` 缺省不过期；键由宿主加前缀 `plugin:<插件key>:` 隔离插件间缓存） |
 | 跨插件调用 | `p.PluginService.Invoke(key, method, params...)` |
 
 ### 1.4 编写 plugin.json
@@ -303,7 +303,7 @@ raw, err := v.Plugin.Invoke(ctx, "demo", "Show", 1, 2)
 | `Invoke(ctx, "demo", "Greet", "vgo")` | `Greet(name string)` | `"hello from plugin, vgo"` |
 | `Invoke(ctx, "demo", "Hash", "abc")` | `Hash(text string)` | SHA256 摘要字符串 |
 | `Invoke(ctx, "demo", "Info")` | `Info()` | `map[name:… version:… baseDir:… config:…]` |
-| `Invoke(ctx, "demo", "UseCache", "k", "v")` | `UseCache(key, value)` | 宿主缓存读写结果 |
+| `Invoke(ctx, "demo", "UseCache", "k", "v", 60)` | `UseCache(key, value, ttlSeconds)` | 宿主缓存读写结果（实际键为 `plugin:demo:k`） |
 
 **错误语义**：
 
@@ -352,7 +352,7 @@ func (p *HelloPlugin) Upload(ctx map[string]interface{}) (interface{}, error) {
 |------|------|------|
 | 宿主→插件 | `ready` | 启动就绪握手 |
 | 宿主→插件 | `invoke` `{method, params}` | 调用插件导出方法 |
-| 插件→宿主 | `cacheGet` / `cacheSet` | 宿主缓存读写 |
+| 插件→宿主 | `cacheGet` / `cacheSet` `{key, value, ttl}` | 宿主缓存读写（键加前缀 `plugin:<插件key>:`；ttl 为秒，缺省不过期） |
 | 插件→宿主 | `pluginInvoke` `{key, method, params}` | 跨插件调用 |
 | 插件→宿主 | `log` | 输出日志到宿主 |
 

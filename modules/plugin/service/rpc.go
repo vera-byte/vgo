@@ -156,6 +156,11 @@ func (p *pluginProcess) readLoop(r io.Reader) {
 	}
 }
 
+// pluginCacheKey 插件缓存键：plugin:<插件key>:<调用方key>，实现插件间缓存隔离
+func pluginCacheKey(pluginKey, key string) string {
+	return "plugin:" + pluginKey + ":" + key
+}
+
 // handleHostCall 处理插件发起的反向调用
 func (p *pluginProcess) handleHostCall(msg *rpcMessage) {
 	var (
@@ -168,7 +173,7 @@ func (p *pluginProcess) handleHostCall(msg *rpcMessage) {
 			Key string `json:"key"`
 		}
 		_ = json.Unmarshal(msg.Params, &params)
-		val, e := v.CacheManager.Get(context.Background(), params.Key)
+		val, e := v.CacheManager.Get(context.Background(), pluginCacheKey(p.key, params.Key))
 		if e != nil {
 			err = e
 		} else {
@@ -178,9 +183,10 @@ func (p *pluginProcess) handleHostCall(msg *rpcMessage) {
 		var params struct {
 			Key   string      `json:"key"`
 			Value interface{} `json:"value"`
+			TTL   int64       `json:"ttl"` // 过期秒数；0/缺省不过期
 		}
 		_ = json.Unmarshal(msg.Params, &params)
-		err = v.CacheManager.Set(context.Background(), params.Key, params.Value, 0)
+		err = v.CacheManager.Set(context.Background(), pluginCacheKey(p.key, params.Key), params.Value, time.Duration(params.TTL)*time.Second)
 	case "pluginInvoke":
 		var params struct {
 			Key    string        `json:"key"`

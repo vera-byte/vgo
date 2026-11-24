@@ -12,6 +12,7 @@ package pluginsdk
 import (
 	"encoding/json"
 	"fmt"
+	"time"
 )
 
 // PluginInfo 插件信息（对应 plugin.json + 安装元数据）
@@ -37,10 +38,11 @@ func (i *PluginInfo) ConfigString(key string) string {
 	return fmt.Sprintf("%v", i.Config[key])
 }
 
-// Cache 宿主缓存（实现由 SDK 通过反向 RPC 调宿主，开发环境也可本地实现）
+// Cache 宿主缓存（实现由 SDK 通过反向 RPC 调宿主，开发环境也可本地实现）。
+// 键由宿主统一加前缀 plugin:<插件key>: 隔离插件间缓存；expire 为过期时间（缺省不过期）
 type Cache interface {
 	Get(key string) (interface{}, error)
-	Set(key string, value interface{}) error
+	Set(key string, value interface{}, expire ...time.Duration) error
 }
 
 // PluginService 跨插件调用（反向 RPC 到宿主，由宿主路由到其他插件）
