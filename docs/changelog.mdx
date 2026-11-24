@@ -2,6 +2,16 @@
 title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
+## v1.20.6（2026-11）—— 插件调用迁移至 v.Plugin
+
+### 变更（破坏性）
+- **插件调用迁移内核**：业务模块统一经 `v.Plugin.Invoke(ctx, key, method, params...)` 调用插件（plugin 模块注册实现，未引入 plugin 模块时返回明确错误）；user 模块短信/头像/手机号登录改走新入口，不再依赖 plugin 模块
+- **移除 `POST /admin/plugin/info/invoke` 演示端点**：插件调用仅保留服务端 `v.Plugin.Invoke` 途径
+
+### 其他
+- init 脚手架模板依赖钉升级 v1.20.6（simple 分支），pre-release 重新生成 `vgo-simple` / `docs` 内嵌产物
+- 全模块依赖 lockstep v1.20.6，binVersion 同步
+
 ## v1.20.5（2026-11）—— 插件安装兼容 files 上传字段
 
 - 插件 `Install` 上传表单字段 `file` 取不到时回退 `files`，兼容不同前端的多文件字段命名
