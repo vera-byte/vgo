@@ -44,37 +44,33 @@ type pluginProcess struct {
 	done    chan struct{}
 }
 
-// startPluginProcess 启动插件可执行程序并完成 ready 握手
-func startPluginProcess(key, binPath, baseDir string, info *PluginInfoData) (*pluginProcess, error) {
-	// 可执行文件用绝对路径，避免相对路径与 cmd.Dir 组合导致 fork/exec 解析失败
-	if abs, err := filepath.Abs(binPath); err == nil {
-		binPath = abs
-	}
+// startPluginProcess 启动插件进程并完成 ready 握手
+func startPluginProcess(key string, cmd pluginCmd, baseDir string, info *PluginInfoData) (*pluginProcess, error) {
 	if abs, err := filepath.Abs(baseDir); err == nil {
 		baseDir = abs
 	}
-	cmd := exec.Command(binPath)
+	execCmd := exec.Command(cmd.Name, cmd.Args...)
 	infoJSON, _ := json.Marshal(info)
-	cmd.Env = append(os.Environ(),
+	execCmd.Env = append(os.Environ(),
 		"VGO_PLUGIN_INFO="+string(infoJSON),
 		"VGO_PLUGIN_BASE_DIR="+baseDir,
 	)
-	cmd.Dir = baseDir
-	stdin, err := cmd.StdinPipe()
+	execCmd.Dir = baseDir
+	stdin, err := execCmd.StdinPipe()
 	if err != nil {
 		return nil, err
 	}
-	stdout, err := cmd.StdoutPipe()
+	stdout, err := execCmd.StdoutPipe()
 	if err != nil {
 		return nil, err
 	}
-	cmd.Stderr = os.Stderr
-	if err = cmd.Start(); err != nil {
+	execCmd.Stderr = os.Stderr
+	if err = execCmd.Start(); err != nil {
 		return nil, gerror.Wrapf(err, "插件进程启动失败: %s", key)
 	}
 	p := &pluginProcess{
 		key:     key,
-		cmd:     cmd,
+		cmd:     execCmd,
 		stdin:   stdin,
 		pending: map[int64]chan *rpcMessage{},
 		info:    info,
@@ -82,7 +78,7 @@ func startPluginProcess(key, binPath, baseDir string, info *PluginInfoData) (*pl
 	}
 	go p.readLoop(stdout)
 	go func() {
-		_ = cmd.Wait()
+		_ = execCmd.Wait()
 		close(p.done)
 	}()
 	// ready 握手（单例插件仅启动时一次，非单例每次调用前均执行）

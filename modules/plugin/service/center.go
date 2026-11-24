@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"fmt"
+	"path/filepath"
 	"sync"
 
 	"github.com/gogf/gf/v2/errors/gerror"
@@ -87,21 +88,40 @@ func (c *PluginCenter) GetInstance(key string) PluginInstance {
 	return c.plugins[key]
 }
 
-// LoadProcessPlugin 加载并注册插件可执行程序
+// pluginCmd 插件进程启动命令：生产为已安装可执行文件，开发模式为 go run 源码
+type pluginCmd struct {
+	Name string   // 可执行文件路径或工具名（如 go）
+	Args []string // 附加参数
+}
+
+// binCmd 已安装插件的可执行文件（绝对路径，避免相对路径与 cmd.Dir 组合导致 fork/exec 解析失败）
+func binCmd(binPath string) pluginCmd {
+	if abs, err := filepath.Abs(binPath); err == nil {
+		binPath = abs
+	}
+	return pluginCmd{Name: binPath}
+}
+
+// devCmd 开发模式源码启动：在源码目录内 go run .（依赖该模块 go.mod 的 replace 指向工作区 SDK）
+func devCmd() pluginCmd {
+	return pluginCmd{Name: "go", Args: []string{"run", "."}}
+}
+
+// LoadProcessPlugin 加载并注册插件进程
 // singleton=true 常驻进程；false 每次调用拉起进程（对齐参考实现的实例语义）
-func LoadProcessPlugin(keyName, hook, binPath string, info *PluginInfoData) error {
+func LoadProcessPlugin(keyName, hook string, cmd pluginCmd, info *PluginInfoData) error {
 	pc := GetPluginCenter()
 	var (
 		instance PluginInstance
 		err      error
 	)
 	if info.Singleton {
-		instance, err = startPluginProcess(keyName, binPath, info.BaseDir, info)
+		instance, err = startPluginProcess(keyName, cmd, info.BaseDir, info)
 		if err != nil {
 			return err
 		}
 	} else {
-		instance = &lazyProcessFactory{key: keyName, binPath: binPath, info: info}
+		instance = &lazyProcessFactory{key: keyName, cmd: cmd, info: info}
 	}
 	regKey := keyName
 	if hook != "" {
@@ -113,17 +133,17 @@ func LoadProcessPlugin(keyName, hook, binPath string, info *PluginInfoData) erro
 
 // lazyProcessFactory 非单例插件：每次 Invoke 拉起独立进程，调用后回收
 type lazyProcessFactory struct {
-	key     string
-	binPath string
-	info    *PluginInfoData
-	mu      sync.Mutex
-	proc    *pluginProcess // 当前调用占用的进程
+	key  string
+	cmd  pluginCmd
+	info *PluginInfoData
+	mu   sync.Mutex
+	proc *pluginProcess // 当前调用占用的进程
 }
 
 func (l *lazyProcessFactory) Invoke(method string, args ...interface{}) (interface{}, error) {
 	l.mu.Lock()
 	defer l.mu.Unlock()
-	proc, err := startPluginProcess(l.key, l.binPath, l.info.BaseDir, l.info)
+	proc, err := startPluginProcess(l.key, l.cmd, l.info.BaseDir, l.info)
 	if err != nil {
 		return nil, err
 	}

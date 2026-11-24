@@ -170,6 +170,22 @@ curl -X POST http://host:8001/admin/plugin/info/install \
 raw, err := v.Plugin.Invoke(ctx, "demo", "Greet", "vgo")
 ```
 
+## 开发模式（源码直调）
+
+开发期无需打包安装：给插件记录设置 **`devPath`**（源码目录，如 `example`），
+`RunMode=dev` 下启用/Reload 该插件即以 `go run .` 直接拉起源码进程，调用契约与安装版完全一致：
+
+- **零打包**：不装 ZIP、不起可执行文件，`plugin_info.devPath` 一填即用
+- **改码即生效**：源码改动后调用 `/admin/plugin/info/reload`（或启停记录）即重新编译运行
+- **吃本地 SDK**：源码模块 go.mod 需 `replace github.com/vera-byte/vgo/v => ../v` 指向工作区（`example/` 已配好），SDK 改动同样 Reload 可见
+- **门控**：`devPath` 仅在开发模式（`RunMode=dev`）生效，生产环境设置了也只告警不加载
+
+<Note>
+`go run` 需要宿主机安装 Go 工具链，属开发期依赖；生产部署仍走 ZIP 安装的可执行文件路径。
+非单例（`plugin.json` 无 `singleton`）开发插件每次调用都会 `go run` 一次（Go 构建缓存加持下较快），
+建议开发期在 `plugin.json` 标 `singleton: true`。
+</Note>
+
 ## SDK API
 
 | 能力 | 用法 |

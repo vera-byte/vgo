@@ -12,7 +12,7 @@ import (
 )
 
 // InitUploadHook 注册上传钩子：存在启用中的 upload Hook 插件时接管上传
-//（对应 cool-admin 中 Hook 插件替换默认上传实现的行为）
+// （对应 cool-admin 中 Hook 插件替换默认上传实现的行为）
 func InitUploadHook() {
 	v.RegisterUploadHook(func(ctx context.Context) (interface{}, error) {
 		if !HasHook("upload") {

@@ -152,7 +152,7 @@ func ParseZip(raw []byte) (*pluginZipData, error) {
 
 // CheckResult 安装前检查结果
 type CheckResult struct {
-	Type    int    `json:"type"`    // 0-信息不完整 1-已存在(覆盖) 2-同名Hook插件已启用 3-检查通过
+	Type    int    `json:"type"` // 0-信息不完整 1-已存在(覆盖) 2-同名Hook插件已启用 3-检查通过
 	Message string `json:"message"`
 }
 
@@ -332,6 +332,25 @@ func (s *PluginService) ReloadKey(key string) {
 		GetPluginCenter().Remove(key, false)
 		return
 	}
+	// 开发模式：配置 devPath 的插件以 go run 源码启动，无需安装可执行文件；
+	// 源码改动后 Reload 即重新编译生效（模块 go.mod 的 replace 指向工作区 SDK）
+	if devPath := record["devPath"].String(); devPath != "" {
+		if v.RunMode != "dev" {
+			g.Log().Warningf(context.Background(), "插件[%s]配置了 devPath，仅开发模式（RunMode=dev）可用", key)
+			return
+		}
+		if abs, err := filepath.Abs(devPath); err == nil {
+			devPath = abs
+		}
+		info := BuildPluginInfoData(record.Map(), devPath)
+		// 停旧起新（同 Hook 键下重复加载时覆盖）
+		GetPluginCenter().Remove(info.Hook, false)
+		GetPluginCenter().Remove(key, false)
+		if err := LoadProcessPlugin(key, info.Hook, devCmd(), info); err != nil {
+			g.Log().Warningf(context.Background(), "插件[%s]开发模式加载失败: %v", key, err)
+		}
+		return
+	}
 	binPath := filepath.Join(pluginDir(key), binName())
 	if !gfile.Exists(binPath) {
 		g.Log().Warningf(context.Background(), "插件[%s]可执行文件不存在: %s", key, binPath)
@@ -341,7 +360,7 @@ func (s *PluginService) ReloadKey(key string) {
 	// 停旧起新（同 Hook 键下重复加载时覆盖）
 	GetPluginCenter().Remove(info.Hook, false)
 	GetPluginCenter().Remove(key, false)
-	if err := LoadProcessPlugin(key, info.Hook, binPath, info); err != nil {
+	if err := LoadProcessPlugin(key, info.Hook, binCmd(binPath), info); err != nil {
 		g.Log().Warningf(context.Background(), "插件[%s]加载失败: %v", key, err)
 	}
 }

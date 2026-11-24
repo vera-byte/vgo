@@ -20,6 +20,7 @@ type PluginInfo struct {
 	TsContent   string `json:"tsContent"`   // TS 源码（JSON：{type:'ts',data}，留档参考）
 	PluginJson  string `json:"pluginJson"`  // 插件的 plugin.json（JSON）
 	Config      string `json:"config"`      // 配置（JSON，支持 @env 多环境）
+	DevPath     string `json:"devPath"`     // 开发模式源码路径（go run 目标，仅 RunMode=dev 生效）
 }
 
 // TableName PluginInfo 的表名
