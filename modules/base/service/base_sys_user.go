@@ -342,8 +342,10 @@ func NewBaseSysUserService() *BaseSysUserService {
 				Where: func(ctx context.Context) []g.Array {
 					r := g.RequestFromCtx(ctx).GetMap()
 					ids := gconv.SliceStr(r["departmentIds"])
+					admin := v.GetAdmin(ctx)
 					return []g.Array{
 						{`("departmentId" IN (?))`, ids, len(ids) > 0},
+						{`"base_sys_user"."id" !=`, admin.UserId},
 					}
 				},
 				Extend: func(ctx g.Ctx, m *gdb.Model) *gdb.Model {

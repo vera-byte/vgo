@@ -41,6 +41,7 @@ func requestLogParams(r *ghttp.Request) string {
 	if len(params) > maxLogParamsLen {
 		params = params[:maxLogParamsLen] + "...(truncated)"
 	}
+
 	return params
 }
 

@@ -10,7 +10,7 @@ require (
 	github.com/sa-tokens/sa-token-go/storage/memory v0.2.3
 	github.com/sa-tokens/sa-token-go/storage/redis v0.2.3
 	github.com/sa-tokens/sa-token-go/stputil v0.2.3
-	github.com/vera-byte/vgo/v v1.20.1
+	github.com/vera-byte/vgo/v v1.20.3
 	golang.org/x/crypto v0.58.0
 )
 
