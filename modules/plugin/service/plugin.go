@@ -33,7 +33,7 @@ func NewPluginService() *PluginService {
 		Service: &v.Service{
 			Model: model.NewPluginInfo(),
 			PageQueryOp: &v.QueryOp{
-				Select:     `plugin_info."id",plugin_info."name",plugin_info."keyName",plugin_info."hook",plugin_info."version",plugin_info."status",plugin_info."readme",plugin_info."author",plugin_info."logo",plugin_info."description",plugin_info."pluginJson",plugin_info."config",plugin_info."createTime",plugin_info."updateTime"`,
+				Select:     `plugin_info."id",plugin_info."name",plugin_info."keyName",plugin_info."hook",plugin_info."version",plugin_info."status",plugin_info."readme",plugin_info."author",plugin_info."logo",plugin_info."description",plugin_info."pluginJson",plugin_info."config",plugin_info."devPath",plugin_info."createTime",plugin_info."updateTime"`,
 				AddOrderby: g.MapStrStr{"id": "DESC"},
 			},
 		},
