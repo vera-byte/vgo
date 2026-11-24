@@ -2,6 +2,12 @@
 title: "更新日志"
 description: "Vgo 重要版本与架构演进记录"
 ---
+## v1.20.5（2026-11）—— 插件安装兼容 files 上传字段
+
+- 插件 `Install` 上传表单字段 `file` 取不到时回退 `files`，兼容不同前端的多文件字段命名
+- init 脚手架模板依赖钉升级 v1.20.5（simple 分支），pre-release 重新生成 `vgo-simple` / `docs` 内嵌产物
+- 全模块依赖 lockstep v1.20.5，binVersion 同步
+
 ## v1.20.4（2026-11）—— 模板打包产物与依赖钉对齐
 
 - init 脚手架模板依赖钉升级 v1.20.4（simple 分支），pre-release 重新生成 `vgo-simple` / `docs` 内嵌产物——生成项目可直接解析 v1.20.4 依赖集

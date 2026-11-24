@@ -2,6 +2,6 @@ module demo-plugin
 
 go 1.27.3
 
-require github.com/vera-byte/vgo/v v1.20.4
+require github.com/vera-byte/vgo/v v1.20.5
 
 replace github.com/vera-byte/vgo/v => ../v
