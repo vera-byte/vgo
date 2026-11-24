@@ -8,7 +8,6 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/grand"
-	pluginService "github.com/vera-byte/vgo/modules/plugin/service"
 	"github.com/vera-byte/vgo/modules/user/config"
 	"github.com/vera-byte/vgo/v"
 )
@@ -28,7 +27,7 @@ func (s *UserSmsService) SendSms(ctx context.Context, phone string) error {
 	sent := false
 	var lastErr error
 	for _, key := range []string{"sms-tx", "sms-ali"} {
-		if _, err := pluginService.Invoke(ctx, key, "send", []string{phone}, code); err == nil {
+		if _, err := v.Plugin.Invoke(ctx, key, "send", []string{phone}, code); err == nil {
 			sent = true
 			break
 		} else {

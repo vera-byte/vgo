@@ -8,7 +8,6 @@ import (
 	"github.com/gogf/gf/v2/os/gtime"
 	"github.com/gogf/gf/v2/util/gconv"
 	baseService "github.com/vera-byte/vgo/modules/base/service"
-	pluginService "github.com/vera-byte/vgo/modules/plugin/service"
 	sagf "github.com/sa-tokens/sa-token-go/integrations/gf"
 	userModel "github.com/vera-byte/vgo/modules/user/model"
 	"github.com/vera-byte/vgo/modules/user/config"
@@ -112,7 +111,7 @@ func (s *UserLoginService) MiniPhone(ctx context.Context, code, encryptedData, i
 
 // UniPhone 一键手机号登录（经 uniphone 插件）
 func (s *UserLoginService) UniPhone(ctx context.Context, accessToken, openid, appId string) (*UserTokenResult, error) {
-	raw, err := pluginService.Invoke(ctx, "uniphone", "getPhone", accessToken, openid, appId)
+	raw, err := v.Plugin.Invoke(ctx, "uniphone", "getPhone", accessToken, openid, appId)
 	if err != nil {
 		return nil, gerror.Wrap(err, "获得手机号失败，请检查配置")
 	}
@@ -201,7 +200,7 @@ func (s *UserLoginService) wxLoginToken(ctx context.Context, wxInfo g.Map) (*Use
 		// 头像转存走 upload 插件（无插件则保留原始地址）
 		avatar := gconv.String(wxInfo["avatarUrl"])
 		if avatar != "" {
-			if raw, e := pluginService.Invoke(ctx, "upload", "downAndUpload", avatar, gtime.Now().Format("YmdHis")+".png"); e == nil {
+			if raw, e := v.Plugin.Invoke(ctx, "upload", "downAndUpload", avatar, gtime.Now().Format("YmdHis")+".png"); e == nil {
 				avatar = gconv.String(raw)
 			}
 		}

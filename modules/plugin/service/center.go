@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/vera-byte/vgo/v"
 )
 
 // PluginInstance 插件实例抽象（可执行进程 / 内置实现统一派发）
@@ -160,6 +161,17 @@ func Invoke(ctx context.Context, key, method string, params ...interface{}) (int
 		return nil, fmt.Errorf("插件[%s]不存在或已禁用", key)
 	}
 	return inst.Invoke(method, params...)
+}
+
+// vPluginInvoker 将调用能力注册到 v.Plugin：业务模块经 v.Plugin.Invoke 调用插件，无需依赖 plugin 模块
+type vPluginInvoker struct{}
+
+func (vPluginInvoker) Invoke(ctx context.Context, key, method string, params ...interface{}) (interface{}, error) {
+	return Invoke(ctx, key, method, params...)
+}
+
+func init() {
+	v.RegisterPluginInvoker(vPluginInvoker{})
 }
 
 // HasHook 是否有已启用的 Hook 插件

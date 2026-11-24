@@ -6,7 +6,6 @@ import (
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/util/gconv"
-	pluginService "github.com/vera-byte/vgo/modules/plugin/service"
 	sagf "github.com/sa-tokens/sa-token-go/integrations/gf"
 	userModel "github.com/vera-byte/vgo/modules/user/model"
 	"github.com/vera-byte/vgo/v"
@@ -57,7 +56,7 @@ func (s *UserInfoService) UpdatePerson(ctx context.Context, id uint) error {
 	}
 	// 头像重新转存（无 upload 插件则保留原地址）
 	if avatar := gconv.String(rMap["avatarUrl"]); avatar != "" {
-		if raw, e := pluginService.Invoke(ctx, "upload", "downAndUpload", avatar, "avatar.png"); e == nil {
+		if raw, e := v.Plugin.Invoke(ctx, "upload", "downAndUpload", avatar, "avatar.png"); e == nil {
 			rMap["avatarUrl"] = gconv.String(raw)
 		}
 	}

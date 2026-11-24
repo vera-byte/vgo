@@ -20,7 +20,7 @@ func init() {
 	c := &PluginInfoController{
 		&v.Controller{
 			Prefix:  "/admin/plugin/info",
-			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page", "Install", "Reload", "Invoke"},
+			Api:     []string{"Add", "Delete", "Update", "Info", "List", "Page", "Install", "Reload"},
 			Service: svc,
 		},
 	}
@@ -55,16 +55,6 @@ func (c *PluginInfoController) Install(ctx g.Ctx, req *v1.PluginInfoInstallReq) 
 		return nil, e
 	}
 	res = v.Ok(result)
-	return
-}
-
-// Invoke 调用插件方法（演示/联调用；生产调用建议在服务代码中经 service.Invoke）
-func (c *PluginInfoController) Invoke(ctx g.Ctx, req *v1.PluginInfoInvokeReq) (res *v.BaseRes, err error) {
-	data, err := service.Invoke(ctx, req.Key, req.Method, req.Params...)
-	if err != nil {
-		return
-	}
-	res = v.Ok(data)
 	return
 }
 
